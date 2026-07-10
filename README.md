@@ -108,20 +108,20 @@ Copy `Frontend/.env.example` when adding environment variables. Do not commit se
 
 1. Go to [Vercel](https://vercel.com) → **Add New** → **Project**
 2. Import [sha713727-lab/AvionFlightReservation](https://github.com/sha713727-lab/AvionFlightReservation)
-3. Configure:
+3. Configure (**important**):
 
 | Setting | Value |
 |---------|--------|
 | Framework Preset | Next.js |
-| Root Directory | `Frontend` |
+| **Root Directory** | **`Frontend`** |
 | Build Command | `npm run build` (default) |
-| Output Directory | leave default (Next.js) |
+| Output Directory | leave default |
 | Install Command | `npm install` (default) |
-| Node.js Version | 22.x (or 20.x+) |
+| Node.js Version | 22.x |
 
 4. Click **Deploy**
 
-Vercel detects Next.js automatically when the root directory is `Frontend`. No static “Publish Directory” is required.
+Set **Root Directory** to `Frontend` so Vercel installs dependencies where `next` lives. Do not use a Static Site / Publish Directory.
 
 ---
 

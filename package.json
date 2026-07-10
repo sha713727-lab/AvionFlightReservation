@@ -5,11 +5,11 @@
   "description": "Avion Flight Reservation — independent travel booking frontend (Next.js)",
   "scripts": {
     "dev": "npm run dev --prefix Frontend",
-    "build": "npm run build --prefix Frontend",
+    "build": "npm install --prefix Frontend && npm run build --prefix Frontend",
     "start": "npm run start --prefix Frontend",
     "lint": "npm run lint --prefix Frontend"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": "22.x"
   }
 }
