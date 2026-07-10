@@ -123,6 +123,8 @@ Copy `Frontend/.env.example` when adding environment variables. Do not commit se
 
 Set **Root Directory** to `Frontend` so Vercel installs dependencies where `next` lives. Do not use a Static Site / Publish Directory.
 
+If a previous deploy set a custom **Install Command** like `npm install --prefix Frontend`, clear it (use the default `npm install`) — with Root Directory already `Frontend`, that prefix creates `Frontend/Frontend` and fails.
+
 ---
 
 ## Scripts
