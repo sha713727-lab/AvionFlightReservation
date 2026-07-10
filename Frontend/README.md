@@ -2,4 +2,4 @@
 
 Production Next.js app for Avion Flight Reservation.
 
-See the [root README](../README.md) for setup, production rules, and Render deployment.
+See the [root README](../README.md) for setup, production rules, and Vercel deployment.

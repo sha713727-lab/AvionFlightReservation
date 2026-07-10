@@ -29,7 +29,7 @@ This project is a production Next.js frontend for an independent travel agency. 
 | UI | React 19, Tailwind CSS v4, Framer Motion |
 | Validation | Zod |
 | Icons / fonts | React Icons, Outfit |
-| Hosting | Render (Node web service) |
+| Hosting | Vercel |
 
 ---
 
@@ -48,7 +48,6 @@ Avion/
 │   │   └── utils/            # Helpers (cn, SEO, dial)
 │   ├── next.config.js
 │   └── package.json
-├── render.yaml               # Render Blueprint for Frontend
 ├── frontendProductionRules.docx
 ├── SEO-Audit-Avion-Sites.md
 ├── SEO-Keyword-Implementation-Guide.md
@@ -105,34 +104,24 @@ Copy `Frontend/.env.example` when adding environment variables. Do not commit se
 
 ---
 
-## Deploy on Render
+## Deploy on Vercel
 
-This repo includes a [Render Blueprint](https://render.com/docs/blueprint-spec) at `render.yaml` for the Next.js frontend.
-
-### Option A — Blueprint (recommended)
-
-1. Push this repository to GitHub: [AvionFlightReservation](https://github.com/sha713727-lab/AvionFlightReservation)
-2. In [Render Dashboard](https://dashboard.render.com) → **New** → **Blueprint**
-3. Connect `sha713727-lab/AvionFlightReservation`
-4. Review the service from `render.yaml` and click **Apply**
-
-Render will:
-
-- Use `Frontend/` as the root directory
-- Run `npm ci && npm run build`
-- Start with `npm run start` (Next.js production server)
-
-### Option B — Manual web service
+1. Go to [Vercel](https://vercel.com) → **Add New** → **Project**
+2. Import [sha713727-lab/AvionFlightReservation](https://github.com/sha713727-lab/AvionFlightReservation)
+3. Configure:
 
 | Setting | Value |
 |---------|--------|
-| Runtime | Node |
+| Framework Preset | Next.js |
 | Root Directory | `Frontend` |
-| Build Command | `npm ci && npm run build` |
-| Start Command | `npm run start` |
-| Node version | `22` (or 20+) |
+| Build Command | `npm run build` (default) |
+| Output Directory | leave default (Next.js) |
+| Install Command | `npm install` (default) |
+| Node.js Version | 22.x (or 20.x+) |
 
-Set `NODE_ENV=production` in the Render environment.
+4. Click **Deploy**
+
+Vercel detects Next.js automatically when the root directory is `Frontend`. No static “Publish Directory” is required.
 
 ---
 
