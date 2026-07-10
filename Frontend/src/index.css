@@ -1,0 +1,254 @@
+@import "tailwindcss";
+@import "@fontsource/outfit/400.css";
+@import "@fontsource/outfit/500.css";
+@import "@fontsource/outfit/600.css";
+@import "@fontsource/outfit/700.css";
+
+@theme {
+  --font-sans: "Outfit", Arial, sans-serif;
+  --font-heading: "Outfit", Arial, sans-serif;
+
+  /* Primary */
+  --color-primary: #0f172a;
+  --color-primary-hover: #1e293b;
+
+  /* Accent — trust blue (CTAs, links, headings) */
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
+
+  /* Secondary — soft aviation blue (icons, highlights on dark) */
+  --color-secondary: #3b82f6;
+
+  /* Semantic */
+  --color-success: #22c55e;
+  --color-error: #ef4444;
+
+  /* Surfaces */
+  --color-background: #f8fafc;
+  --color-section: #ffffff;
+  --color-section-alt: #f1f5f9;
+  --color-card: #ffffff;
+  --color-border: #e5e7eb;
+
+  /* Text */
+  --color-text: #111827;
+  --color-text-secondary: #6b7280;
+  --color-text-muted: #94a3b8;
+
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.06);
+  --shadow-card-hover: 0 8px 30px rgba(15, 23, 42, 0.08);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
+
+  body {
+    margin: 0;
+    overflow-x: clip;
+    max-width: 100%;
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body, button, input, textarea, select {
+    font-family: var(--font-sans);
+  }
+
+  #root {
+    min-height: 100svh;
+    width: 100%;
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-accent);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+  }
+
+  h1 { font-size: clamp(2.75rem, 6vw, 4.5rem); }
+  h2 { font-size: clamp(2rem, 4vw, 2.75rem); }
+  h3 { font-size: clamp(1.35rem, 2.5vw, 1.75rem); }
+  h4 { font-size: clamp(1.15rem, 2vw, 1.35rem); }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: rgba(37, 99, 235, 0.15);
+    color: var(--color-primary);
+  }
+}
+
+/* Outside @layer so Tailwind v4 cannot override the animation */
+@keyframes partner-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+.partner-marquee {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 6%,
+    black 94%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 6%,
+    black 94%,
+    transparent 100%
+  );
+}
+
+.partner-marquee-track {
+  animation: partner-marquee 28s linear infinite;
+  will-change: transform;
+}
+
+.partner-marquee:hover .partner-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes flight-route-draw {
+  0% { stroke-dashoffset: 120; }
+  54% { stroke-dashoffset: 0; opacity: 1; }
+  58%, 100% { stroke-dashoffset: -120; opacity: 0; }
+}
+
+@keyframes flight-plane-visibility {
+  0%, 100% { opacity: 0; }
+  5%, 48% { opacity: 1; }
+  55% { opacity: 0; }
+}
+
+.flight-route-line {
+  stroke-dasharray: 0.7 1.3;
+  animation: flight-route-draw 22s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+}
+
+.flight-plane-svg {
+  animation: flight-plane-visibility 22s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+  filter: drop-shadow(0 16px 16px rgba(15, 23, 42, 0.22));
+}
+
+@layer utilities {
+  .hero-glow {
+    background-image: radial-gradient(
+      ellipse 80% 60% at 50% 40%,
+      rgba(37, 99, 235, 0.1) 0%,
+      rgba(37, 99, 235, 0.04) 45%,
+      transparent 75%
+    );
+  }
+
+  .nav-link {
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .nav-link:hover {
+    color: var(--color-primary);
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .nav-link-on-dark {
+    color: #ffffff !important;
+  }
+
+  .nav-link-on-dark::after {
+    background: #ffffff !important;
+  }
+
+  .nav-link-on-dark:hover {
+    color: #ffffff !important;
+  }
+
+  .footer-link {
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s ease;
+  }
+
+  .footer-link:hover {
+    color: white;
+  }
+
+  .footer-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  .footer-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  @keyframes ping-soft {
+    0% { transform: scale(1); opacity: 0.35; }
+    70% { transform: scale(1.35); opacity: 0; }
+    100% { transform: scale(1.35); opacity: 0; }
+  }
+
+  .animate-ping-soft {
+    animation: ping-soft 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-ping-soft {
+      animation: none;
+    }
+
+    .flight-plane-svg,
+    .flight-route-line {
+      animation: none;
+    }
+  }
+}

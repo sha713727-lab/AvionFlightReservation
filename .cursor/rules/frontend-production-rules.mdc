@@ -1,0 +1,36 @@
+---
+description: Strict production frontend standards for Avion (see frontendProductionRules.docx)
+alwaysApply: true
+---
+
+# Avion Frontend Production Rules
+
+Follow `frontendProductionRules.docx` at the repo root for the full contract.
+
+## Non-negotiables
+
+- Production-ready code only — no placeholders, TODOs, demo logic, or dead code.
+- Max **300 lines** per file; split when approaching the limit.
+- **One responsibility** per component; extract subcomponents and hooks for logic.
+- **Feature flow:** Component → Hook → Service → API → Backend. Never `fetch` in components.
+- Validate with **Zod** in `src/schemas/`; never trust client input.
+- **Constants** for strings, URLs, regex, and messages — no hardcoded copy in UI files.
+- **Design tokens** only for colors, spacing, typography — no magic values in components.
+- Use **`@/` absolute imports** (maps to `src/`).
+- **No `console.log`** in production code; no empty catch blocks.
+- Avoid unnecessary fallbacks (`??`, `||`) unless the API contract requires them.
+- Forms: validate, trim, disable while loading, prevent duplicate submit, inline errors, success state.
+- Reuse shared UI (`Button`, `Modal`, etc.) — no duplicate patterns.
+- Keep changes minimal; analyze existing code before adding new abstractions.
+
+## Target structure (grow toward this)
+
+`src/app`, `config`, `constants`, `features`, `components`, `layouts`, `hooks`, `services/api`, `utils`, `schemas`, `assets`, `styles`, `routes`
+
+New features go in `features/<name>/` with `components`, `hooks`, `services`, `schemas`, `constants`.
+
+## Before finishing any task
+
+- ESLint clean, no unused imports/variables, no duplicate code.
+- Loading, error, empty, and success states where applicable.
+- Keyboard accessible, labeled, semantic HTML, visible focus states.
