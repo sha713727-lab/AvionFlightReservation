@@ -21,4 +21,4 @@ export const CONTACT_LABELS = {
 export const SITE_NAME = 'Avion Flight Reservation'
 export const SITE_URL = 'https://aviontravel.com'
 export const SITE_DESCRIPTION =
-  'Book flights and hotels with Avion Flight Reservation. Independent travel agents for Canada, USA, Europe, and Mexico. Call +1 877 702 9887 for 24/7 flight reservation support.'
+  'Book flights and hotels with Avion Flight Reservation. Independent travel assistance for Canada, USA, Europe, and Mexico. Call +1 877 702 9887 for 24/7 flight reservation support.'

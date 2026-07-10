@@ -1,11 +1,11 @@
 import Container from '@/components/ui/Container'
 import LayeredSectionHeading from '@/components/ui/LayeredSectionHeading'
 import Accordion from '@/components/ui/Accordion'
+import CatalogStatus from '@/components/ui/CatalogStatus'
 import { COPY } from '@/constants/copy'
-import { FAQ_ITEMS } from '@/data/faq'
 import { SITE_NAME } from '@/constants/contact'
 
-export default function FAQSection() {
+export default function FAQSection({ faqs = [] }) {
   return (
     <section id="faq" className="py-24 lg:py-32 bg-section-alt" aria-labelledby="faq-heading">
       <Container className="max-w-3xl">
@@ -16,7 +16,11 @@ export default function FAQSection() {
           accentTitle={COPY.faq.accentTitle}
           description={COPY.faq.description.replace('Avion', SITE_NAME)}
         />
-        <Accordion items={FAQ_ITEMS} />
+        {faqs.length === 0 ? (
+          <CatalogStatus state="empty" />
+        ) : (
+          <Accordion items={faqs} />
+        )}
       </Container>
     </section>
   )

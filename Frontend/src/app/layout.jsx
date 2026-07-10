@@ -12,7 +12,7 @@ export const metadata = {
   keywords: [
     'flight reservation',
     'book flights by phone',
-    'travel agent',
+    'travel specialist',
     'hotel booking',
     'points redemption help',
     'Canada flights',
@@ -45,9 +45,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'TravelAgency',
+    '@type': 'Organization',
     name: BRAND_FULL_NAME,
-    description: 'Independent travel agency for flight and hotel reservations by phone.',
+    description:
+      'Independent travel assistance for flight and hotel reservations by phone.',
     url: SITE_URL,
     telephone: PHONE_NUMBER,
     email: EMAIL,

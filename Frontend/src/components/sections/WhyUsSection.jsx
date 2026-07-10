@@ -7,25 +7,44 @@ import { WHY_US_CARD_ACCENTS } from '@/constants/sectionThemes'
 import { COPY } from '@/constants/copy'
 import { WHY_US, STATS } from '@/data/services'
 import { useCounter } from '@/hooks/useCounter'
+import { useLiveCustomerCounter } from '@/hooks/useLiveCustomerCounter'
 import { cn } from '@/utils/cn'
 
-function StatCounter({ value, suffix, label }) {
-  const { count, ref } = useCounter(value)
+function StatValue({ count, suffix = '', label, counterRef }) {
   return (
     <motion.div
-      ref={ref}
+      ref={counterRef}
       whileHover={{ y: -2 }}
       transition={SPRING}
-      className="group text-center cursor-default"
+      className="group cursor-default text-center"
     >
-      <p className="text-3xl lg:text-4xl font-semibold text-accent mb-1 tracking-tight transition-colors duration-300 group-hover:text-accent-hover">
-        {count.toLocaleString()}{suffix}
+      <p className="mb-1 text-3xl font-semibold tracking-tight text-accent transition-colors duration-300 group-hover:text-accent-hover lg:text-4xl">
+        {count.toLocaleString()}
+        {suffix}
       </p>
       <p className="text-sm text-text-secondary transition-colors duration-300 group-hover:text-text">
         {label}
       </p>
     </motion.div>
   )
+}
+
+function LiveStatCounter({ label }) {
+  const { count, ref } = useLiveCustomerCounter()
+  return <StatValue count={count} label={label} counterRef={ref} />
+}
+
+function StaticStatCounter({ value, suffix, label }) {
+  const { count, ref } = useCounter(value)
+  return <StatValue count={count} suffix={suffix} label={label} counterRef={ref} />
+}
+
+function StatCounter(stat) {
+  if (stat.live) {
+    return <LiveStatCounter label={stat.label} />
+  }
+
+  return <StaticStatCounter value={stat.value} suffix={stat.suffix} label={stat.label} />
 }
 
 export default function WhyUsSection() {

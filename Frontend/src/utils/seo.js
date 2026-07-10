@@ -50,10 +50,10 @@ export function buildPageMetadata({
   }
 }
 
-export function buildTravelAgencyJsonLd({ description, path, includeAddress = false }) {
+export function buildTravelAssistanceJsonLd({ description, path, includeAddress = false }) {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'TravelAgency',
+    '@type': 'Organization',
     name: BRAND_FULL_NAME,
     description,
     url: `${SITE_URL}${path}`,

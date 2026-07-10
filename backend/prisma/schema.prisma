@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  tagline     String
+  description String
+  features    String[]
+  iconKey     String
+  imageKey    String
+  imageAlt    String
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isActive, sortOrder])
+  @@map("services")
+}
+
+model DestinationTier {
+  id        String             @id @default(cuid())
+  slug      String             @unique
+  title     String
+  points    Int
+  sortOrder Int                @default(0)
+  isActive  Boolean            @default(true)
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+  places    DestinationPlace[]
+
+  @@index([isActive, sortOrder])
+  @@map("destination_tiers")
+}
+
+model DestinationPlace {
+  id        String          @id @default(cuid())
+  name      String
+  alt       String
+  imageUrl  String
+  sortOrder Int             @default(0)
+  tierId    String
+  tier      DestinationTier @relation(fields: [tierId], references: [id], onDelete: Cascade)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  @@index([tierId, sortOrder])
+  @@map("destination_places")
+}
+
+model Faq {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  question  String
+  answer    String
+  sortOrder Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isActive, sortOrder])
+  @@map("faqs")
+}

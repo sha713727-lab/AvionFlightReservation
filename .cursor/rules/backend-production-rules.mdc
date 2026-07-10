@@ -1,0 +1,51 @@
+---
+description: Strict production backend standards for Avion (40 rules)
+globs: backend/**/*
+alwaysApply: false
+---
+
+# Avion Backend Production Rules
+
+Apply when working under `backend/`. No admin, auth, login, or inquiry endpoints unless explicitly requested.
+
+## Architecture
+
+- Feature-based clean architecture under `src/modules/<feature>/`
+- Every feature: `controller.ts`, `service.ts`, `repository.ts`, `routes.ts`, `validator.ts`, `types.ts`
+- Flow only: Controller → Service → Repository → Database
+- Controllers ≤ **100 lines**; no DB access in controllers
+- Services: business logic only — no Express/Fastify `req`/`res`
+- Repositories: DB only — no calculations or validations
+
+## Folder & size
+
+- Max **300 lines** per file; utilities max **150 lines**
+- No `helpers` dumping files — group utils by purpose (`date`, `pagination`, `response`, `sanitize`)
+- Nest folders no deeper than **3 levels** under `src/`
+
+## API design
+
+- REST naming: `GET /flights`, `POST /bookings` — never `/GetFlight`
+- Version all routes: `/api/v1/`
+- Validate body, params, query, headers with **Zod** (never manual ifs)
+- Sanitize strings: trim, escape, normalize
+- Standard response: `{ success, message, data, errors }`
+- Correct HTTP status codes; never 200 for errors
+
+## Security & performance
+
+- Helmet, strict CORS (frontend origins only — no `*`), rate limits (100/15min general; 10/min heavy)
+- ORM only (Prisma); parameterized queries; no stack traces / SQL errors to clients
+- Secrets in `.env` only; never commit secrets
+- Pagination; indexes; select required columns only; no N+1; response compression
+
+## Logging & quality
+
+- Pino only — no `console.log` in production
+- Log errors, warnings, requests, slow queries
+- Unique error codes (`FLIGHT_404`, `BOOKING_409`, …)
+- TypeScript `strict: true`; **no `any`**
+- Swagger/OpenAPI for every endpoint; keep docs in sync
+- ESLint + Prettier + Husky + lint-staged mandatory
+- No magic numbers/strings; constants for messages and codes
+- Production-ready only — no placeholders, TODOs, or dead code

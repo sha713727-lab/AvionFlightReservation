@@ -9,14 +9,14 @@ import ServicesCategoryGrid from '@/modules/services/components/ServicesCategory
 import ServicesCatalog from '@/modules/services/components/ServicesCatalog'
 import ServicesPageCta from '@/modules/services/components/ServicesPageCta'
 
-export default function ServicesPage() {
+export default function ServicesPage({ services }) {
   return (
     <CallExpertProvider>
       <Navbar />
       <main className="overflow-x-clip">
         <ServicesPageHero />
         <ServicesCategoryGrid />
-        <ServicesCatalog />
+        <ServicesCatalog services={services} />
         <ServicesPageCta />
       </main>
       <Footer />

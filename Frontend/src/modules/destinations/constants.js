@@ -1,9 +1,7 @@
-import { DESTINATION_TIERS } from '@/data/destinations'
-
 export const ALL_DESTINATIONS_FILTER = 'all'
 
-export function getFlattenedDestinations() {
-  return DESTINATION_TIERS.flatMap((tier) =>
+export function getFlattenedDestinations(tiers = []) {
+  return tiers.flatMap((tier) =>
     tier.places.map((place) => ({
       ...place,
       id: `${tier.id}-${place.name.toLowerCase().replace(/\s+/g, '-')}`,
@@ -14,6 +12,6 @@ export function getFlattenedDestinations() {
   )
 }
 
-export function getDestinationCityNames() {
-  return getFlattenedDestinations().map((place) => place.name)
+export function getDestinationCityNames(tiers = []) {
+  return getFlattenedDestinations(tiers).map((place) => place.name)
 }

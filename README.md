@@ -8,16 +8,18 @@ Independent travel booking website for **Avion Flight Reservation** — phone-fi
 
 ## Overview
 
-This project is a production Next.js frontend for an independent travel agency. Visitors can explore services and destinations, review legal policies, and contact specialists by phone. The brand is explicitly **not** affiliated with RBC or Avion Rewards.
+Production Next.js frontend plus a Fastify public API. Visitors explore services and destinations, review legal policies, and contact specialists by phone. The brand is explicitly **not** affiliated with RBC or Avion Rewards.
+
+**Not included (by design):** auth, login, admin panel, inquiry forms, online booking checkout.
 
 ### Highlights
 
 - Marketing pages: Home, Services, Destinations, About, Contact
 - Legal pages: Privacy, Terms, Refund, Cancellation, Cookie Policy
+- Public catalog API: services, destinations, FAQs
 - Call-expert modal and `tel:` dial CTAs
 - SEO metadata, canonical URLs, Open Graph, Twitter cards, JSON-LD
 - Sitemap and robots.txt
-- Responsive layout with accessible focus states
 
 ---
 
@@ -25,32 +27,39 @@ This project is a production Next.js frontend for an independent travel agency. 
 
 | Layer | Technology |
 |-------|------------|
-| Framework | Next.js 16 (App Router) |
-| UI | React 19, Tailwind CSS v4, Framer Motion |
-| Validation | Zod |
-| Icons / fonts | React Icons, Outfit |
-| Hosting | Vercel |
+| Frontend | Next.js 16 (App Router), React 19, Tailwind CSS v4, Framer Motion, Zod |
+| Backend | Node.js 22, Fastify, Prisma, PostgreSQL, Zod, Pino |
+| Security | Helmet, strict CORS, rate limiting |
+| Docs | Swagger UI (`/docs`) |
+| Hosting | Vercel (frontend) |
 
 ---
 
 ## Project structure
 
 ```
-Avion/
+AvionFlightReservation/
 ├── Frontend/                 # Next.js application
-│   ├── public/               # Static assets, sitemap, robots
+│   ├── public/
 │   ├── src/
-│   │   ├── app/              # App Router pages & metadata
-│   │   ├── components/       # Shared UI, layout, sections
-│   │   ├── constants/        # Copy, routes, contact, brand
-│   │   ├── modules/          # Feature modules (pages by domain)
-│   │   ├── hooks/            # Shared hooks
-│   │   └── utils/            # Helpers (cn, SEO, dial)
-│   ├── next.config.js
+│   │   ├── app/
+│   │   ├── components/
+│   │   ├── constants/
+│   │   ├── modules/
+│   │   ├── services/api/     # API client → backend
+│   │   ├── schemas/
+│   │   └── utils/
 │   └── package.json
-├── frontendProductionRules.docx
-├── SEO-Audit-Avion-Sites.md
-├── SEO-Keyword-Implementation-Guide.md
+├── backend/                  # Fastify API
+│   ├── prisma/
+│   ├── src/
+│   │   ├── modules/          # health, services, destinations, faqs
+│   │   ├── config/
+│   │   ├── middleware/
+│   │   └── ...
+│   ├── docker-compose.yml
+│   └── package.json
+├── .cursor/rules/
 └── README.md
 ```
 
@@ -58,30 +67,34 @@ Avion/
 
 ## Production rules
 
-All frontend work must follow the Avion production contract (`frontendProductionRules.docx` and `.cursor/rules/frontend-production-rules.mdc`):
-
-- Production-ready code only — no placeholders, TODOs, demo logic, or dead code
-- Max **300 lines** per file; split when approaching the limit
-- **One responsibility** per component; extract subcomponents and hooks for logic
-- Feature flow: **Component → Hook → Service → API → Backend** (never `fetch` in components)
-- Validate client input with **Zod**
-- **Constants** for strings, URLs, regex, and messages — no hardcoded UI copy
-- **Design tokens** only for colors, spacing, and typography
-- Use **`@/`** absolute imports (maps to `src/`)
-- No `console.log` in production code; no empty catch blocks
-- Avoid unnecessary fallbacks (`??`, `||`) unless the API contract requires them
-- Forms: validate, trim, disable while loading, prevent duplicate submit, inline errors, success state
-- Reuse shared UI (`Button`, `Modal`, etc.) — no duplicate patterns
-- Keep changes minimal; analyze existing code before adding abstractions
-- Before finish: ESLint clean; loading / error / empty / success states; keyboard accessible, labeled, semantic HTML, visible focus
+- **Frontend:** `.cursor/rules/frontend-production-rules.mdc`
+- **Backend:** `.cursor/rules/backend-production-rules.mdc` (40 strict rules)
 
 ---
 
 ## Local development
 
-**Requirements:** Node.js 20+ (repo pins Node 22 via `.node-version`)
+**Requirements:** Node.js 22, Docker (for PostgreSQL)
+
+### 1. Database + backend
 
 ```bash
+cp backend/.env.example backend/.env
+npm run db:up
+cd backend
+npm install
+npx prisma migrate deploy
+npm run db:seed
+npm run dev
+```
+
+- API: [http://localhost:4000](http://localhost:4000)
+- Swagger: [http://localhost:4000/docs](http://localhost:4000/docs)
+
+### 2. Frontend
+
+```bash
+cp Frontend/.env.example Frontend/.env
 cd Frontend
 npm install
 npm run dev
@@ -89,18 +102,38 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-From the repository root:
+`NEXT_PUBLIC_API_URL` must point at the backend (default `http://localhost:4000`).
 
-```bash
-npm run dev      # Next.js dev server
-npm run build    # Production build
-npm run start    # Serve production build
-npm run lint     # ESLint
+### Root scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Frontend dev server |
+| `npm run dev:backend` | Backend API |
+| `npm run db:up` | Start Postgres via Docker |
+| `npm run db:migrate` | Run Prisma migrations |
+| `npm run db:seed` | Seed catalog data |
+| `npm run lint` | Lint frontend + backend |
+
+---
+
+## Public API
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/api/v1/health` | Health check |
+| GET | `/api/v1/services` | List services |
+| GET | `/api/v1/services/:slug` | Service detail |
+| GET | `/api/v1/destinations` | List destination tiers |
+| GET | `/api/v1/destinations/:slug` | Tier detail |
+| GET | `/api/v1/faqs` | List FAQs |
+| GET | `/api/v1/faqs/:slug` | FAQ detail |
+
+Standard response shape:
+
+```json
+{ "success": true, "message": "", "data": {}, "errors": null }
 ```
-
-### Environment
-
-Copy `Frontend/.env.example` when adding environment variables. Do not commit secrets (`.env` is gitignored).
 
 ---
 
@@ -108,33 +141,18 @@ Copy `Frontend/.env.example` when adding environment variables. Do not commit se
 
 1. Go to [Vercel](https://vercel.com) → **Add New** → **Project**
 2. Import [sha713727-lab/AvionFlightReservation](https://github.com/sha713727-lab/AvionFlightReservation)
-3. Configure (**important**):
+3. Configure:
 
 | Setting | Value |
 |---------|--------|
 | Framework Preset | Next.js |
 | **Root Directory** | **`Frontend`** |
-| Build Command | `npm run build` (default) |
-| Output Directory | leave default |
-| Install Command | `npm install` (default) |
 | Node.js Version | 22.x |
 
-4. Click **Deploy**
+4. Set `NEXT_PUBLIC_API_URL` to your deployed API origin
+5. Click **Deploy**
 
-Set **Root Directory** to `Frontend` so Vercel installs dependencies where `next` lives. Do not use a Static Site / Publish Directory.
-
-If a previous deploy set a custom **Install Command** like `npm install --prefix Frontend`, clear it (use the default `npm install`) — with Root Directory already `Frontend`, that prefix creates `Frontend/Frontend` and fails.
-
----
-
-## Scripts
-
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start Next.js development server |
-| `npm run build` | Create optimized production build |
-| `npm run start` | Run production server |
-| `npm run lint` | Run ESLint |
+Host the `backend` API separately (Railway, Render, Fly, etc.) with `DATABASE_URL` and `CORS_ORIGINS` set to your frontend domain(s).
 
 ---
 

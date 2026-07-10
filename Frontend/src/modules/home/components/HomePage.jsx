@@ -16,25 +16,25 @@ import RedeemCtaSection from '@/components/sections/RedeemCtaSection'
 import FAQSection from '@/components/sections/FAQSection'
 import CallExpertProvider from '@/modules/call/components/CallExpertProvider'
 
-export default function HomePage() {
+export default function HomePage({ services, destinations, faqs }) {
   return (
     <CallExpertProvider>
       <Navbar />
       <main className="overflow-x-clip">
         <HeroSection />
-        <DestinationsSection />
+        <DestinationsSection destinations={destinations} />
         <div className="bg-background">
           <BrandsSection />
           <WaveDivider />
         </div>
-        <ServicesSection />
+        <ServicesSection services={services} />
         <WaveDivider flip />
         <WhyUsSection />
         <HowItWorksSection />
         <RewardsSection />
         <TestimonialsSection />
         <RedeemCtaSection />
-        <FAQSection />
+        <FAQSection faqs={faqs} />
       </main>
       <Footer />
       <FloatingActions />

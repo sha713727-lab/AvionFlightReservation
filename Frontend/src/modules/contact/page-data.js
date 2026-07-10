@@ -1,12 +1,12 @@
 import { COPY } from '@/constants/copy'
 import { BRAND_FULL_NAME } from '@/constants/brand'
 import { CONTACT_PATH } from '@/constants/routes'
-import { buildPageMetadata, buildTravelAgencyJsonLd } from '@/utils/seo'
+import { buildPageMetadata, buildTravelAssistanceJsonLd } from '@/utils/seo'
 
 const CONTACT_KEYWORDS = [
   'book flights by phone',
   'call to book flights',
-  'travel agent',
+  'travel specialist',
   '24/7 travel support',
   'Avion Flight Reservation',
 ]
@@ -21,7 +21,7 @@ export function getContactPageMetadata() {
 }
 
 export function getContactPageJsonLd() {
-  return buildTravelAgencyJsonLd({
+  return buildTravelAssistanceJsonLd({
     description: COPY.contactPage.metaDescription,
     path: CONTACT_PATH,
     includeAddress: true,

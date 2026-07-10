@@ -1,6 +1,7 @@
 # Dependencies
 node_modules/
 Frontend/node_modules/
+backend/node_modules/
 
 # Next.js / build output
 .next/
@@ -17,6 +18,12 @@ out/
 Frontend/.env
 Frontend/.env.*
 !Frontend/.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# Backend build
+backend/dist/
 
 # Logs
 *.log

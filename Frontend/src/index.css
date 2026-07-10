@@ -156,6 +156,15 @@
     );
   }
 
+  .hero-heading-glow {
+    background-image: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-accent) 32%, transparent) 0%,
+      color-mix(in srgb, var(--color-accent) 14%, transparent) 42%,
+      transparent 72%
+    );
+  }
+
   .nav-link {
     position: relative;
     display: inline-block;

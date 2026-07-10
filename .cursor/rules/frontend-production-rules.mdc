@@ -1,11 +1,11 @@
 ---
-description: Strict production frontend standards for Avion (see frontendProductionRules.docx)
+description: Strict production frontend standards for Avion
 alwaysApply: true
 ---
 
 # Avion Frontend Production Rules
 
-Follow `frontendProductionRules.docx` at the repo root for the full contract.
+Follow this rule for the full frontend production contract.
 
 ## Non-negotiables
 

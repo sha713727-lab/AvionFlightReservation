@@ -2,12 +2,21 @@
   "name": "avion-flight-reservation",
   "private": true,
   "version": "1.0.0",
-  "description": "Avion Flight Reservation — independent travel booking frontend (Next.js)",
+  "description": "Avion Flight Reservation — independent travel booking (Next.js + Fastify API)",
   "scripts": {
     "dev": "npm run dev --prefix Frontend",
+    "dev:frontend": "npm run dev --prefix Frontend",
+    "dev:backend": "npm run dev --prefix backend",
     "build": "npm run build --prefix Frontend",
+    "build:frontend": "npm run build --prefix Frontend",
+    "build:backend": "npm run build --prefix backend",
     "start": "npm run start --prefix Frontend",
-    "lint": "npm run lint --prefix Frontend"
+    "start:backend": "npm run start --prefix backend",
+    "lint": "npm run lint --prefix Frontend && npm run lint --prefix backend",
+    "db:up": "docker compose -f backend/docker-compose.yml up -d",
+    "db:local": "npm run db:local --prefix backend",
+    "db:migrate": "npm run db:migrate --prefix backend",
+    "db:seed": "npm run db:seed --prefix backend"
   },
   "engines": {
     "node": "22.x"

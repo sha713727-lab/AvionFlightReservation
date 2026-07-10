@@ -5,14 +5,14 @@ export const COPY = {
     talkWithExpert: 'Talk with an expert',
     bookConsultation: 'Talk with an expert',
     bookFreeConsultation: 'Talk with an expert',
-    callNow: 'Call now',
+    callNow: 'Call Now',
     exploreServices: 'Explore our services',
   },
   footer: {
     tagline: 'Your trusted travel partner for flight reservations and unforgettable journeys.',
     disclaimerTitle: 'Disclaimer',
     disclaimer:
-      'Avion Flight Reservation is an independent travel agency and booking assistance service. We are not affiliated with, endorsed by, or authorized by any airline, Royal Bank of Canada (RBC), Avion Rewards, or other bank or rewards program. Fares quoted are estimates until payment is processed and tickets are issued; all bookings are subject to airline terms and availability. We are not responsible for delays, cancellations, or disruptions caused by airlines or third parties. Travelers are responsible for valid passports, visas, and other required travel documents. All trademarks are the property of their respective owners.',
+      'Avion Flight Reservation is an independent travel booking assistance service. We are not affiliated with, endorsed by, or authorized by any airline, Royal Bank of Canada (RBC), Avion Rewards, or other bank or rewards program. Fares quoted are estimates until payment is processed and tickets are issued; all bookings are subject to airline terms and availability. We are not responsible for delays, cancellations, or disruptions caused by airlines or third parties. Travelers are responsible for valid passports, visas, and other required travel documents. All trademarks are the property of their respective owners.',
     rightsReserved: 'All rights reserved.',
   },
   callModal: {
@@ -120,11 +120,11 @@ export const COPY = {
   },
   about: {
     pageEyebrow: 'About Us',
-    pageTitle: 'Independent travel agency for flight reservations.',
+    pageTitle: 'Independent travel assistance for flight reservations.',
     pageDescription:
       'Avion Flight Reservation provides independent travel assistance for flights, hotels, trip planning, and booking questions across Canada, the USA, and worldwide.',
     metaDescription:
-      'Learn about Avion Flight Reservation — an independent travel agency for flight and hotel reservations by phone. Not affiliated with RBC or Avion Rewards. Call +1 877 702 9887.',
+      'Learn about Avion Flight Reservation — independent travel assistance for flight and hotel reservations by phone. Not affiliated with RBC or Avion Rewards. Call +1 877 702 9887.',
     pagePrimaryCta: 'Talk with an expert',
     pageSecondaryCta: 'Explore services',
     whoWeAreEyebrow: 'Who We Are',
@@ -158,7 +158,7 @@ export const COPY = {
     pageDescription:
       'Call Avion Flight Reservation for independent travel booking assistance, flight changes, and support questions across Canada, the USA, and international routes.',
     metaDescription:
-      'Contact Avion Flight Reservation to book flights by phone. Independent travel agents for Canada, USA, Europe, and Mexico. Call +1 877 702 9887 — 24/7 support.',
+      'Contact Avion Flight Reservation to book flights by phone. Independent travel specialists for Canada, USA, Europe, and Mexico. Call +1 877 702 9887 — 24/7 support.',
     pagePrimaryCta: 'Call now',
     supportEyebrow: 'Get Travel Support',
     supportTitle: 'Speak with a specialist by phone.',

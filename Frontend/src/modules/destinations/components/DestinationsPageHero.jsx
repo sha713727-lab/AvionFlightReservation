@@ -8,14 +8,13 @@ import { FadeIn } from '@/components/animations/FadeIn'
 import { EASE } from '@/components/animations/motionPresets'
 import { COPY } from '@/constants/copy'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
-import { getDestinationCityNames } from '@/modules/destinations/constants'
 
 const GALLERY_ANCHOR = '#destination-gallery'
-const CITY_NAMES = getDestinationCityNames()
 
-export default function DestinationsPageHero() {
+export default function DestinationsPageHero({ cityNames = [] }) {
   const callModal = useCallExpertModal()
-  const marqueeCities = [...CITY_NAMES, ...CITY_NAMES]
+  const marqueeCities =
+    cityNames.length > 0 ? [...cityNames, ...cityNames] : []
 
   return (
     <section
@@ -80,21 +79,23 @@ export default function DestinationsPageHero() {
       </Container>
 
       <div className="relative z-10 mt-14 overflow-hidden border-y border-white/10 py-4" aria-hidden>
-        <motion.div
-          className="flex w-max gap-8 whitespace-nowrap"
-          animate={{ x: ['0%', '-50%'] }}
-          transition={{ duration: 28, ease: 'linear', repeat: Infinity }}
-        >
-          {marqueeCities.map((city, index) => (
-            <span
-              key={`${city}-${index}`}
-              className="text-sm font-medium uppercase tracking-[0.22em] text-white/35"
-            >
-              {city}
-              <span className="ml-8 text-accent/70">•</span>
-            </span>
-          ))}
-        </motion.div>
+        {marqueeCities.length > 0 ? (
+          <motion.div
+            className="flex w-max gap-8 whitespace-nowrap"
+            animate={{ x: ['0%', '-50%'] }}
+            transition={{ duration: 28, ease: 'linear', repeat: Infinity }}
+          >
+            {marqueeCities.map((city, index) => (
+              <span
+                key={`${city}-${index}`}
+                className="text-sm font-medium uppercase tracking-[0.22em] text-white/35"
+              >
+                {city}
+                <span className="ml-8 text-accent/70">•</span>
+              </span>
+            ))}
+          </motion.div>
+        ) : null}
       </div>
     </section>
   )

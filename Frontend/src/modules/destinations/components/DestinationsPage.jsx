@@ -8,15 +8,18 @@ import DestinationsPageHero from '@/modules/destinations/components/Destinations
 import DestinationsTierStrip from '@/modules/destinations/components/DestinationsTierStrip'
 import DestinationsGallery from '@/modules/destinations/components/DestinationsGallery'
 import DestinationsPageCta from '@/modules/destinations/components/DestinationsPageCta'
+import { getDestinationCityNames } from '@/modules/destinations/constants'
 
-export default function DestinationsPage() {
+export default function DestinationsPage({ destinations = [] }) {
+  const cityNames = getDestinationCityNames(destinations)
+
   return (
     <CallExpertProvider>
       <Navbar overDarkHero />
       <main className="overflow-x-clip">
-        <DestinationsPageHero />
-        <DestinationsTierStrip />
-        <DestinationsGallery />
+        <DestinationsPageHero cityNames={cityNames} />
+        <DestinationsTierStrip destinations={destinations} />
+        <DestinationsGallery destinations={destinations} />
         <DestinationsPageCta />
       </main>
       <Footer />

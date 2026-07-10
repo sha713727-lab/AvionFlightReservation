@@ -1,10 +1,34 @@
 import Container from '@/components/ui/Container'
 import LayeredSectionHeading from '@/components/ui/LayeredSectionHeading'
 import ServiceTimelineItem from '@/components/sections/ServiceTimelineItem'
+import CatalogStatus from '@/components/ui/CatalogStatus'
 import { COPY } from '@/constants/copy'
-import { SERVICES } from '@/data/services'
+import { resolveServiceVisuals } from '@/constants/serviceAssets'
 
-export default function ServicesSection() {
+export default function ServicesSection({ services = [] }) {
+  const resolvedServices = services
+    .map(resolveServiceVisuals)
+    .filter((item) => item.icon && item.image)
+
+  if (resolvedServices.length === 0) {
+    return (
+      <section
+        id="services"
+        className="bg-primary py-24 lg:py-32"
+        aria-labelledby="services-heading"
+      >
+        <LayeredSectionHeading
+          titleId="services-heading"
+          watermark={COPY.services.watermark}
+          title={COPY.services.title}
+          description={COPY.services.description}
+          dark
+        />
+        <CatalogStatus state="empty" />
+      </section>
+    )
+  }
+
   return (
     <section
       id="services"
@@ -26,7 +50,7 @@ export default function ServicesSection() {
             aria-hidden
           />
 
-          {SERVICES.map((service, index) => (
+          {resolvedServices.map((service, index) => (
             <ServiceTimelineItem
               key={service.id}
               index={index}

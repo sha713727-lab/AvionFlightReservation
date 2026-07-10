@@ -2,8 +2,9 @@
 
 import Container from '@/components/ui/Container'
 import LayeredSectionHeading from '@/components/ui/LayeredSectionHeading'
+import CatalogStatus from '@/components/ui/CatalogStatus'
 import { COPY } from '@/constants/copy'
-import { SERVICES } from '@/data/services'
+import { resolveServiceVisuals } from '@/constants/serviceAssets'
 import { SERVICE_CATEGORIES } from '@/modules/services/constants'
 import ServiceCatalogItem from '@/modules/services/components/ServiceCatalogItem'
 
@@ -11,7 +12,11 @@ function getCategoryForService(serviceId) {
   return SERVICE_CATEGORIES.find((category) => category.serviceIds.includes(serviceId))
 }
 
-export default function ServicesCatalog() {
+export default function ServicesCatalog({ services = [] }) {
+  const resolvedServices = services
+    .map(resolveServiceVisuals)
+    .filter((item) => item.icon && item.image)
+
   return (
     <section
       id="service-catalog"
@@ -27,33 +32,37 @@ export default function ServicesCatalog() {
           eyebrow={COPY.services.catalogEyebrow}
         />
 
-        <div>
-          {SERVICES.map((service, index) => {
-            const category = getCategoryForService(service.id)
-            const isCategoryStart =
-              category && category.serviceIds[0] === service.id
+        {resolvedServices.length === 0 ? (
+          <CatalogStatus state="empty" />
+        ) : (
+          <div>
+            {resolvedServices.map((service, index) => {
+              const category = getCategoryForService(service.id)
+              const isCategoryStart =
+                category && category.serviceIds[0] === service.id
 
-            return (
-              <div key={service.id}>
-                {isCategoryStart && (
-                  <div
-                    id={category.id}
-                    className="scroll-mt-28 pb-2 pt-6 lg:scroll-mt-32 lg:pt-8"
-                  >
-                    <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
-                      {category.title}
-                    </p>
-                  </div>
-                )}
-                <ServiceCatalogItem
-                  index={index}
-                  reversed={index % 2 === 1}
-                  {...service}
-                />
-              </div>
-            )
-          })}
-        </div>
+              return (
+                <div key={service.id}>
+                  {isCategoryStart && (
+                    <div
+                      id={category.id}
+                      className="scroll-mt-28 pb-2 pt-6 lg:scroll-mt-32 lg:pt-8"
+                    >
+                      <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
+                        {category.title}
+                      </p>
+                    </div>
+                  )}
+                  <ServiceCatalogItem
+                    index={index}
+                    reversed={index % 2 === 1}
+                    {...service}
+                  />
+                </div>
+              )
+            })}
+          </div>
+        )}
       </Container>
     </section>
   )

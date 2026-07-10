@@ -1,10 +1,10 @@
 import { COPY } from '@/constants/copy'
 import { BRAND_FULL_NAME } from '@/constants/brand'
 import { ABOUT_PATH } from '@/constants/routes'
-import { buildPageMetadata, buildTravelAgencyJsonLd } from '@/utils/seo'
+import { buildPageMetadata, buildTravelAssistanceJsonLd } from '@/utils/seo'
 
 const ABOUT_KEYWORDS = [
-  'independent travel agency',
+  'independent travel assistance',
   'Avion Flight Reservation',
   'flight reservation',
   'book flights by phone',
@@ -13,7 +13,7 @@ const ABOUT_KEYWORDS = [
 
 export function getAboutPageMetadata() {
   return buildPageMetadata({
-    title: `About Us | Independent Travel Agency | ${BRAND_FULL_NAME}`,
+    title: `About Us | Independent Travel Assistance | ${BRAND_FULL_NAME}`,
     description: COPY.about.metaDescription,
     path: ABOUT_PATH,
     keywords: ABOUT_KEYWORDS,
@@ -21,7 +21,7 @@ export function getAboutPageMetadata() {
 }
 
 export function getAboutPageJsonLd() {
-  return buildTravelAgencyJsonLd({
+  return buildTravelAssistanceJsonLd({
     description: COPY.about.metaDescription,
     path: ABOUT_PATH,
     includeAddress: true,
