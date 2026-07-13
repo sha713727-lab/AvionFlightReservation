@@ -6,7 +6,8 @@ import {
 import { loadDestinationsCatalog } from '@/services/api/loadCatalog'
 
 export const metadata = getDestinationsPageMetadata()
-export const revalidate = 600
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export default async function Page() {
   const jsonLd = getDestinationsPageJsonLd()

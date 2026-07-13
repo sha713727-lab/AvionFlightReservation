@@ -46,9 +46,12 @@ export const SERVICE_IMAGE_MAP = {
 }
 
 export function resolveServiceVisuals(service) {
+  const icon = SERVICE_ICON_MAP[service.iconKey] || SERVICE_ICON_MAP.plane
+  const image = SERVICE_IMAGE_MAP[service.imageKey] || SERVICE_IMAGE_MAP['flight-booking']
+
   return {
     ...service,
-    icon: SERVICE_ICON_MAP[service.iconKey],
-    image: SERVICE_IMAGE_MAP[service.imageKey],
+    icon,
+    image,
   }
 }
