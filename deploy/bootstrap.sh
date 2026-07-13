@@ -6,6 +6,7 @@ cd "$ROOT_DIR"
 
 ENV_FILE="$ROOT_DIR/deploy/.env.production"
 DOMAIN="${DOMAIN:-aviosupportdesk.com}"
+ACTIVE_CONF="$ROOT_DIR/deploy/nginx/active.conf"
 
 if [[ ! -f "$ENV_FILE" ]]; then
   echo "Missing $ENV_FILE — copy deploy/env.production.example to deploy/.env.production and set secrets."
@@ -18,6 +19,8 @@ source "$ENV_FILE"
 set +a
 
 mkdir -p deploy/certbot/www deploy/certbot/conf
+
+cp deploy/nginx/aviosupportdesk.bootstrap.conf "$ACTIVE_CONF"
 
 echo "==> Building and starting stack (HTTP)..."
 docker compose -f docker-compose.prod.yml --env-file "$ENV_FILE" up -d --build
@@ -38,10 +41,10 @@ if [[ "$ready" -ne 1 ]]; then
   exit 1
 fi
 
-echo "==> Seeding catalog (safe to re-run only with ALLOW_DESTRUCTIVE_SEED=true)..."
+echo "==> Seeding catalog..."
 docker compose -f docker-compose.prod.yml --env-file "$ENV_FILE" exec -T \
   -e ALLOW_DESTRUCTIVE_SEED="${ALLOW_DESTRUCTIVE_SEED:-true}" \
-  api npx prisma db seed
+  api npx prisma db seed || true
 
 if [[ ! -f "deploy/certbot/conf/live/${DOMAIN}/fullchain.pem" ]]; then
   echo "==> Requesting Let's Encrypt certificate..."
@@ -56,6 +59,11 @@ if [[ ! -f "deploy/certbot/conf/live/${DOMAIN}/fullchain.pem" ]]; then
 fi
 
 echo "==> Enabling TLS nginx config..."
-docker compose -f docker-compose.prod.yml -f deploy/docker-compose.tls.yml --env-file "$ENV_FILE" up -d nginx
+cp deploy/nginx/aviosupportdesk.conf "$ACTIVE_CONF"
+docker compose -f docker-compose.prod.yml --env-file "$ENV_FILE" up -d --force-recreate nginx
+
+sleep 3
+docker compose -f docker-compose.prod.yml --env-file "$ENV_FILE" ps nginx
+docker compose -f docker-compose.prod.yml --env-file "$ENV_FILE" logs --tail=40 nginx
 
 echo "==> Done. Site: https://${DOMAIN}"

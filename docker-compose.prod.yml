@@ -79,7 +79,7 @@ services:
       - '80:80'
       - '443:443'
     volumes:
-      - ./deploy/nginx/aviosupportdesk.bootstrap.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./deploy/nginx/active.conf:/etc/nginx/conf.d/default.conf:ro
       - ./deploy/certbot/www:/var/www/certbot:ro
       - ./deploy/certbot/conf:/etc/letsencrypt:ro
     depends_on:
