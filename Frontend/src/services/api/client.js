@@ -1,7 +1,4 @@
-import {
-  API_BASE_URL,
-  API_ERROR_MESSAGES,
-} from '@/constants/api'
+import { getApiBaseUrl, API_ERROR_MESSAGES } from '@/constants/api'
 import { apiFailureSchema, apiSuccessSchema } from '@/schemas/catalog'
 
 export class ApiClientError extends Error {
@@ -15,11 +12,13 @@ export class ApiClientError extends Error {
 }
 
 export async function apiGet(path, schema, options = {}) {
-  if (!API_BASE_URL) {
+  const baseUrl = getApiBaseUrl()
+
+  if (!baseUrl) {
     throw new ApiClientError(API_ERROR_MESSAGES.missingBaseUrl, 0, 'CONFIG_ERROR')
   }
 
-  const url = new URL(path, API_BASE_URL)
+  const url = new URL(path, baseUrl)
 
   if (options.query) {
     Object.entries(options.query).forEach(([key, value]) => {

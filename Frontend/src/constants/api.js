@@ -1,14 +1,29 @@
 export const API_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_API_URL
 
 /**
- * Server-side catalog calls must use the Docker-internal API URL when set.
- * Using the public HTTPS domain from inside the VPS causes hairpin NAT lag
- * (often multi-second TTFB on every SSR request).
+ * Resolve API base at call time (not module load) so Docker runtime env works.
+ * Server must never hairpin via the public HTTPS domain from inside Compose —
+ * that fails on Hostinger and produces empty catalog / "could not load" SSR.
  */
-export const API_BASE_URL =
-  typeof window === 'undefined'
-    ? process.env.API_INTERNAL_URL || API_PUBLIC_BASE_URL
-    : API_PUBLIC_BASE_URL
+export function getApiBaseUrl() {
+  if (typeof window !== 'undefined') {
+    return API_PUBLIC_BASE_URL
+  }
+
+  const internal = process.env['API_INTERNAL_URL']
+  if (internal) {
+    return internal
+  }
+
+  if (process.env.NODE_ENV === 'production') {
+    return 'http://api:4000'
+  }
+
+  return API_PUBLIC_BASE_URL
+}
+
+/** @deprecated Prefer getApiBaseUrl() — kept for any direct imports */
+export const API_BASE_URL = API_PUBLIC_BASE_URL
 
 export const API_V1_PREFIX = '/api/v1'
 
