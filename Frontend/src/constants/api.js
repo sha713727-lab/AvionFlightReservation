@@ -19,7 +19,7 @@ export function getApiBaseUrl() {
     return 'http://api:4000'
   }
 
-  return API_PUBLIC_BASE_URL
+  return API_PUBLIC_BASE_URL || 'http://127.0.0.1:4000'
 }
 
 /** @deprecated Prefer getApiBaseUrl() — kept for any direct imports */

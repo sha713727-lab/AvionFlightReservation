@@ -9,13 +9,14 @@ import WaveDivider from '@/components/ui/WaveDivider'
 import ServicesSection from '@/components/sections/ServicesSection'
 import WhyUsSection from '@/components/sections/WhyUsSection'
 import HowItWorksSection from '@/components/sections/HowItWorksSection'
-import RewardsSection from '@/components/sections/RewardsSection'
 import DestinationsSection from '@/components/sections/DestinationsSection'
 import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import RedeemCtaSection from '@/components/sections/RedeemCtaSection'
 import FAQSection from '@/components/sections/FAQSection'
 import CatalogStatus from '@/components/ui/CatalogStatus'
 import CallExpertProvider from '@/modules/call/components/CallExpertProvider'
+import { useHomeCatalog } from '@/hooks/useHomeCatalog'
+import { CATALOG_UI } from '@/constants/catalogUi'
 
 export default function HomePage({
   services,
@@ -23,29 +24,40 @@ export default function HomePage({
   faqs,
   catalogError = null,
 }) {
+  const catalog = useHomeCatalog({
+    services,
+    destinations,
+    faqs,
+    catalogError,
+  })
+
   return (
     <CallExpertProvider>
       <Navbar />
       <main id="main-content" className="overflow-x-clip">
         <HeroSection />
-        {catalogError ? (
+        {catalog.isHydrating ? (
           <div className="border-b border-border bg-section-alt">
-            <CatalogStatus state="error" message={catalogError} />
+            <CatalogStatus state="loading" message={CATALOG_UI.loading} />
           </div>
         ) : null}
-        <DestinationsSection destinations={destinations} />
+        {catalog.catalogError && !catalog.isHydrating ? (
+          <div className="border-b border-border bg-section-alt">
+            <CatalogStatus state="error" message={catalog.catalogError} />
+          </div>
+        ) : null}
+        <ServicesSection services={catalog.services} />
+        <WaveDivider flip />
+        <WhyUsSection />
+        <HowItWorksSection />
+        <DestinationsSection destinations={catalog.destinations} />
         <div className="bg-background">
           <BrandsSection />
           <WaveDivider />
         </div>
-        <ServicesSection services={services} />
-        <WaveDivider flip />
-        <WhyUsSection />
-        <HowItWorksSection />
-        <RewardsSection />
         <TestimonialsSection />
+        <FAQSection faqs={catalog.faqs} />
         <RedeemCtaSection />
-        <FAQSection faqs={faqs} />
       </main>
       <Footer />
       <FloatingActions />

@@ -11,7 +11,7 @@ export class ApiClientError extends Error {
   }
 }
 
-export async function apiGet(path, schema, options = {}) {
+function buildUrl(path, query) {
   const baseUrl = getApiBaseUrl()
 
   if (!baseUrl) {
@@ -20,12 +20,62 @@ export async function apiGet(path, schema, options = {}) {
 
   const url = new URL(path, baseUrl)
 
-  if (options.query) {
-    Object.entries(options.query).forEach(([key, value]) => {
+  if (query) {
+    Object.entries(query).forEach(([key, value]) => {
       url.searchParams.set(key, String(value))
     })
   }
 
+  return url
+}
+
+function parseSuccessPayload(payload, schema, status) {
+  if (!payload || payload.success === false) {
+    const failure = apiFailureSchema.safeParse(payload)
+    if (failure.success) {
+      throw new ApiClientError(
+        failure.data.message,
+        status,
+        failure.data.errorCode,
+        failure.data.errors,
+      )
+    }
+
+    throw new ApiClientError(API_ERROR_MESSAGES.requestFailed, status, 'REQUEST_FAILED')
+  }
+
+  const envelope = apiSuccessSchema.safeParse(payload)
+  if (!envelope.success) {
+    throw new ApiClientError(API_ERROR_MESSAGES.invalidResponse, status, 'SCHEMA_ERROR')
+  }
+
+  const data = schema.safeParse(envelope.data.data)
+  if (!data.success) {
+    throw new ApiClientError(API_ERROR_MESSAGES.invalidResponse, status, 'SCHEMA_ERROR')
+  }
+
+  return data.data
+}
+
+async function apiGetOnServer(url, schema) {
+  const { serverHttpGetJson } = await import('@/services/api/serverHttpGet')
+  const response = await serverHttpGetJson(url.toString())
+
+  let payload
+  try {
+    payload = JSON.parse(response.body)
+  } catch {
+    throw new ApiClientError(API_ERROR_MESSAGES.invalidResponse, response.status, 'PARSE_ERROR')
+  }
+
+  if (!response.ok) {
+    return parseSuccessPayload(payload, schema, response.status)
+  }
+
+  return parseSuccessPayload(payload, schema, response.status)
+}
+
+async function apiGetOnBrowser(url, schema, options) {
   let response
 
   try {
@@ -42,36 +92,33 @@ export async function apiGet(path, schema, options = {}) {
   }
 
   let payload
-
   try {
     payload = await response.json()
   } catch {
     throw new ApiClientError(API_ERROR_MESSAGES.invalidResponse, response.status, 'PARSE_ERROR')
   }
 
-  if (!response.ok || payload?.success === false) {
-    const failure = apiFailureSchema.safeParse(payload)
-    if (failure.success) {
-      throw new ApiClientError(
-        failure.data.message,
-        response.status,
-        failure.data.errorCode,
-        failure.data.errors,
-      )
+  if (!response.ok) {
+    return parseSuccessPayload(payload, schema, response.status)
+  }
+
+  return parseSuccessPayload(payload, schema, response.status)
+}
+
+export async function apiGet(path, schema, options = {}) {
+  const url = buildUrl(path, options.query)
+
+  try {
+    if (typeof window === 'undefined') {
+      return await apiGetOnServer(url, schema)
     }
 
-    throw new ApiClientError(API_ERROR_MESSAGES.requestFailed, response.status, 'REQUEST_FAILED')
-  }
+    return await apiGetOnBrowser(url, schema, options)
+  } catch (error) {
+    if (error instanceof ApiClientError) {
+      throw error
+    }
 
-  const envelope = apiSuccessSchema.safeParse(payload)
-  if (!envelope.success) {
-    throw new ApiClientError(API_ERROR_MESSAGES.invalidResponse, response.status, 'SCHEMA_ERROR')
+    throw new ApiClientError(API_ERROR_MESSAGES.network, 0, 'NETWORK_ERROR')
   }
-
-  const data = schema.safeParse(envelope.data.data)
-  if (!data.success) {
-    throw new ApiClientError(API_ERROR_MESSAGES.invalidResponse, response.status, 'SCHEMA_ERROR')
-  }
-
-  return data.data
 }
