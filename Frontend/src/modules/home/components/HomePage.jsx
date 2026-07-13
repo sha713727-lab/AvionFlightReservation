@@ -46,17 +46,15 @@ export default function HomePage({
             <CatalogStatus state="error" message={catalog.catalogError} />
           </div>
         ) : null}
-
-        {/* Correct CRO order: Services first, Destinations later, Partners after destinations */}
-        <ServicesSection services={catalog.services} />
-        <WaveDivider flip />
-        <WhyUsSection />
-        <HowItWorksSection />
         <DestinationsSection destinations={catalog.destinations} />
         <div className="bg-background">
           <BrandsSection />
           <WaveDivider />
         </div>
+        <ServicesSection services={catalog.services} />
+        <WaveDivider flip />
+        <WhyUsSection />
+        <HowItWorksSection />
         <TestimonialsSection />
         <FAQSection faqs={catalog.faqs} />
         <RedeemCtaSection />
