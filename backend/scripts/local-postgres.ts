@@ -1,3 +1,4 @@
+import fs from 'node:fs'
 import EmbeddedPostgres from 'embedded-postgres'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -18,7 +19,11 @@ async function main(): Promise<void> {
     persistent: true,
   })
 
-  await pg.initialise()
+  const alreadyInitialized = fs.existsSync(path.join(DATA_DIR, 'PG_VERSION'))
+  if (!alreadyInitialized) {
+    await pg.initialise()
+  }
+
   await pg.start()
 
   try {
@@ -28,9 +33,8 @@ async function main(): Promise<void> {
   }
 
   process.stdout.write(
-    `Local Postgres ready on postgresql://${USER}:${PASSWORD}@localhost:${PORT}/${DATABASE}\n`,
+    `Local Postgres ready · postgresql://${USER}:${PASSWORD}@localhost:${PORT}/${DATABASE}\n`,
   )
-  process.stdout.write('Keep this process running while using the API.\n')
 
   const shutdown = async (): Promise<void> => {
     await pg.stop()

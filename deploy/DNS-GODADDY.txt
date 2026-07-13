@@ -1,0 +1,8 @@
+# DNS for aviosupportdesk.com (GoDaddy → Hostinger VPS)
+# Point these A records to: 2.25.83.90
+#
+# Type  Name  Value
+# A     @     2.25.83.90
+# A     www   2.25.83.90
+#
+# Remove GoDaddy parking / forwarding if present.

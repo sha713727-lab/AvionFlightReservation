@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Container from '@/components/ui/Container'
 import { StaggerContainer, StaggerItem } from '@/components/animations/FadeIn'
 import { ABOUT_HIGHLIGHTS } from '@/modules/about/constants'
@@ -16,13 +15,11 @@ export default function AboutHighlights() {
 
             return (
               <StaggerItem key={item.id}>
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  transition={{ type: 'spring', stiffness: 320, damping: 24 }}
+                <div
                   className={cn(
                     'flex h-full flex-col rounded-2xl border border-border bg-card p-7',
-                    'shadow-card transition-colors duration-300',
-                    'hover:border-accent/30 hover:shadow-card-hover',
+                    'shadow-card transition-all duration-300',
+                    'hover:-translate-y-1 hover:border-accent/30 hover:shadow-card-hover',
                   )}
                 >
                   <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent">
@@ -32,7 +29,7 @@ export default function AboutHighlights() {
                     {item.title}
                   </h2>
                   <p className="text-sm leading-relaxed text-text-secondary">{item.description}</p>
-                </motion.div>
+                </div>
               </StaggerItem>
             )
           })}

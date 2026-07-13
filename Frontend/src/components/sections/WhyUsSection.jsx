@@ -1,8 +1,6 @@
-import { motion } from 'framer-motion'
 import Container from '@/components/ui/Container'
 import LayeredSectionHeading from '@/components/ui/LayeredSectionHeading'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animations/FadeIn'
-import { SPRING } from '@/components/animations/motionPresets'
 import { WHY_US_CARD_ACCENTS } from '@/constants/sectionThemes'
 import { COPY } from '@/constants/copy'
 import { WHY_US, STATS } from '@/data/services'
@@ -12,11 +10,9 @@ import { cn } from '@/utils/cn'
 
 function StatValue({ count, suffix = '', label, counterRef }) {
   return (
-    <motion.div
+    <div
       ref={counterRef}
-      whileHover={{ y: -2 }}
-      transition={SPRING}
-      className="group cursor-default text-center"
+      className="group cursor-default text-center transition-transform duration-300 hover:-translate-y-0.5"
     >
       <p className="mb-1 text-3xl font-semibold tracking-tight text-accent transition-colors duration-300 group-hover:text-accent-hover lg:text-4xl">
         {count.toLocaleString()}
@@ -25,7 +21,7 @@ function StatValue({ count, suffix = '', label, counterRef }) {
       <p className="text-sm text-text-secondary transition-colors duration-300 group-hover:text-text">
         {label}
       </p>
-    </motion.div>
+    </div>
   )
 }
 
@@ -65,12 +61,10 @@ export default function WhyUsSection() {
 
             return (
               <StaggerItem key={item.id}>
-                <motion.article
-                  whileHover={{ y: -4 }}
-                  transition={SPRING}
+                <article
                   className={cn(
                     'group h-full rounded-xl border border-border border-l-4 bg-card p-7 lg:p-8',
-                    'shadow-sm hover:shadow-card-hover transition-all duration-300',
+                    'shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover',
                     accent.stripe,
                   )}
                 >
@@ -89,7 +83,7 @@ export default function WhyUsSection() {
                   <p className="text-sm leading-relaxed text-text-secondary">
                     {item.description}
                   </p>
-                </motion.article>
+                </article>
               </StaggerItem>
             )
           })}

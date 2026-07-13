@@ -1,11 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { HiArrowDown } from 'react-icons/hi'
 import Button from '@/components/buttons/Button'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
-import { EASE } from '@/components/animations/motionPresets'
 import { COPY } from '@/constants/copy'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 
@@ -54,12 +52,7 @@ export default function DestinationsPageHero({ cityNames = [] }) {
           </FadeIn>
 
           <FadeIn delay={0.24}>
-            <motion.div
-              className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.3, ease: EASE }}
-            >
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button variant="primary" size="lg" onClick={callModal.open}>
                 {COPY.destinations.pagePrimaryCta}
               </Button>
@@ -73,18 +66,14 @@ export default function DestinationsPageHero({ cityNames = [] }) {
               >
                 {COPY.destinations.pageSecondaryCta}
               </Button>
-            </motion.div>
+            </div>
           </FadeIn>
         </div>
       </Container>
 
-      <div className="relative z-10 mt-14 overflow-hidden border-y border-white/10 py-4" aria-hidden>
+      <div className="partner-marquee relative z-10 mt-14 overflow-hidden border-y border-white/10 py-4" aria-hidden>
         {marqueeCities.length > 0 ? (
-          <motion.div
-            className="flex w-max gap-8 whitespace-nowrap"
-            animate={{ x: ['0%', '-50%'] }}
-            transition={{ duration: 28, ease: 'linear', repeat: Infinity }}
-          >
+          <div className="partner-marquee-track flex w-max gap-8 whitespace-nowrap px-8">
             {marqueeCities.map((city, index) => (
               <span
                 key={`${city}-${index}`}
@@ -94,7 +83,7 @@ export default function DestinationsPageHero({ cityNames = [] }) {
                 <span className="ml-8 text-accent/70">•</span>
               </span>
             ))}
-          </motion.div>
+          </div>
         ) : null}
       </div>
     </section>

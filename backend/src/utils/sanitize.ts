@@ -5,6 +5,7 @@ function isControlChar(char: string): boolean {
   return (code >= 0 && code <= 31) || code === 127
 }
 
+/** Trim, collapse whitespace, strip control characters. No HTML escaping (JSON API). */
 export function sanitizeString(value: string): string {
   const withoutControls = Array.from(value)
     .filter((char) => !isControlChar(char))
@@ -13,15 +14,6 @@ export function sanitizeString(value: string): string {
   return withoutControls.replace(MULTI_SPACE, ' ').trim()
 }
 
-export function escapeHtml(value: string): string {
-  return value
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;')
-}
-
 export function normalizeString(value: string): string {
-  return escapeHtml(sanitizeString(value))
+  return sanitizeString(value)
 }

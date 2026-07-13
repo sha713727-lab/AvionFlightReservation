@@ -30,11 +30,3 @@ export function notFoundError(message: string, errorCode: ErrorCode): AppError {
 export function validationError(message: string, errors: ApiErrorDetail[]): AppError {
   return new AppError(message, HTTP_STATUS.UNPROCESSABLE, ERROR_CODES.VALIDATION_ERROR, errors)
 }
-
-export function conflictError(message: string): AppError {
-  return new AppError(message, HTTP_STATUS.CONFLICT, ERROR_CODES.CONFLICT)
-}
-
-export function internalError(message: string): AppError {
-  return new AppError(message, HTTP_STATUS.INTERNAL, ERROR_CODES.INTERNAL)
-}

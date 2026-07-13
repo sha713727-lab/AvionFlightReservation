@@ -12,7 +12,7 @@ export default function CancellationPage() {
   return (
     <CallExpertProvider>
       <Navbar />
-      <main className="overflow-x-clip">
+      <main id="main-content" className="overflow-x-clip">
         <CancellationPageHero />
         <CancellationHighlights />
         <CancellationPolicyContent />

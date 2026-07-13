@@ -16,7 +16,7 @@ export default function AboutPage() {
   return (
     <CallExpertProvider>
       <Navbar />
-      <main className="overflow-x-clip">
+      <main id="main-content" className="overflow-x-clip">
         <AboutPageHero />
         <AboutHighlights />
         <AboutWhoWeAre />

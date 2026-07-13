@@ -1,11 +1,9 @@
-import { motion } from 'framer-motion'
 import { FaStar } from 'react-icons/fa'
 import { cn } from '@/utils/cn'
 
 export default function TestimonialCard({ name, country, rating, review, avatar }) {
   return (
-    <motion.article
-      layout
+    <article
       className={cn(
         'flex h-full flex-col rounded-2xl border border-border bg-card p-6 lg:p-8',
         'transition-all duration-300 hover:border-accent/15 hover:shadow-card-hover',
@@ -31,6 +29,6 @@ export default function TestimonialCard({ name, country, rating, review, avatar 
           <p className="text-xs text-text-secondary">{country}</p>
         </div>
       </div>
-    </motion.article>
+    </article>
   )
 }

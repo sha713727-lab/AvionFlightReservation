@@ -1,5 +1,4 @@
 import DestinationsPage from '@/modules/destinations/components/DestinationsPage'
-import CatalogStatus from '@/components/ui/CatalogStatus'
 import {
   getDestinationsPageJsonLd,
   getDestinationsPageMetadata,
@@ -18,8 +17,10 @@ export default async function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {catalog.error ? <CatalogStatus state="error" message={catalog.error} /> : null}
-      <DestinationsPage destinations={catalog.destinations} />
+      <DestinationsPage
+        destinations={catalog.destinations}
+        catalogError={catalog.error}
+      />
     </>
   )
 }

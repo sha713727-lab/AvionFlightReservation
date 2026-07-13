@@ -10,6 +10,7 @@ const destinationSelect = {
   points: true,
   sortOrder: true,
   places: {
+    where: { isActive: true },
     select: {
       id: true,
       name: true,

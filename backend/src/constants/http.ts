@@ -1,6 +1,7 @@
 export const HTTP_STATUS = {
   OK: 200,
   CREATED: 201,
+  NOT_MODIFIED: 304,
   BAD_REQUEST: 400,
   UNAUTHORIZED: 401,
   FORBIDDEN: 403,
@@ -9,6 +10,7 @@ export const HTTP_STATUS = {
   UNPROCESSABLE: 422,
   TOO_MANY_REQUESTS: 429,
   INTERNAL: 500,
+  SERVICE_UNAVAILABLE: 503,
 } as const
 
 export const API_PREFIX = '/api/v1' as const

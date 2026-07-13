@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import Image from 'next/image'
+import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
-import { EASE, SPRING } from '@/components/animations/motionPresets'
 import { cn } from '@/utils/cn'
 
 export default function DestinationPlaceCard({
@@ -17,25 +17,25 @@ export default function DestinationPlaceCard({
   const [hasError, setHasError] = useState(false)
 
   return (
-    <motion.article
-      layout
-      whileHover={{ y: -8 }}
-      transition={SPRING}
+    <article
       className={cn(
         'group relative overflow-hidden rounded-3xl border border-border bg-card shadow-card',
+        'transition-transform duration-300 hover:-translate-y-2',
         featured ? 'min-h-[320px] sm:min-h-[380px] lg:min-h-[440px]' : 'min-h-[240px] sm:min-h-[280px]',
       )}
     >
       {!hasError ? (
-        <motion.img
+        <Image
           src={image}
           alt={alt}
-          loading="lazy"
-          decoding="async"
+          fill
+          sizes={
+            featured
+              ? '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
+              : '(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw'
+          }
           onError={() => setHasError(true)}
-          className="absolute inset-0 h-full w-full object-cover"
-          whileHover={{ scale: 1.08 }}
-          transition={{ duration: 0.7, ease: EASE }}
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
       ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent" />
@@ -44,14 +44,11 @@ export default function DestinationPlaceCard({
       <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/35 to-transparent transition-opacity duration-500 group-hover:from-primary/95" />
 
       <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-        <motion.p
-          initial={{ opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-xs font-medium uppercase tracking-[0.16em] text-white/65"
-        >
-          {tierTitle}
-        </motion.p>
+        <FadeIn direction="up">
+          <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/65">
+            {tierTitle}
+          </p>
+        </FadeIn>
         <h3
           className={cn(
             'mt-2 font-heading font-semibold tracking-tight text-white',
@@ -67,6 +64,6 @@ export default function DestinationPlaceCard({
           </span>
         </p>
       </div>
-    </motion.article>
+    </article>
   )
 }

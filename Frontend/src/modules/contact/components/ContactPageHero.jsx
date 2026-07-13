@@ -1,11 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { FaPhone } from 'react-icons/fa'
 import Button from '@/components/buttons/Button'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
-import { EASE } from '@/components/animations/motionPresets'
 import { COPY } from '@/constants/copy'
 import {
   CONTACT_LABELS,
@@ -51,12 +49,7 @@ export default function ContactPageHero() {
           </FadeIn>
 
           <FadeIn delay={0.12}>
-            <motion.aside
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
-              className="relative flex h-full flex-col justify-between overflow-hidden rounded-[2rem] bg-primary p-8 text-white sm:p-10"
-            >
+            <aside className="relative flex h-full flex-col justify-between overflow-hidden rounded-[2rem] bg-primary p-8 text-white sm:p-10">
               <div
                 className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-accent/30 blur-3xl"
                 aria-hidden
@@ -109,7 +102,7 @@ export default function ContactPageHero() {
                   </p>
                 </div>
               </div>
-            </motion.aside>
+            </aside>
           </FadeIn>
         </div>
       </Container>

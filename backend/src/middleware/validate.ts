@@ -1,4 +1,4 @@
-import type { FastifyReply, FastifyRequest } from 'fastify'
+import type { FastifyRequest } from 'fastify'
 import type { ZodType } from 'zod'
 import { API_MESSAGES } from '../constants/messages.js'
 import { validationError } from '../lib/errors.js'
@@ -44,12 +44,4 @@ export function validateRequest<T>(schema: ZodType<T>, part: RequestPart) {
 
     Object.assign(request, { [part]: result.data })
   }
-}
-
-export function sendPayload(
-  reply: FastifyReply,
-  statusCode: number,
-  payload: unknown,
-): FastifyReply {
-  return reply.status(statusCode).send(payload)
 }

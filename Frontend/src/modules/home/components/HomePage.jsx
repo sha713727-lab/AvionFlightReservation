@@ -14,14 +14,25 @@ import DestinationsSection from '@/components/sections/DestinationsSection'
 import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import RedeemCtaSection from '@/components/sections/RedeemCtaSection'
 import FAQSection from '@/components/sections/FAQSection'
+import CatalogStatus from '@/components/ui/CatalogStatus'
 import CallExpertProvider from '@/modules/call/components/CallExpertProvider'
 
-export default function HomePage({ services, destinations, faqs }) {
+export default function HomePage({
+  services,
+  destinations,
+  faqs,
+  catalogError = null,
+}) {
   return (
     <CallExpertProvider>
       <Navbar />
-      <main className="overflow-x-clip">
+      <main id="main-content" className="overflow-x-clip">
         <HeroSection />
+        {catalogError ? (
+          <div className="border-b border-border bg-section-alt">
+            <CatalogStatus state="error" message={catalogError} />
+          </div>
+        ) : null}
         <DestinationsSection destinations={destinations} />
         <div className="bg-background">
           <BrandsSection />

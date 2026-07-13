@@ -45,3 +45,10 @@ Thumbs.db
 
 # Local
 *.local
+
+# Deploy secrets / TLS material
+deploy/.env.production
+deploy/certbot/conf/live/
+deploy/certbot/conf/archive/
+deploy/certbot/conf/renewal/
+deploy/certbot/conf/accounts/

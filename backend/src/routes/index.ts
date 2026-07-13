@@ -1,6 +1,7 @@
 import type { FastifyInstance } from 'fastify'
 import { API_PREFIX } from '../constants/http.js'
 import type { AppContext } from '../types/context.js'
+import type { CatalogRouteOptions } from '../types/routes.js'
 import { HealthController } from '../modules/health/controller.js'
 import { HealthRepository } from '../modules/health/repository.js'
 import { HealthService } from '../modules/health/service.js'
@@ -22,29 +23,41 @@ export async function registerRoutes(
   app: FastifyInstance,
   context: AppContext,
 ): Promise<void> {
+  const catalogOptions: CatalogRouteOptions = {
+    maxPageSize: context.env.MAX_PAGE_SIZE,
+    defaultPageSize: context.env.DEFAULT_PAGE_SIZE,
+    heavyRateLimit: {
+      max: context.env.HEAVY_RATE_LIMIT_MAX,
+      timeWindow: context.env.HEAVY_RATE_LIMIT_WINDOW_MS,
+    },
+  }
+
+  const rateLimitStore = context.redis ? 'redis' : 'memory'
+  const { catalogCache } = context
+
   const healthController = new HealthController(
-    new HealthService(new HealthRepository(context.db)),
+    new HealthService(
+      new HealthRepository(context.db, context.logger),
+      catalogCache,
+      rateLimitStore,
+    ),
   )
   const serviceController = new ServiceController(
-    new ServiceService(new ServiceRepository(context.db)),
+    new ServiceService(new ServiceRepository(context.db), catalogCache),
   )
   const destinationController = new DestinationController(
-    new DestinationService(new DestinationRepository(context.db)),
+    new DestinationService(new DestinationRepository(context.db), catalogCache),
   )
   const faqController = new FaqController(
-    new FaqService(new FaqRepository(context.db)),
+    new FaqService(new FaqRepository(context.db), catalogCache),
   )
 
   await app.register(
     async (api) => {
       await registerHealthRoutes(api, healthController)
-      await registerServiceRoutes(api, serviceController, context.env.MAX_PAGE_SIZE)
-      await registerDestinationRoutes(
-        api,
-        destinationController,
-        context.env.MAX_PAGE_SIZE,
-      )
-      await registerFaqRoutes(api, faqController, context.env.MAX_PAGE_SIZE)
+      await registerServiceRoutes(api, serviceController, catalogOptions)
+      await registerDestinationRoutes(api, destinationController, catalogOptions)
+      await registerFaqRoutes(api, faqController, catalogOptions)
     },
     { prefix: API_PREFIX },
   )

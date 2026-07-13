@@ -1,10 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { FaPhone } from 'react-icons/fa'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
-import { SPRING_SNAPPY } from '@/components/animations/motionPresets'
 import { COPY } from '@/constants/copy'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 
@@ -16,34 +14,24 @@ export default function DestinationsPageCta() {
       <Container>
         <FadeIn className="mx-auto max-w-4xl">
           <div className="overflow-hidden rounded-3xl bg-primary px-6 py-16 text-center sm:px-10 lg:px-14 lg:py-20">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+            <h2
+              id="destinations-page-cta-heading"
+              className="font-heading text-[clamp(1.75rem,4vw,2.5rem)] font-semibold leading-tight tracking-tight text-white"
             >
-              <h2
-                id="destinations-page-cta-heading"
-                className="font-heading text-[clamp(1.75rem,4vw,2.5rem)] font-semibold leading-tight tracking-tight text-white"
-              >
-                {COPY.destinations.ctaTitle}
-              </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/80 lg:text-lg">
-                {COPY.destinations.ctaDescription}
-              </p>
+              {COPY.destinations.ctaTitle}
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/80 lg:text-lg">
+              {COPY.destinations.ctaDescription}
+            </p>
 
-              <motion.button
-                type="button"
-                onClick={callModal.open}
-                className="mt-8 inline-flex w-full max-w-md items-center justify-center gap-3 rounded-full bg-white px-8 py-4 text-base font-semibold text-primary shadow-lg shadow-primary/30 transition-colors hover:bg-white/95 sm:w-auto lg:text-lg"
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                transition={SPRING_SNAPPY}
-              >
-                <FaPhone className="h-4 w-4 shrink-0" aria-hidden />
-                {COPY.cta.talkWithExpert}
-              </motion.button>
-            </motion.div>
+            <button
+              type="button"
+              onClick={callModal.open}
+              className="mt-8 inline-flex w-full max-w-md items-center justify-center gap-3 rounded-full bg-white px-8 py-4 text-base font-semibold text-primary shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-[1.03] hover:-translate-y-0.5 hover:bg-white/95 active:scale-[0.98] sm:w-auto lg:text-lg"
+            >
+              <FaPhone className="h-4 w-4 shrink-0" aria-hidden />
+              {COPY.cta.talkWithExpert}
+            </button>
           </div>
         </FadeIn>
       </Container>

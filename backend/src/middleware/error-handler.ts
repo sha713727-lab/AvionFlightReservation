@@ -38,6 +38,14 @@ export function errorHandler(
     return
   }
 
+  if (statusCode >= 400 && statusCode < 500) {
+    request.log.warn({ err: error, statusCode }, 'Client error')
+    void reply
+      .status(statusCode)
+      .send(errorResponse(API_MESSAGES.VALIDATION_FAILED, ERROR_CODES.VALIDATION_ERROR))
+    return
+  }
+
   request.log.error({ err: error }, 'Unhandled error')
 
   void reply

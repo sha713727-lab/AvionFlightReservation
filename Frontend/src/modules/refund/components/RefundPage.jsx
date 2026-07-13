@@ -14,7 +14,7 @@ export default function RefundPage() {
   return (
     <CallExpertProvider>
       <Navbar overDarkHero />
-      <main className="overflow-x-clip">
+      <main id="main-content" className="overflow-x-clip">
         <RefundPageHero />
         <RefundHighlights />
         <RefundOverview />

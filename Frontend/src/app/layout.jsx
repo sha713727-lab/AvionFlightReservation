@@ -1,9 +1,18 @@
 import '@/index.css'
+import { Outfit } from 'next/font/google'
 import { AVION_FAVICON_SRC, AVION_LOGO_SRC, BRAND_FULL_NAME } from '@/constants/brand'
 import { EMAIL, PHONE_NUMBER, SITE_DESCRIPTION, SITE_URL } from '@/constants/contact'
 import { AVION_HERO_BACKGROUND_SRC } from '@/constants/images'
 import { DEFAULT_LOCALE } from '@/constants/locales'
+import { SKIP_TO_CONTENT } from '@/constants/a11y'
 import FlightPathEffect from '@/components/effects/FlightPathEffect'
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-outfit',
+  weight: ['400', '500', '600', '700'],
+})
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -57,8 +66,11 @@ export default function RootLayout({ children }) {
   }
 
   return (
-    <html lang={DEFAULT_LOCALE}>
-      <body>
+    <html lang={DEFAULT_LOCALE} className={outfit.variable}>
+      <body className={outfit.className}>
+        <a href="#main-content" className="skip-link">
+          {SKIP_TO_CONTENT}
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

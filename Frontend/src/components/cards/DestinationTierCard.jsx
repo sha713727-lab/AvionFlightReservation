@@ -1,4 +1,7 @@
+'use client'
+
 import { useState } from 'react'
+import Image from 'next/image'
 import { COPY } from '@/constants/copy'
 import { cn } from '@/utils/cn'
 
@@ -8,13 +11,13 @@ function DestinationImage({ name, image, alt }) {
   return (
     <div className="relative h-full w-full">
       {!hasError ? (
-        <img
+        <Image
           src={image}
           alt={alt}
-          loading="lazy"
-          decoding="async"
+          fill
+          sizes="(max-width: 768px) 50vw, 25vw"
           onError={() => setHasError(true)}
-          className="h-full w-full object-cover"
+          className="object-cover"
         />
       ) : (
         <div className="flex h-full w-full items-end bg-gradient-to-br from-primary to-accent/90 p-4">

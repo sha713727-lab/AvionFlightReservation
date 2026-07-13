@@ -1,10 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Container from '@/components/ui/Container'
 import CatalogStatus from '@/components/ui/CatalogStatus'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animations/FadeIn'
-import { SPRING } from '@/components/animations/motionPresets'
 import { COPY } from '@/constants/copy'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 
@@ -32,13 +30,10 @@ export default function DestinationsTierStrip({ destinations = [] }) {
           <StaggerContainer className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 lg:gap-4">
             {destinations.map((tier) => (
               <StaggerItem key={tier.id}>
-                <motion.button
+                <button
                   type="button"
                   onClick={callModal.open}
-                  whileHover={{ y: -6, scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={SPRING}
-                  className="flex h-full w-full flex-col items-center rounded-2xl border border-border bg-card px-3 py-5 text-center shadow-card transition-colors duration-300 hover:border-accent/30 hover:shadow-card-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  className="flex h-full w-full flex-col items-center rounded-2xl border border-border bg-card px-3 py-5 text-center shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:scale-[1.03] hover:border-accent/30 hover:shadow-card-hover active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
                   <span className="text-lg font-semibold tracking-tight text-accent sm:text-xl">
                     {tier.points.toLocaleString()}
@@ -49,7 +44,7 @@ export default function DestinationsTierStrip({ destinations = [] }) {
                   <span className="mt-3 text-xs font-medium leading-snug text-primary sm:text-sm">
                     {tier.title}
                   </span>
-                </motion.button>
+                </button>
               </StaggerItem>
             ))}
           </StaggerContainer>

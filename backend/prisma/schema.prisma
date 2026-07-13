@@ -47,12 +47,14 @@ model DestinationPlace {
   alt       String
   imageUrl  String
   sortOrder Int             @default(0)
+  isActive  Boolean         @default(true)
   tierId    String
   tier      DestinationTier @relation(fields: [tierId], references: [id], onDelete: Cascade)
   createdAt DateTime        @default(now())
   updatedAt DateTime        @updatedAt
 
   @@index([tierId, sortOrder])
+  @@index([tierId, isActive, sortOrder])
   @@map("destination_places")
 }
 

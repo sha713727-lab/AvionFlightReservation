@@ -1,10 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { HiOutlineExclamationCircle } from 'react-icons/hi'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
-import { EASE } from '@/components/animations/motionPresets'
 import { COPY } from '@/constants/copy'
 import { REFUND_PROCESS_STEPS } from '@/modules/refund/constants'
 
@@ -35,21 +33,16 @@ export default function RefundProcess() {
 
           <ol className="space-y-5">
             {REFUND_PROCESS_STEPS.map((step, index) => (
-              <motion.li
-                key={step.id}
-                initial={{ opacity: 0, x: -18 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.4, delay: index * 0.06, ease: EASE }}
-                className="relative flex gap-4 sm:gap-6"
-              >
-                <span className="relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent font-heading text-sm font-semibold text-white shadow-sm shadow-accent/25 sm:h-16 sm:w-16 sm:text-base">
-                  {step.number}
-                </span>
-                <div className="flex-1 rounded-2xl border border-border bg-card px-5 py-5 shadow-card sm:px-6">
-                  <p className="text-base font-medium leading-relaxed text-primary">{step.title}</p>
-                </div>
-              </motion.li>
+              <li key={step.id} className="relative flex gap-4 sm:gap-6">
+                <FadeIn direction="left" delay={index * 0.06} className="flex flex-1 gap-4 sm:gap-6">
+                  <span className="relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent font-heading text-sm font-semibold text-white shadow-sm shadow-accent/25 sm:h-16 sm:w-16 sm:text-base">
+                    {step.number}
+                  </span>
+                  <div className="flex-1 rounded-2xl border border-border bg-card px-5 py-5 shadow-card sm:px-6">
+                    <p className="text-base font-medium leading-relaxed text-primary">{step.title}</p>
+                  </div>
+                </FadeIn>
+              </li>
             ))}
           </ol>
         </div>

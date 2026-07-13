@@ -1,10 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { FaPhone } from 'react-icons/fa'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
-import { SPRING_SNAPPY } from '@/components/animations/motionPresets'
 import { COPY } from '@/constants/copy'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 
@@ -29,17 +27,14 @@ export default function ServicesPageCta() {
               {COPY.services.catalogCtaDescription}
             </p>
 
-            <motion.button
+            <button
               type="button"
               onClick={callModal.open}
-              className="mt-8 inline-flex w-full max-w-md items-center justify-center gap-3 rounded-full bg-white px-8 py-4 text-base font-semibold text-primary shadow-lg shadow-primary/30 transition-colors hover:bg-white/95 sm:w-auto lg:text-lg"
-              whileHover={{ scale: 1.03, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              transition={SPRING_SNAPPY}
+              className="mt-8 inline-flex w-full max-w-md items-center justify-center gap-3 rounded-full bg-white px-8 py-4 text-base font-semibold text-primary shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-[1.03] hover:-translate-y-0.5 hover:bg-white/95 active:scale-[0.98] sm:w-auto lg:text-lg"
             >
               <FaPhone className="h-4 w-4 shrink-0" aria-hidden />
               {COPY.cta.talkWithExpert}
-            </motion.button>
+            </button>
           </div>
         </FadeIn>
       </Container>

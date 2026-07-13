@@ -6,6 +6,12 @@ import { SERVICE_SEED } from './data/services.js'
 const prisma = new PrismaClient()
 
 async function seed(): Promise<void> {
+  if (process.env.NODE_ENV === 'production' && process.env.ALLOW_DESTRUCTIVE_SEED !== 'true') {
+    throw new Error(
+      'Refusing destructive seed in production. Set ALLOW_DESTRUCTIVE_SEED=true to override.',
+    )
+  }
+
   await prisma.destinationPlace.deleteMany()
   await prisma.destinationTier.deleteMany()
   await prisma.service.deleteMany()
@@ -29,6 +35,7 @@ async function seed(): Promise<void> {
             alt: place.alt,
             imageUrl: place.imageUrl,
             sortOrder: index + 1,
+            isActive: true,
           })),
         },
       },

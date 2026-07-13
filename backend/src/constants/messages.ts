@@ -1,9 +1,6 @@
 export const API_MESSAGES = {
-  SUCCESS: 'Request completed successfully',
-  CREATED: 'Resource created successfully',
   VALIDATION_FAILED: 'Request validation failed',
   NOT_FOUND: 'Resource not found',
-  CONFLICT: 'Resource conflict',
   RATE_LIMITED: 'Too many requests. Please try again later.',
   INTERNAL: 'An unexpected error occurred',
   HEALTH_OK: 'API is healthy',

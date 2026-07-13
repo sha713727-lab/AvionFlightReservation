@@ -15,6 +15,28 @@ const envSchema = z.object({
   HEAVY_RATE_LIMIT_WINDOW_MS: z.coerce.number().int().positive().default(60_000),
   DEFAULT_PAGE_SIZE: z.coerce.number().int().positive().default(20),
   MAX_PAGE_SIZE: z.coerce.number().int().positive().default(100),
+  ENABLE_COMPRESSION: z
+    .enum(['true', 'false'])
+    .default('true')
+    .transform((value) => value === 'true'),
+  ENABLE_SWAGGER: z
+    .enum(['true', 'false'])
+    .default('true')
+    .transform((value) => value === 'true'),
+  TRUST_PROXY: z
+    .enum(['true', 'false'])
+    .default('false')
+    .transform((value) => value === 'true'),
+  CATALOG_CACHE_MAX_AGE_SECONDS: z.coerce.number().int().nonnegative().default(60),
+  ENABLE_CATALOG_CACHE: z
+    .enum(['true', 'false'])
+    .default('true')
+    .transform((value) => value === 'true'),
+  REDIS_URL: z
+    .string()
+    .trim()
+    .optional()
+    .transform((value) => (value && value.length > 0 ? value : undefined)),
 })
 
 export type Env = z.infer<typeof envSchema>
@@ -46,8 +68,16 @@ export function loadEnv(raw: NodeJS.ProcessEnv = process.env): Env & { corsOrigi
     throw new Error(`Invalid environment configuration: ${details}`)
   }
 
+  const data = parsed.data
+
+  if (data.NODE_ENV === 'production' && !data.REDIS_URL) {
+    throw new Error(
+      'REDIS_URL is required when NODE_ENV=production (shared rate limits + catalog cache)',
+    )
+  }
+
   return {
-    ...parsed.data,
-    corsOrigins: parseCorsOrigins(parsed.data.CORS_ORIGINS),
+    ...data,
+    corsOrigins: parseCorsOrigins(data.CORS_ORIGINS),
   }
 }

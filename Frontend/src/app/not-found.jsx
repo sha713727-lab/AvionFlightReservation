@@ -7,7 +7,7 @@ const HOME_PATH = '/'
 
 export default function NotFound() {
   return (
-    <main className="flex min-h-svh items-center justify-center bg-background px-6 py-20 text-center">
+    <main id="main-content" className="flex min-h-svh items-center justify-center bg-background px-6 py-20 text-center">
       <section className="max-w-md rounded-3xl bg-card p-8 shadow-card">
         <p className="text-sm font-semibold uppercase tracking-[0.3em] text-text-muted">404</p>
         <h1 className="mt-4 text-3xl font-semibold text-accent">{NOT_FOUND_TITLE}</h1>

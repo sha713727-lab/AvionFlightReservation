@@ -10,7 +10,7 @@ import { EMAIL, EMAIL_HREF, PHONE_HREF, PHONE_NUMBER } from '@/constants/contact
 
 export default function CookiePolicyContent() {
   return (
-    <main className="overflow-x-clip">
+    <main id="main-content" className="overflow-x-clip">
       <section className="bg-background pt-32 pb-12 lg:pt-40 lg:pb-16" aria-labelledby="cookie-page-heading">
         <Container>
           <FadeIn className="mx-auto max-w-3xl text-center">

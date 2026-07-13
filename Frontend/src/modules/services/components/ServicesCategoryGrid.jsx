@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Container from '@/components/ui/Container'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
@@ -35,14 +34,12 @@ export default function ServicesCategoryGrid() {
 
             return (
               <StaggerItem key={category.id}>
-                <motion.a
+                <a
                   href={`#${category.id}`}
-                  whileHover={{ y: -4 }}
-                  transition={{ type: 'spring', stiffness: 320, damping: 24 }}
                   className={cn(
                     'group flex h-full flex-col rounded-2xl border border-border bg-card p-7',
-                    'shadow-card transition-colors duration-300',
-                    'hover:border-accent/30 hover:shadow-card-hover',
+                    'shadow-card transition-all duration-300',
+                    'hover:-translate-y-1 hover:border-accent/30 hover:shadow-card-hover',
                     'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent',
                   )}
                 >
@@ -55,7 +52,7 @@ export default function ServicesCategoryGrid() {
                   <p className="text-sm leading-relaxed text-text-secondary">
                     {category.description}
                   </p>
-                </motion.a>
+                </a>
               </StaggerItem>
             )
           })}

@@ -1,10 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { HiArrowRight } from 'react-icons/hi'
 import Button from '@/components/buttons/Button'
 import { FadeIn } from '@/components/animations/FadeIn'
-import { EASE, SPRING } from '@/components/animations/motionPresets'
 import { COPY } from '@/constants/copy'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 import { cn } from '@/utils/cn'
@@ -86,25 +85,21 @@ export default function ServiceCatalogItem({
         </FadeIn>
 
         <FadeIn direction={reversed ? 'left' : 'right'} delay={0.08}>
-          <motion.div
-            className="group relative overflow-hidden rounded-3xl border border-border bg-section-alt shadow-card"
-            whileHover={{ y: -4 }}
-            transition={SPRING}
-          >
-            <motion.img
-              src={image}
-              alt={imageAlt}
-              loading="lazy"
-              decoding="async"
-              className="aspect-[16/11] w-full object-cover object-center"
-              whileHover={{ scale: 1.04 }}
-              transition={{ duration: 0.7, ease: EASE }}
-            />
+          <div className="group relative overflow-hidden rounded-3xl border border-border bg-section-alt shadow-card transition-transform duration-300 hover:-translate-y-1">
+            <div className="relative aspect-[16/11] w-full overflow-hidden">
+              <Image
+                src={image}
+                alt={imageAlt}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+              />
+            </div>
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/35 via-transparent to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-90" />
             <div className="absolute bottom-5 left-5 right-5">
               <p className="truncate text-sm font-medium text-white">{title}</p>
             </div>
-          </motion.div>
+          </div>
         </FadeIn>
       </div>
     </article>

@@ -1,14 +1,13 @@
 'use client'
 
 import { FaGift, FaPhone } from 'react-icons/fa'
-import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { useState } from 'react'
 import Container from '@/components/ui/Container'
 import SectionHeading from '@/components/ui/SectionHeading'
 import Button from '@/components/buttons/Button'
 import Modal from '@/components/ui/Modal'
 import { FadeIn } from '@/components/animations/FadeIn'
-import { SPRING } from '@/components/animations/motionPresets'
 import { COPY } from '@/constants/copy'
 import { REWARDS_CABIN_IMAGE_SRC } from '@/constants/images'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
@@ -40,29 +39,26 @@ function RewardsSection() {
                 align="left"
                 className="mb-8 max-w-lg"
               />
-              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }} transition={SPRING}>
+              <div className="inline-block transition-transform duration-300 hover:scale-[1.03] active:scale-[0.98]">
                 <Button variant="primary" size="lg" icon={FaGift} onClick={() => setModalOpen(true)}>
                   {COPY.rewards.cta}
                 </Button>
-              </motion.div>
+              </div>
             </FadeIn>
 
             <FadeIn direction="left">
-              <motion.div
-                whileHover={{ scale: 1.03, rotate: 1 }}
-                transition={SPRING}
-                className="group relative overflow-hidden rounded-2xl shadow-lg transition-shadow duration-500 hover:shadow-xl"
-              >
-                <motion.img
-                  src={REWARDS_CABIN_IMAGE_SRC}
-                  alt={COPY.rewards.imageAlt}
-                  loading="lazy"
-                  className="aspect-[4/3] w-full object-cover"
-                  whileHover={{ scale: 1.08 }}
-                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                />
+              <div className="group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 hover:scale-[1.02] hover:rotate-1 hover:shadow-xl">
+                <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <Image
+                    src={REWARDS_CABIN_IMAGE_SRC}
+                    alt={COPY.rewards.imageAlt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              </motion.div>
+              </div>
             </FadeIn>
           </div>
         </Container>
