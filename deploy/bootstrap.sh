@@ -8,7 +8,7 @@ ENV_FILE="$ROOT_DIR/deploy/.env.production"
 DOMAIN="${DOMAIN:-aviosupportdesk.com}"
 
 if [[ ! -f "$ENV_FILE" ]]; then
-  echo "Missing $ENV_FILE — copy deploy/.env.production.example and set secrets."
+  echo "Missing $ENV_FILE — copy deploy/env.production.example to deploy/.env.production and set secrets."
   exit 1
 fi
 
