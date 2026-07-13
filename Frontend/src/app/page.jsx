@@ -1,6 +1,8 @@
 import HomePage from '@/modules/home/components/HomePage'
 import { loadHomeCatalog } from '@/services/api/loadCatalog'
 
+export const revalidate = 600
+
 export default async function Page() {
   const catalog = await loadHomeCatalog()
 

@@ -27,7 +27,7 @@ const envSchema = z.object({
     .enum(['true', 'false'])
     .default('false')
     .transform((value) => value === 'true'),
-  CATALOG_CACHE_MAX_AGE_SECONDS: z.coerce.number().int().nonnegative().default(60),
+  CATALOG_CACHE_MAX_AGE_SECONDS: z.coerce.number().int().nonnegative().default(600),
   ENABLE_CATALOG_CACHE: z
     .enum(['true', 'false'])
     .default('true')

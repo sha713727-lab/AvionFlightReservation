@@ -5,16 +5,17 @@ import { WHY_US_CARD_ACCENTS } from '@/constants/sectionThemes'
 import { COPY } from '@/constants/copy'
 import { WHY_US, STATS } from '@/data/services'
 import { useCounter } from '@/hooks/useCounter'
-import { useLiveCustomerCounter } from '@/hooks/useLiveCustomerCounter'
 import { cn } from '@/utils/cn'
 
-function StatValue({ count, suffix = '', label, counterRef }) {
+function StatCounter({ value, suffix = '', label }) {
+  const { count, ref } = useCounter(value)
+
   return (
     <div
-      ref={counterRef}
+      ref={ref}
       className="group cursor-default text-center transition-transform duration-300 hover:-translate-y-0.5"
     >
-      <p className="mb-1 text-3xl font-semibold tracking-tight text-accent transition-colors duration-300 group-hover:text-accent-hover lg:text-4xl">
+      <p className="mb-1 text-3xl font-semibold tracking-tight text-primary transition-colors duration-300 group-hover:text-accent lg:text-4xl">
         {count.toLocaleString()}
         {suffix}
       </p>
@@ -23,24 +24,6 @@ function StatValue({ count, suffix = '', label, counterRef }) {
       </p>
     </div>
   )
-}
-
-function LiveStatCounter({ label }) {
-  const { count, ref } = useLiveCustomerCounter()
-  return <StatValue count={count} label={label} counterRef={ref} />
-}
-
-function StaticStatCounter({ value, suffix, label }) {
-  const { count, ref } = useCounter(value)
-  return <StatValue count={count} suffix={suffix} label={label} counterRef={ref} />
-}
-
-function StatCounter(stat) {
-  if (stat.live) {
-    return <LiveStatCounter label={stat.label} />
-  }
-
-  return <StaticStatCounter value={stat.value} suffix={stat.suffix} label={stat.label} />
 }
 
 export default function WhyUsSection() {
@@ -90,7 +73,7 @@ export default function WhyUsSection() {
         </StaggerContainer>
 
         <FadeIn>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 rounded-xl border border-border bg-card py-12 px-8 shadow-sm">
+          <div className="grid grid-cols-2 gap-8 border border-border bg-card px-8 py-12 shadow-sm lg:grid-cols-4">
             {STATS.map((stat) => (
               <StatCounter key={stat.label} {...stat} />
             ))}

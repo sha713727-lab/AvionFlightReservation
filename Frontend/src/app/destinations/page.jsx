@@ -6,6 +6,7 @@ import {
 import { loadDestinationsCatalog } from '@/services/api/loadCatalog'
 
 export const metadata = getDestinationsPageMetadata()
+export const revalidate = 600
 
 export default async function Page() {
   const jsonLd = getDestinationsPageJsonLd()

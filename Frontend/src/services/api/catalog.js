@@ -1,4 +1,4 @@
-import { API_DEFAULT_PAGE_SIZE, API_ENDPOINTS } from '@/constants/api'
+import { API_DEFAULT_PAGE_SIZE, API_ENDPOINTS, CATALOG_REVALIDATE_SECONDS } from '@/constants/api'
 import {
   destinationListSchema,
   faqListSchema,
@@ -11,12 +11,10 @@ import {
   mapServiceDto,
 } from '@/services/api/catalogMappers'
 
-const REVALIDATE_SECONDS = 60
-
 export async function fetchServices() {
   const data = await apiGet(API_ENDPOINTS.services, serviceListSchema, {
     query: { page: 1, pageSize: API_DEFAULT_PAGE_SIZE },
-    next: { revalidate: REVALIDATE_SECONDS },
+    next: { revalidate: CATALOG_REVALIDATE_SECONDS },
   })
 
   return data.items.map(mapServiceDto)
@@ -25,7 +23,7 @@ export async function fetchServices() {
 export async function fetchDestinations() {
   const data = await apiGet(API_ENDPOINTS.destinations, destinationListSchema, {
     query: { page: 1, pageSize: API_DEFAULT_PAGE_SIZE },
-    next: { revalidate: REVALIDATE_SECONDS },
+    next: { revalidate: CATALOG_REVALIDATE_SECONDS },
   })
 
   return data.items.map(mapDestinationTierDto)
@@ -34,7 +32,7 @@ export async function fetchDestinations() {
 export async function fetchFaqs() {
   const data = await apiGet(API_ENDPOINTS.faqs, faqListSchema, {
     query: { page: 1, pageSize: API_DEFAULT_PAGE_SIZE },
-    next: { revalidate: REVALIDATE_SECONDS },
+    next: { revalidate: CATALOG_REVALIDATE_SECONDS },
   })
 
   return data.items.map(mapFaqDto)

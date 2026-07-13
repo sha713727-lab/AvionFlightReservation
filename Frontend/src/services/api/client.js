@@ -34,7 +34,6 @@ export async function apiGet(path, schema, options = {}) {
       method: 'GET',
       headers: {
         Accept: 'application/json',
-        'Accept-Encoding': 'identity',
       },
       next: options.next,
       cache: options.cache,
