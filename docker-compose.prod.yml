@@ -2,10 +2,12 @@ services:
   postgres:
     image: postgres:16-alpine
     restart: unless-stopped
+    env_file:
+      - ./deploy/.env.production
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER:-avion}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD via --env-file deploy/.env.production}
+      POSTGRES_DB: ${POSTGRES_DB:-avion_flight}
     volumes:
       - avion_pg_data:/var/lib/postgresql/data
     healthcheck:
@@ -39,14 +41,8 @@ services:
       NODE_ENV: production
       HOST: 0.0.0.0
       PORT: 4000
-      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?schema=public&connection_limit=10
-      REDIS_URL: ${REDIS_URL}
-      CORS_ORIGINS: ${CORS_ORIGINS}
-      TRUST_PROXY: ${TRUST_PROXY}
-      ENABLE_COMPRESSION: ${ENABLE_COMPRESSION}
-      ENABLE_SWAGGER: ${ENABLE_SWAGGER}
-      ENABLE_CATALOG_CACHE: ${ENABLE_CATALOG_CACHE}
-      CATALOG_CACHE_MAX_AGE_SECONDS: ${CATALOG_CACHE_MAX_AGE_SECONDS}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-avion}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-avion_flight}?schema=public&connection_limit=10
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379}
     depends_on:
       postgres:
         condition: service_healthy
@@ -60,8 +56,8 @@ services:
       context: ./Frontend
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
-        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://aviosupportdesk.com}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://aviosupportdesk.com}
     restart: unless-stopped
     environment:
       NODE_ENV: production
