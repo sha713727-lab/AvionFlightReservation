@@ -66,9 +66,10 @@ export const COPY = {
       'Call now for flight reservations, hotel booking, points help, or support on an existing trip.',
   },
   partners: {
-    watermark: 'TRUSTED PARTNERS',
-    title: 'TRUSTED PARTNERS',
-    description: 'Airlines, hotels, and payment brands you already know and trust.',
+    watermark: 'BOOKING NETWORK',
+    title: 'Airlines & brands we work with',
+    description:
+      'We help you book across major airlines, hotels, and payment options. Avion is independent — not affiliated with RBC, Avion Rewards, or any airline.',
   },
   whyUs: {
     watermark: 'WHY US',
