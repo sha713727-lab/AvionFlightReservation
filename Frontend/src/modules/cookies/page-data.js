@@ -1,6 +1,6 @@
 import { COPY } from '@/constants/copy'
 import { BRAND_FULL_NAME } from '@/constants/brand'
-import { EMAIL, PHONE_NUMBER, SITE_URL } from '@/constants/contact'
+import { CONTACT_EMAILS, PHONE_NUMBER, SITE_URL } from '@/constants/contact'
 import { COOKIE_POLICY_PATH } from '@/constants/routes'
 
 export function getCookiePageMetadata() {
@@ -37,7 +37,7 @@ export function getCookiePageJsonLd() {
     about: {
       '@type': 'Organization',
       name: BRAND_FULL_NAME,
-      email: EMAIL,
+      email: CONTACT_EMAILS,
       telephone: PHONE_NUMBER,
     },
   }

@@ -12,6 +12,8 @@ import {
   MAILING_ADDRESS_LINES,
   PHONE_HREF,
   PHONE_NUMBER,
+  RESERVATION_EMAIL,
+  RESERVATION_EMAIL_HREF,
   SUPPORT_HOURS,
 } from '@/constants/contact'
 
@@ -77,6 +79,18 @@ export default function ContactPageHero() {
                     className="mt-2 block text-sm text-white/80 transition-colors hover:text-white"
                   >
                     {EMAIL}
+                  </a>
+                </div>
+
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/45">
+                    {CONTACT_LABELS.reservationEmail}
+                  </p>
+                  <a
+                    href={RESERVATION_EMAIL_HREF}
+                    className="mt-2 block text-sm text-white/80 transition-colors hover:text-white"
+                  >
+                    {RESERVATION_EMAIL}
                   </a>
                 </div>
 

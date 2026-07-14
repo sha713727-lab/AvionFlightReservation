@@ -5,6 +5,8 @@ import {
   MAILING_ADDRESS_LINES,
   PHONE_HREF,
   PHONE_NUMBER,
+  RESERVATION_EMAIL,
+  RESERVATION_EMAIL_HREF,
   SUPPORT_HOURS,
 } from '@/constants/contact'
 
@@ -44,6 +46,18 @@ export default function FooterContactDetails() {
           </p>
           <a href={EMAIL_HREF} className="footer-link break-all text-sm text-white/60">
             {EMAIL}
+          </a>
+        </div>
+
+        <div>
+          <p className="mb-1 text-xs font-medium uppercase tracking-[0.14em] text-white/40">
+            {CONTACT_LABELS.reservationEmail}
+          </p>
+          <a
+            href={RESERVATION_EMAIL_HREF}
+            className="footer-link break-all text-sm text-white/60"
+          >
+            {RESERVATION_EMAIL}
           </a>
         </div>
 

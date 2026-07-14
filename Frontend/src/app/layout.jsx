@@ -1,7 +1,12 @@
 import '@/index.css'
 import { Outfit } from 'next/font/google'
 import { AVION_FAVICON_SRC, AVION_LOGO_SRC, BRAND_FULL_NAME } from '@/constants/brand'
-import { EMAIL, PHONE_NUMBER, SITE_DESCRIPTION, SITE_URL } from '@/constants/contact'
+import {
+  CONTACT_EMAILS,
+  PHONE_NUMBER,
+  SITE_DESCRIPTION,
+  SITE_URL,
+} from '@/constants/contact'
 import { AVION_HERO_BACKGROUND_SRC } from '@/constants/images'
 import { DEFAULT_LOCALE } from '@/constants/locales'
 import { SKIP_TO_CONTENT } from '@/constants/a11y'
@@ -60,7 +65,7 @@ export default function RootLayout({ children }) {
       'Independent travel assistance for flight and hotel reservations by phone.',
     url: SITE_URL,
     telephone: PHONE_NUMBER,
-    email: EMAIL,
+    email: CONTACT_EMAILS,
     areaServed: ['Canada', 'United States', 'Europe', 'Mexico'],
     priceRange: '$$',
   }

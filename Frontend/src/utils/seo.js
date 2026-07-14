@@ -1,6 +1,6 @@
 import { BRAND_FULL_NAME } from '@/constants/brand'
 import {
-  EMAIL,
+  CONTACT_EMAILS,
   MAILING_ADDRESS_LINES,
   PHONE_NUMBER,
   SITE_URL,
@@ -58,7 +58,7 @@ export function buildTravelAssistanceJsonLd({ description, path, includeAddress 
     description,
     url: `${SITE_URL}${path}`,
     telephone: PHONE_NUMBER,
-    email: EMAIL,
+    email: CONTACT_EMAILS,
     areaServed: ['Canada', 'United States', 'Europe', 'Mexico'],
     priceRange: '$$',
     parentOrganization: {
@@ -98,7 +98,7 @@ export function buildWebPageJsonLd({ name, description, path }) {
       '@type': 'Organization',
       name: BRAND_FULL_NAME,
       url: SITE_URL,
-      email: EMAIL,
+      email: CONTACT_EMAILS,
       telephone: PHONE_NUMBER,
     },
   }

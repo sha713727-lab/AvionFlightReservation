@@ -5,7 +5,14 @@ import { HiOutlineMail } from 'react-icons/hi'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
-import { EMAIL, EMAIL_HREF, PHONE_HREF, PHONE_NUMBER } from '@/constants/contact'
+import {
+  EMAIL,
+  EMAIL_HREF,
+  PHONE_HREF,
+  PHONE_NUMBER,
+  RESERVATION_EMAIL,
+  RESERVATION_EMAIL_HREF,
+} from '@/constants/contact'
 
 export default function TermsPageCta() {
   return (
@@ -40,6 +47,14 @@ export default function TermsPageCta() {
               <a
                 href={EMAIL_HREF}
                 aria-label={`Email ${EMAIL}`}
+                className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-accent bg-card text-accent transition-colors hover:bg-accent/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              >
+                <HiOutlineMail className="h-6 w-6" aria-hidden />
+              </a>
+
+              <a
+                href={RESERVATION_EMAIL_HREF}
+                aria-label={`Email ${RESERVATION_EMAIL}`}
                 className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-accent bg-card text-accent transition-colors hover:bg-accent/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 <HiOutlineMail className="h-6 w-6" aria-hidden />

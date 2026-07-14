@@ -11,6 +11,8 @@ import {
   EMAIL_HREF,
   PHONE_HREF,
   PHONE_NUMBER,
+  RESERVATION_EMAIL,
+  RESERVATION_EMAIL_HREF,
   SUPPORT_HOURS,
 } from '@/constants/contact'
 import { CONTACT_PREP_ITEMS } from '@/modules/contact/constants'
@@ -46,6 +48,17 @@ export default function ContactSupportSection() {
                   <span className="font-medium text-primary">{CONTACT_LABELS.businessEmail}: </span>
                   <a href={EMAIL_HREF} className="text-accent transition-colors hover:text-accent-hover">
                     {EMAIL}
+                  </a>
+                </p>
+                <p>
+                  <span className="font-medium text-primary">
+                    {CONTACT_LABELS.reservationEmail}:{' '}
+                  </span>
+                  <a
+                    href={RESERVATION_EMAIL_HREF}
+                    className="text-accent transition-colors hover:text-accent-hover"
+                  >
+                    {RESERVATION_EMAIL}
                   </a>
                 </p>
                 <p>

@@ -1,6 +1,6 @@
 import { COPY } from '@/constants/copy'
 import { BRAND_FULL_NAME } from '@/constants/brand'
-import { EMAIL, PHONE_NUMBER, SITE_URL } from '@/constants/contact'
+import { CONTACT_EMAILS, PHONE_NUMBER, SITE_URL } from '@/constants/contact'
 import { CANCELLATION_POLICY_PATH } from '@/constants/routes'
 
 export function getCancellationPageMetadata() {
@@ -52,7 +52,7 @@ export function getCancellationPageJsonLd() {
       '@type': 'Organization',
       name: BRAND_FULL_NAME,
       url: SITE_URL,
-      email: EMAIL,
+      email: CONTACT_EMAILS,
       telephone: PHONE_NUMBER,
     },
   }
