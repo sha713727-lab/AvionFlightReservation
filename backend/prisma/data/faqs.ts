@@ -1,30 +1,23 @@
 export const FAQ_SEED = [
   {
-    slug: 'booking',
-    question: 'How do I book a flight with Avion Flight Reservation?',
+    slug: 'change-or-cancel',
+    question: 'How do I change or cancel an existing flight reservation?',
     answer:
-      'Call our 24/7 hotline and a travel specialist will discuss your route, dates, budget, and best available flight options.',
+      'Call our travel specialists with your booking reference, passenger names, and travel dates. We review the airline or supplier rules for your fare and help process the change or cancellation according to those terms. Fees, refunds, and credits depend on the ticket rules and supplier policy.',
     sortOrder: 1,
   },
   {
-    slug: 'phone-booking',
-    question: 'Do you book flights by phone?',
+    slug: 'travel-insurance',
+    question: 'Does my Avion flight booking include travel insurance?',
     answer:
-      'Yes. Phone-based flight booking is our primary support model, so you can speak with a travel specialist before confirming your reservation.',
+      'Travel insurance is not automatically included with every booking. If you want coverage for trip cancellation, medical emergencies, or baggage, ask your specialist when you book so we can review available options for your trip. Always confirm what is and is not covered before you travel.',
     sortOrder: 2,
   },
   {
-    slug: 'affiliation',
-    question: 'Is Avion Flight Reservation affiliated with Avion Rewards or RBC?',
+    slug: 'airline-points-booking',
+    question: 'Can I book any airline with Avion points?',
     answer:
-      'No. Avion Flight Reservation is an independent travel booking assistance service, not RBC, Avion Rewards, or any bank rewards program.',
+      'Avion Flight Reservation is an independent travel assistance service and is not affiliated with RBC or Avion Rewards. Our specialists can help you explore flight options and points or miles redemption support based on the programs and airlines available for your trip. Call us with your route and dates, and we will review what options apply to you.',
     sortOrder: 3,
-  },
-  {
-    slug: 'changes',
-    question: 'What if I need to change or cancel my flight?',
-    answer:
-      'Contact us anytime. We handle all changes and cancellations on your behalf, navigating airline policies to get you the best possible outcome.',
-    sortOrder: 4,
   },
 ] as const
