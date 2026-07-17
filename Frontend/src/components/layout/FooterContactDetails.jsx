@@ -5,8 +5,13 @@ import {
   MAILING_ADDRESS_LINES,
   PHONE_HREF,
   PHONE_NUMBER,
+  RESERVATION_EMAIL,
+  RESERVATION_EMAIL_HREF,
   SUPPORT_HOURS,
 } from '@/constants/contact'
+
+const linkClassName =
+  'break-all text-sm font-medium text-white transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent'
 
 export default function FooterContactDetails() {
   return (
@@ -25,10 +30,7 @@ export default function FooterContactDetails() {
           <p className="mb-1.5 text-xs font-medium uppercase tracking-[0.16em] text-white/40">
             {CONTACT_LABELS.phoneSupport}
           </p>
-          <a
-            href={PHONE_HREF}
-            className="text-sm font-medium text-white transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >
+          <a href={PHONE_HREF} className={linkClassName}>
             {PHONE_NUMBER}
           </a>
         </div>
@@ -37,11 +39,17 @@ export default function FooterContactDetails() {
           <p className="mb-1.5 text-xs font-medium uppercase tracking-[0.16em] text-white/40">
             {CONTACT_LABELS.businessEmail}
           </p>
-          <a
-            href={EMAIL_HREF}
-            className="break-all text-sm font-medium text-white transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >
+          <a href={EMAIL_HREF} className={linkClassName}>
             {EMAIL}
+          </a>
+        </div>
+
+        <div>
+          <p className="mb-1.5 text-xs font-medium uppercase tracking-[0.16em] text-white/40">
+            {CONTACT_LABELS.reservationEmail}
+          </p>
+          <a href={RESERVATION_EMAIL_HREF} className={linkClassName}>
+            {RESERVATION_EMAIL}
           </a>
         </div>
 

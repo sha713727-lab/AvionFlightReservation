@@ -45,6 +45,7 @@ export function useCallbackRequestForm({ onSuccess }) {
     setIsSubmitting(true)
     setErrors({})
     onSuccess(result.data)
+    setIsSubmitting(false)
   }
 
   return {

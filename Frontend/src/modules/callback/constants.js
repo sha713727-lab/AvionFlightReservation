@@ -1,5 +1,6 @@
 export const CALLBACK_SCROLL_RATIO = 0.5
 export const CALLBACK_PROMPT_DURATION_MS = 8000
+export const CALLBACK_SUCCESS_DURATION_MS = 3500
 
 export const CALLBACK_FIELD_NAMES = {
   name: 'name',

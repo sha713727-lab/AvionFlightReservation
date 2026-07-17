@@ -34,6 +34,9 @@ export const COPY = {
     datetimeLabel: 'Preferred date & time',
     submitCta: 'Submit request',
     submittingCta: 'Submitting…',
+    thankYouTitle: 'Thank you',
+    thankYouDescription:
+      'Your callback request was received. A travel specialist will contact you at your preferred time.',
   },
   rewards: {
     eyebrow: 'Points redemption assistance',

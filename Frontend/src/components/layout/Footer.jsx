@@ -39,25 +39,21 @@ export default function Footer() {
           </FadeIn>
         </div>
 
-        <FadeIn delay={0.15}>
-          <div id="disclaimer" className="scroll-mt-28 border-t border-white/10 pt-5">
-            <h3 className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-white">
-              {COPY.footer.disclaimerTitle}
-            </h3>
-            <p className="max-w-4xl text-xs leading-relaxed text-white/45">
-              {COPY.footer.disclaimer}
-            </p>
-          </div>
-        </FadeIn>
+        <div id="disclaimer" className="scroll-mt-28 border-t border-white/10 pt-5">
+          <h3 className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-white">
+            {COPY.footer.disclaimerTitle}
+          </h3>
+          <p className="max-w-4xl text-xs leading-relaxed text-white/45">
+            {COPY.footer.disclaimer}
+          </p>
+        </div>
 
-        <FadeIn delay={0.2}>
-          <div className="mt-6 border-t border-white/10">
-            <p className="py-5 text-center text-xs leading-relaxed tracking-wide text-white/50 sm:text-sm">
-              {COPY.footer.copyrightPrefix} {new Date().getFullYear()} {BRAND_FULL_NAME}.{' '}
-              {COPY.footer.rightsReserved}
-            </p>
-          </div>
-        </FadeIn>
+        <div className="mt-6 border-t border-white/10">
+          <p className="py-5 text-center text-xs leading-relaxed tracking-wide text-white/55 sm:text-sm">
+            {COPY.footer.copyrightPrefix} {new Date().getFullYear()} {BRAND_FULL_NAME}.{' '}
+            {COPY.footer.rightsReserved}
+          </p>
+        </div>
       </Container>
     </footer>
   )

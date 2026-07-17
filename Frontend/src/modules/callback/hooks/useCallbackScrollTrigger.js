@@ -4,21 +4,31 @@ import { useCallback, useEffect, useState } from 'react'
 import {
   CALLBACK_PROMPT_DURATION_MS,
   CALLBACK_SCROLL_RATIO,
+  CALLBACK_SUCCESS_DURATION_MS,
 } from '@/modules/callback/constants'
 
 export function useCallbackScrollTrigger() {
   const [isPromptOpen, setIsPromptOpen] = useState(false)
   const [isFormOpen, setIsFormOpen] = useState(false)
+  const [isSuccessOpen, setIsSuccessOpen] = useState(false)
   const [hasTriggered, setHasTriggered] = useState(false)
 
   const closeAll = useCallback(() => {
     setIsPromptOpen(false)
     setIsFormOpen(false)
+    setIsSuccessOpen(false)
   }, [])
 
   const openForm = useCallback(() => {
     setIsPromptOpen(false)
+    setIsSuccessOpen(false)
     setIsFormOpen(true)
+  }, [])
+
+  const showSuccess = useCallback(() => {
+    setIsPromptOpen(false)
+    setIsFormOpen(false)
+    setIsSuccessOpen(true)
   }, [])
 
   useEffect(() => {
@@ -52,10 +62,22 @@ export function useCallbackScrollTrigger() {
     return () => window.clearTimeout(timer)
   }, [isPromptOpen])
 
+  useEffect(() => {
+    if (!isSuccessOpen) return undefined
+
+    const timer = window.setTimeout(() => {
+      setIsSuccessOpen(false)
+    }, CALLBACK_SUCCESS_DURATION_MS)
+
+    return () => window.clearTimeout(timer)
+  }, [isSuccessOpen])
+
   return {
     isPromptOpen,
     isFormOpen,
+    isSuccessOpen,
     openForm,
+    showSuccess,
     closeAll,
   }
 }
