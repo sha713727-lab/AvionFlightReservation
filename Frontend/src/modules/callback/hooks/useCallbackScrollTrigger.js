@@ -1,11 +1,13 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
+import { GTM_EVENTS } from '@/constants/analytics'
 import {
   CALLBACK_PROMPT_DURATION_MS,
   CALLBACK_SCROLL_RATIO,
   CALLBACK_SUCCESS_DURATION_MS,
 } from '@/modules/callback/constants'
+import { pushDataLayerEvent } from '@/utils/analytics'
 
 export function useCallbackScrollTrigger() {
   const [isPromptOpen, setIsPromptOpen] = useState(false)
@@ -20,12 +22,18 @@ export function useCallbackScrollTrigger() {
   }, [])
 
   const openForm = useCallback(() => {
+    pushDataLayerEvent(GTM_EVENTS.callbackRequestClick, {
+      callback_cta: 'request_a_callback',
+    })
     setIsPromptOpen(false)
     setIsSuccessOpen(false)
     setIsFormOpen(true)
   }, [])
 
   const showSuccess = useCallback(() => {
+    pushDataLayerEvent(GTM_EVENTS.callbackFormSubmit, {
+      callback_cta: 'submit_request',
+    })
     setIsPromptOpen(false)
     setIsFormOpen(false)
     setIsSuccessOpen(true)
@@ -44,6 +52,9 @@ export function useCallbackScrollTrigger() {
 
       setHasTriggered(true)
       setIsPromptOpen(true)
+      pushDataLayerEvent(GTM_EVENTS.callbackModalOpen, {
+        callback_trigger: 'scroll_half_page',
+      })
     }
 
     window.addEventListener('scroll', onScroll, { passive: true })
