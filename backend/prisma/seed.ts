@@ -1,9 +1,32 @@
 import { PrismaClient } from '@prisma/client'
+import { Redis } from 'ioredis'
 import { DESTINATION_SEED } from './data/destinations.js'
 import { FAQ_SEED } from './data/faqs.js'
 import { SERVICE_SEED } from './data/services.js'
 
 const prisma = new PrismaClient()
+const CATALOG_CACHE_PREFIX = 'avion-catalog:'
+
+async function flushCatalogCache(): Promise<void> {
+  const redisUrl = process.env.REDIS_URL
+  if (!redisUrl) {
+    return
+  }
+
+  const redis = new Redis(redisUrl, {
+    maxRetriesPerRequest: 1,
+    enableReadyCheck: true,
+  })
+
+  try {
+    const keys = await redis.keys(`${CATALOG_CACHE_PREFIX}*`)
+    if (keys.length > 0) {
+      await redis.del(...keys)
+    }
+  } finally {
+    redis.disconnect()
+  }
+}
 
 async function seed(): Promise<void> {
   if (process.env.NODE_ENV === 'production' && process.env.ALLOW_DESTRUCTIVE_SEED !== 'true') {
@@ -45,6 +68,8 @@ async function seed(): Promise<void> {
   for (const faq of FAQ_SEED) {
     await prisma.faq.create({ data: { ...faq, isActive: true } })
   }
+
+  await flushCatalogCache()
 }
 
 seed()
