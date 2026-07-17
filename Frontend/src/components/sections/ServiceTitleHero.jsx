@@ -8,7 +8,7 @@ export default function ServiceTitleHero({ number, title, tagline, icon: Icon, a
     <FadeIn direction={isRight ? 'right' : 'left'}>
       <div
         className={cn(
-          'relative flex min-h-[260px] flex-col justify-center py-8 lg:min-h-[320px] lg:py-10',
+          'relative flex flex-col justify-center py-2 lg:min-h-[240px] lg:py-6',
           isRight ? 'items-end text-right' : 'items-start text-left',
         )}
       >
@@ -16,7 +16,7 @@ export default function ServiceTitleHero({ number, title, tagline, icon: Icon, a
           aria-hidden
           className={cn(
             'pointer-events-none absolute bottom-0 select-none font-semibold leading-none text-primary/[0.06]',
-            'text-[clamp(5rem,16vw,9rem)]',
+            'text-[clamp(4rem,14vw,8rem)]',
             isRight ? 'right-0' : 'left-0',
           )}
         >
@@ -24,14 +24,14 @@ export default function ServiceTitleHero({ number, title, tagline, icon: Icon, a
         </span>
 
         <Icon
-          className="relative mb-6 h-12 w-12 text-accent lg:h-14 lg:w-14"
+          className="relative mb-3 h-10 w-10 text-accent lg:mb-5 lg:h-14 lg:w-14"
           aria-hidden
         />
 
         <h3
           className={cn(
-            'relative mb-4 max-w-full font-semibold leading-tight tracking-tight text-primary',
-            'text-[clamp(1.875rem,4vw,3.25rem)]',
+            'relative mb-2 max-w-full font-semibold leading-tight tracking-tight text-primary lg:mb-4',
+            'text-[clamp(1.5rem,4vw,3.25rem)]',
             isRight ? 'text-right' : 'text-left',
           )}
         >

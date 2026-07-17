@@ -14,6 +14,7 @@ export const COPY = {
     disclaimer:
       'Avion Flight Reservation is an independent travel booking assistance service. We are not affiliated with, authorized by, or endorsed by Royal Bank of Canada (RBC), Avion Rewards, or any other airline or bank reward program. All trademarks are the property of their respective owners.',
     rightsReserved: 'All rights reserved.',
+    copyrightPrefix: '©',
   },
   callModal: {
     title: 'Talk with a travel expert',
@@ -89,6 +90,8 @@ export const COPY = {
     watermark: 'WHY US',
     title: 'Why Book With Avion Flight Reservation',
     description: 'Licensed specialists, secure bookings, and dedicated support you can rely on.',
+    previousLabel: 'Previous reason',
+    nextLabel: 'Next reason',
   },
   process: {
     watermark: 'PROCESS',

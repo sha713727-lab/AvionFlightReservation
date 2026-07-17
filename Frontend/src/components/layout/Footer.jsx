@@ -51,9 +51,10 @@ export default function Footer() {
         </FadeIn>
 
         <FadeIn delay={0.2}>
-          <div className="mt-5 border-t border-white/10 pt-5 text-center text-sm text-white/50">
-            <p>
-              &copy; {new Date().getFullYear()} {BRAND_FULL_NAME}. {COPY.footer.rightsReserved}
+          <div className="mt-6 border-t border-white/10">
+            <p className="py-5 text-center text-xs leading-relaxed tracking-wide text-white/50 sm:text-sm">
+              {COPY.footer.copyrightPrefix} {new Date().getFullYear()} {BRAND_FULL_NAME}.{' '}
+              {COPY.footer.rightsReserved}
             </p>
           </div>
         </FadeIn>

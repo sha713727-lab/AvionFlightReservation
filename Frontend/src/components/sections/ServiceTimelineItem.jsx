@@ -22,9 +22,9 @@ export default function ServiceTimelineItem({
 
   const details = (
     <FadeIn direction={reversed ? 'right' : 'left'} delay={0.1}>
-      <div className="group/details flex flex-col gap-6">
+      <div className="group/details flex flex-col gap-4 lg:gap-6">
         <div>
-          <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
+          <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-text-muted lg:mb-3">
             {COPY.services.whatYouGet}
           </p>
           <p className="max-w-lg text-sm leading-relaxed text-text-secondary transition-colors duration-300 group-hover/details:text-text">
@@ -32,7 +32,7 @@ export default function ServiceTimelineItem({
           </p>
         </div>
 
-        <ul className="space-y-3">
+        <ul className="space-y-2.5 lg:space-y-3">
           {features.map((feature) => (
             <li
               key={feature}
@@ -67,7 +67,7 @@ export default function ServiceTimelineItem({
   )
 
   return (
-    <div className="relative grid grid-cols-1 items-center gap-12 py-16 lg:grid-cols-2 lg:gap-20 lg:py-24">
+    <div className="relative grid grid-cols-1 items-start gap-6 py-6 lg:grid-cols-2 lg:items-center lg:gap-12 lg:py-10">
       <div
         className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 lg:flex"
         aria-hidden

@@ -16,6 +16,7 @@ import {
 } from '@/constants/contact'
 import { AVION_HERO_BACKGROUND_SRC } from '@/constants/images'
 import { DEFAULT_LOCALE } from '@/constants/locales'
+import CallbackRequestProvider from '@/modules/callback/components/CallbackRequestProvider'
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -89,7 +90,7 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <FlightPathEffect />
-        {children}
+        <CallbackRequestProvider>{children}</CallbackRequestProvider>
       </body>
     </html>
   )

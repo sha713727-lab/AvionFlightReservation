@@ -1,11 +1,20 @@
+'use client'
+
+import { useCallback, useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 import Container from '@/components/ui/Container'
 import LayeredSectionHeading from '@/components/ui/LayeredSectionHeading'
+import WhyUsCard from '@/components/cards/WhyUsCard'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animations/FadeIn'
-import { WHY_US_CARD_ACCENTS } from '@/constants/sectionThemes'
+import { EASE } from '@/components/animations/motionPresets'
 import { COPY } from '@/constants/copy'
 import { WHY_US, STATS } from '@/data/services'
 import { useCounter } from '@/hooks/useCounter'
 import { cn } from '@/utils/cn'
+
+const AUTO_INTERVAL_MS = 3500
+const TRANSITION = { duration: 0.28, ease: EASE }
 
 function StatCounter({ value, suffix = '', label }) {
   const { count, ref } = useCounter(value)
@@ -26,9 +35,101 @@ function StatCounter({ value, suffix = '', label }) {
   )
 }
 
+function WhyUsMobileCarousel() {
+  const [active, setActive] = useState(0)
+  const [direction, setDirection] = useState(1)
+  const [paused, setPaused] = useState(false)
+  const cardCount = WHY_US.length
+
+  const goTo = useCallback(
+    (index) => {
+      setDirection(index > active ? 1 : -1)
+      setActive(index)
+    },
+    [active],
+  )
+
+  const next = useCallback(() => {
+    setDirection(1)
+    setActive((current) => (current + 1) % cardCount)
+  }, [cardCount])
+
+  const prev = useCallback(() => {
+    setDirection(-1)
+    setActive((current) => (current - 1 + cardCount) % cardCount)
+  }, [cardCount])
+
+  useEffect(() => {
+    if (paused) return undefined
+    const timer = setInterval(next, AUTO_INTERVAL_MS)
+    return () => clearInterval(timer)
+  }, [next, paused])
+
+  const safeActive = active % cardCount
+  const item = WHY_US[safeActive]
+  const slideOffset = direction * 80
+
+  return (
+    <div
+      className="relative mb-14 sm:hidden"
+      onTouchStart={() => setPaused(true)}
+      onTouchEnd={() => setPaused(false)}
+    >
+      <button
+        type="button"
+        onClick={prev}
+        className="absolute -left-1 top-1/2 z-10 -translate-y-1/2 rounded-full border border-border bg-card p-2 text-primary shadow-sm transition-colors hover:border-accent/30 hover:text-accent"
+        aria-label={COPY.whyUs.previousLabel}
+      >
+        <HiChevronLeft className="h-5 w-5" />
+      </button>
+
+      <div className="overflow-hidden px-8">
+        <AnimatePresence mode="wait" initial={false} custom={direction}>
+          <motion.div
+            key={item.id}
+            custom={direction}
+            initial={{ opacity: 0, x: slideOffset }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -slideOffset }}
+            transition={TRANSITION}
+          >
+            <WhyUsCard item={item} index={safeActive} />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      <button
+        type="button"
+        onClick={next}
+        className="absolute -right-1 top-1/2 z-10 -translate-y-1/2 rounded-full border border-border bg-card p-2 text-primary shadow-sm transition-colors hover:border-accent/30 hover:text-accent"
+        aria-label={COPY.whyUs.nextLabel}
+      >
+        <HiChevronRight className="h-5 w-5" />
+      </button>
+
+      <div className="mt-6 flex justify-center gap-2">
+        {WHY_US.map((card, index) => (
+          <button
+            key={card.id}
+            type="button"
+            onClick={() => goTo(index)}
+            className={cn(
+              'h-2.5 rounded-full transition-all duration-200',
+              index === safeActive ? 'w-8 bg-accent' : 'w-2.5 bg-border hover:bg-accent/40',
+            )}
+            aria-label={`Show ${card.title}`}
+            aria-current={index === safeActive ? 'true' : undefined}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function WhyUsSection() {
   return (
-    <section id="why-us" className="py-24 lg:py-32 bg-section-alt" aria-labelledby="why-us-heading">
+    <section id="why-us" className="bg-section-alt py-24 lg:py-32" aria-labelledby="why-us-heading">
       <Container>
         <LayeredSectionHeading
           titleId="why-us-heading"
@@ -37,39 +138,14 @@ export default function WhyUsSection() {
           description={COPY.whyUs.description}
         />
 
-        <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-          {WHY_US.map((item, index) => {
-            const accent = WHY_US_CARD_ACCENTS[index % WHY_US_CARD_ACCENTS.length]
-            const Icon = item.icon
+        <WhyUsMobileCarousel />
 
-            return (
-              <StaggerItem key={item.id}>
-                <article
-                  className={cn(
-                    'group h-full rounded-xl border border-border border-l-4 bg-card p-7 lg:p-8',
-                    'shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover',
-                    accent.stripe,
-                  )}
-                >
-                  <div
-                    className={cn(
-                      'mb-5 flex h-11 w-11 items-center justify-center rounded-lg transition-colors duration-300',
-                      accent.iconBg,
-                    )}
-                  >
-                    <Icon className={cn('h-5 w-5', accent.icon)} aria-hidden />
-                  </div>
-
-                  <h3 className="mb-2 text-lg font-semibold text-primary transition-colors duration-300 group-hover:text-accent">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-text-secondary">
-                    {item.description}
-                  </p>
-                </article>
-              </StaggerItem>
-            )
-          })}
+        <StaggerContainer className="mb-20 hidden gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3">
+          {WHY_US.map((item, index) => (
+            <StaggerItem key={item.id}>
+              <WhyUsCard item={item} index={index} />
+            </StaggerItem>
+          ))}
         </StaggerContainer>
 
         <FadeIn>

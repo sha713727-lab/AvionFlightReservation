@@ -1,29 +1,26 @@
 'use client'
 
-import Modal from '@/components/ui/Modal'
-import { COPY } from '@/constants/copy'
-import CallbackPrompt from '@/modules/callback/components/CallbackPrompt'
-import CallbackRequestForm from '@/modules/callback/components/CallbackRequestForm'
-import { useCallbackScrollTrigger } from '@/modules/callback/hooks/useCallbackScrollTrigger'
+import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
+import CallbackRequestModal from '@/modules/callback/components/CallbackRequestModal'
+
+const LEGACY_SESSION_KEY = 'avion-callback-modal-done'
 
 export default function CallbackRequestProvider({ children }) {
-  const { isPromptOpen, isFormOpen, openForm, closeAll } = useCallbackScrollTrigger()
+  const pathname = usePathname()
 
-  const isOpen = isPromptOpen || isFormOpen
-  const title = isFormOpen
-    ? COPY.callbackModal.formTitle
-    : COPY.callbackModal.promptTitle
+  useEffect(() => {
+    try {
+      sessionStorage.removeItem(LEGACY_SESSION_KEY)
+    } catch {
+      // Ignore storage access failures.
+    }
+  }, [])
 
   return (
     <>
       {children}
-      <Modal isOpen={isOpen} onClose={closeAll} title={title}>
-        {isFormOpen ? (
-          <CallbackRequestForm onSuccess={closeAll} />
-        ) : (
-          <CallbackPrompt onRequest={openForm} />
-        )}
-      </Modal>
+      <CallbackRequestModal key={pathname} />
     </>
   )
 }

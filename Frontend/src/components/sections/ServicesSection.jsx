@@ -14,7 +14,7 @@ export default function ServicesSection({ services = [] }) {
     return (
       <section
         id="services"
-        className="bg-section py-24 lg:py-32"
+        className="bg-section py-14 lg:py-24"
         aria-labelledby="services-heading"
       >
         <LayeredSectionHeading
@@ -31,7 +31,7 @@ export default function ServicesSection({ services = [] }) {
   return (
     <section
       id="services"
-      className="bg-section py-24 lg:py-32"
+      className="bg-section py-14 lg:py-24"
       aria-labelledby="services-heading"
     >
       <Container>

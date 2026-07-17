@@ -1,6 +1,5 @@
 export const CALLBACK_SCROLL_RATIO = 0.5
 export const CALLBACK_PROMPT_DURATION_MS = 8000
-export const CALLBACK_SESSION_KEY = 'avion-callback-modal-done'
 
 export const CALLBACK_FIELD_NAMES = {
   name: 'name',

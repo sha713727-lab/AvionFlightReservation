@@ -4,34 +4,16 @@ import { useCallback, useEffect, useState } from 'react'
 import {
   CALLBACK_PROMPT_DURATION_MS,
   CALLBACK_SCROLL_RATIO,
-  CALLBACK_SESSION_KEY,
 } from '@/modules/callback/constants'
-
-function hasCompletedSession() {
-  try {
-    return sessionStorage.getItem(CALLBACK_SESSION_KEY) === '1'
-  } catch {
-    return false
-  }
-}
-
-function markSessionComplete() {
-  try {
-    sessionStorage.setItem(CALLBACK_SESSION_KEY, '1')
-  } catch {
-    // Ignore storage failures; modal still closes for this visit.
-  }
-}
 
 export function useCallbackScrollTrigger() {
   const [isPromptOpen, setIsPromptOpen] = useState(false)
   const [isFormOpen, setIsFormOpen] = useState(false)
-  const [hasTriggered, setHasTriggered] = useState(() => hasCompletedSession())
+  const [hasTriggered, setHasTriggered] = useState(false)
 
   const closeAll = useCallback(() => {
     setIsPromptOpen(false)
     setIsFormOpen(false)
-    markSessionComplete()
   }, [])
 
   const openForm = useCallback(() => {
@@ -65,7 +47,6 @@ export function useCallbackScrollTrigger() {
 
     const timer = window.setTimeout(() => {
       setIsPromptOpen(false)
-      markSessionComplete()
     }, CALLBACK_PROMPT_DURATION_MS)
 
     return () => window.clearTimeout(timer)
