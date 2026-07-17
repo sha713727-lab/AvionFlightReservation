@@ -12,13 +12,27 @@ export const COPY = {
     tagline: 'Your trusted travel partner for flight reservations and unforgettable journeys.',
     disclaimerTitle: 'Disclaimer',
     disclaimer:
-      'Avion Flight Reservation is an independent travel booking assistance service. We are not affiliated with, endorsed by, or authorized by any airline, Royal Bank of Canada (RBC), Avion Rewards, or other bank or rewards program. Fares quoted are estimates until payment is processed and tickets are issued; all bookings are subject to airline terms and availability. We are not responsible for delays, cancellations, or disruptions caused by airlines or third parties. Travelers are responsible for valid passports, visas, and other required travel documents. All trademarks are the property of their respective owners.',
+      'Avion Flight Reservation is an independent travel booking assistance service. We are not affiliated with, authorized by, or endorsed by Royal Bank of Canada (RBC), Avion Rewards, or any other airline or bank reward program. All trademarks are the property of their respective owners.',
     rightsReserved: 'All rights reserved.',
   },
   callModal: {
     title: 'Talk with a travel expert',
     description:
       'Call our travel specialist directly for flight reservations, hotel booking, and travel points help.',
+  },
+  callbackModal: {
+    promptTitle: 'Need help booking?',
+    promptDescription: 'Request a free callback from a travel specialist.',
+    requestCta: 'Request a callback',
+    formTitle: 'Request a callback',
+    formDescription: 'Share your details and preferred time. We will call you back.',
+    nameLabel: 'Full name',
+    namePlaceholder: 'Your name',
+    phoneLabel: 'Phone number',
+    phonePlaceholder: '+1 555 000 0000',
+    datetimeLabel: 'Preferred date & time',
+    submitCta: 'Submit request',
+    submittingCta: 'Submitting…',
   },
   rewards: {
     eyebrow: 'Points redemption assistance',

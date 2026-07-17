@@ -3,25 +3,16 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { HiChevronDown } from 'react-icons/hi'
-import { COPY } from '@/constants/copy'
 import { LEGAL_LINKS, LEGAL_NAV_LABEL, NAV_LINKS } from '@/constants/navigation'
 import { EASE } from '@/components/animations/motionPresets'
-import Button from '@/components/buttons/Button'
 import Container from '@/components/ui/Container'
-import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 import { cn } from '@/utils/cn'
 
 export default function MobileNav({ isOpen, onClose }) {
-  const callModal = useCallExpertModal()
   const [legalOpen, setLegalOpen] = useState(false)
 
   if (!isOpen) {
     return null
-  }
-
-  const openCallModal = () => {
-    onClose()
-    callModal.open()
   }
 
   return (
@@ -30,7 +21,7 @@ export default function MobileNav({ isOpen, onClose }) {
       animate={{ opacity: 1, height: 'auto' }}
       exit={{ opacity: 0, height: 0 }}
       transition={{ duration: 0.3, ease: EASE }}
-      className="fixed inset-x-0 top-[68px] z-30 overflow-hidden glass lg:hidden"
+      className="fixed inset-x-0 top-[68px] z-30 overflow-hidden border-b border-border bg-section/95 backdrop-blur-xl lg:hidden"
     >
       <Container className="flex flex-col gap-1 py-6">
         {NAV_LINKS.map((link, index) => (
@@ -76,16 +67,6 @@ export default function MobileNav({ isOpen, onClose }) {
             </div>
           )}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25, duration: 0.3 }}
-        >
-          <Button variant="primary" className="mt-4 w-full" onClick={openCallModal}>
-            {COPY.cta.bookConsultation}
-          </Button>
-        </motion.div>
       </Container>
     </motion.div>
   )

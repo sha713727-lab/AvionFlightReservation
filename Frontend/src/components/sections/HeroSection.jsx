@@ -58,11 +58,14 @@ export default function HeroSection() {
   const callModal = useCallExpertModal()
 
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden" aria-label="Hero">
+    <section
+      className="relative flex items-start overflow-hidden md:min-h-screen md:items-center"
+      aria-label="Hero"
+    >
       <HeroBackground />
       <FloatingHeroIcons />
 
-      <Container className="relative z-10 flex w-full justify-center px-5 pt-32 pb-24 sm:px-6 sm:pt-36 sm:pb-28 lg:pt-44 lg:pb-36">
+      <Container className="relative z-10 flex w-full justify-center px-5 pt-24 pb-12 sm:px-6 sm:pt-32 sm:pb-20 lg:pt-44 lg:pb-36">
         <div className="relative mx-auto w-full max-w-5xl text-center">
           <div
             className="hero-heading-glow pointer-events-none absolute left-1/2 top-[18%] z-0 h-[min(70vw,28rem)] w-[min(90vw,36rem)] -translate-x-1/2 -translate-y-1/2 rounded-full blur-2xl sm:top-[22%] sm:h-[22rem] sm:w-[40rem]"

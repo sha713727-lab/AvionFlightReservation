@@ -32,6 +32,7 @@ export default function Button({
   icon: Icon,
   iconPosition = 'left',
   onClick,
+  type = 'button',
   ...props
 }) {
   const classes = cn(
@@ -84,7 +85,7 @@ export default function Button({
   }
 
   return (
-    <button type="button" className={classes} onClick={onClick} {...props}>
+    <button type={type} className={classes} onClick={onClick} {...props}>
       {content}
     </button>
   )

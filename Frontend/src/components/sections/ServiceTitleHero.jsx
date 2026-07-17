@@ -15,7 +15,7 @@ export default function ServiceTitleHero({ number, title, tagline, icon: Icon, a
         <span
           aria-hidden
           className={cn(
-            'pointer-events-none absolute bottom-0 select-none font-semibold leading-none text-white/[0.04]',
+            'pointer-events-none absolute bottom-0 select-none font-semibold leading-none text-primary/[0.06]',
             'text-[clamp(5rem,16vw,9rem)]',
             isRight ? 'right-0' : 'left-0',
           )}
@@ -30,7 +30,7 @@ export default function ServiceTitleHero({ number, title, tagline, icon: Icon, a
 
         <h3
           className={cn(
-            'relative mb-4 max-w-full font-semibold leading-tight tracking-tight text-white',
+            'relative mb-4 max-w-full font-semibold leading-tight tracking-tight text-primary',
             'text-[clamp(1.875rem,4vw,3.25rem)]',
             isRight ? 'text-right' : 'text-left',
           )}
@@ -38,7 +38,7 @@ export default function ServiceTitleHero({ number, title, tagline, icon: Icon, a
           {title}
         </h3>
 
-        <p className="relative max-w-sm text-sm leading-relaxed text-white/50">{tagline}</p>
+        <p className="relative max-w-sm text-sm leading-relaxed text-text-secondary">{tagline}</p>
       </div>
     </FadeIn>
   )

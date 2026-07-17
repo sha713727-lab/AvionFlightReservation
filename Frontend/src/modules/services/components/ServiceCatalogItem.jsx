@@ -26,7 +26,7 @@ export default function ServiceCatalogItem({
   return (
     <article
       id={id}
-      className="scroll-mt-28 border-t border-border/80 py-14 lg:scroll-mt-32 lg:py-20"
+      className="scroll-mt-28 py-14 lg:scroll-mt-32 lg:py-20"
     >
       <div
         className={cn(

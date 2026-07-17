@@ -15,6 +15,7 @@ import RedeemCtaSection from '@/components/sections/RedeemCtaSection'
 import FAQSection from '@/components/sections/FAQSection'
 import CatalogStatus from '@/components/ui/CatalogStatus'
 import CallExpertProvider from '@/modules/call/components/CallExpertProvider'
+import CallbackRequestProvider from '@/modules/callback/components/CallbackRequestProvider'
 import { useHomeCatalog } from '@/hooks/useHomeCatalog'
 import { CATALOG_UI } from '@/constants/catalogUi'
 
@@ -33,34 +34,36 @@ export default function HomePage({
 
   return (
     <CallExpertProvider>
-      <Navbar />
-      <main id="main-content" className="overflow-x-clip">
-        <HeroSection />
-        {catalog.isHydrating ? (
-          <div className="border-b border-border bg-section-alt">
-            <CatalogStatus state="loading" message={CATALOG_UI.loading} />
+      <CallbackRequestProvider>
+        <Navbar />
+        <main id="main-content" className="overflow-x-clip">
+          <HeroSection />
+          {catalog.isHydrating ? (
+            <div className="border-b border-border bg-section-alt">
+              <CatalogStatus state="loading" message={CATALOG_UI.loading} />
+            </div>
+          ) : null}
+          {catalog.catalogError && !catalog.isHydrating ? (
+            <div className="border-b border-border bg-section-alt">
+              <CatalogStatus state="error" message={catalog.catalogError} />
+            </div>
+          ) : null}
+          <DestinationsSection destinations={catalog.destinations} />
+          <div className="bg-background">
+            <BrandsSection />
+            <WaveDivider />
           </div>
-        ) : null}
-        {catalog.catalogError && !catalog.isHydrating ? (
-          <div className="border-b border-border bg-section-alt">
-            <CatalogStatus state="error" message={catalog.catalogError} />
-          </div>
-        ) : null}
-        <DestinationsSection destinations={catalog.destinations} />
-        <div className="bg-background">
-          <BrandsSection />
-          <WaveDivider />
-        </div>
-        <ServicesSection services={catalog.services} />
-        <WaveDivider flip />
-        <WhyUsSection />
-        <HowItWorksSection />
-        <TestimonialsSection />
-        <FAQSection faqs={catalog.faqs} />
-        <RedeemCtaSection />
-      </main>
-      <Footer />
-      <FloatingActions />
+          <ServicesSection services={catalog.services} />
+          <WaveDivider flip />
+          <WhyUsSection />
+          <HowItWorksSection />
+          <TestimonialsSection />
+          <FAQSection faqs={catalog.faqs} />
+          <RedeemCtaSection />
+        </main>
+        <Footer />
+        <FloatingActions />
+      </CallbackRequestProvider>
     </CallExpertProvider>
   )
 }

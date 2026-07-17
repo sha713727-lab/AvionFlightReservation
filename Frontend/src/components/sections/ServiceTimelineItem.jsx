@@ -24,10 +24,10 @@ export default function ServiceTimelineItem({
     <FadeIn direction={reversed ? 'right' : 'left'} delay={0.1}>
       <div className="group/details flex flex-col gap-6">
         <div>
-          <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-white/50">
+          <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
             {COPY.services.whatYouGet}
           </p>
-          <p className="max-w-lg text-sm leading-relaxed text-white/55 transition-colors duration-300 group-hover/details:text-white/70">
+          <p className="max-w-lg text-sm leading-relaxed text-text-secondary transition-colors duration-300 group-hover/details:text-text">
             {description}
           </p>
         </div>
@@ -36,7 +36,7 @@ export default function ServiceTimelineItem({
           {features.map((feature) => (
             <li
               key={feature}
-              className="flex items-center gap-3 text-sm text-white/70 transition-all duration-300 hover:translate-x-1 hover:text-white"
+              className="flex items-center gap-3 text-sm text-text-secondary transition-all duration-300 hover:translate-x-1 hover:text-text"
             >
               <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
               {feature}
@@ -50,7 +50,7 @@ export default function ServiceTimelineItem({
           </Button>
         </div>
 
-        <div className="group/img relative mt-2 overflow-hidden rounded-2xl border border-white/10 transition-transform duration-300 hover:scale-[1.02]">
+        <div className="group/img relative mt-2 overflow-hidden rounded-2xl border border-border transition-transform duration-300 hover:scale-[1.02]">
           <div className="relative aspect-[16/10] w-full overflow-hidden">
             <Image
               src={image}
@@ -72,7 +72,7 @@ export default function ServiceTimelineItem({
         className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 lg:flex"
         aria-hidden
       >
-        <span className="relative flex h-2.5 w-2.5 items-center justify-center rounded-full bg-accent ring-4 ring-primary">
+        <span className="relative flex h-2.5 w-2.5 items-center justify-center rounded-full bg-accent ring-4 ring-section">
           <span className="absolute inset-0 rounded-full bg-accent animate-ping-soft opacity-45" />
         </span>
       </div>

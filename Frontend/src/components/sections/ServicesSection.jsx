@@ -14,7 +14,7 @@ export default function ServicesSection({ services = [] }) {
     return (
       <section
         id="services"
-        className="bg-primary py-24 lg:py-32"
+        className="bg-section py-24 lg:py-32"
         aria-labelledby="services-heading"
       >
         <LayeredSectionHeading
@@ -22,7 +22,6 @@ export default function ServicesSection({ services = [] }) {
           watermark={COPY.services.watermark}
           title={COPY.services.title}
           description={COPY.services.description}
-          dark
         />
         <CatalogStatus state="empty" />
       </section>
@@ -32,7 +31,7 @@ export default function ServicesSection({ services = [] }) {
   return (
     <section
       id="services"
-      className="bg-primary py-24 lg:py-32"
+      className="bg-section py-24 lg:py-32"
       aria-labelledby="services-heading"
     >
       <Container>
@@ -41,7 +40,6 @@ export default function ServicesSection({ services = [] }) {
           watermark={COPY.services.watermark}
           title={COPY.services.title}
           description={COPY.services.description}
-          dark
         />
 
         <div className="relative">

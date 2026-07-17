@@ -8,6 +8,7 @@ import { FadeIn } from '@/components/animations/FadeIn'
 import AvionLogo from '@/components/brand/AvionLogo'
 import Container from '@/components/ui/Container'
 import FooterContactDetails from '@/components/layout/FooterContactDetails'
+import FooterNavColumn from '@/components/layout/FooterNavColumn'
 
 export default function Footer() {
   return (
@@ -29,18 +30,7 @@ export default function Footer() {
 
           {Object.entries(FOOTER_LINKS).map(([key, links], columnIndex) => (
             <FadeIn key={key} direction="up" delay={0.08 + columnIndex * 0.05}>
-              <h4 className="mb-3 text-xs font-medium uppercase tracking-[0.15em] text-white/40">
-                {key}
-              </h4>
-              <ul className="space-y-2">
-                {links.map((link) => (
-                  <li key={link.label}>
-                    <a href={link.href} className="footer-link text-sm text-white/60">
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <FooterNavColumn title={key} links={links} />
             </FadeIn>
           ))}
 
