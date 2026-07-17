@@ -21,7 +21,7 @@ export default function MobileNav({ isOpen, onClose }) {
       animate={{ opacity: 1, height: 'auto' }}
       exit={{ opacity: 0, height: 0 }}
       transition={{ duration: 0.3, ease: EASE }}
-      className="fixed inset-x-0 top-[68px] z-30 overflow-hidden border-b border-border bg-section/95 backdrop-blur-xl lg:hidden"
+      className="fixed inset-x-0 top-[76px] z-30 overflow-hidden border-b border-border bg-section/95 backdrop-blur-xl lg:hidden"
     >
       <Container className="flex flex-col gap-1 py-6">
         {NAV_LINKS.map((link, index) => (

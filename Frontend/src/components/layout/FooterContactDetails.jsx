@@ -1,7 +1,5 @@
 import {
   CONTACT_LABELS,
-  EMAIL,
-  EMAIL_HREF,
   MAILING_ADDRESS_LINES,
   PHONE_HREF,
   PHONE_NUMBER,
@@ -32,15 +30,6 @@ export default function FooterContactDetails() {
           </p>
           <a href={PHONE_HREF} className={linkClassName}>
             {PHONE_NUMBER}
-          </a>
-        </div>
-
-        <div>
-          <p className="mb-1.5 text-xs font-medium uppercase tracking-[0.16em] text-white/40">
-            {CONTACT_LABELS.businessEmail}
-          </p>
-          <a href={EMAIL_HREF} className={linkClassName}>
-            {EMAIL}
           </a>
         </div>
 

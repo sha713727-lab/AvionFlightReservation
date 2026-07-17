@@ -7,8 +7,6 @@ import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
 import {
   CONTACT_LABELS,
-  EMAIL,
-  EMAIL_HREF,
   MAILING_ADDRESS_LINES,
   PHONE_HREF,
   PHONE_NUMBER,
@@ -67,18 +65,6 @@ export default function ContactPageHero() {
                     className="mt-3 block font-heading text-[clamp(1.5rem,3.5vw,2.25rem)] font-semibold tracking-tight text-white transition-colors hover:text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                   >
                     {PHONE_NUMBER}
-                  </a>
-                </div>
-
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/45">
-                    {CONTACT_LABELS.businessEmail}
-                  </p>
-                  <a
-                    href={EMAIL_HREF}
-                    className="mt-2 block text-sm text-white/80 transition-colors hover:text-white"
-                  >
-                    {EMAIL}
                   </a>
                 </div>
 

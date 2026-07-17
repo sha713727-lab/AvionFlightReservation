@@ -1,13 +1,10 @@
 export const PHONE_NUMBER = '+1 877 702 9887'
 export const PHONE_HREF = 'tel:+18777029887'
 
-export const EMAIL = 'sales@avionflightreservation.com'
-export const EMAIL_HREF = `mailto:${EMAIL}`
-
 export const RESERVATION_EMAIL = 'reservation@aviosupportdesk.com'
 export const RESERVATION_EMAIL_HREF = `mailto:${RESERVATION_EMAIL}`
 
-export const CONTACT_EMAILS = [EMAIL, RESERVATION_EMAIL]
+export const CONTACT_EMAILS = [RESERVATION_EMAIL]
 
 export const MAILING_ADDRESS_LINES = [
   '100 King Street West, Suite 1500',
@@ -20,8 +17,7 @@ export const CONTACT_LABELS = {
   columnTitle: 'Contact',
   mailingAddress: 'Mailing Address',
   phoneSupport: 'Phone Support',
-  businessEmail: 'Business Email',
-  reservationEmail: 'Reservations Email',
+  reservationEmail: 'Email',
   supportHours: 'Support Hours',
 }
 

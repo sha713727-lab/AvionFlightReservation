@@ -6,8 +6,6 @@ import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
 import {
-  EMAIL,
-  EMAIL_HREF,
   PHONE_HREF,
   PHONE_NUMBER,
   RESERVATION_EMAIL,
@@ -42,14 +40,6 @@ export default function TermsPageCta() {
                 className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white shadow-sm shadow-accent/25 transition-colors hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 <FaPhone className="h-5 w-5" aria-hidden />
-              </a>
-
-              <a
-                href={EMAIL_HREF}
-                aria-label={`Email ${EMAIL}`}
-                className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-accent bg-card text-accent transition-colors hover:bg-accent/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-              >
-                <HiOutlineMail className="h-6 w-6" aria-hidden />
               </a>
 
               <a

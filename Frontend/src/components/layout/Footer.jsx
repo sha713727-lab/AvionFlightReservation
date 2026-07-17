@@ -50,8 +50,8 @@ export default function Footer() {
 
         <div className="mt-6 border-t border-white/10">
           <p className="py-5 text-center text-xs leading-relaxed tracking-wide text-white/55 sm:text-sm">
-            {COPY.footer.copyrightPrefix} {new Date().getFullYear()} {BRAND_FULL_NAME}.{' '}
-            {COPY.footer.rightsReserved}
+            {COPY.footer.copyrightPrefix} {new Date().getFullYear()}{' '}
+            {COPY.footer.copyrightBrand}. {COPY.footer.rightsReserved}
           </p>
         </div>
       </Container>

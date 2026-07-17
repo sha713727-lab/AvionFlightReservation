@@ -1,12 +1,12 @@
 import flightBookingServiceImage from '@/assets/images/flightBookingService.png'
 import hotelBookingServiceImage from '@/assets/images/hotelBookingService.png'
 import rewardTravelServiceImage from '@/assets/images/rewardTravelService.png'
-import flightChangeServiceImage from '@/assets/images/flightChangeService.png'
+import flightChangeServiceImage from '@/assets/images/flightChangeService.jpg'
 import cancellationServiceImage from '@/assets/images/cancellationService.png'
-import seatSelectionServiceImage from '@/assets/images/seatSelectionService.png'
+import seatSelectionServiceImage from '@/assets/images/seatSelectionService.jpg'
 import baggageServiceImage from '@/assets/images/baggageService.png'
 import tripPlanningServiceImage from '@/assets/images/tripPlanningService.png'
-import vacationPackageServiceImage from '@/assets/images/vacationPackageService.png'
+import vacationPackageServiceImage from '@/assets/images/vacationPackageService.jpg'
 
 export const AVION_HERO_BACKGROUND_SRC = '/avion-hero-background.png'
 

@@ -6,8 +6,6 @@ import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
 import {
-  EMAIL,
-  EMAIL_HREF,
   PHONE_HREF,
   PHONE_NUMBER,
   RESERVATION_EMAIL,
@@ -42,13 +40,6 @@ export default function RefundPageCta() {
                 className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white transition-colors hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 <FaPhone className="h-5 w-5" aria-hidden />
-              </a>
-              <a
-                href={EMAIL_HREF}
-                aria-label={`Email ${EMAIL}`}
-                className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/30 bg-white/5 text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                <HiOutlineMail className="h-6 w-6" aria-hidden />
               </a>
               <a
                 href={RESERVATION_EMAIL_HREF}

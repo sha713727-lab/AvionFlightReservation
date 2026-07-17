@@ -33,10 +33,10 @@ export default function Navbar({ overDarkHero = false }) {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500',
           isScrolled
-            ? 'glass py-3 shadow-sm shadow-primary/5'
+            ? 'glass pt-4 pb-3 shadow-sm shadow-primary/5'
             : overDarkHero
-              ? 'bg-transparent py-5'
-              : 'max-lg:glass max-lg:py-3 max-lg:shadow-sm max-lg:shadow-primary/5 bg-transparent py-5',
+              ? 'bg-transparent pt-6 pb-5'
+              : 'max-lg:glass max-lg:pt-5 max-lg:pb-3 max-lg:shadow-sm max-lg:shadow-primary/5 bg-transparent pt-6 pb-5',
         )}
       >
         <Container>

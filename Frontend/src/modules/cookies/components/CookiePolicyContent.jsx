@@ -6,7 +6,7 @@ import Button from '@/components/buttons/Button'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
-import { EMAIL, EMAIL_HREF, PHONE_HREF, PHONE_NUMBER, RESERVATION_EMAIL, RESERVATION_EMAIL_HREF } from '@/constants/contact'
+import { PHONE_HREF, PHONE_NUMBER, RESERVATION_EMAIL, RESERVATION_EMAIL_HREF } from '@/constants/contact'
 
 export default function CookiePolicyContent() {
   return (
@@ -93,9 +93,6 @@ export default function CookiePolicyContent() {
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                   <Button href={PHONE_HREF} variant="primary" size="md" icon={FaPhone}>
                     {PHONE_NUMBER}
-                  </Button>
-                  <Button href={EMAIL_HREF} variant="secondary" size="md" icon={HiOutlineMail}>
-                    {EMAIL}
                   </Button>
                   <Button
                     href={RESERVATION_EMAIL_HREF}

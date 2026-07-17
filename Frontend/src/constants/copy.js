@@ -12,9 +12,10 @@ export const COPY = {
     tagline: 'Your trusted travel partner for flight reservations and unforgettable journeys.',
     disclaimerTitle: 'Disclaimer',
     disclaimer:
-      'Avion Flight Reservation is an independent travel booking assistance service. We are not affiliated with, authorized by, or endorsed by Royal Bank of Canada (RBC), Avion Rewards, or any other airline or bank reward program. All trademarks are the property of their respective owners.',
+      'Avios Support Desk is an independent travel booking assistance service. We are not affiliated with, authorized by, or endorsed by Royal Bank of Canada (RBC), Avion Rewards, or any other airline or bank reward program. All trademarks are the property of their respective owners.',
     rightsReserved: 'All rights reserved.',
     copyrightPrefix: '©',
+    copyrightBrand: 'Avios Support Desk',
   },
   callModal: {
     title: 'Talk with a travel expert',

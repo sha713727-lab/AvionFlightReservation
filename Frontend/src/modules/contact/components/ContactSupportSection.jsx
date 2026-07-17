@@ -7,8 +7,6 @@ import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animations/F
 import { COPY } from '@/constants/copy'
 import {
   CONTACT_LABELS,
-  EMAIL,
-  EMAIL_HREF,
   PHONE_HREF,
   PHONE_NUMBER,
   RESERVATION_EMAIL,
@@ -44,12 +42,6 @@ export default function ContactSupportSection() {
                 {PHONE_NUMBER}
               </Button>
               <div className="space-y-2 text-sm text-text-secondary">
-                <p>
-                  <span className="font-medium text-primary">{CONTACT_LABELS.businessEmail}: </span>
-                  <a href={EMAIL_HREF} className="text-accent transition-colors hover:text-accent-hover">
-                    {EMAIL}
-                  </a>
-                </p>
                 <p>
                   <span className="font-medium text-primary">
                     {CONTACT_LABELS.reservationEmail}:{' '}
