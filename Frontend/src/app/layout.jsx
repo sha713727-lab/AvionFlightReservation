@@ -1,5 +1,12 @@
 import '@/index.css'
 import { Outfit } from 'next/font/google'
+import AnalyticsScripts from '@/components/analytics/AnalyticsScripts'
+import {
+  GoogleTagManager,
+  GoogleTagManagerNoscript,
+} from '@/components/analytics/GoogleTagManager'
+import FlightPathEffect from '@/components/effects/FlightPathEffect'
+import { SKIP_TO_CONTENT } from '@/constants/a11y'
 import { AVION_FAVICON_SRC, AVION_LOGO_SRC, BRAND_FULL_NAME } from '@/constants/brand'
 import {
   CONTACT_EMAILS,
@@ -9,8 +16,6 @@ import {
 } from '@/constants/contact'
 import { AVION_HERO_BACKGROUND_SRC } from '@/constants/images'
 import { DEFAULT_LOCALE } from '@/constants/locales'
-import { SKIP_TO_CONTENT } from '@/constants/a11y'
-import FlightPathEffect from '@/components/effects/FlightPathEffect'
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -73,6 +78,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang={DEFAULT_LOCALE} className={outfit.variable}>
       <body className={outfit.className}>
+        <GoogleTagManagerNoscript />
+        <GoogleTagManager />
+        <AnalyticsScripts />
         <a href="#main-content" className="skip-link">
           {SKIP_TO_CONTENT}
         </a>
