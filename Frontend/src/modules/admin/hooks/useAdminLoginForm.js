@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ApiClientError } from '@/services/api/client'
 import { ADMIN_PATH } from '@/constants/routes'
@@ -71,7 +71,8 @@ export function useAdminLoginForm() {
 
     const tick = () => {
       const remainingMs = Date.parse(challenge.resendAvailableAt) - Date.now()
-      setResendSeconds(Math.max(0, Math.ceil(remainingMs / 1000)))
+      const next = Math.max(0, Math.ceil(remainingMs / 1000))
+      setResendSeconds((current) => (current === next ? current : next))
     }
 
     tick()
@@ -90,12 +91,18 @@ export function useAdminLoginForm() {
     })
   }
 
-  const closeOtpModal = () => {
+  const setOtpCodeValue = useCallback((value) => {
+    const next = value.replace(/\D/g, '').slice(0, 6)
+    setOtpCode(next)
+    setOtpError((current) => (current ? '' : current))
+  }, [])
+
+  const closeOtpModal = useCallback(() => {
     if (isVerifyingOtp || isResendingOtp) return
     setChallenge(null)
     setOtpCode('')
     setOtpError('')
-  }
+  }, [isVerifyingOtp, isResendingOtp])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -197,10 +204,7 @@ export function useAdminLoginForm() {
     otp: {
       isOpen: Boolean(challenge),
       code: otpCode,
-      setCode: (value) => {
-        setOtpCode(value.replace(/\D/g, '').slice(0, 6))
-        setOtpError('')
-      },
+      setCode: setOtpCodeValue,
       error: otpError,
       destinationHint: challenge?.destinationHint || '',
       isVerifying: isVerifyingOtp,

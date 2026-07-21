@@ -1,5 +1,6 @@
 'use client'
 
+import { useCallback } from 'react'
 import Button from '@/components/buttons/Button'
 import Modal from '@/components/ui/Modal'
 import { ADMIN_COPY } from '@/modules/admin/constants'
@@ -27,10 +28,22 @@ export default function AdminOtpModal({
 }) {
   const isBusy = isVerifying || isResending
 
+  const handleClose = useCallback(() => {
+    if (isBusy) return
+    onClose()
+  }, [isBusy, onClose])
+
+  const handleCodeChange = useCallback(
+    (event) => {
+      setCode(event.target.value)
+    },
+    [setCode],
+  )
+
   return (
     <Modal
       isOpen={isOpen}
-      onClose={isBusy ? () => {} : onClose}
+      onClose={handleClose}
       title={ADMIN_COPY.otpTitle}
       closeOnBackdrop={!isBusy}
       className="max-w-md"
@@ -51,6 +64,10 @@ export default function AdminOtpModal({
             type="text"
             inputMode="numeric"
             autoComplete="one-time-code"
+            enterKeyHint="done"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck={false}
             maxLength={6}
             value={code}
             disabled={isBusy}
@@ -58,7 +75,7 @@ export default function AdminOtpModal({
             aria-invalid={Boolean(error)}
             aria-describedby={error ? 'admin-otp-error' : undefined}
             className={inputClassName}
-            onChange={(event) => setCode(event.target.value)}
+            onChange={handleCodeChange}
           />
           {error ? (
             <p id="admin-otp-error" className="mt-1.5 text-sm text-error" role="alert">

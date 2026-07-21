@@ -5,6 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { IoClose } from 'react-icons/io5'
 import { cn } from '@/utils/cn'
 
+const FOCUSABLE_SELECTOR =
+  'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+
 export default function Modal({
   isOpen,
   onClose,
@@ -15,7 +18,12 @@ export default function Modal({
 }) {
   const dialogRef = useRef(null)
   const previousFocusRef = useRef(null)
+  const onCloseRef = useRef(onClose)
   const titleId = useId()
+
+  useEffect(() => {
+    onCloseRef.current = onClose
+  }, [onClose])
 
   useEffect(() => {
     if (!isOpen) return undefined
@@ -25,23 +33,26 @@ export default function Modal({
     document.body.style.overflow = 'hidden'
 
     const dialog = dialogRef.current
-    const focusable = dialog?.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-    )
-    const first = focusable?.[0]
-    first?.focus()
+    const preferred = dialog?.querySelector('input, select, textarea')
+    const focusable = dialog?.querySelectorAll(FOCUSABLE_SELECTOR)
+    const first = preferred || focusable?.[0]
+    // Defer so mobile keyboards attach after the dialog is painted.
+    const focusTimer = window.setTimeout(() => {
+      first?.focus({ preventScroll: true })
+    }, 0)
 
     const onKeyDown = (event) => {
       if (event.key === 'Escape') {
         event.preventDefault()
-        onClose()
+        onCloseRef.current()
         return
       }
 
-      if (event.key !== 'Tab' || !focusable || focusable.length === 0) return
+      const nodes = dialog?.querySelectorAll(FOCUSABLE_SELECTOR)
+      if (event.key !== 'Tab' || !nodes || nodes.length === 0) return
 
-      const firstEl = focusable[0]
-      const lastEl = focusable[focusable.length - 1]
+      const firstEl = nodes[0]
+      const lastEl = nodes[nodes.length - 1]
 
       if (event.shiftKey && document.activeElement === firstEl) {
         event.preventDefault()
@@ -55,13 +66,14 @@ export default function Modal({
     document.addEventListener('keydown', onKeyDown)
 
     return () => {
+      window.clearTimeout(focusTimer)
       document.removeEventListener('keydown', onKeyDown)
       document.body.style.overflow = previousOverflow
       if (previousFocusRef.current instanceof HTMLElement) {
-        previousFocusRef.current.focus()
+        previousFocusRef.current.focus({ preventScroll: true })
       }
     }
-  }, [isOpen, onClose])
+  }, [isOpen])
 
   return (
     <AnimatePresence>
