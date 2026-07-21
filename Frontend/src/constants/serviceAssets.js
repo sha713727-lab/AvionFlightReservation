@@ -47,11 +47,34 @@ export const SERVICE_IMAGE_MAP = {
 
 export function resolveServiceVisuals(service) {
   const icon = SERVICE_ICON_MAP[service.iconKey] || SERVICE_ICON_MAP.plane
-  const image = SERVICE_IMAGE_MAP[service.imageKey] || SERVICE_IMAGE_MAP['flight-booking']
+  const fallbackImage =
+    SERVICE_IMAGE_MAP[service.imageKey] || SERVICE_IMAGE_MAP['flight-booking']
+
+  if (service.mediaUrl && service.mediaType === 'video') {
+    return {
+      ...service,
+      icon,
+      mediaType: 'video',
+      mediaUrl: service.mediaUrl,
+      image: fallbackImage,
+    }
+  }
+
+  if (service.mediaUrl && service.mediaType === 'image') {
+    return {
+      ...service,
+      icon,
+      mediaType: 'image',
+      mediaUrl: service.mediaUrl,
+      image: service.mediaUrl,
+    }
+  }
 
   return {
     ...service,
     icon,
-    image,
+    mediaType: 'image',
+    mediaUrl: null,
+    image: fallbackImage,
   }
 }

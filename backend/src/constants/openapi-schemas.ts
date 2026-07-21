@@ -75,6 +75,8 @@ export const serviceItemSchema = {
     iconKey: { type: 'string' },
     imageKey: { type: 'string' },
     imageAlt: { type: 'string' },
+    mediaUrl: { type: ['string', 'null'] },
+    mediaType: { anyOf: [{ type: 'string', enum: ['image', 'video'] }, { type: 'null' }] },
     sortOrder: { type: 'integer' },
   },
   required: [
@@ -87,6 +89,8 @@ export const serviceItemSchema = {
     'iconKey',
     'imageKey',
     'imageAlt',
+    'mediaUrl',
+    'mediaType',
     'sortOrder',
   ],
 } as const
@@ -99,9 +103,11 @@ export const destinationPlaceSchema = {
     name: { type: 'string' },
     alt: { type: 'string' },
     imageUrl: { type: 'string' },
+    mediaUrl: { type: ['string', 'null'] },
+    mediaType: { anyOf: [{ type: 'string', enum: ['image', 'video'] }, { type: 'null' }] },
     sortOrder: { type: 'integer' },
   },
-  required: ['id', 'name', 'alt', 'imageUrl', 'sortOrder'],
+  required: ['id', 'name', 'alt', 'imageUrl', 'mediaUrl', 'mediaType', 'sortOrder'],
 } as const
 
 export const destinationTierSchema = {

@@ -15,7 +15,7 @@ function getCategoryForService(serviceId) {
 export default function ServicesCatalog({ services = [] }) {
   const resolvedServices = services
     .map(resolveServiceVisuals)
-    .filter((item) => item.icon && item.image)
+    .filter((item) => item.icon && (item.image || item.mediaType === 'video'))
 
   return (
     <section
@@ -42,17 +42,11 @@ export default function ServicesCatalog({ services = [] }) {
                 category && category.serviceIds[0] === service.id
 
               return (
-                <div key={service.id}>
-                  {isCategoryStart && (
-                    <div
-                      id={category.id}
-                      className="scroll-mt-28 pb-2 pt-6 lg:scroll-mt-32 lg:pt-8"
-                    >
-                      <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
-                        {category.title}
-                      </p>
-                    </div>
-                  )}
+                <div
+                  key={service.id}
+                  id={isCategoryStart ? category.id : undefined}
+                  className={isCategoryStart ? 'scroll-mt-28 lg:scroll-mt-32' : undefined}
+                >
                   <ServiceCatalogItem
                     index={index}
                     reversed={index % 2 === 1}

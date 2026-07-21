@@ -1,9 +1,11 @@
+'use client'
+
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { HiMenuAlt3, HiX, HiPhone } from 'react-icons/hi'
 import { COPY } from '@/constants/copy'
 import { NAV_LINKS } from '@/constants/navigation'
-import { SITE_NAME, PHONE_HREF, PHONE_NUMBER } from '@/constants/contact'
+import { SITE_NAME } from '@/constants/contact'
 import { HOME_PATH } from '@/constants/routes'
 import { useScrollDirection } from '@/hooks/useScrollDirection'
 import { EASE } from '@/components/animations/motionPresets'
@@ -14,10 +16,12 @@ import MobileNav from '@/components/layout/MobileNav'
 import NavLink from '@/components/layout/NavLink'
 import NavLegalDropdown from '@/components/layout/NavLegalDropdown'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
+import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
 import { cn } from '@/utils/cn'
 
 export default function Navbar({ overDarkHero = false }) {
   const { isScrolled } = useScrollDirection()
+  const { phoneNumber, phoneHref } = useContactSettings()
   const [mobileOpen, setMobileOpen] = useState(false)
   const callModal = useCallExpertModal()
   const useLightNav = overDarkHero && !isScrolled
@@ -71,8 +75,8 @@ export default function Navbar({ overDarkHero = false }) {
               </div>
 
               <motion.a
-                href={PHONE_HREF}
-                aria-label={`${COPY.cta.callNow}: ${PHONE_NUMBER}`}
+                href={phoneHref}
+                aria-label={`${COPY.cta.callNow}: ${phoneNumber}`}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-sm shadow-accent/20 lg:hidden"
               >

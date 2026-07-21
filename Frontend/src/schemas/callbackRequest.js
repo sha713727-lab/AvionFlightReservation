@@ -1,7 +1,9 @@
 import { z } from 'zod'
 import { CALLBACK_VALIDATION_MESSAGES } from '@/modules/callback/constants'
-
-const PHONE_PATTERN = /^\+?[\d\s().-]{7,20}$/
+import {
+  formatNorthAmericanPhone,
+  isCompleteNorthAmericanPhone,
+} from '@/utils/northAmericanPhone'
 
 export const callbackRequestSchema = z.object({
   name: z
@@ -12,9 +14,8 @@ export const callbackRequestSchema = z.object({
   phone: z
     .string()
     .trim()
-    .min(7, CALLBACK_VALIDATION_MESSAGES.phoneRequired)
-    .max(20, CALLBACK_VALIDATION_MESSAGES.phoneTooLong)
-    .regex(PHONE_PATTERN, CALLBACK_VALIDATION_MESSAGES.phoneInvalid),
+    .transform((value) => formatNorthAmericanPhone(value).trim())
+    .refine(isCompleteNorthAmericanPhone, CALLBACK_VALIDATION_MESSAGES.phoneInvalid),
   preferredAt: z
     .string()
     .trim()
@@ -23,4 +24,14 @@ export const callbackRequestSchema = z.object({
       const parsed = new Date(value)
       return !Number.isNaN(parsed.getTime()) && parsed.getTime() > Date.now()
     }, CALLBACK_VALIDATION_MESSAGES.datetimeFuture),
+})
+
+export const callbackCreatedSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  phone: z.string().min(1),
+  preferredAt: z.string().min(1),
+  status: z.enum(['new', 'contacted', 'closed']),
+  createdAt: z.string().min(1),
+  updatedAt: z.string().min(1),
 })

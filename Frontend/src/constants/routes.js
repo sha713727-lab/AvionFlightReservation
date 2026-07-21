@@ -8,6 +8,14 @@ export const CANCELLATION_POLICY_PATH = '/cancellation-policy'
 export const TERMS_PATH = '/terms-and-conditions'
 export const REFUND_POLICY_PATH = '/refund-policy'
 export const COOKIE_POLICY_PATH = '/cookie-policy'
+export const ADMIN_PATH = '/admin'
+export const ADMIN_LOGIN_PATH = '/admin/login'
+export const ADMIN_SERVICES_PATH = '/admin/services'
+export const ADMIN_DESTINATIONS_PATH = '/admin/destinations'
+export const ADMIN_PLACES_PATH = '/admin/places'
+export const ADMIN_CALLBACKS_PATH = '/admin/callbacks'
+export const ADMIN_FAQS_PATH = '/admin/faqs'
+export const ADMIN_CONTACT_PATH = '/admin/contact'
 
 export const SITE_PATHS = [
   HOME_PATH,

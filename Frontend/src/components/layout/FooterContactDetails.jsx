@@ -1,17 +1,27 @@
+'use client'
+
 import {
   CONTACT_LABELS,
   MAILING_ADDRESS_LINES,
-  PHONE_HREF,
-  PHONE_NUMBER,
-  RESERVATION_EMAIL,
-  RESERVATION_EMAIL_HREF,
   SUPPORT_HOURS,
 } from '@/constants/contact'
+import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
+import { openMailto } from '@/utils/openMailto'
+import { cn } from '@/utils/cn'
 
-const linkClassName =
-  'break-all text-sm font-medium text-white transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent'
+const linkClassName = cn(
+  'break-all text-sm font-medium text-white transition-opacity hover:opacity-80',
+  'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent',
+)
 
 export default function FooterContactDetails() {
+  const { reservationEmail, reservationEmailHref, supportPhones } = useContactSettings()
+
+  const handleEmailClick = (event) => {
+    event.preventDefault()
+    openMailto(reservationEmailHref)
+  }
+
   return (
     <div className="rounded-2xl border border-white/15 bg-white/5 p-5 sm:p-6">
       <div className="space-y-5">
@@ -24,21 +34,27 @@ export default function FooterContactDetails() {
           </address>
         </div>
 
-        <div>
-          <p className="mb-1.5 text-xs font-medium uppercase tracking-[0.16em] text-white/40">
+        <div className="space-y-1.5">
+          <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/40">
             {CONTACT_LABELS.phoneSupport}
           </p>
-          <a href={PHONE_HREF} className={linkClassName}>
-            {PHONE_NUMBER}
-          </a>
+          {supportPhones.map((phone) => (
+            <a key={phone.href} href={phone.href} className={cn(linkClassName, 'block')}>
+              {phone.display}
+            </a>
+          ))}
         </div>
 
         <div>
           <p className="mb-1.5 text-xs font-medium uppercase tracking-[0.16em] text-white/40">
             {CONTACT_LABELS.reservationEmail}
           </p>
-          <a href={RESERVATION_EMAIL_HREF} className={linkClassName}>
-            {RESERVATION_EMAIL}
+          <a
+            href={reservationEmailHref}
+            onClick={handleEmailClick}
+            className={cn(linkClassName, 'cursor-pointer underline-offset-2 hover:underline')}
+          >
+            {reservationEmail}
           </a>
         </div>
 

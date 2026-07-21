@@ -2,7 +2,9 @@ import Fastify, { type FastifyBaseLogger, type FastifyInstance } from 'fastify'
 import compress from '@fastify/compress'
 import cors from '@fastify/cors'
 import helmet from '@fastify/helmet'
+import multipart from '@fastify/multipart'
 import rateLimit from '@fastify/rate-limit'
+import fastifyStatic from '@fastify/static'
 import swagger from '@fastify/swagger'
 import swaggerUi from '@fastify/swagger-ui'
 import type { AppContext } from './types/context.js'
@@ -14,6 +16,7 @@ import {
   SLOW_REQUEST_MS,
 } from './constants/performance.js'
 import { createEtag, payloadToString } from './lib/catalog-cache.js'
+import { ensureServiceUploadsDir, UPLOADS_ROOT } from './lib/service-media-storage.js'
 
 export async function buildApp(context: AppContext): Promise<FastifyInstance> {
   const enableSwagger =
@@ -40,16 +43,41 @@ export async function buildApp(context: AppContext): Promise<FastifyInstance> {
   await app.register(cors, {
     origin: context.env.corsOrigins,
     credentials: true,
-    methods: ['GET', 'HEAD', 'OPTIONS'],
+    methods: ['GET', 'HEAD', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Accept', 'Authorization'],
+  })
+
+  await app.register(multipart, {
+    limits: {
+      files: 1,
+      fileSize: 50 * 1024 * 1024,
+    },
+  })
+
+  await ensureServiceUploadsDir()
+  await app.register(fastifyStatic, {
+    root: UPLOADS_ROOT,
+    prefix: '/uploads/',
+    decorateReply: false,
   })
 
   if (context.env.ENABLE_COMPRESSION) {
     await app.register(compress, {
       global: true,
-      threshold: 1024,
-      encodings: ['br', 'gzip', 'deflate'],
+      // Keep small JSON payloads uncompressed — brotli/gzip on short admin
+      // responses caused premature-close / undecodable bodies in browsers.
+      threshold: 10_240,
+      encodings: ['gzip', 'deflate'],
     })
   }
+
+  const isDevelopment = context.env.NODE_ENV === 'development'
+  const rateLimitMax = isDevelopment
+    ? Math.max(context.env.RATE_LIMIT_MAX, 5_000)
+    : context.env.RATE_LIMIT_MAX
+  const rateLimitWindowMs = isDevelopment
+    ? Math.min(context.env.RATE_LIMIT_WINDOW_MS, 60_000)
+    : context.env.RATE_LIMIT_WINDOW_MS
 
   const rateLimitOptions: {
     max: number
@@ -58,8 +86,8 @@ export async function buildApp(context: AppContext): Promise<FastifyInstance> {
     nameSpace: string
     skipOnError: boolean
   } = {
-    max: context.env.RATE_LIMIT_MAX,
-    timeWindow: context.env.RATE_LIMIT_WINDOW_MS,
+    max: rateLimitMax,
+    timeWindow: rateLimitWindowMs,
     nameSpace: 'avion-rate-limit-',
     skipOnError: true,
   }
@@ -76,8 +104,17 @@ export async function buildApp(context: AppContext): Promise<FastifyInstance> {
         info: {
           title: 'Avion Flight Reservation API',
           description:
-            'Public read-only API for marketing content. No auth, admin, or inquiry endpoints.',
+            'Public catalog API plus protected admin operations endpoints.',
           version: '1.0.0',
+        },
+        components: {
+          securitySchemes: {
+            bearerAuth: {
+              type: 'http',
+              scheme: 'bearer',
+              bearerFormat: 'HMAC',
+            },
+          },
         },
         servers: [
           {
@@ -90,6 +127,9 @@ export async function buildApp(context: AppContext): Promise<FastifyInstance> {
           { name: 'Services' },
           { name: 'Destinations' },
           { name: 'FAQs' },
+          { name: 'Admin Auth' },
+          { name: 'Admin Dashboard' },
+          { name: 'Admin Services' },
         ],
       },
     })
@@ -103,7 +143,8 @@ export async function buildApp(context: AppContext): Promise<FastifyInstance> {
     const isCatalogGet =
       request.method === 'GET' &&
       request.url.startsWith(API_PREFIX) &&
-      !request.url.includes('/health')
+      !request.url.includes('/health') &&
+      !request.url.includes('/admin')
 
     if (
       !isCatalogGet ||

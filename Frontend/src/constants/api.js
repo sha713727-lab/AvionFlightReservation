@@ -7,7 +7,11 @@ export const API_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_API_URL
  */
 export function getApiBaseUrl() {
   if (typeof window !== 'undefined') {
-    return API_PUBLIC_BASE_URL
+    // Local: same-origin via Next.js rewrite → backend (avoids CORS/compression quirks)
+    if (process.env.NODE_ENV === 'development') {
+      return window.location.origin
+    }
+    return API_PUBLIC_BASE_URL || window.location.origin
   }
 
   const internal = process.env['API_INTERNAL_URL']
@@ -35,6 +39,32 @@ export const API_ENDPOINTS = {
   destinationBySlug: (slug) => `${API_V1_PREFIX}/destinations/${slug}`,
   faqs: `${API_V1_PREFIX}/faqs`,
   faqBySlug: (slug) => `${API_V1_PREFIX}/faqs/${slug}`,
+  callbacks: `${API_V1_PREFIX}/callbacks`,
+  adminLogin: `${API_V1_PREFIX}/admin/auth/login`,
+  adminOtpVerify: `${API_V1_PREFIX}/admin/auth/otp/verify`,
+  adminOtpResend: `${API_V1_PREFIX}/admin/auth/otp/resend`,
+  adminDashboardSummary: `${API_V1_PREFIX}/admin/dashboard/summary`,
+  adminServices: `${API_V1_PREFIX}/admin/services`,
+  adminServiceOptions: `${API_V1_PREFIX}/admin/services/options`,
+  adminServiceById: (id) => `${API_V1_PREFIX}/admin/services/${id}`,
+  adminServiceMove: (id) => `${API_V1_PREFIX}/admin/services/${id}/move`,
+  adminServiceMedia: (id) => `${API_V1_PREFIX}/admin/services/${id}/media`,
+  adminDestinations: `${API_V1_PREFIX}/admin/destinations`,
+  adminDestinationById: (id) => `${API_V1_PREFIX}/admin/destinations/${id}`,
+  adminDestinationMove: (id) => `${API_V1_PREFIX}/admin/destinations/${id}/move`,
+  adminPlaces: `${API_V1_PREFIX}/admin/places`,
+  adminPlaceOptions: `${API_V1_PREFIX}/admin/places/options`,
+  adminPlaceById: (id) => `${API_V1_PREFIX}/admin/places/${id}`,
+  adminPlaceMove: (id) => `${API_V1_PREFIX}/admin/places/${id}/move`,
+  adminPlaceMedia: (id) => `${API_V1_PREFIX}/admin/places/${id}/media`,
+  adminCallbacks: `${API_V1_PREFIX}/admin/callbacks`,
+  adminCallbackById: (id) => `${API_V1_PREFIX}/admin/callbacks/${id}`,
+  adminCallbackStatus: (id) => `${API_V1_PREFIX}/admin/callbacks/${id}/status`,
+  adminFaqs: `${API_V1_PREFIX}/admin/faqs`,
+  adminFaqById: (id) => `${API_V1_PREFIX}/admin/faqs/${id}`,
+  adminFaqMove: (id) => `${API_V1_PREFIX}/admin/faqs/${id}/move`,
+  contactSettings: `${API_V1_PREFIX}/settings/contact`,
+  adminContactSettings: `${API_V1_PREFIX}/admin/settings/contact`,
 }
 
 export const API_DEFAULT_PAGE_SIZE = 100

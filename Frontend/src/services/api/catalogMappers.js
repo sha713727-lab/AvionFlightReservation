@@ -8,6 +8,8 @@ export function mapServiceDto(dto) {
     iconKey: dto.iconKey,
     imageKey: dto.imageKey,
     imageAlt: dto.imageAlt,
+    mediaUrl: dto.mediaUrl ?? null,
+    mediaType: dto.mediaType ?? null,
   }
 }
 
@@ -16,11 +18,22 @@ export function mapDestinationTierDto(dto) {
     id: dto.slug,
     points: dto.points,
     title: dto.title,
-    places: dto.places.map((place) => ({
-      name: place.name,
-      alt: place.alt,
-      image: place.imageUrl,
-    })),
+    places: dto.places.map((place) => {
+      const mediaUrl = place.mediaUrl ?? null
+      const mediaType = place.mediaType ?? null
+      const image =
+        mediaType === 'image' && mediaUrl
+          ? mediaUrl
+          : place.imageUrl || mediaUrl || ''
+
+      return {
+        name: place.name,
+        alt: place.alt,
+        image,
+        mediaUrl,
+        mediaType,
+      }
+    }),
   }
 }
 

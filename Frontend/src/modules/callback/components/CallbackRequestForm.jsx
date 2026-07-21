@@ -1,6 +1,7 @@
 'use client'
 
 import Button from '@/components/buttons/Button'
+import NorthAmericanPhoneInput from '@/components/forms/NorthAmericanPhoneInput'
 import { COPY } from '@/constants/copy'
 import { CALLBACK_FIELD_NAMES } from '@/modules/callback/constants'
 import { useCallbackRequestForm } from '@/modules/callback/hooks/useCallbackRequestForm'
@@ -23,15 +24,22 @@ function FieldError({ id, message }) {
 }
 
 export default function CallbackRequestForm({ onSuccess }) {
-  const { values, errors, isSubmitting, setField, handleSubmit } = useCallbackRequestForm({
-    onSuccess,
-  })
+  const { values, errors, formError, isSubmitting, setField, handleSubmit } =
+    useCallbackRequestForm({
+      onSuccess,
+    })
 
   return (
     <form className="space-y-5" onSubmit={handleSubmit} noValidate>
       <p className="text-sm leading-relaxed text-text-secondary">
         {COPY.callbackModal.formDescription}
       </p>
+
+      {formError ? (
+        <p className="rounded-xl border border-error/20 bg-error/5 px-4 py-3 text-sm text-error" role="alert">
+          {formError}
+        </p>
+      ) : null}
 
       <div>
         <label
@@ -63,18 +71,16 @@ export default function CallbackRequestForm({ onSuccess }) {
         >
           {COPY.callbackModal.phoneLabel}
         </label>
-        <input
+        <NorthAmericanPhoneInput
           id="callback-phone"
           name={CALLBACK_FIELD_NAMES.phone}
-          type="tel"
-          autoComplete="tel"
           value={values.phone}
           disabled={isSubmitting}
           placeholder={COPY.callbackModal.phonePlaceholder}
           aria-invalid={Boolean(errors.phone)}
           aria-describedby={errors.phone ? 'callback-phone-error' : undefined}
           className={inputClassName}
-          onChange={(event) => setField(CALLBACK_FIELD_NAMES.phone, event.target.value)}
+          onChange={(nextPhone) => setField(CALLBACK_FIELD_NAMES.phone, nextPhone)}
         />
         <FieldError id="callback-phone-error" message={errors.phone} />
       </div>

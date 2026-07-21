@@ -17,6 +17,8 @@ model Service {
   iconKey     String
   imageKey    String
   imageAlt    String
+  mediaUrl    String?
+  mediaType   String?
   sortOrder   Int      @default(0)
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
@@ -45,7 +47,9 @@ model DestinationPlace {
   id        String          @id @default(cuid())
   name      String
   alt       String
-  imageUrl  String
+  imageUrl  String          @default("")
+  mediaUrl  String?
+  mediaType String?
   sortOrder Int             @default(0)
   isActive  Boolean         @default(true)
   tierId    String
@@ -70,4 +74,28 @@ model Faq {
 
   @@index([isActive, sortOrder])
   @@map("faqs")
+}
+
+model CallbackRequest {
+  id          String   @id @default(cuid())
+  name        String
+  phone       String
+  preferredAt DateTime
+  status      String   @default("new")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([status, createdAt])
+  @@index([createdAt])
+  @@map("callback_requests")
+}
+
+model SiteSettings {
+  id               String   @id @default("default")
+  reservationEmail String
+  /// Display phone numbers shown on the public site (order = priority).
+  supportPhones    Json
+  updatedAt        DateTime @updatedAt
+
+  @@map("site_settings")
 }

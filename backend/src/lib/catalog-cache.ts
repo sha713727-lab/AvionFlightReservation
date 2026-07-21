@@ -98,6 +98,38 @@ export class CatalogCache {
       this.logger.warn({ err: error, key }, 'Catalog cache set failed')
     }
   }
+
+  async invalidatePrefix(prefix: string): Promise<void> {
+    const namespacedPrefix = `${KEY_PREFIX}${prefix}`
+
+    try {
+      if (this.redis) {
+        let cursor = '0'
+        do {
+          const [nextCursor, keys] = await this.redis.scan(
+            cursor,
+            'MATCH',
+            `${namespacedPrefix}*`,
+            'COUNT',
+            100,
+          )
+          cursor = nextCursor
+          if (keys.length > 0) {
+            await this.redis.del(...keys)
+          }
+        } while (cursor !== '0')
+        return
+      }
+
+      for (const key of this.memory.keys()) {
+        if (key.startsWith(namespacedPrefix)) {
+          this.memory.delete(key)
+        }
+      }
+    } catch (error) {
+      this.logger.warn({ err: error, prefix }, 'Catalog cache invalidate failed')
+    }
+  }
 }
 
 export function createEtag(body: string): string {

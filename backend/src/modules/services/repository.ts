@@ -13,6 +13,8 @@ const serviceSelect = {
   iconKey: true,
   imageKey: true,
   imageAlt: true,
+  mediaUrl: true,
+  mediaType: true,
   sortOrder: true,
 } satisfies Prisma.ServiceSelect
 
@@ -27,6 +29,9 @@ function toDto(row: Pick<Service, keyof typeof serviceSelect>): ServiceDto {
     iconKey: row.iconKey,
     imageKey: row.imageKey,
     imageAlt: row.imageAlt,
+    mediaUrl: row.mediaUrl,
+    mediaType:
+      row.mediaType === 'image' || row.mediaType === 'video' ? row.mediaType : null,
     sortOrder: row.sortOrder,
   }
 }

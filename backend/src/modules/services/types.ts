@@ -8,6 +8,8 @@ export interface ServiceDto {
   iconKey: string
   imageKey: string
   imageAlt: string
+  mediaUrl: string | null
+  mediaType: 'image' | 'video' | null
   sortOrder: number
 }
 

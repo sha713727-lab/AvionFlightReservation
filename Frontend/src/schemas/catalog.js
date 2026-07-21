@@ -10,7 +10,7 @@ export const apiSuccessSchema = z.object({
   success: z.literal(true),
   message: z.string(),
   data: z.unknown(),
-  errors: z.null(),
+  errors: z.null().optional(),
 })
 
 export const apiFailureSchema = z.object({
@@ -38,6 +38,8 @@ export const serviceDtoSchema = z.object({
   iconKey: z.string(),
   imageKey: z.string(),
   imageAlt: z.string(),
+  mediaUrl: z.string().nullable().optional(),
+  mediaType: z.enum(['image', 'video']).nullable().optional(),
   sortOrder: z.number().int(),
 })
 
@@ -51,6 +53,8 @@ export const destinationPlaceSchema = z.object({
   name: z.string(),
   alt: z.string(),
   imageUrl: z.string(),
+  mediaUrl: z.string().nullable().optional(),
+  mediaType: z.enum(['image', 'video']).nullable().optional(),
   sortOrder: z.number().int(),
 })
 

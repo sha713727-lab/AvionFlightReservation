@@ -30,3 +30,19 @@ export function notFoundError(message: string, errorCode: ErrorCode): AppError {
 export function validationError(message: string, errors: ApiErrorDetail[]): AppError {
   return new AppError(message, HTTP_STATUS.UNPROCESSABLE, ERROR_CODES.VALIDATION_ERROR, errors)
 }
+
+export function unauthorizedError(message: string, errorCode: ErrorCode): AppError {
+  return new AppError(message, HTTP_STATUS.UNAUTHORIZED, errorCode)
+}
+
+export function conflictError(message: string, errorCode: ErrorCode): AppError {
+  return new AppError(message, HTTP_STATUS.CONFLICT, errorCode)
+}
+
+export function serviceUnavailableError(message: string, errorCode: ErrorCode): AppError {
+  return new AppError(message, HTTP_STATUS.SERVICE_UNAVAILABLE, errorCode)
+}
+
+export function tooManyRequestsError(message: string, errorCode: ErrorCode): AppError {
+  return new AppError(message, HTTP_STATUS.TOO_MANY_REQUESTS, errorCode)
+}

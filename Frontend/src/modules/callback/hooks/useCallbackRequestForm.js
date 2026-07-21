@@ -1,22 +1,36 @@
 'use client'
 
 import { useState } from 'react'
-import { CALLBACK_FIELD_NAMES } from '@/modules/callback/constants'
+import { CALLBACK_FIELD_NAMES, CALLBACK_VALIDATION_MESSAGES } from '@/modules/callback/constants'
+import { submitCallbackRequest } from '@/modules/callback/services/callbackApi'
 import { callbackRequestSchema } from '@/schemas/callbackRequest'
+import { ApiClientError } from '@/services/api/client'
 
 const EMPTY_VALUES = {
   [CALLBACK_FIELD_NAMES.name]: '',
-  [CALLBACK_FIELD_NAMES.phone]: '',
+  [CALLBACK_FIELD_NAMES.phone]: '+1 ',
   [CALLBACK_FIELD_NAMES.preferredAt]: '',
+}
+
+function mapSubmitError(error) {
+  if (!(error instanceof ApiClientError)) {
+    return CALLBACK_VALIDATION_MESSAGES.submitFailed
+  }
+  if (error.errorCode === 'NETWORK_ERROR') {
+    return CALLBACK_VALIDATION_MESSAGES.network
+  }
+  return error.message || CALLBACK_VALIDATION_MESSAGES.submitFailed
 }
 
 export function useCallbackRequestForm({ onSuccess }) {
   const [values, setValues] = useState(EMPTY_VALUES)
   const [errors, setErrors] = useState({})
+  const [formError, setFormError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const setField = (field, value) => {
     setValues((current) => ({ ...current, [field]: value }))
+    setFormError('')
     setErrors((current) => {
       if (!current[field]) return current
       const next = { ...current }
@@ -25,7 +39,7 @@ export function useCallbackRequestForm({ onSuccess }) {
     })
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     if (isSubmitting) return
 
@@ -44,13 +58,22 @@ export function useCallbackRequestForm({ onSuccess }) {
 
     setIsSubmitting(true)
     setErrors({})
-    onSuccess(result.data)
-    setIsSubmitting(false)
+    setFormError('')
+    try {
+      await submitCallbackRequest(result.data)
+      setValues(EMPTY_VALUES)
+      onSuccess(result.data)
+    } catch (error) {
+      setFormError(mapSubmitError(error))
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return {
     values,
     errors,
+    formError,
     isSubmitting,
     setField,
     handleSubmit,

@@ -8,7 +8,7 @@ import { resolveServiceVisuals } from '@/constants/serviceAssets'
 export default function ServicesSection({ services = [] }) {
   const resolvedServices = services
     .map(resolveServiceVisuals)
-    .filter((item) => item.icon && item.image)
+    .filter((item) => item.icon && (item.image || item.mediaType === 'video'))
 
   if (resolvedServices.length === 0) {
     return (

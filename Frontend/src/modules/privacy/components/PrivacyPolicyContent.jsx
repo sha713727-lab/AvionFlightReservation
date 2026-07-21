@@ -6,7 +6,7 @@ import Button from '@/components/buttons/Button'
 import Container from '@/components/ui/Container'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
-import { PHONE_HREF, PHONE_NUMBER, RESERVATION_EMAIL, RESERVATION_EMAIL_HREF } from '@/constants/contact'
+import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
 import { PRIVACY_SECTIONS, PRIVACY_USAGE_ITEMS } from '@/modules/privacy/constants'
 
 function PolicySection({ id, eyebrow, title, children }) {
@@ -22,6 +22,9 @@ function PolicySection({ id, eyebrow, title, children }) {
 }
 
 export default function PrivacyPolicyContent() {
+  const { reservationEmail, reservationEmailHref, phoneNumber, phoneHref } =
+    useContactSettings()
+
   return (
     <section className="bg-background py-16 lg:py-20" aria-label="Privacy policy content">
       <Container>
@@ -109,16 +112,16 @@ export default function PrivacyPolicyContent() {
             >
               <p>{COPY.privacy.contactDescription}</p>
               <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:flex-wrap">
-                <Button href={PHONE_HREF} variant="primary" size="md" icon={FaPhone}>
-                  {PHONE_NUMBER}
+                <Button href={phoneHref} variant="primary" size="md" icon={FaPhone}>
+                  {phoneNumber}
                 </Button>
                 <Button
-                  href={RESERVATION_EMAIL_HREF}
+                  href={reservationEmailHref}
                   variant="secondary"
                   size="md"
                   icon={HiOutlineMail}
                 >
-                  {RESERVATION_EMAIL}
+                  {reservationEmail}
                 </Button>
               </div>
             </PolicySection>

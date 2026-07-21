@@ -1,9 +1,9 @@
 'use client'
 
-import Image from 'next/image'
 import { HiArrowRight } from 'react-icons/hi'
 import Button from '@/components/buttons/Button'
 import { FadeIn } from '@/components/animations/FadeIn'
+import ServiceMediaFrame from '@/components/media/ServiceMediaFrame'
 import { COPY } from '@/constants/copy'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 import { cn } from '@/utils/cn'
@@ -18,6 +18,8 @@ export default function ServiceCatalogItem({
   icon: Icon,
   image,
   imageAlt,
+  mediaType = 'image',
+  mediaUrl = null,
   reversed = false,
 }) {
   const number = String(index + 1).padStart(2, '0')
@@ -86,15 +88,14 @@ export default function ServiceCatalogItem({
 
         <FadeIn direction={reversed ? 'left' : 'right'} delay={0.08}>
           <div className="group relative overflow-hidden rounded-3xl border border-border bg-section-alt shadow-card transition-transform duration-300 hover:-translate-y-1">
-            <div className="relative aspect-[16/11] w-full overflow-hidden">
-              <Image
-                src={image}
-                alt={imageAlt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-              />
-            </div>
+            <ServiceMediaFrame
+              mediaType={mediaType}
+              image={image}
+              mediaUrl={mediaUrl}
+              imageAlt={imageAlt}
+              title={title}
+              imageClassName="transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+            />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/35 via-transparent to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-90" />
             <div className="absolute bottom-5 left-5 right-5">
               <p className="truncate text-sm font-medium text-white">{title}</p>

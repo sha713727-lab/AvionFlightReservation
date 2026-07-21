@@ -20,7 +20,41 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      {
+        protocol: 'http',
+        hostname: '127.0.0.1',
+        port: '4000',
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '4000',
+        pathname: '/uploads/**',
+      },
     ],
+  },
+  async rewrites() {
+    const apiOrigin = (process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:4000').replace(
+      /\/$/,
+      '',
+    )
+    const uploadRewrite = {
+      source: '/uploads/:path*',
+      destination: `${apiOrigin}/uploads/:path*`,
+    }
+
+    if (process.env.NODE_ENV === 'production') {
+      return [uploadRewrite]
+    }
+
+    return [
+      {
+        source: '/api/:path*',
+        destination: `${apiOrigin}/api/:path*`,
+      },
+      uploadRewrite,
+    ]
   },
   async headers() {
     return [

@@ -8,14 +8,20 @@ import { COPY } from '@/constants/copy'
 import {
   CONTACT_LABELS,
   MAILING_ADDRESS_LINES,
-  PHONE_HREF,
-  PHONE_NUMBER,
-  RESERVATION_EMAIL,
-  RESERVATION_EMAIL_HREF,
   SUPPORT_HOURS,
 } from '@/constants/contact'
+import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
+import { openMailto } from '@/utils/openMailto'
 
 export default function ContactPageHero() {
+  const { reservationEmail, reservationEmailHref, phoneNumber, phoneHref } =
+    useContactSettings()
+
+  const handleEmailClick = (event) => {
+    event.preventDefault()
+    openMailto(reservationEmailHref)
+  }
+
   return (
     <section
       className="relative overflow-hidden bg-background pt-28 pb-16 lg:pt-36 lg:pb-20"
@@ -42,7 +48,7 @@ export default function ContactPageHero() {
               {COPY.contactPage.pageDescription}
             </p>
             <div className="mt-8">
-              <Button href={PHONE_HREF} variant="primary" size="lg" icon={FaPhone}>
+              <Button href={phoneHref} variant="primary" size="lg" icon={FaPhone}>
                 {COPY.contactPage.pagePrimaryCta}
               </Button>
             </div>
@@ -61,10 +67,10 @@ export default function ContactPageHero() {
                     {CONTACT_LABELS.phoneSupport}
                   </p>
                   <a
-                    href={PHONE_HREF}
+                    href={phoneHref}
                     className="mt-3 block font-heading text-[clamp(1.5rem,3.5vw,2.25rem)] font-semibold tracking-tight text-white transition-colors hover:text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                   >
-                    {PHONE_NUMBER}
+                    {phoneNumber}
                   </a>
                 </div>
 
@@ -73,10 +79,11 @@ export default function ContactPageHero() {
                     {CONTACT_LABELS.reservationEmail}
                   </p>
                   <a
-                    href={RESERVATION_EMAIL_HREF}
-                    className="mt-2 block text-sm text-white/80 transition-colors hover:text-white"
+                    href={reservationEmailHref}
+                    onClick={handleEmailClick}
+                    className="mt-2 block cursor-pointer text-sm text-white/80 underline-offset-2 transition-colors hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                   >
-                    {RESERVATION_EMAIL}
+                    {reservationEmail}
                   </a>
                 </div>
 

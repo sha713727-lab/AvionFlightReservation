@@ -16,6 +16,8 @@ const destinationSelect = {
       name: true,
       alt: true,
       imageUrl: true,
+      mediaUrl: true,
+      mediaType: true,
       sortOrder: true,
     },
     orderBy: { sortOrder: 'asc' as const },
@@ -23,6 +25,11 @@ const destinationSelect = {
 } satisfies Prisma.DestinationTierSelect
 
 type DestinationRow = Prisma.DestinationTierGetPayload<{ select: typeof destinationSelect }>
+
+function toMediaType(value: string | null): 'image' | 'video' | null {
+  if (value === 'image' || value === 'video') return value
+  return null
+}
 
 function toDto(row: DestinationRow): DestinationTierDto {
   return {
@@ -36,6 +43,8 @@ function toDto(row: DestinationRow): DestinationTierDto {
       name: place.name,
       alt: place.alt,
       imageUrl: place.imageUrl,
+      mediaUrl: place.mediaUrl,
+      mediaType: toMediaType(place.mediaType),
       sortOrder: place.sortOrder,
     })),
   }

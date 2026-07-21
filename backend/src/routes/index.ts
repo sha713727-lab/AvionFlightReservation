@@ -18,6 +18,41 @@ import { FaqController } from '../modules/faqs/controller.js'
 import { FaqRepository } from '../modules/faqs/repository.js'
 import { FaqService } from '../modules/faqs/service.js'
 import { registerFaqRoutes } from '../modules/faqs/routes.js'
+import { AdminAuthController } from '../modules/admin-auth/controller.js'
+import { AdminAuthService } from '../modules/admin-auth/service.js'
+import { registerAdminAuthRoutes } from '../modules/admin-auth/routes.js'
+import { AdminDashboardController } from '../modules/admin-dashboard/controller.js'
+import { AdminDashboardRepository } from '../modules/admin-dashboard/repository.js'
+import { AdminDashboardService } from '../modules/admin-dashboard/service.js'
+import { registerAdminDashboardRoutes } from '../modules/admin-dashboard/routes.js'
+import { AdminServicesController } from '../modules/admin-services/controller.js'
+import { AdminServiceRepository } from '../modules/admin-services/repository.js'
+import { AdminServicesService } from '../modules/admin-services/service.js'
+import { registerAdminServicesRoutes } from '../modules/admin-services/routes.js'
+import { AdminDestinationsController } from '../modules/admin-destinations/controller.js'
+import { AdminDestinationRepository } from '../modules/admin-destinations/repository.js'
+import { AdminDestinationsService } from '../modules/admin-destinations/service.js'
+import { registerAdminDestinationRoutes } from '../modules/admin-destinations/routes.js'
+import { AdminPlacesController } from '../modules/admin-places/controller.js'
+import { AdminPlaceRepository } from '../modules/admin-places/repository.js'
+import { AdminPlacesService } from '../modules/admin-places/service.js'
+import { registerAdminPlaceRoutes } from '../modules/admin-places/routes.js'
+import { CallbackRequestController } from '../modules/callbacks/controller.js'
+import { CallbackRequestRepository } from '../modules/callbacks/repository.js'
+import { CallbackRequestService } from '../modules/callbacks/service.js'
+import { registerCallbackRoutes } from '../modules/callbacks/routes.js'
+import { AdminCallbacksController } from '../modules/admin-callbacks/controller.js'
+import { AdminCallbackRepository } from '../modules/admin-callbacks/repository.js'
+import { AdminCallbacksService } from '../modules/admin-callbacks/service.js'
+import { registerAdminCallbackRoutes } from '../modules/admin-callbacks/routes.js'
+import { AdminFaqsController } from '../modules/admin-faqs/controller.js'
+import { AdminFaqRepository } from '../modules/admin-faqs/repository.js'
+import { AdminFaqsService } from '../modules/admin-faqs/service.js'
+import { registerAdminFaqRoutes } from '../modules/admin-faqs/routes.js'
+import { SettingsController } from '../modules/settings/controller.js'
+import { SettingsRepository } from '../modules/settings/repository.js'
+import { SettingsService } from '../modules/settings/service.js'
+import { registerSettingsRoutes } from '../modules/settings/routes.js'
 
 export async function registerRoutes(
   app: FastifyInstance,
@@ -51,6 +86,32 @@ export async function registerRoutes(
   const faqController = new FaqController(
     new FaqService(new FaqRepository(context.db), catalogCache),
   )
+  const adminAuthService = new AdminAuthService(context.env, context.logger)
+  const adminAuthController = new AdminAuthController(adminAuthService)
+  const adminDashboardController = new AdminDashboardController(
+    new AdminDashboardService(new AdminDashboardRepository(context.db)),
+  )
+  const adminServicesController = new AdminServicesController(
+    new AdminServicesService(new AdminServiceRepository(context.db), catalogCache),
+  )
+  const adminDestinationsController = new AdminDestinationsController(
+    new AdminDestinationsService(new AdminDestinationRepository(context.db), catalogCache),
+  )
+  const adminPlacesController = new AdminPlacesController(
+    new AdminPlacesService(new AdminPlaceRepository(context.db), catalogCache),
+  )
+  const callbackRequestController = new CallbackRequestController(
+    new CallbackRequestService(new CallbackRequestRepository(context.db)),
+  )
+  const adminCallbacksController = new AdminCallbacksController(
+    new AdminCallbacksService(new AdminCallbackRepository(context.db)),
+  )
+  const adminFaqsController = new AdminFaqsController(
+    new AdminFaqsService(new AdminFaqRepository(context.db), catalogCache),
+  )
+  const settingsController = new SettingsController(
+    new SettingsService(new SettingsRepository(context.db), catalogCache),
+  )
 
   await app.register(
     async (api) => {
@@ -58,6 +119,15 @@ export async function registerRoutes(
       await registerServiceRoutes(api, serviceController, catalogOptions)
       await registerDestinationRoutes(api, destinationController, catalogOptions)
       await registerFaqRoutes(api, faqController, catalogOptions)
+      await registerCallbackRoutes(api, callbackRequestController)
+      await registerSettingsRoutes(api, settingsController, adminAuthService)
+      await registerAdminAuthRoutes(api, adminAuthController)
+      await registerAdminDashboardRoutes(api, adminDashboardController, adminAuthService)
+      await registerAdminServicesRoutes(api, adminServicesController, adminAuthService)
+      await registerAdminDestinationRoutes(api, adminDestinationsController, adminAuthService)
+      await registerAdminPlaceRoutes(api, adminPlacesController, adminAuthService)
+      await registerAdminCallbackRoutes(api, adminCallbacksController, adminAuthService)
+      await registerAdminFaqRoutes(api, adminFaqsController, adminAuthService)
     },
     { prefix: API_PREFIX },
   )

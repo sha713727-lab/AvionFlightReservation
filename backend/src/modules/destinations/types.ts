@@ -3,6 +3,8 @@ export interface DestinationPlaceDto {
   name: string
   alt: string
   imageUrl: string
+  mediaUrl: string | null
+  mediaType: 'image' | 'video' | null
   sortOrder: number
 }
 

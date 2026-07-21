@@ -1,11 +1,12 @@
 import '@/index.css'
 import { Outfit } from 'next/font/google'
 import AnalyticsScripts from '@/components/analytics/AnalyticsScripts'
+import ConditionalAnalytics from '@/components/analytics/ConditionalAnalytics'
 import {
   GoogleTagManager,
   GoogleTagManagerNoscript,
 } from '@/components/analytics/GoogleTagManager'
-import FlightPathEffect from '@/components/effects/FlightPathEffect'
+import ConditionalFlightPathEffect from '@/components/effects/ConditionalFlightPathEffect'
 import { SKIP_TO_CONTENT } from '@/constants/a11y'
 import { AVION_FAVICON_SRC, AVION_LOGO_SRC, BRAND_FULL_NAME } from '@/constants/brand'
 import {
@@ -17,12 +18,12 @@ import {
 import { AVION_HERO_BACKGROUND_SRC } from '@/constants/images'
 import { DEFAULT_LOCALE } from '@/constants/locales'
 import CallbackRequestProvider from '@/modules/callback/components/CallbackRequestProvider'
+import ContactSettingsProvider from '@/modules/contact/components/ContactSettingsProvider'
 
 const outfit = Outfit({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-outfit',
-  weight: ['400', '500', '600', '700'],
 })
 
 export const metadata = {
@@ -77,11 +78,17 @@ export default function RootLayout({ children }) {
   }
 
   return (
-    <html lang={DEFAULT_LOCALE} className={outfit.variable}>
-      <body className={outfit.className}>
-        <GoogleTagManagerNoscript />
-        <GoogleTagManager />
-        <AnalyticsScripts />
+    <html
+      lang={DEFAULT_LOCALE}
+      data-scroll-behavior="smooth"
+      className={`${outfit.variable} ${outfit.className}`}
+    >
+      <body>
+        <ConditionalAnalytics>
+          <GoogleTagManagerNoscript />
+          <GoogleTagManager />
+          <AnalyticsScripts />
+        </ConditionalAnalytics>
         <a href="#main-content" className="skip-link">
           {SKIP_TO_CONTENT}
         </a>
@@ -89,8 +96,10 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <FlightPathEffect />
-        <CallbackRequestProvider>{children}</CallbackRequestProvider>
+        <ConditionalFlightPathEffect />
+        <ContactSettingsProvider>
+          <CallbackRequestProvider>{children}</CallbackRequestProvider>
+        </ContactSettingsProvider>
       </body>
     </html>
   )

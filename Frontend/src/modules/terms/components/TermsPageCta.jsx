@@ -5,14 +5,18 @@ import { HiOutlineMail } from 'react-icons/hi'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
-import {
-  PHONE_HREF,
-  PHONE_NUMBER,
-  RESERVATION_EMAIL,
-  RESERVATION_EMAIL_HREF,
-} from '@/constants/contact'
+import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
+import { openMailto } from '@/utils/openMailto'
 
 export default function TermsPageCta() {
+  const { reservationEmail, reservationEmailHref, phoneNumber, phoneHref } =
+    useContactSettings()
+
+  const handleEmailClick = (event) => {
+    event.preventDefault()
+    openMailto(reservationEmailHref)
+  }
+
   return (
     <section className="bg-background py-16 lg:py-20" aria-labelledby="terms-page-cta-heading">
       <Container>
@@ -35,16 +39,17 @@ export default function TermsPageCta() {
 
             <div className="flex items-center gap-4">
               <a
-                href={PHONE_HREF}
-                aria-label={`Call ${PHONE_NUMBER}`}
+                href={phoneHref}
+                aria-label={`Call ${phoneNumber}`}
                 className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white shadow-sm shadow-accent/25 transition-colors hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 <FaPhone className="h-5 w-5" aria-hidden />
               </a>
 
               <a
-                href={RESERVATION_EMAIL_HREF}
-                aria-label={`Email ${RESERVATION_EMAIL}`}
+                href={reservationEmailHref}
+                onClick={handleEmailClick}
+                aria-label={`Email ${reservationEmail}`}
                 className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-accent bg-card text-accent transition-colors hover:bg-accent/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 <HiOutlineMail className="h-6 w-6" aria-hidden />

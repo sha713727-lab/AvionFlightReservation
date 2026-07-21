@@ -2,6 +2,7 @@
 
 import { cn } from '@/utils/cn'
 import { dialPhone } from '@/utils/dialPhone'
+import { openMailto } from '@/utils/openMailto'
 
 const variants = {
   primary:
@@ -74,6 +75,12 @@ export default function Button({
       if (href.startsWith('tel:')) {
         event.preventDefault()
         dialPhone(href)
+        return
+      }
+
+      if (href.startsWith('mailto:')) {
+        event.preventDefault()
+        openMailto(href)
       }
     }
 

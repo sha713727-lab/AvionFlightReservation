@@ -37,6 +37,43 @@ const envSchema = z.object({
     .trim()
     .optional()
     .transform((value) => (value && value.length > 0 ? value : undefined)),
+  ADMIN_EMAIL: z.preprocess(
+    (value) => (typeof value === 'string' && value.trim() === '' ? undefined : value),
+    z.string().trim().email().optional(),
+  ),
+  ADMIN_PASSWORD: z.preprocess(
+    (value) => (typeof value === 'string' && value.trim() === '' ? undefined : value),
+    z.string().min(8).max(128).optional(),
+  ),
+  ADMIN_SESSION_SECRET: z.preprocess(
+    (value) => (typeof value === 'string' && value.trim() === '' ? undefined : value),
+    z.string().min(32).max(256).optional(),
+  ),
+  ADMIN_OTP_EMAIL: z.preprocess(
+    (value) => (typeof value === 'string' && value.trim() === '' ? undefined : value),
+    z.string().trim().email().default('ceo@jumpifzero.com'),
+  ),
+  SMTP_HOST: z.preprocess(
+    (value) => (typeof value === 'string' && value.trim() === '' ? undefined : value),
+    z.string().trim().min(1).optional(),
+  ),
+  SMTP_PORT: z.coerce.number().int().positive().default(587),
+  SMTP_USER: z.preprocess(
+    (value) => (typeof value === 'string' && value.trim() === '' ? undefined : value),
+    z.string().trim().optional(),
+  ),
+  SMTP_PASS: z.preprocess(
+    (value) => (typeof value === 'string' && value.trim() === '' ? undefined : value),
+    z.string().optional(),
+  ),
+  SMTP_FROM: z.preprocess(
+    (value) => (typeof value === 'string' && value.trim() === '' ? undefined : value),
+    z.string().trim().optional(),
+  ),
+  RESEND_API_KEY: z.preprocess(
+    (value) => (typeof value === 'string' && value.trim() === '' ? undefined : value),
+    z.string().trim().min(1).optional(),
+  ),
 })
 
 export type Env = z.infer<typeof envSchema>

@@ -7,15 +7,21 @@ import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animations/F
 import { COPY } from '@/constants/copy'
 import {
   CONTACT_LABELS,
-  PHONE_HREF,
-  PHONE_NUMBER,
-  RESERVATION_EMAIL,
-  RESERVATION_EMAIL_HREF,
   SUPPORT_HOURS,
 } from '@/constants/contact'
 import { CONTACT_PREP_ITEMS } from '@/modules/contact/constants'
+import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
+import { openMailto } from '@/utils/openMailto'
 
 export default function ContactSupportSection() {
+  const { reservationEmail, reservationEmailHref, phoneNumber, phoneHref } =
+    useContactSettings()
+
+  const handleEmailClick = (event) => {
+    event.preventDefault()
+    openMailto(reservationEmailHref)
+  }
+
   return (
     <section
       className="bg-background py-20 lg:py-28"
@@ -38,8 +44,8 @@ export default function ContactSupportSection() {
             </p>
 
             <div className="mt-8 space-y-4">
-              <Button href={PHONE_HREF} variant="primary" size="lg" icon={FaPhone}>
-                {PHONE_NUMBER}
+              <Button href={phoneHref} variant="primary" size="lg" icon={FaPhone}>
+                {phoneNumber}
               </Button>
               <div className="space-y-2 text-sm text-text-secondary">
                 <p>
@@ -47,10 +53,11 @@ export default function ContactSupportSection() {
                     {CONTACT_LABELS.reservationEmail}:{' '}
                   </span>
                   <a
-                    href={RESERVATION_EMAIL_HREF}
-                    className="text-accent transition-colors hover:text-accent-hover"
+                    href={reservationEmailHref}
+                    onClick={handleEmailClick}
+                    className="cursor-pointer text-accent underline-offset-2 transition-colors hover:text-accent-hover hover:underline"
                   >
-                    {RESERVATION_EMAIL}
+                    {reservationEmail}
                   </a>
                 </p>
                 <p>

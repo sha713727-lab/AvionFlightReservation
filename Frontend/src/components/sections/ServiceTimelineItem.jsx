@@ -1,8 +1,10 @@
-import Image from 'next/image'
+'use client'
+
 import { HiArrowRight } from 'react-icons/hi'
 import { COPY } from '@/constants/copy'
 import Button from '@/components/buttons/Button'
 import { FadeIn } from '@/components/animations/FadeIn'
+import ServiceMediaFrame from '@/components/media/ServiceMediaFrame'
 import ServiceTitleHero from '@/components/sections/ServiceTitleHero'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 
@@ -15,6 +17,8 @@ export default function ServiceTimelineItem({
   icon,
   image,
   imageAlt,
+  mediaType = 'image',
+  mediaUrl = null,
   reversed = false,
 }) {
   const number = String(index + 1).padStart(2, '0')
@@ -51,15 +55,16 @@ export default function ServiceTimelineItem({
         </div>
 
         <div className="group/img relative mt-2 overflow-hidden rounded-2xl border border-border transition-transform duration-300 hover:scale-[1.02]">
-          <div className="relative aspect-[16/10] w-full overflow-hidden">
-            <Image
-              src={image}
-              alt={imageAlt}
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover object-center transition-transform duration-700 ease-out group-hover/img:scale-105"
-            />
-          </div>
+          <ServiceMediaFrame
+            mediaType={mediaType}
+            image={image}
+            mediaUrl={mediaUrl}
+            imageAlt={imageAlt}
+            title={title}
+            aspect="16 / 10"
+            imageClassName="transition-transform duration-700 ease-out group-hover/img:scale-105"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
           <div className="absolute inset-0 bg-accent/0 transition-colors duration-500 group-hover/img:bg-accent/10" />
         </div>
       </div>

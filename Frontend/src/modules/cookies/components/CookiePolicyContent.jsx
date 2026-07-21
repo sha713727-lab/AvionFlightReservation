@@ -6,9 +6,12 @@ import Button from '@/components/buttons/Button'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
-import { PHONE_HREF, PHONE_NUMBER, RESERVATION_EMAIL, RESERVATION_EMAIL_HREF } from '@/constants/contact'
+import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
 
 export default function CookiePolicyContent() {
+  const { reservationEmail, reservationEmailHref, phoneNumber, phoneHref } =
+    useContactSettings()
+
   return (
     <main id="main-content" className="overflow-x-clip">
       <section className="bg-background pt-32 pb-12 lg:pt-40 lg:pb-16" aria-labelledby="cookie-page-heading">
@@ -91,16 +94,16 @@ export default function CookiePolicyContent() {
                   {COPY.cookies.contactDescription}
                 </p>
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  <Button href={PHONE_HREF} variant="primary" size="md" icon={FaPhone}>
-                    {PHONE_NUMBER}
+                  <Button href={phoneHref} variant="primary" size="md" icon={FaPhone}>
+                    {phoneNumber}
                   </Button>
                   <Button
-                    href={RESERVATION_EMAIL_HREF}
+                    href={reservationEmailHref}
                     variant="secondary"
                     size="md"
                     icon={HiOutlineMail}
                   >
-                    {RESERVATION_EMAIL}
+                    {reservationEmail}
                   </Button>
                 </div>
               </div>

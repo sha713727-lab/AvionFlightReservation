@@ -11,9 +11,11 @@ export const CALLBACK_FIELD_NAMES = {
 export const CALLBACK_VALIDATION_MESSAGES = {
   nameRequired: 'Enter your full name.',
   nameTooLong: 'Name must be 80 characters or fewer.',
-  phoneRequired: 'Enter a valid phone number.',
+  phoneRequired: 'Enter a valid USA or Canada phone number.',
   phoneTooLong: 'Phone number is too long.',
-  phoneInvalid: 'Enter a valid phone number.',
+  phoneInvalid: 'Enter a USA or Canada number as +1 XXX XXX XXXX.',
   datetimeRequired: 'Choose a preferred date and time.',
   datetimeFuture: 'Choose a future date and time.',
+  submitFailed: 'Unable to submit your callback request. Please try again.',
+  network: 'Unable to reach the server. Please try again shortly.',
 }

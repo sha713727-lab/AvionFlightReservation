@@ -5,7 +5,7 @@ import { FaPhone } from 'react-icons/fa'
 import Modal from '@/components/ui/Modal'
 import Button from '@/components/buttons/Button'
 import { COPY } from '@/constants/copy'
-import { PHONE_HREF, PHONE_NUMBER } from '@/constants/contact'
+import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
 import { dialPhone } from '@/utils/dialPhone'
 
 const CallExpertContext = createContext(null)
@@ -16,12 +16,13 @@ export function useCallExpertModal() {
 
 export default function CallExpertProvider({ children }) {
   const [isOpen, setIsOpen] = useState(false)
+  const { phoneNumber, phoneHref } = useContactSettings()
   const value = useMemo(() => ({ open: () => setIsOpen(true) }), [])
 
   const handleCallNow = (event) => {
     event.preventDefault()
     event.stopPropagation()
-    dialPhone(PHONE_HREF)
+    dialPhone(phoneHref)
   }
 
   return (
@@ -36,14 +37,14 @@ export default function CallExpertProvider({ children }) {
           {COPY.callModal.description}
         </p>
         <a
-          href={PHONE_HREF}
+          href={phoneHref}
           onClick={handleCallNow}
           className="mb-6 block text-2xl font-semibold text-primary transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
-          {PHONE_NUMBER}
+          {phoneNumber}
         </a>
         <Button
-          href={PHONE_HREF}
+          href={phoneHref}
           variant="primary"
           size="lg"
           icon={FaPhone}
