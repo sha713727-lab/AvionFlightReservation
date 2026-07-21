@@ -80,7 +80,6 @@ export default function AdminServiceMediaField({
           />
         ) : null}
         {previewUrl && previewType === 'image' ? (
-          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={previewUrl}
             alt=""

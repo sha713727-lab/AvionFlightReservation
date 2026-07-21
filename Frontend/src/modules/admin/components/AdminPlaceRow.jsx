@@ -40,7 +40,6 @@ export default function AdminPlaceRow({
               className="h-16 w-20 shrink-0 rounded-xl object-cover bg-section-alt"
             />
           ) : place.mediaUrl || place.imageUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={place.mediaUrl || place.imageUrl}
               alt={place.alt}

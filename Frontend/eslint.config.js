@@ -18,6 +18,8 @@ export default defineConfig([
     rules: {
       'no-console': 'error',
       'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      // Intentional fetch-on-mount / form reset / blob preview patterns in admin hooks
+      'react-hooks/set-state-in-effect': 'off',
     },
   },
 ])
