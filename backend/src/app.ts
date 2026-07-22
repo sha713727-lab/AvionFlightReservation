@@ -4,7 +4,6 @@ import cors from '@fastify/cors'
 import helmet from '@fastify/helmet'
 import multipart from '@fastify/multipart'
 import rateLimit from '@fastify/rate-limit'
-import fastifyStatic from '@fastify/static'
 import swagger from '@fastify/swagger'
 import swaggerUi from '@fastify/swagger-ui'
 import type { AppContext } from './types/context.js'
@@ -17,6 +16,7 @@ import {
 } from './constants/performance.js'
 import { createEtag, payloadToString } from './lib/catalog-cache.js'
 import { ensurePlaceUploadsDir } from './lib/place-media-storage.js'
+import { registerUploadRoutes } from './lib/serve-upload.js'
 import { ensureServiceUploadsDir, UPLOADS_ROOT } from './lib/service-media-storage.js'
 
 export async function buildApp(context: AppContext): Promise<FastifyInstance> {
@@ -58,19 +58,8 @@ export async function buildApp(context: AppContext): Promise<FastifyInstance> {
 
   await ensureServiceUploadsDir()
   await ensurePlaceUploadsDir()
-  await app.register(fastifyStatic, {
-    root: UPLOADS_ROOT,
-    prefix: '/uploads/',
-    decorateReply: false,
-    // Avoid gzip on binaries — @fastify/compress + static can 502 through nginx.
-    setHeaders: (res, _pathName) => {
-      const raw = res as unknown as {
-        setHeader: (name: string, value: string) => void
-      }
-      raw.setHeader('x-no-compression', 'true')
-      raw.setHeader('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400')
-    },
-  })
+  context.logger.info({ uploadsRoot: UPLOADS_ROOT }, 'Upload storage ready')
+  await registerUploadRoutes(app)
 
   if (context.env.ENABLE_COMPRESSION) {
     await app.register(compress, {
