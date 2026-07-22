@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { cn } from '@/utils/cn'
+import { isUploadMediaPath } from '@/utils/mediaUrl'
 
 export default function ServiceMediaFrame({
   mediaType = 'image',
@@ -15,6 +16,8 @@ export default function ServiceMediaFrame({
   sizes = '(max-width: 1024px) 100vw, 50vw',
 }) {
   const isVideo = mediaType === 'video' && Boolean(mediaUrl)
+  const imageSrc = image || mediaUrl || ''
+  const useNativeImg = isUploadMediaPath(imageSrc)
 
   return (
     <div
@@ -36,15 +39,24 @@ export default function ServiceMediaFrame({
             imageClassName,
           )}
         />
-      ) : (
+      ) : useNativeImg ? (
+        <img
+          src={imageSrc}
+          alt={imageAlt}
+          className={cn(
+            'absolute inset-0 h-full w-full object-cover object-center',
+            imageClassName,
+          )}
+        />
+      ) : imageSrc ? (
         <Image
-          src={image}
+          src={imageSrc}
           alt={imageAlt}
           fill
           sizes={sizes}
           className={cn('object-cover object-center', imageClassName)}
         />
-      )}
+      ) : null}
     </div>
   )
 }

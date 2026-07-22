@@ -5,6 +5,7 @@ import { validationError } from './errors.js'
 import {
   extensionForMime,
   maxBytesForMediaType,
+  normalizeUploadMime,
   resolveMediaType,
   UPLOADS_ROOT,
   type ServiceMediaType,
@@ -42,9 +43,11 @@ export async function writePlaceMediaFile(
   placeId: string,
   mime: string,
   buffer: Buffer,
+  filename = '',
 ): Promise<{ mediaUrl: string; mediaType: PlaceMediaType }> {
-  const mediaType = resolveMediaType(mime)
-  const ext = extensionForMime(mime)
+  const normalizedMime = normalizeUploadMime(mime, filename)
+  const mediaType = resolveMediaType(normalizedMime)
+  const ext = extensionForMime(normalizedMime)
   if (!mediaType || !ext) {
     throw validationError(API_MESSAGES.VALIDATION_FAILED, [
       {

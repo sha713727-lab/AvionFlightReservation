@@ -107,11 +107,16 @@ export class AdminPlacesService {
     return { items: await this.repository.findAllOrdered() }
   }
 
-  async uploadMedia(id: string, mime: string, buffer: Buffer): Promise<AdminPlaceDto> {
+  async uploadMedia(
+    id: string,
+    mime: string,
+    buffer: Buffer,
+    filename = '',
+  ): Promise<AdminPlaceDto> {
     const current = await this.repository.findById(id)
     if (!current) throw notFoundError(API_MESSAGES.NOT_FOUND, ERROR_CODES.PLACE_NOT_FOUND)
 
-    const saved = await writePlaceMediaFile(id, mime, buffer)
+    const saved = await writePlaceMediaFile(id, mime, buffer, filename)
     const updated = await this.repository.updateMedia(id, saved)
     await deletePlaceMediaFile(current.mediaUrl)
     await this.cache.invalidatePrefix('destinations:')

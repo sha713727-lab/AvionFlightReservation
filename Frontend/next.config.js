@@ -32,13 +32,21 @@ const nextConfig = {
         port: '4000',
         pathname: '/uploads/**',
       },
+      {
+        protocol: 'http',
+        hostname: 'api',
+        port: '4000',
+        pathname: '/uploads/**',
+      },
     ],
   },
   async rewrites() {
-    const apiOrigin = (process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:4000').replace(
-      /\/$/,
-      '',
-    )
+    // Prefer internal Docker API URL at runtime when present; build-time public URL hairpins.
+    const apiOrigin = (
+      process.env.API_INTERNAL_URL ||
+      process.env.NEXT_PUBLIC_API_URL ||
+      'http://127.0.0.1:4000'
+    ).replace(/\/$/, '')
     const uploadRewrite = {
       source: '/uploads/:path*',
       destination: `${apiOrigin}/uploads/:path*`,

@@ -4,29 +4,40 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { COPY } from '@/constants/copy'
 import { cn } from '@/utils/cn'
+import { isUploadMediaPath } from '@/utils/mediaUrl'
 
 function DestinationImage({ name, image, alt }) {
   const [hasError, setHasError] = useState(false)
+  const useNativeImg = isUploadMediaPath(image)
 
   return (
     <div className="relative h-full w-full">
-      {!hasError ? (
-        <Image
-          src={image}
-          alt={alt}
-          fill
-          sizes="(max-width: 768px) 50vw, 25vw"
-          onError={() => setHasError(true)}
-          className="object-cover"
-        />
+      {!hasError && image ? (
+        useNativeImg ? (
+          <img
+            src={image}
+            alt={alt}
+            onError={() => setHasError(true)}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        ) : (
+          <Image
+            src={image}
+            alt={alt}
+            fill
+            sizes="(max-width: 768px) 50vw, 25vw"
+            onError={() => setHasError(true)}
+            className="object-cover"
+          />
+        )
       ) : (
         <div className="flex h-full w-full items-end bg-gradient-to-br from-primary to-accent/90 p-4">
           <span className="text-base font-medium text-white">{name}</span>
         </div>
       )}
-      {!hasError && (
+      {!hasError && image ? (
         <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/15 to-transparent" />
-      )}
+      ) : null}
       <p className="absolute bottom-3 left-3 text-base font-semibold text-white">{name}</p>
     </div>
   )

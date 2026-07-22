@@ -43,6 +43,8 @@ services:
       PORT: 4000
       DATABASE_URL: postgresql://${POSTGRES_USER:-avion}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-avion_flight}?schema=public&connection_limit=10
       REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+    volumes:
+      - avion_uploads:/app/uploads
     healthcheck:
       test:
         [
@@ -107,6 +109,7 @@ services:
 
 volumes:
   avion_pg_data:
+  avion_uploads:
 
 networks:
   avion:

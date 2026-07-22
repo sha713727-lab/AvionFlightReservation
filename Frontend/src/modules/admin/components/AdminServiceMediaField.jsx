@@ -5,10 +5,23 @@ import { ADMIN_COPY } from '@/modules/admin/constants'
 import { cn } from '@/utils/cn'
 
 const ACCEPTED =
-  'image/jpeg,image/png,image/webp,video/mp4,video/webm'
+  'image/jpeg,image/jpg,image/pjpeg,image/jfif,.jfif,image/png,image/webp,video/mp4,video/webm'
+
+const ACCEPTED_TYPES = new Set([
+  'image/jpeg',
+  'image/jpg',
+  'image/pjpeg',
+  'image/jfif',
+  'image/png',
+  'image/webp',
+  'video/mp4',
+  'video/webm',
+])
 
 function isAllowedFile(file) {
-  return ACCEPTED.split(',').includes(file.type)
+  if (ACCEPTED_TYPES.has(file.type)) return true
+  const name = file.name?.toLowerCase() || ''
+  return name.endsWith('.jfif') || name.endsWith('.jpg') || name.endsWith('.jpeg')
 }
 
 export default function AdminServiceMediaField({

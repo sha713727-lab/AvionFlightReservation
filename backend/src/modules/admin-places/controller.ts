@@ -103,6 +103,7 @@ export class AdminPlacesController {
       request.params.id,
       file.mimetype,
       buffer,
+      file.filename,
     )
     void reply
       .header('Cache-Control', 'no-store')

@@ -114,13 +114,18 @@ export class AdminServicesService {
     return { items: renumbered }
   }
 
-  async uploadMedia(id: string, mime: string, buffer: Buffer): Promise<AdminServiceDto> {
+  async uploadMedia(
+    id: string,
+    mime: string,
+    buffer: Buffer,
+    filename = '',
+  ): Promise<AdminServiceDto> {
     const current = await this.repository.findById(id)
     if (!current) {
       throw notFoundError(API_MESSAGES.NOT_FOUND, ERROR_CODES.SERVICE_NOT_FOUND)
     }
 
-    const saved = await writeServiceMediaFile(id, mime, buffer)
+    const saved = await writeServiceMediaFile(id, mime, buffer, filename)
     const updated = await this.repository.updateMedia(id, saved)
     await deleteServiceMediaFile(current.mediaUrl)
     await this.cache.invalidatePrefix('services:')

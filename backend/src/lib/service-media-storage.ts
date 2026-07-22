@@ -13,6 +13,9 @@ export type ServiceMediaType = 'image' | 'video'
 
 const IMAGE_MIME = new Map([
   ['image/jpeg', 'jpg'],
+  ['image/jpg', 'jpg'],
+  ['image/pjpeg', 'jpg'],
+  ['image/jfif', 'jpg'],
   ['image/png', 'png'],
   ['image/webp', 'webp'],
 ])
@@ -33,6 +36,24 @@ export function resolveMediaType(mime: string): ServiceMediaType | null {
 
 export function extensionForMime(mime: string): string | null {
   return IMAGE_MIME.get(mime) ?? VIDEO_MIME.get(mime) ?? null
+}
+
+/** Normalize browser/OS quirks (e.g. .jfif with empty or odd MIME). */
+export function normalizeUploadMime(mime: string, filename = ''): string {
+  const lower = (mime || '').toLowerCase().trim()
+  if (IMAGE_MIME.has(lower) || VIDEO_MIME.has(lower)) {
+    return lower
+  }
+
+  const name = filename.toLowerCase()
+  if (name.endsWith('.jfif') || name.endsWith('.jpg') || name.endsWith('.jpeg')) {
+    return 'image/jpeg'
+  }
+  if (name.endsWith('.png')) return 'image/png'
+  if (name.endsWith('.webp')) return 'image/webp'
+  if (name.endsWith('.mp4')) return 'video/mp4'
+  if (name.endsWith('.webm')) return 'video/webm'
+  return lower
 }
 
 export function maxBytesForMediaType(mediaType: ServiceMediaType): number {
@@ -66,9 +87,11 @@ export async function writeServiceMediaFile(
   serviceId: string,
   mime: string,
   buffer: Buffer,
+  filename = '',
 ): Promise<{ mediaUrl: string; mediaType: ServiceMediaType }> {
-  const mediaType = resolveMediaType(mime)
-  const ext = extensionForMime(mime)
+  const normalizedMime = normalizeUploadMime(mime, filename)
+  const mediaType = resolveMediaType(normalizedMime)
+  const ext = extensionForMime(normalizedMime)
   if (!mediaType || !ext) {
     throw validationError(API_MESSAGES.VALIDATION_FAILED, [
       {

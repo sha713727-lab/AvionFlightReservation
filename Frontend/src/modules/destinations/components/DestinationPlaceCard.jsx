@@ -5,10 +5,7 @@ import Image from 'next/image'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
 import { cn } from '@/utils/cn'
-
-function isUploadPath(src) {
-  return typeof src === 'string' && src.startsWith('/uploads/')
-}
+import { isUploadMediaPath } from '@/utils/mediaUrl'
 
 export default function DestinationPlaceCard({
   name,
@@ -23,7 +20,7 @@ export default function DestinationPlaceCard({
   const [hasError, setHasError] = useState(false)
   const isVideo = mediaType === 'video' && Boolean(mediaUrl)
   const imageSrc = (mediaType === 'image' && mediaUrl ? mediaUrl : null) || image || mediaUrl || ''
-  const useNativeImg = isUploadPath(imageSrc)
+  const useNativeImg = isUploadMediaPath(imageSrc)
 
   return (
     <article

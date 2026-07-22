@@ -96,6 +96,7 @@ export class AdminServicesController {
       request.params.id,
       file.mimetype,
       buffer,
+      file.filename,
     )
     void reply
       .header('Cache-Control', 'no-store')
