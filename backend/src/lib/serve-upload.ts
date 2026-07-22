@@ -79,17 +79,8 @@ async function sendUploadFile(
 export async function registerUploadRoutes(app: FastifyInstance): Promise<void> {
   app.log.info({ uploadsRoot: UPLOADS_ROOT }, 'Serving uploads from disk')
 
+  // Fastify auto-registers HEAD for GET — do not add a separate HEAD route.
   app.get<{ Params: { '*': string } }>(
-    '/uploads/*',
-    {
-      config: {
-        rateLimit: false,
-      },
-    },
-    sendUploadFile,
-  )
-
-  app.head<{ Params: { '*': string } }>(
     '/uploads/*',
     {
       config: {
