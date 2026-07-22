@@ -5,7 +5,17 @@ import { API_MESSAGES } from '../constants/messages.js'
 import { validationError } from './errors.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-export const UPLOADS_ROOT = path.resolve(__dirname, '../../uploads')
+
+function resolveUploadsRoot(): string {
+  const fromEnv = process.env.UPLOADS_DIR?.trim()
+  if (fromEnv) {
+    return path.resolve(fromEnv)
+  }
+  // dist/lib → ../../uploads = <backend>/uploads (local + image default)
+  return path.resolve(__dirname, '../../uploads')
+}
+
+export const UPLOADS_ROOT = resolveUploadsRoot()
 export const SERVICE_UPLOADS_DIR = path.join(UPLOADS_ROOT, 'services')
 export const SERVICE_UPLOADS_URL_PREFIX = '/uploads/services'
 
