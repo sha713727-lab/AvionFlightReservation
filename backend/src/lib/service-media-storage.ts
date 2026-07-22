@@ -87,9 +87,9 @@ export async function writeServiceMediaFile(
   serviceId: string,
   mime: string,
   buffer: Buffer,
-  filename = '',
+  originalFilename = '',
 ): Promise<{ mediaUrl: string; mediaType: ServiceMediaType }> {
-  const normalizedMime = normalizeUploadMime(mime, filename)
+  const normalizedMime = normalizeUploadMime(mime, originalFilename)
   const mediaType = resolveMediaType(normalizedMime)
   const ext = extensionForMime(normalizedMime)
   if (!mediaType || !ext) {
@@ -117,11 +117,11 @@ export async function writeServiceMediaFile(
   }
 
   await ensureServiceUploadsDir()
-  const filename = buildServiceMediaFilename(serviceId, ext)
-  await writeFile(path.join(SERVICE_UPLOADS_DIR, filename), buffer)
+  const storedFilename = buildServiceMediaFilename(serviceId, ext)
+  await writeFile(path.join(SERVICE_UPLOADS_DIR, storedFilename), buffer)
 
   return {
-    mediaUrl: publicUrlForFilename(filename),
+    mediaUrl: publicUrlForFilename(storedFilename),
     mediaType,
   }
 }

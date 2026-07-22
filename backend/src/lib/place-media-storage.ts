@@ -43,9 +43,9 @@ export async function writePlaceMediaFile(
   placeId: string,
   mime: string,
   buffer: Buffer,
-  filename = '',
+  originalFilename = '',
 ): Promise<{ mediaUrl: string; mediaType: PlaceMediaType }> {
-  const normalizedMime = normalizeUploadMime(mime, filename)
+  const normalizedMime = normalizeUploadMime(mime, originalFilename)
   const mediaType = resolveMediaType(normalizedMime)
   const ext = extensionForMime(normalizedMime)
   if (!mediaType || !ext) {
@@ -73,11 +73,11 @@ export async function writePlaceMediaFile(
   }
 
   await ensurePlaceUploadsDir()
-  const filename = buildPlaceMediaFilename(placeId, ext)
-  await writeFile(path.join(PLACE_UPLOADS_DIR, filename), buffer)
+  const storedFilename = buildPlaceMediaFilename(placeId, ext)
+  await writeFile(path.join(PLACE_UPLOADS_DIR, storedFilename), buffer)
 
   return {
-    mediaUrl: publicPlaceUrlForFilename(filename),
+    mediaUrl: publicPlaceUrlForFilename(storedFilename),
     mediaType,
   }
 }

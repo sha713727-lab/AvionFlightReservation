@@ -133,7 +133,9 @@ export class AdminPlacesService {
     return updated
   }
 
-  assertMediaFile(file: { mimetype: string; toBuffer: () => Promise<Buffer> } | undefined) {
+  assertMediaFile(
+    file: { mimetype: string; filename?: string; toBuffer: () => Promise<Buffer> } | undefined,
+  ) {
     if (!file) {
       throw validationError(API_MESSAGES.ADMIN_PLACE_MEDIA_MISSING, [
         { field: 'file', message: API_MESSAGES.ADMIN_PLACE_MEDIA_MISSING, code: 'required' },
