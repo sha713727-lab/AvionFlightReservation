@@ -1,22 +1,28 @@
 import { z } from 'zod'
+import { ADMIN_PIN_PATTERN } from './pin-store.js'
 
 export const adminLoginBodySchema = z.object({
   email: z.string().trim().email().max(160),
   password: z.string().min(8).max(128),
 })
 
-export const adminOtpVerifyBodySchema = z.object({
+export const adminPinVerifyBodySchema = z.object({
   challengeId: z.string().trim().uuid(),
-  code: z
-    .string()
-    .trim()
-    .regex(/^\d{6}$/, 'Enter the 6-digit verification code'),
+  pin: z.string().trim().regex(ADMIN_PIN_PATTERN, 'Enter the 8-digit admin PIN'),
 })
 
-export const adminOtpResendBodySchema = z.object({
-  challengeId: z.string().trim().uuid(),
+export const adminPinChangeBodySchema = z.object({
+  currentPin: z.string().trim().regex(ADMIN_PIN_PATTERN, 'Enter your current 8-digit PIN'),
+  newPin: z.string().trim().regex(ADMIN_PIN_PATTERN, 'New PIN must be exactly 8 digits'),
+  confirmPin: z.string().trim().regex(ADMIN_PIN_PATTERN, 'Confirm PIN must be exactly 8 digits'),
+}).refine((value) => value.newPin === value.confirmPin, {
+  message: 'New PIN and confirmation do not match',
+  path: ['confirmPin'],
+}).refine((value) => value.newPin !== value.currentPin, {
+  message: 'New PIN must be different from the current PIN',
+  path: ['newPin'],
 })
 
 export type AdminLoginBody = z.infer<typeof adminLoginBodySchema>
-export type AdminOtpVerifyBody = z.infer<typeof adminOtpVerifyBodySchema>
-export type AdminOtpResendBody = z.infer<typeof adminOtpResendBodySchema>
+export type AdminPinVerifyBody = z.infer<typeof adminPinVerifyBodySchema>
+export type AdminPinChangeBody = z.infer<typeof adminPinChangeBodySchema>

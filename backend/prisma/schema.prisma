@@ -95,6 +95,8 @@ model SiteSettings {
   reservationEmail String
   /// Display phone numbers shown on the public site (order = priority).
   supportPhones    Json
+  /// scrypt hash of the 8-digit admin PIN (`salt:hash`). Null until seeded from ADMIN_PIN or changed in admin.
+  adminPinHash     String?
   updatedAt        DateTime @updatedAt
 
   @@map("site_settings")

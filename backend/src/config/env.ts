@@ -49,9 +49,13 @@ const envSchema = z.object({
     (value) => (typeof value === 'string' && value.trim() === '' ? undefined : value),
     z.string().min(32).max(256).optional(),
   ),
-  ADMIN_OTP_EMAIL: z.preprocess(
+  /** Bootstrap 8-digit admin PIN. Used until an admin changes the PIN in the console (stored hashed in DB). */
+  ADMIN_PIN: z.preprocess(
     (value) => (typeof value === 'string' && value.trim() === '' ? undefined : value),
-    z.string().trim().email().default('ceo@jumpifzero.com'),
+    z
+      .string()
+      .regex(/^\d{8}$/, 'ADMIN_PIN must be exactly 8 digits')
+      .optional(),
   ),
   SMTP_HOST: z.preprocess(
     (value) => (typeof value === 'string' && value.trim() === '' ? undefined : value),

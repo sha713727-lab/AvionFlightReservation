@@ -6,11 +6,13 @@ export type AdminLoginResult = {
   }
 }
 
-export type AdminOtpChallengeResult = {
+export type AdminPinChallengeResult = {
   challengeId: string
   expiresAt: string
-  destinationHint: string
-  resendAvailableAt: string
+}
+
+export type AdminPinChangeResult = {
+  updated: true
 }
 
 export type AdminSessionPayload = {

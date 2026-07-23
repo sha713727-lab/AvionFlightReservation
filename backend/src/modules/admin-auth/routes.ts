@@ -1,14 +1,16 @@
 import type { FastifyInstance } from 'fastify'
 import { apiErrorResponseSchema, successEnvelopeSchema } from '../../constants/openapi-schemas.js'
+import { createRequireAdminAuth } from '../../middleware/require-admin-auth.js'
 import { validateRequest } from '../../middleware/validate.js'
+import type { AdminAuthService } from './service.js'
 import type { AdminAuthController } from './controller.js'
 import {
   adminLoginBodySchema,
-  adminOtpResendBodySchema,
-  adminOtpVerifyBodySchema,
+  adminPinChangeBodySchema,
+  adminPinVerifyBodySchema,
   type AdminLoginBody,
-  type AdminOtpResendBody,
-  type AdminOtpVerifyBody,
+  type AdminPinChangeBody,
+  type AdminPinVerifyBody,
 } from './validator.js'
 
 const adminLoginBodyOpenApi = {
@@ -21,15 +23,13 @@ const adminLoginBodyOpenApi = {
   },
 } as const
 
-const adminOtpChallengeDataSchema = {
+const adminPinChallengeDataSchema = {
   type: 'object',
-  required: ['challengeId', 'expiresAt', 'destinationHint', 'resendAvailableAt'],
+  required: ['challengeId', 'expiresAt'],
   additionalProperties: false,
   properties: {
     challengeId: { type: 'string', format: 'uuid' },
     expiresAt: { type: 'string', format: 'date-time' },
-    destinationHint: { type: 'string' },
-    resendAvailableAt: { type: 'string', format: 'date-time' },
   },
 } as const
 
@@ -51,44 +51,53 @@ const adminLoginDataSchema = {
   },
 } as const
 
-const otpVerifyBodyOpenApi = {
+const pinVerifyBodyOpenApi = {
   type: 'object',
-  required: ['challengeId', 'code'],
+  required: ['challengeId', 'pin'],
   additionalProperties: false,
   properties: {
     challengeId: { type: 'string', format: 'uuid' },
-    code: { type: 'string', pattern: '^\\d{6}$' },
+    pin: { type: 'string', pattern: '^\\d{8}$' },
   },
 } as const
 
-const otpResendBodyOpenApi = {
+const pinChangeBodyOpenApi = {
   type: 'object',
-  required: ['challengeId'],
+  required: ['currentPin', 'newPin', 'confirmPin'],
   additionalProperties: false,
   properties: {
-    challengeId: { type: 'string', format: 'uuid' },
+    currentPin: { type: 'string', pattern: '^\\d{8}$' },
+    newPin: { type: 'string', pattern: '^\\d{8}$' },
+    confirmPin: { type: 'string', pattern: '^\\d{8}$' },
+  },
+} as const
+
+const pinChangeDataSchema = {
+  type: 'object',
+  required: ['updated'],
+  additionalProperties: false,
+  properties: {
+    updated: { type: 'boolean', const: true },
   },
 } as const
 
 export async function registerAdminAuthRoutes(
   app: FastifyInstance,
   controller: AdminAuthController,
+  adminAuthService: AdminAuthService,
 ): Promise<void> {
+  const requireAdminAuth = createRequireAdminAuth(adminAuthService)
+
   app.post<{ Body: AdminLoginBody }>(
     '/admin/auth/login',
     {
-      config: {
-        rateLimit: {
-          max: 8,
-          timeWindow: '1 minute',
-        },
-      },
+      config: { rateLimit: { max: 8, timeWindow: '1 minute' } },
       schema: {
         tags: ['Admin Auth'],
-        summary: 'Validate admin credentials and send OTP',
+        summary: 'Validate admin credentials and start PIN challenge',
         body: adminLoginBodyOpenApi,
         response: {
-          200: successEnvelopeSchema(adminOtpChallengeDataSchema),
+          200: successEnvelopeSchema(adminPinChallengeDataSchema),
           401: apiErrorResponseSchema,
           422: apiErrorResponseSchema,
           429: apiErrorResponseSchema,
@@ -100,19 +109,14 @@ export async function registerAdminAuthRoutes(
     (request, reply) => controller.login(request, reply),
   )
 
-  app.post<{ Body: AdminOtpVerifyBody }>(
-    '/admin/auth/otp/verify',
+  app.post<{ Body: AdminPinVerifyBody }>(
+    '/admin/auth/pin/verify',
     {
-      config: {
-        rateLimit: {
-          max: 10,
-          timeWindow: '1 minute',
-        },
-      },
+      config: { rateLimit: { max: 10, timeWindow: '1 minute' } },
       schema: {
         tags: ['Admin Auth'],
-        summary: 'Verify admin OTP and create session',
-        body: otpVerifyBodyOpenApi,
+        summary: 'Verify admin PIN and create session',
+        body: pinVerifyBodyOpenApi,
         response: {
           200: successEnvelopeSchema(adminLoginDataSchema),
           401: apiErrorResponseSchema,
@@ -121,34 +125,30 @@ export async function registerAdminAuthRoutes(
           503: apiErrorResponseSchema,
         },
       },
-      preHandler: [validateRequest(adminOtpVerifyBodySchema, 'body')],
+      preHandler: [validateRequest(adminPinVerifyBodySchema, 'body')],
     },
-    (request, reply) => controller.verifyOtp(request, reply),
+    (request, reply) => controller.verifyPin(request, reply),
   )
 
-  app.post<{ Body: AdminOtpResendBody }>(
-    '/admin/auth/otp/resend',
+  app.put<{ Body: AdminPinChangeBody }>(
+    '/admin/auth/pin',
     {
-      config: {
-        rateLimit: {
-          max: 3,
-          timeWindow: '1 minute',
-        },
-      },
+      config: { rateLimit: { max: 6, timeWindow: '1 minute' } },
       schema: {
         tags: ['Admin Auth'],
-        summary: 'Resend admin OTP',
-        body: otpResendBodyOpenApi,
+        summary: 'Change admin PIN',
+        security: [{ bearerAuth: [] }],
+        body: pinChangeBodyOpenApi,
         response: {
-          200: successEnvelopeSchema(adminOtpChallengeDataSchema),
+          200: successEnvelopeSchema(pinChangeDataSchema),
           401: apiErrorResponseSchema,
           422: apiErrorResponseSchema,
           429: apiErrorResponseSchema,
           503: apiErrorResponseSchema,
         },
       },
-      preHandler: [validateRequest(adminOtpResendBodySchema, 'body')],
+      preHandler: [requireAdminAuth, validateRequest(adminPinChangeBodySchema, 'body')],
     },
-    (request, reply) => controller.resendOtp(request, reply),
+    (request, reply) => controller.changePin(request, reply),
   )
 }

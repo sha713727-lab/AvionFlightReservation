@@ -5,8 +5,8 @@ import { successResponse } from '../../utils/response.js'
 import type { AdminAuthService } from './service.js'
 import type {
   AdminLoginBody,
-  AdminOtpResendBody,
-  AdminOtpVerifyBody,
+  AdminPinChangeBody,
+  AdminPinVerifyBody,
 } from './validator.js'
 
 export class AdminAuthController {
@@ -20,28 +20,28 @@ export class AdminAuthController {
     void reply
       .header('Cache-Control', 'no-store')
       .status(HTTP_STATUS.OK)
-      .send(successResponse(data, API_MESSAGES.ADMIN_OTP_SENT))
+      .send(successResponse(data, API_MESSAGES.ADMIN_PIN_CHALLENGE))
   }
 
-  async verifyOtp(
-    request: FastifyRequest<{ Body: AdminOtpVerifyBody }>,
+  async verifyPin(
+    request: FastifyRequest<{ Body: AdminPinVerifyBody }>,
     reply: FastifyReply,
   ): Promise<void> {
-    const data = await this.adminAuthService.verifyOtp(request.body)
+    const data = await this.adminAuthService.verifyPin(request.body)
     void reply
       .header('Cache-Control', 'no-store')
       .status(HTTP_STATUS.OK)
       .send(successResponse(data, API_MESSAGES.ADMIN_LOGIN_OK))
   }
 
-  async resendOtp(
-    request: FastifyRequest<{ Body: AdminOtpResendBody }>,
+  async changePin(
+    request: FastifyRequest<{ Body: AdminPinChangeBody }>,
     reply: FastifyReply,
   ): Promise<void> {
-    const data = await this.adminAuthService.resendOtp(request.body)
+    const data = await this.adminAuthService.changePin(request.body)
     void reply
       .header('Cache-Control', 'no-store')
       .status(HTTP_STATUS.OK)
-      .send(successResponse(data, API_MESSAGES.ADMIN_OTP_RESENT))
+      .send(successResponse(data, API_MESSAGES.ADMIN_PIN_UPDATED))
   }
 }

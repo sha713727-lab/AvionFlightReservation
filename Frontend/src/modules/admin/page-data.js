@@ -7,6 +7,7 @@ import {
   ADMIN_LOGIN_PATH,
   ADMIN_PATH,
   ADMIN_PLACES_PATH,
+  ADMIN_SECURITY_PATH,
   ADMIN_SERVICES_PATH,
 } from '@/constants/routes'
 import { ADMIN_COPY } from '@/modules/admin/constants'
@@ -94,5 +95,13 @@ export function getAdminContactMetadata() {
     title: ADMIN_COPY.settingsTitle,
     description: ADMIN_COPY.settingsDescription,
     path: ADMIN_CONTACT_PATH,
+  })
+}
+
+export function getAdminSecurityMetadata() {
+  return buildAdminMetadata({
+    title: ADMIN_COPY.securityTitle,
+    description: ADMIN_COPY.securityDescription,
+    path: ADMIN_SECURITY_PATH,
   })
 }

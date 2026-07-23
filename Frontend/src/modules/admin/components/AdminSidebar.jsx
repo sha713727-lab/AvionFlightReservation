@@ -7,6 +7,7 @@ import {
   HiOutlineGlobe,
   HiOutlineHome,
   HiOutlineLocationMarker,
+  HiOutlineLockClosed,
   HiOutlineMail,
   HiOutlinePhone,
   HiOutlineQuestionMarkCircle,
@@ -19,6 +20,7 @@ import {
   ADMIN_FAQS_PATH,
   ADMIN_PATH,
   ADMIN_PLACES_PATH,
+  ADMIN_SECURITY_PATH,
   ADMIN_SERVICES_PATH,
 } from '@/constants/routes'
 import { cn } from '@/utils/cn'
@@ -59,6 +61,11 @@ const NAV_ITEMS = [
     href: ADMIN_CONTACT_PATH,
     label: 'Contact',
     icon: HiOutlineMail,
+  },
+  {
+    href: ADMIN_SECURITY_PATH,
+    label: 'Security',
+    icon: HiOutlineLockClosed,
   },
 ]
 

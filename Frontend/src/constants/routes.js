@@ -16,6 +16,7 @@ export const ADMIN_PLACES_PATH = '/admin/places'
 export const ADMIN_CALLBACKS_PATH = '/admin/callbacks'
 export const ADMIN_FAQS_PATH = '/admin/faqs'
 export const ADMIN_CONTACT_PATH = '/admin/contact'
+export const ADMIN_SECURITY_PATH = '/admin/security'
 
 export const SITE_PATHS = [
   HOME_PATH,

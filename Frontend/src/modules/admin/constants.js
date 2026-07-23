@@ -5,6 +5,7 @@
   ADMIN_FAQS_PATH,
   ADMIN_PATH,
   ADMIN_PLACES_PATH,
+  ADMIN_SECURITY_PATH,
   ADMIN_SERVICES_PATH,
 } from '@/constants/routes'
 
@@ -58,6 +59,12 @@ export const ADMIN_NAV_ITEMS = [
     href: ADMIN_CONTACT_PATH,
     icon: 'contact',
   },
+  {
+    id: 'security',
+    label: 'Security',
+    href: ADMIN_SECURITY_PATH,
+    icon: 'security',
+  },
 ]
 
 export { ADMIN_COPY } from '@/modules/admin/copy'
@@ -67,7 +74,9 @@ export const ADMIN_VALIDATION_MESSAGES = {
   emailTooLong: 'Email must be 160 characters or fewer.',
   passwordRequired: 'Password must be at least 8 characters.',
   passwordTooLong: 'Password must be 128 characters or fewer.',
-  otpRequired: 'Enter the 6-digit verification code.',
+  pinRequired: 'Enter the 8-digit admin PIN.',
+  pinMismatch: 'New PIN and confirmation do not match.',
+  pinUnchanged: 'New PIN must be different from the current PIN.',
 }
 
 export const ADMIN_ERROR_MESSAGES = {
@@ -76,11 +85,10 @@ export const ADMIN_ERROR_MESSAGES = {
   notConfigured: 'Admin authentication is not configured.',
   network: 'Unable to reach the API. Please try again shortly.',
   unauthorized: 'Your admin session is no longer valid.',
-  otpInvalid: 'Invalid verification code. Please try again.',
-  otpExpired: 'Verification code expired. Sign in again.',
-  otpLocked: 'Too many attempts. Sign in again.',
-  otpCooldown: 'Please wait before requesting another code.',
-  otpMailFailed: 'Unable to send verification email. Please try again.',
+  pinInvalid: 'Invalid admin PIN. Please try again.',
+  pinExpired: 'PIN challenge expired. Sign in again.',
+  pinLocked: 'Too many PIN attempts. Sign in again.',
+  pinChangeGeneric: 'Unable to update the admin PIN. Please try again.',
   servicesGeneric: 'Unable to complete the services request. Please try again.',
   servicesConflict: 'A service with this slug already exists.',
   destinationsGeneric: 'Unable to complete the destinations request. Please try again.',

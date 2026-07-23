@@ -13,25 +13,48 @@ export const adminLoginSchema = z.object({
     .max(128, ADMIN_VALIDATION_MESSAGES.passwordTooLong),
 })
 
-export const adminOtpChallengeSchema = z.object({
+export const adminPinChallengeSchema = z.object({
   challengeId: z.string().uuid(),
   expiresAt: z
     .string()
     .min(1)
     .refine((value) => !Number.isNaN(Date.parse(value)), 'Invalid challenge expiry'),
-  destinationHint: z.string().min(3),
-  resendAvailableAt: z
-    .string()
-    .min(1)
-    .refine((value) => !Number.isNaN(Date.parse(value)), 'Invalid resend time'),
 })
 
-export const adminOtpVerifySchema = z.object({
+export const adminPinVerifySchema = z.object({
   challengeId: z.string().uuid(),
-  code: z
+  pin: z
     .string()
     .trim()
-    .regex(/^\d{6}$/, ADMIN_VALIDATION_MESSAGES.otpRequired),
+    .regex(/^\d{8}$/, ADMIN_VALIDATION_MESSAGES.pinRequired),
+})
+
+export const adminPinChangeSchema = z
+  .object({
+    currentPin: z
+      .string()
+      .trim()
+      .regex(/^\d{8}$/, ADMIN_VALIDATION_MESSAGES.pinRequired),
+    newPin: z
+      .string()
+      .trim()
+      .regex(/^\d{8}$/, ADMIN_VALIDATION_MESSAGES.pinRequired),
+    confirmPin: z
+      .string()
+      .trim()
+      .regex(/^\d{8}$/, ADMIN_VALIDATION_MESSAGES.pinRequired),
+  })
+  .refine((value) => value.newPin === value.confirmPin, {
+    message: ADMIN_VALIDATION_MESSAGES.pinMismatch,
+    path: ['confirmPin'],
+  })
+  .refine((value) => value.newPin !== value.currentPin, {
+    message: ADMIN_VALIDATION_MESSAGES.pinUnchanged,
+    path: ['newPin'],
+  })
+
+export const adminPinChangeResultSchema = z.object({
+  updated: z.literal(true),
 })
 
 export const adminLoginResultSchema = z.object({

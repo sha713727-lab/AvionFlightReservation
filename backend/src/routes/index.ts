@@ -86,7 +86,7 @@ export async function registerRoutes(
   const faqController = new FaqController(
     new FaqService(new FaqRepository(context.db), catalogCache),
   )
-  const adminAuthService = new AdminAuthService(context.env, context.logger)
+  const adminAuthService = new AdminAuthService(context.env, context.logger, context.db)
   const adminAuthController = new AdminAuthController(adminAuthService)
   const adminDashboardController = new AdminDashboardController(
     new AdminDashboardService(new AdminDashboardRepository(context.db)),
@@ -121,7 +121,7 @@ export async function registerRoutes(
       await registerFaqRoutes(api, faqController, catalogOptions)
       await registerCallbackRoutes(api, callbackRequestController)
       await registerSettingsRoutes(api, settingsController, adminAuthService)
-      await registerAdminAuthRoutes(api, adminAuthController)
+      await registerAdminAuthRoutes(api, adminAuthController, adminAuthService)
       await registerAdminDashboardRoutes(api, adminDashboardController, adminAuthService)
       await registerAdminServicesRoutes(api, adminServicesController, adminAuthService)
       await registerAdminDestinationRoutes(api, adminDestinationsController, adminAuthService)

@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ApiClientError } from '@/services/api/client'
 import { ADMIN_PATH } from '@/constants/routes'
@@ -8,13 +8,9 @@ import {
   ADMIN_ERROR_MESSAGES,
   ADMIN_FIELD_NAMES,
 } from '@/modules/admin/constants'
-import {
-  loginAdmin,
-  resendAdminOtp,
-  verifyAdminOtp,
-} from '@/modules/admin/services/adminAuth'
+import { loginAdmin, verifyAdminPin } from '@/modules/admin/services/adminAuth'
 import { writeAdminSession } from '@/modules/admin/utils/session'
-import { adminLoginSchema, adminOtpVerifySchema } from '@/schemas/adminLogin'
+import { adminLoginSchema, adminPinVerifySchema } from '@/schemas/adminLogin'
 
 const EMPTY_VALUES = {
   [ADMIN_FIELD_NAMES.email]: '',
@@ -28,21 +24,17 @@ function mapAuthError(error) {
   if (error.status === 401 || error.errorCode === 'AUTH_401') {
     return ADMIN_ERROR_MESSAGES.invalid
   }
-  if (error.errorCode === 'AUTH_OTP_401') {
-    return ADMIN_ERROR_MESSAGES.otpInvalid
+  if (error.errorCode === 'AUTH_PIN_401') {
+    return ADMIN_ERROR_MESSAGES.pinInvalid
   }
-  if (error.errorCode === 'AUTH_OTP_401_EXPIRED') {
-    return ADMIN_ERROR_MESSAGES.otpExpired
+  if (error.errorCode === 'AUTH_PIN_401_EXPIRED') {
+    return ADMIN_ERROR_MESSAGES.pinExpired
   }
-  if (error.status === 429 || error.errorCode === 'AUTH_OTP_429') {
-    return error.message?.includes('wait')
-      ? ADMIN_ERROR_MESSAGES.otpCooldown
-      : ADMIN_ERROR_MESSAGES.otpLocked
+  if (error.status === 429 || error.errorCode === 'AUTH_PIN_429') {
+    return ADMIN_ERROR_MESSAGES.pinLocked
   }
-  if (error.status === 503 || error.errorCode === 'AUTH_503' || error.errorCode === 'AUTH_MAIL_503') {
-    return error.errorCode === 'AUTH_MAIL_503'
-      ? ADMIN_ERROR_MESSAGES.otpMailFailed
-      : ADMIN_ERROR_MESSAGES.notConfigured
+  if (error.status === 503 || error.errorCode === 'AUTH_503') {
+    return ADMIN_ERROR_MESSAGES.notConfigured
   }
   if (error.errorCode === 'NETWORK_ERROR') {
     return ADMIN_ERROR_MESSAGES.network
@@ -56,29 +48,10 @@ export function useAdminLoginForm() {
   const [errors, setErrors] = useState({})
   const [formError, setFormError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [otpCode, setOtpCode] = useState('')
-  const [otpError, setOtpError] = useState('')
-  const [isVerifyingOtp, setIsVerifyingOtp] = useState(false)
-  const [isResendingOtp, setIsResendingOtp] = useState(false)
+  const [pin, setPin] = useState('')
+  const [pinError, setPinError] = useState('')
+  const [isVerifyingPin, setIsVerifyingPin] = useState(false)
   const [challenge, setChallenge] = useState(null)
-  const [resendSeconds, setResendSeconds] = useState(0)
-
-  useEffect(() => {
-    if (!challenge) {
-      setResendSeconds(0)
-      return undefined
-    }
-
-    const tick = () => {
-      const remainingMs = Date.parse(challenge.resendAvailableAt) - Date.now()
-      const next = Math.max(0, Math.ceil(remainingMs / 1000))
-      setResendSeconds((current) => (current === next ? current : next))
-    }
-
-    tick()
-    const timer = window.setInterval(tick, 1000)
-    return () => window.clearInterval(timer)
-  }, [challenge])
 
   const setField = (field, value) => {
     setValues((current) => ({ ...current, [field]: value }))
@@ -91,18 +64,18 @@ export function useAdminLoginForm() {
     })
   }
 
-  const setOtpCodeValue = useCallback((value) => {
-    const next = value.replace(/\D/g, '').slice(0, 6)
-    setOtpCode(next)
-    setOtpError((current) => (current ? '' : current))
+  const setPinValue = useCallback((value) => {
+    const next = value.replace(/\D/g, '').slice(0, 8)
+    setPin(next)
+    setPinError((current) => (current ? '' : current))
   }, [])
 
-  const closeOtpModal = useCallback(() => {
-    if (isVerifyingOtp || isResendingOtp) return
+  const closePinModal = useCallback(() => {
+    if (isVerifyingPin) return
     setChallenge(null)
-    setOtpCode('')
-    setOtpError('')
-  }, [isVerifyingOtp, isResendingOtp])
+    setPin('')
+    setPinError('')
+  }, [isVerifyingPin])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -129,8 +102,8 @@ export function useAdminLoginForm() {
     try {
       const nextChallenge = await loginAdmin(result.data)
       setChallenge(nextChallenge)
-      setOtpCode('')
-      setOtpError('')
+      setPin('')
+      setPinError('')
     } catch (error) {
       setFormError(mapAuthError(error))
     } finally {
@@ -138,58 +111,37 @@ export function useAdminLoginForm() {
     }
   }
 
-  const handleVerifyOtp = async (event) => {
+  const handleVerifyPin = async (event) => {
     event.preventDefault()
-    if (!challenge || isVerifyingOtp) return
+    if (!challenge || isVerifyingPin) return
 
-    const parsed = adminOtpVerifySchema.safeParse({
+    const parsed = adminPinVerifySchema.safeParse({
       challengeId: challenge.challengeId,
-      code: otpCode,
+      pin,
     })
     if (!parsed.success) {
-      setOtpError(parsed.error.issues[0]?.message || ADMIN_ERROR_MESSAGES.otpInvalid)
+      setPinError(parsed.error.issues[0]?.message || ADMIN_ERROR_MESSAGES.pinInvalid)
       return
     }
 
-    setIsVerifyingOtp(true)
-    setOtpError('')
+    setIsVerifyingPin(true)
+    setPinError('')
 
     try {
-      const session = await verifyAdminOtp(parsed.data)
+      const session = await verifyAdminPin(parsed.data)
       writeAdminSession(session)
       router.replace(ADMIN_PATH)
     } catch (error) {
       const message = mapAuthError(error)
-      setOtpError(message)
+      setPinError(message)
       if (
         error instanceof ApiClientError &&
-        (error.errorCode === 'AUTH_OTP_401_EXPIRED' || error.errorCode === 'AUTH_OTP_429')
+        (error.errorCode === 'AUTH_PIN_401_EXPIRED' || error.errorCode === 'AUTH_PIN_429')
       ) {
         setChallenge(null)
-        setOtpCode('')
+        setPin('')
       }
-      setIsVerifyingOtp(false)
-    }
-  }
-
-  const handleResendOtp = async () => {
-    if (!challenge || isResendingOtp || resendSeconds > 0) return
-    setIsResendingOtp(true)
-    setOtpError('')
-    try {
-      const nextChallenge = await resendAdminOtp({ challengeId: challenge.challengeId })
-      setChallenge(nextChallenge)
-    } catch (error) {
-      setOtpError(mapAuthError(error))
-      if (
-        error instanceof ApiClientError &&
-        error.errorCode === 'AUTH_OTP_401_EXPIRED'
-      ) {
-        setChallenge(null)
-        setOtpCode('')
-      }
-    } finally {
-      setIsResendingOtp(false)
+      setIsVerifyingPin(false)
     }
   }
 
@@ -201,18 +153,14 @@ export function useAdminLoginForm() {
     isSuccess: false,
     setField,
     handleSubmit,
-    otp: {
+    pinChallenge: {
       isOpen: Boolean(challenge),
-      code: otpCode,
-      setCode: setOtpCodeValue,
-      error: otpError,
-      destinationHint: challenge?.destinationHint || '',
-      isVerifying: isVerifyingOtp,
-      isResending: isResendingOtp,
-      resendSeconds,
-      onVerify: handleVerifyOtp,
-      onResend: handleResendOtp,
-      onClose: closeOtpModal,
+      pin,
+      setPin: setPinValue,
+      error: pinError,
+      isVerifying: isVerifyingPin,
+      onVerify: handleVerifyPin,
+      onClose: closePinModal,
     },
   }
 }

@@ -7,7 +7,7 @@ import {
   ADMIN_FIELD_NAMES,
 } from '@/modules/admin/constants'
 import AdminPasswordField from '@/modules/admin/components/AdminPasswordField'
-import AdminOtpModal from '@/modules/admin/components/AdminOtpModal'
+import AdminPinModal from '@/modules/admin/components/AdminPinModal'
 import { useAdminLoginForm } from '@/modules/admin/hooks/useAdminLoginForm'
 import { cn } from '@/utils/cn'
 
@@ -36,10 +36,10 @@ export default function AdminLoginForm() {
     isSuccess,
     setField,
     handleSubmit,
-    otp,
+    pinChallenge,
   } = useAdminLoginForm()
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
-  const isLocked = isSubmitting || isSuccess || otp.isOpen
+  const isLocked = isSubmitting || isSuccess || pinChallenge.isOpen
 
   return (
     <>
@@ -107,18 +107,14 @@ export default function AdminLoginForm() {
         </Button>
       </form>
 
-      <AdminOtpModal
-        isOpen={otp.isOpen}
-        code={otp.code}
-        setCode={otp.setCode}
-        error={otp.error}
-        destinationHint={otp.destinationHint}
-        isVerifying={otp.isVerifying}
-        isResending={otp.isResending}
-        resendSeconds={otp.resendSeconds}
-        onVerify={otp.onVerify}
-        onResend={otp.onResend}
-        onClose={otp.onClose}
+      <AdminPinModal
+        isOpen={pinChallenge.isOpen}
+        pin={pinChallenge.pin}
+        setPin={pinChallenge.setPin}
+        error={pinChallenge.error}
+        isVerifying={pinChallenge.isVerifying}
+        onVerify={pinChallenge.onVerify}
+        onClose={pinChallenge.onClose}
       />
     </>
   )

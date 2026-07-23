@@ -1,27 +1,33 @@
 import type { Env } from '../../config/env.js'
+import type { DatabaseClient } from '../../database/prisma.js'
 import type { AppLogger } from '../../lib/logger.js'
 import { ERROR_CODES } from '../../constants/error-codes.js'
 import { API_MESSAGES } from '../../constants/messages.js'
-import { buildAdminOtpEmail, isMailConfigured, sendMail } from '../../lib/mailer.js'
 import {
   serviceUnavailableError,
   tooManyRequestsError,
   unauthorizedError,
+  validationError,
 } from '../../lib/errors.js'
 import { createHmac, timingSafeEqual } from 'node:crypto'
+import { AdminPinRepository } from './pin-repository.js'
 import {
-  OTP_MAX_ATTEMPTS,
-  OTP_RESEND_COOLDOWN_MS,
-  OtpChallengeStore,
-  createOtpChallenge,
-  generateOtpCode,
-  maskEmail,
-  verifyOtpCode,
-} from './otp-store.js'
-import type { AdminLoginBody, AdminOtpResendBody, AdminOtpVerifyBody } from './validator.js'
+  PIN_MAX_ATTEMPTS,
+  PinChallengeStore,
+  createPinLoginChallenge,
+  hashAdminPin,
+  isValidAdminPin,
+  verifyAdminPin,
+} from './pin-store.js'
+import type {
+  AdminLoginBody,
+  AdminPinChangeBody,
+  AdminPinVerifyBody,
+} from './validator.js'
 import type {
   AdminLoginResult,
-  AdminOtpChallengeResult,
+  AdminPinChallengeResult,
+  AdminPinChangeResult,
   AdminSessionPayload,
 } from './types.js'
 
@@ -64,27 +70,17 @@ function requireSessionSecret(env: Env): string {
   return env.ADMIN_SESSION_SECRET
 }
 
-function toChallengeResult(challenge: {
-  id: string
-  destinationEmail: string
-  expiresAt: number
-  lastSentAt: number
-}): AdminOtpChallengeResult {
-  return {
-    challengeId: challenge.id,
-    expiresAt: new Date(challenge.expiresAt).toISOString(),
-    destinationHint: maskEmail(challenge.destinationEmail),
-    resendAvailableAt: new Date(challenge.lastSentAt + OTP_RESEND_COOLDOWN_MS).toISOString(),
-  }
-}
-
 export class AdminAuthService {
-  private readonly otpStore = new OtpChallengeStore()
+  private readonly challengeStore = new PinChallengeStore()
+  private readonly pinRepository: AdminPinRepository
 
   constructor(
     private readonly env: Env,
     private readonly logger: AppLogger,
-  ) {}
+    db: DatabaseClient,
+  ) {
+    this.pinRepository = new AdminPinRepository(db)
+  }
 
   private requireAdminCredentials(): { email: string; password: string; secret: string } {
     const adminEmail = this.env.ADMIN_EMAIL
@@ -122,31 +118,40 @@ export class AdminAuthService {
     }
   }
 
-  private async deliverOtp(destinationEmail: string, code: string): Promise<void> {
-    if (!isMailConfigured(this.env) && this.env.NODE_ENV === 'production') {
-      throw serviceUnavailableError(
-        API_MESSAGES.ADMIN_MAIL_NOT_CONFIGURED,
-        ERROR_CODES.AUTH_NOT_CONFIGURED,
-      )
-    }
+  private async assertPinConfigured(): Promise<void> {
+    const stored = await this.pinRepository.getPinHash()
+    if (stored) return
 
-    const email = buildAdminOtpEmail(code)
-    try {
-      await sendMail(this.env, this.logger, {
-        to: destinationEmail,
-        ...email,
-      })
-    } catch (error) {
-      this.logger.error({ err: error }, 'Failed to send admin OTP email')
+    const bootstrapPin = this.env.ADMIN_PIN
+    if (!bootstrapPin || !isValidAdminPin(bootstrapPin)) {
       throw serviceUnavailableError(
-        API_MESSAGES.ADMIN_MAIL_FAILED,
-        ERROR_CODES.AUTH_MAIL_FAILED,
+        API_MESSAGES.ADMIN_PIN_NOT_CONFIGURED,
+        ERROR_CODES.AUTH_NOT_CONFIGURED,
       )
     }
   }
 
-  async beginLogin(input: AdminLoginBody): Promise<AdminOtpChallengeResult> {
+  private async matchPin(pin: string): Promise<boolean> {
+    const stored = await this.pinRepository.getPinHash()
+    if (stored) {
+      return verifyAdminPin(pin, stored)
+    }
+
+    const bootstrapPin = this.env.ADMIN_PIN
+    if (!bootstrapPin || !isValidAdminPin(bootstrapPin)) {
+      throw serviceUnavailableError(
+        API_MESSAGES.ADMIN_PIN_NOT_CONFIGURED,
+        ERROR_CODES.AUTH_NOT_CONFIGURED,
+      )
+    }
+
+    return safeEqualString(pin, bootstrapPin)
+  }
+
+  async beginLogin(input: AdminLoginBody): Promise<AdminPinChallengeResult> {
     const credentials = this.requireAdminCredentials()
+    await this.assertPinConfigured()
+
     const emailMatches = safeEqualString(
       input.email.trim().toLowerCase(),
       credentials.email,
@@ -157,86 +162,72 @@ export class AdminAuthService {
       throw unauthorizedError(API_MESSAGES.ADMIN_AUTH_INVALID, ERROR_CODES.AUTH_INVALID)
     }
 
-    const destinationEmail = this.env.ADMIN_OTP_EMAIL.trim().toLowerCase()
-    const code = generateOtpCode()
-    const challenge = createOtpChallenge({
-      adminEmail: credentials.email,
-      destinationEmail,
-      code,
-      secret: credentials.secret,
-    })
+    const challenge = createPinLoginChallenge(credentials.email)
+    this.challengeStore.set(challenge)
 
-    await this.deliverOtp(destinationEmail, code)
-    this.otpStore.set(challenge)
-    return toChallengeResult(challenge)
+    return {
+      challengeId: challenge.id,
+      expiresAt: new Date(challenge.expiresAt).toISOString(),
+    }
   }
 
-  async verifyOtp(input: AdminOtpVerifyBody): Promise<AdminLoginResult> {
+  async verifyPin(input: AdminPinVerifyBody): Promise<AdminLoginResult> {
     const credentials = this.requireAdminCredentials()
-    const challenge = this.otpStore.get(input.challengeId)
+    const challenge = this.challengeStore.get(input.challengeId)
 
-    if (!challenge || challenge.consumed) {
-      throw unauthorizedError(API_MESSAGES.ADMIN_OTP_EXPIRED, ERROR_CODES.AUTH_OTP_EXPIRED)
+    if (!challenge) {
+      throw unauthorizedError(API_MESSAGES.ADMIN_PIN_EXPIRED, ERROR_CODES.AUTH_PIN_EXPIRED)
     }
 
     if (challenge.expiresAt <= Date.now()) {
-      this.otpStore.delete(challenge.id)
-      throw unauthorizedError(API_MESSAGES.ADMIN_OTP_EXPIRED, ERROR_CODES.AUTH_OTP_EXPIRED)
+      this.challengeStore.delete(challenge.id)
+      throw unauthorizedError(API_MESSAGES.ADMIN_PIN_EXPIRED, ERROR_CODES.AUTH_PIN_EXPIRED)
     }
 
-    if (challenge.attempts >= OTP_MAX_ATTEMPTS) {
-      this.otpStore.delete(challenge.id)
-      throw tooManyRequestsError(API_MESSAGES.ADMIN_OTP_LOCKED, ERROR_CODES.AUTH_OTP_LOCKED)
+    if (challenge.attempts >= PIN_MAX_ATTEMPTS) {
+      this.challengeStore.delete(challenge.id)
+      throw tooManyRequestsError(API_MESSAGES.ADMIN_PIN_LOCKED, ERROR_CODES.AUTH_PIN_LOCKED)
     }
 
-    const matched = verifyOtpCode(challenge, input.code, credentials.secret)
+    const matched = await this.matchPin(input.pin)
     if (!matched) {
       challenge.attempts += 1
-      if (challenge.attempts >= OTP_MAX_ATTEMPTS) {
-        this.otpStore.delete(challenge.id)
-        throw tooManyRequestsError(API_MESSAGES.ADMIN_OTP_LOCKED, ERROR_CODES.AUTH_OTP_LOCKED)
+      if (challenge.attempts >= PIN_MAX_ATTEMPTS) {
+        this.challengeStore.delete(challenge.id)
+        throw tooManyRequestsError(API_MESSAGES.ADMIN_PIN_LOCKED, ERROR_CODES.AUTH_PIN_LOCKED)
       }
-      this.otpStore.set(challenge)
-      throw unauthorizedError(API_MESSAGES.ADMIN_OTP_INVALID, ERROR_CODES.AUTH_OTP_INVALID)
+      this.challengeStore.set(challenge)
+      throw unauthorizedError(API_MESSAGES.ADMIN_PIN_INVALID, ERROR_CODES.AUTH_PIN_INVALID)
     }
 
-    this.otpStore.delete(challenge.id)
+    // Persist bootstrap env PIN into DB on first successful login so later changes stick.
+    const existingHash = await this.pinRepository.getPinHash()
+    if (!existingHash) {
+      await this.pinRepository.setPinHash(hashAdminPin(input.pin))
+      this.logger.info('Admin PIN seeded from ADMIN_PIN into database')
+    }
+
+    this.challengeStore.delete(challenge.id)
     return this.issueSession(challenge.adminEmail, credentials.secret)
   }
 
-  async resendOtp(input: AdminOtpResendBody): Promise<AdminOtpChallengeResult> {
-    const credentials = this.requireAdminCredentials()
-    const challenge = this.otpStore.get(input.challengeId)
+  async changePin(input: AdminPinChangeBody): Promise<AdminPinChangeResult> {
+    this.requireAdminCredentials()
 
-    if (!challenge || challenge.consumed) {
-      throw unauthorizedError(API_MESSAGES.ADMIN_OTP_EXPIRED, ERROR_CODES.AUTH_OTP_EXPIRED)
+    const currentMatches = await this.matchPin(input.currentPin)
+    if (!currentMatches) {
+      throw unauthorizedError(API_MESSAGES.ADMIN_PIN_INVALID, ERROR_CODES.AUTH_PIN_INVALID)
     }
 
-    if (challenge.expiresAt <= Date.now()) {
-      this.otpStore.delete(challenge.id)
-      throw unauthorizedError(API_MESSAGES.ADMIN_OTP_EXPIRED, ERROR_CODES.AUTH_OTP_EXPIRED)
+    if (input.newPin !== input.confirmPin) {
+      throw validationError(API_MESSAGES.VALIDATION_FAILED, [
+        { field: 'confirmPin', message: 'New PIN and confirmation do not match', code: 'custom' },
+      ])
     }
 
-    const now = Date.now()
-    const cooldownEndsAt = challenge.lastSentAt + OTP_RESEND_COOLDOWN_MS
-    if (now < cooldownEndsAt) {
-      throw tooManyRequestsError(API_MESSAGES.ADMIN_OTP_COOLDOWN, ERROR_CODES.AUTH_OTP_LOCKED)
-    }
-
-    const code = generateOtpCode()
-    await this.deliverOtp(challenge.destinationEmail, code)
-    const updated = this.otpStore.replaceCode(
-      challenge.id,
-      code,
-      credentials.secret,
-      now,
-    )
-
-    if (!updated) {
-      throw unauthorizedError(API_MESSAGES.ADMIN_OTP_EXPIRED, ERROR_CODES.AUTH_OTP_EXPIRED)
-    }
-
-    return toChallengeResult(updated)
+    await this.pinRepository.setPinHash(hashAdminPin(input.newPin))
+    this.logger.info('Admin PIN updated')
+    return { updated: true }
   }
 
   verifySession(token: string): AdminSessionPayload {
