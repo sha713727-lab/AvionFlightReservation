@@ -4,6 +4,7 @@ import {
   formatNorthAmericanPhone,
   isCompleteNorthAmericanPhone,
 } from '@/utils/northAmericanPhone'
+import { datetimeLocalToIso, isFutureDatetimeLocal } from '@/utils/datetimeLocal'
 
 export const callbackRequestSchema = z.object({
   name: z
@@ -20,10 +21,14 @@ export const callbackRequestSchema = z.object({
     .string()
     .trim()
     .min(1, CALLBACK_VALIDATION_MESSAGES.datetimeRequired)
-    .refine((value) => {
-      const parsed = new Date(value)
-      return !Number.isNaN(parsed.getTime()) && parsed.getTime() > Date.now()
-    }, CALLBACK_VALIDATION_MESSAGES.datetimeFuture),
+    .refine(isFutureDatetimeLocal, CALLBACK_VALIDATION_MESSAGES.datetimeFuture)
+    .transform((value) => {
+      const iso = datetimeLocalToIso(value)
+      if (!iso) {
+        throw new Error(CALLBACK_VALIDATION_MESSAGES.datetimeFuture)
+      }
+      return iso
+    }),
 })
 
 export const callbackCreatedSchema = z.object({

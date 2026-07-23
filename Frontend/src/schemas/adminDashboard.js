@@ -7,6 +7,15 @@ const adminCatalogItemSchema = z.object({
   updatedAt: z.string().min(1),
 })
 
+const adminRecentCallbackSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  phone: z.string().min(1),
+  status: z.enum(['new', 'contacted', 'closed']),
+  preferredAt: z.string().min(1),
+  createdAt: z.string().min(1),
+})
+
 export const adminDashboardSummarySchema = z.object({
   counts: z.object({
     servicesActive: z.coerce.number().int().nonnegative(),
@@ -14,6 +23,8 @@ export const adminDashboardSummarySchema = z.object({
     destinationTiersActive: z.coerce.number().int().nonnegative(),
     destinationPlacesActive: z.coerce.number().int().nonnegative(),
     faqsActive: z.coerce.number().int().nonnegative(),
+    callbacksNew: z.coerce.number().int().nonnegative(),
+    callbacksTotal: z.coerce.number().int().nonnegative(),
   }),
   system: z.object({
     database: z.enum(['up', 'down']),
@@ -21,4 +32,5 @@ export const adminDashboardSummarySchema = z.object({
   }),
   recentServices: z.array(adminCatalogItemSchema),
   recentFaqs: z.array(adminCatalogItemSchema),
+  recentCallbacks: z.array(adminRecentCallbackSchema),
 })

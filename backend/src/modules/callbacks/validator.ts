@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { isFuturePreferredAt, parsePreferredAt } from '../../utils/preferred-at.js'
 
 const northAmericanPhoneSchema = z
   .string()
@@ -12,10 +13,8 @@ export const callbackRequestBodySchema = z.object({
     .string()
     .trim()
     .min(1)
-    .refine((value) => {
-      const parsed = new Date(value)
-      return !Number.isNaN(parsed.getTime()) && parsed.getTime() > Date.now()
-    }, 'Choose a future date and time'),
+    .refine(isFuturePreferredAt, 'Choose a future date and time')
+    .transform((value) => parsePreferredAt(value) as Date),
 })
 
 export type CallbackRequestBody = z.infer<typeof callbackRequestBodySchema>

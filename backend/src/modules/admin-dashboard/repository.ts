@@ -1,5 +1,9 @@
 import type { PrismaClient } from '@prisma/client'
-import type { AdminCatalogItem, AdminDashboardSummary } from './types.js'
+import type {
+  AdminCatalogItem,
+  AdminDashboardSummary,
+  AdminRecentCallbackItem,
+} from './types.js'
 
 const RECENT_LIMIT = 5
 
@@ -31,6 +35,29 @@ function mapFaqItem(row: {
   }
 }
 
+function mapCallbackStatus(value: string): AdminRecentCallbackItem['status'] {
+  if (value === 'contacted' || value === 'closed') return value
+  return 'new'
+}
+
+function mapCallbackItem(row: {
+  id: string
+  name: string
+  phone: string
+  status: string
+  preferredAt: Date
+  createdAt: Date
+}): AdminRecentCallbackItem {
+  return {
+    id: row.id,
+    name: row.name,
+    phone: row.phone,
+    status: mapCallbackStatus(row.status),
+    preferredAt: row.preferredAt.toISOString(),
+    createdAt: row.createdAt.toISOString(),
+  }
+}
+
 export class AdminDashboardRepository {
   constructor(private readonly db: PrismaClient) {}
 
@@ -41,8 +68,11 @@ export class AdminDashboardRepository {
       destinationTiersActive,
       destinationPlacesActive,
       faqsActive,
+      callbacksNew,
+      callbacksTotal,
       recentServices,
       recentFaqs,
+      recentCallbacks,
       databaseUp,
     ] = await Promise.all([
       this.db.service.count({ where: { isActive: true } }),
@@ -50,6 +80,8 @@ export class AdminDashboardRepository {
       this.db.destinationTier.count({ where: { isActive: true } }),
       this.db.destinationPlace.count({ where: { isActive: true } }),
       this.db.faq.count({ where: { isActive: true } }),
+      this.db.callbackRequest.count({ where: { status: 'new' } }),
+      this.db.callbackRequest.count(),
       this.db.service.findMany({
         where: { isActive: true },
         orderBy: [{ sortOrder: 'asc' }, { updatedAt: 'desc' }],
@@ -62,6 +94,18 @@ export class AdminDashboardRepository {
         take: RECENT_LIMIT,
         select: { id: true, slug: true, question: true, updatedAt: true },
       }),
+      this.db.callbackRequest.findMany({
+        orderBy: [{ createdAt: 'desc' }],
+        take: RECENT_LIMIT,
+        select: {
+          id: true,
+          name: true,
+          phone: true,
+          status: true,
+          preferredAt: true,
+          createdAt: true,
+        },
+      }),
       this.db.$queryRaw`SELECT 1`.then(() => true).catch(() => false),
     ])
 
@@ -72,6 +116,8 @@ export class AdminDashboardRepository {
         destinationTiersActive,
         destinationPlacesActive,
         faqsActive,
+        callbacksNew,
+        callbacksTotal,
       },
       system: {
         database: databaseUp ? 'up' : 'down',
@@ -79,6 +125,7 @@ export class AdminDashboardRepository {
       },
       recentServices: recentServices.map(mapCatalogItem),
       recentFaqs: recentFaqs.map(mapFaqItem),
+      recentCallbacks: recentCallbacks.map(mapCallbackItem),
     }
   }
 }

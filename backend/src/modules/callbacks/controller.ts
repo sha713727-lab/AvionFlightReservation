@@ -15,7 +15,7 @@ export class CallbackRequestController {
     const data = await this.callbackRequestService.create({
       name: request.body.name,
       phone: request.body.phone,
-      preferredAt: new Date(request.body.preferredAt),
+      preferredAt: request.body.preferredAt,
     })
     void reply
       .header('Cache-Control', 'no-store')

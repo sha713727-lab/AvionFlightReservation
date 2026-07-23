@@ -12,6 +12,13 @@ const selectClassName = cn(
   'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent',
 )
 
+const refreshClassName = cn(
+  'rounded-xl border border-border bg-section px-4 py-3 text-sm font-medium text-primary',
+  'transition-colors hover:border-accent/40',
+  'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent',
+  'disabled:cursor-not-allowed disabled:opacity-40',
+)
+
 export default function AdminCallbacksHome({ token }) {
   const {
     items,
@@ -25,6 +32,7 @@ export default function AdminCallbacksHome({ token }) {
     loadingLabel,
     changeStatus,
     removeCallback,
+    refresh,
     clearFeedback,
   } = useAdminCallbacks(token)
 
@@ -36,7 +44,7 @@ export default function AdminCallbacksHome({ token }) {
     setDeletingItem(null)
   }
 
-  if (isLoading) {
+  if (isLoading && items.length === 0) {
     return (
       <p className="text-sm text-text-secondary" role="status">
         {loadingLabel}
@@ -44,21 +52,39 @@ export default function AdminCallbacksHome({ token }) {
     )
   }
 
-  if (error) {
+  if (error && items.length === 0) {
     return (
-      <p className="rounded-xl border border-error/20 bg-error/5 px-4 py-3 text-sm text-error" role="alert">
-        {error || ADMIN_COPY.callbacksLoadError}
-      </p>
+      <div className="space-y-4">
+        <p className="rounded-xl border border-error/20 bg-error/5 px-4 py-3 text-sm text-error" role="alert">
+          {error || ADMIN_COPY.callbacksLoadError}
+        </p>
+        <button type="button" className={refreshClassName} onClick={() => void refresh()}>
+          {ADMIN_COPY.callbacksRefreshCta}
+        </button>
+      </div>
     )
   }
 
   return (
     <div className="space-y-6">
-      <div>
-        <h2 className="font-heading text-lg font-semibold tracking-tight text-primary">
-          {ADMIN_COPY.callbacksTitle}
-        </h2>
-        <p className="mt-1 text-sm text-text-secondary">{ADMIN_COPY.callbacksDescription}</p>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h2 className="font-heading text-lg font-semibold tracking-tight text-primary">
+            {ADMIN_COPY.callbacksTitle}
+          </h2>
+          <p className="mt-1 text-sm text-text-secondary">{ADMIN_COPY.callbacksDescription}</p>
+        </div>
+        <button
+          type="button"
+          className={refreshClassName}
+          disabled={isLoading || Boolean(pendingId)}
+          onClick={() => {
+            clearFeedback()
+            void refresh()
+          }}
+        >
+          {ADMIN_COPY.callbacksRefreshCta}
+        </button>
       </div>
 
       <div>

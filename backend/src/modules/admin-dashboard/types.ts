@@ -5,6 +5,15 @@ export type AdminCatalogItem = {
   updatedAt: string
 }
 
+export type AdminRecentCallbackItem = {
+  id: string
+  name: string
+  phone: string
+  status: 'new' | 'contacted' | 'closed'
+  preferredAt: string
+  createdAt: string
+}
+
 export type AdminDashboardSummary = {
   counts: {
     servicesActive: number
@@ -12,6 +21,8 @@ export type AdminDashboardSummary = {
     destinationTiersActive: number
     destinationPlacesActive: number
     faqsActive: number
+    callbacksNew: number
+    callbacksTotal: number
   }
   system: {
     database: 'up' | 'down'
@@ -19,4 +30,5 @@ export type AdminDashboardSummary = {
   }
   recentServices: AdminCatalogItem[]
   recentFaqs: AdminCatalogItem[]
+  recentCallbacks: AdminRecentCallbackItem[]
 }

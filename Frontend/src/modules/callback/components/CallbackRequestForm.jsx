@@ -6,6 +6,7 @@ import { COPY } from '@/constants/copy'
 import { CALLBACK_FIELD_NAMES } from '@/modules/callback/constants'
 import { useCallbackRequestForm } from '@/modules/callback/hooks/useCallbackRequestForm'
 import { cn } from '@/utils/cn'
+import { nextMinuteDatetimeLocal } from '@/utils/datetimeLocal'
 
 const inputClassName = cn(
   'w-full rounded-xl border border-border bg-section px-4 py-3 text-sm text-text',
@@ -96,6 +97,7 @@ export default function CallbackRequestForm({ onSuccess }) {
           id="callback-datetime"
           name={CALLBACK_FIELD_NAMES.preferredAt}
           type="datetime-local"
+          min={nextMinuteDatetimeLocal()}
           value={values.preferredAt}
           disabled={isSubmitting}
           aria-invalid={Boolean(errors.preferredAt)}

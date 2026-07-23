@@ -12,6 +12,19 @@ const EMPTY_VALUES = {
   [CALLBACK_FIELD_NAMES.preferredAt]: '',
 }
 
+function mapFieldErrors(error) {
+  if (!(error instanceof ApiClientError) || !Array.isArray(error.errors)) return {}
+  const next = {}
+  for (const entry of error.errors) {
+    const field = entry?.field
+    const message = entry?.message
+    if (typeof field === 'string' && typeof message === 'string' && !next[field]) {
+      next[field] = message
+    }
+  }
+  return next
+}
+
 function mapSubmitError(error) {
   if (!(error instanceof ApiClientError)) {
     return CALLBACK_VALIDATION_MESSAGES.submitFailed
@@ -64,6 +77,10 @@ export function useCallbackRequestForm({ onSuccess }) {
       setValues(EMPTY_VALUES)
       onSuccess(result.data)
     } catch (error) {
+      const fieldErrors = mapFieldErrors(error)
+      if (Object.keys(fieldErrors).length > 0) {
+        setErrors(fieldErrors)
+      }
       setFormError(mapSubmitError(error))
     } finally {
       setIsSubmitting(false)

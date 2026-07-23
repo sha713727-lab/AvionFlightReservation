@@ -4,12 +4,14 @@ import {
   HiOutlineAnnotation,
   HiOutlineCollection,
   HiOutlineLocationMarker,
+  HiOutlinePhone,
   HiOutlineServer,
 } from 'react-icons/hi'
 import { ADMIN_COPY } from '@/modules/admin/constants'
 import AdminBarChart from '@/modules/admin/components/AdminBarChart'
 import AdminCatalogList from '@/modules/admin/components/AdminCatalogList'
 import AdminCoverageChart from '@/modules/admin/components/AdminCoverageChart'
+import AdminRecentCallbacks from '@/modules/admin/components/AdminRecentCallbacks'
 import CatalogMixDonut from '@/modules/admin/components/CatalogMixDonut'
 import AdminStatCard from '@/modules/admin/components/AdminStatCard'
 import { useAdminDashboard } from '@/modules/admin/hooks/useAdminDashboard'
@@ -34,12 +36,12 @@ export default function AdminDashboardHome({ token }) {
     )
   }
 
-  const { counts, system, recentServices, recentFaqs } = summary
+  const { counts, system, recentServices, recentFaqs, recentCallbacks } = summary
   const databaseUp = system.database === 'up'
 
   return (
     <div className="space-y-6 lg:space-y-8">
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
         <AdminStatCard
           label={ADMIN_COPY.statsServices}
           value={counts.servicesActive}
@@ -65,7 +67,16 @@ export default function AdminDashboardHome({ token }) {
           icon={HiOutlineAnnotation}
           tone="success"
         />
+        <AdminStatCard
+          label={ADMIN_COPY.statsCallbacksNew}
+          value={counts.callbacksNew}
+          hint={`${counts.callbacksTotal} ${ADMIN_COPY.statsCallbacksTotal}`}
+          icon={HiOutlinePhone}
+          tone="accent"
+        />
       </div>
+
+      <AdminRecentCallbacks items={recentCallbacks} />
 
       <div className="grid gap-6 xl:grid-cols-2">
         <AdminCoverageChart counts={counts} />
