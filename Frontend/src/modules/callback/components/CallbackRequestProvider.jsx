@@ -1,11 +1,49 @@
 'use client'
 
-import { useEffect } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo } from 'react'
 import { usePathname } from 'next/navigation'
 import CallbackRequestModal from '@/modules/callback/components/CallbackRequestModal'
+import { useCallbackScrollTrigger } from '@/modules/callback/hooks/useCallbackScrollTrigger'
 import { ADMIN_PATH } from '@/constants/routes'
 
 const LEGACY_SESSION_KEY = 'avion-callback-modal-done'
+
+const CallbackRequestContext = createContext(null)
+
+export function useCallbackRequestModal() {
+  return useContext(CallbackRequestContext)
+}
+
+function CallbackRequestController({ children }) {
+  const {
+    isPromptOpen,
+    isFormOpen,
+    isSuccessOpen,
+    openForm,
+    showSuccess,
+    closeAll,
+  } = useCallbackScrollTrigger()
+
+  const open = useCallback(() => {
+    openForm()
+  }, [openForm])
+
+  const value = useMemo(() => ({ open }), [open])
+
+  return (
+    <CallbackRequestContext.Provider value={value}>
+      {children}
+      <CallbackRequestModal
+        isPromptOpen={isPromptOpen}
+        isFormOpen={isFormOpen}
+        isSuccessOpen={isSuccessOpen}
+        openForm={openForm}
+        showSuccess={showSuccess}
+        closeAll={closeAll}
+      />
+    </CallbackRequestContext.Provider>
+  )
+}
 
 export default function CallbackRequestProvider({ children }) {
   const pathname = usePathname()
@@ -19,10 +57,9 @@ export default function CallbackRequestProvider({ children }) {
     }
   }, [])
 
-  return (
-    <>
-      {children}
-      {isAdminRoute ? null : <CallbackRequestModal key={pathname} />}
-    </>
-  )
+  if (isAdminRoute) {
+    return children
+  }
+
+  return <CallbackRequestController key={pathname}>{children}</CallbackRequestController>
 }

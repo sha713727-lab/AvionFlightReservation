@@ -5,6 +5,7 @@ import {
   COOKIE_POLICY_PATH,
   DESTINATIONS_PATH,
   HOME_PATH,
+  INTERNATIONAL_FLIGHT_PATH,
   PRIVACY_POLICY_PATH,
   REFUND_POLICY_PATH,
   SERVICES_PATH,
@@ -26,6 +27,7 @@ export const LEGAL_LINKS = [
 export const NAV_LINKS = [
   { label: 'Services', href: SERVICES_PATH },
   { label: 'Destinations', href: DESTINATIONS_PATH },
+  { label: 'International Flights', href: INTERNATIONAL_FLIGHT_PATH },
   { label: 'About Us', href: ABOUT_PATH },
   { label: 'Contact Us', href: CONTACT_PATH },
 ]
@@ -35,6 +37,7 @@ export const FOOTER_LINKS = {
     { label: 'About Us', href: ABOUT_PATH },
     { label: 'Contact Us', href: CONTACT_PATH },
     { label: 'Destinations', href: DESTINATIONS_PATH },
+    { label: 'International Flights', href: INTERNATIONAL_FLIGHT_PATH },
     { label: 'How It Works', href: `${HOME_PATH}#how-it-works` },
     { label: 'Testimonials', href: `${HOME_PATH}#testimonials` },
   ],
@@ -43,6 +46,7 @@ export const FOOTER_LINKS = {
     { label: 'Hotel Booking', href: `${SERVICES_PATH}#hotels` },
     { label: 'Points Redemption Help', href: `${SERVICES_PATH}#rewards` },
     { label: 'Trip Planning', href: `${SERVICES_PATH}#planning` },
+    { label: 'International Flights', href: INTERNATIONAL_FLIGHT_PATH },
   ],
   legal: LEGAL_LINKS,
 }

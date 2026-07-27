@@ -4,7 +4,6 @@ import Modal from '@/components/ui/Modal'
 import { COPY } from '@/constants/copy'
 import CallbackPrompt from '@/modules/callback/components/CallbackPrompt'
 import CallbackRequestForm from '@/modules/callback/components/CallbackRequestForm'
-import { useCallbackScrollTrigger } from '@/modules/callback/hooks/useCallbackScrollTrigger'
 
 function CallbackThankYou() {
   return (
@@ -14,16 +13,14 @@ function CallbackThankYou() {
   )
 }
 
-export default function CallbackRequestModal() {
-  const {
-    isPromptOpen,
-    isFormOpen,
-    isSuccessOpen,
-    openForm,
-    showSuccess,
-    closeAll,
-  } = useCallbackScrollTrigger()
-
+export default function CallbackRequestModal({
+  isPromptOpen,
+  isFormOpen,
+  isSuccessOpen,
+  openForm,
+  showSuccess,
+  closeAll,
+}) {
   const isOpen = isPromptOpen || isFormOpen || isSuccessOpen
 
   const title = isSuccessOpen

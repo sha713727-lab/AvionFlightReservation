@@ -15,6 +15,16 @@ export const HERO_BACKGROUND_SRC = AVION_HERO_BACKGROUND_SRC
 export const REWARDS_CABIN_IMAGE_SRC =
   'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&q=80'
 
+export const INTERNATIONAL_FLIGHT_HERO_IMAGE_SRC =
+  'https://images.unsplash.com/photo-1436491867331615-027857379939?w=1920&q=80'
+
+export const INTERNATIONAL_REGION_IMAGES = {
+  europe: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=900&q=80',
+  canada: 'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=900&q=80',
+  mexico: 'https://images.unsplash.com/photo-1518638150340-f706e86654de?w=900&q=80',
+  usa: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=900&q=80',
+}
+
 export const FLIGHT_BOOKING_SERVICE_IMAGE = flightBookingServiceImage.src
 export const HOTEL_BOOKING_SERVICE_IMAGE = hotelBookingServiceImage.src
 export const REWARD_TRAVEL_SERVICE_IMAGE = rewardTravelServiceImage.src

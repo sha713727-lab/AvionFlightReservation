@@ -3,6 +3,7 @@ export const SERVICES_PATH = '/services'
 export const ABOUT_PATH = '/about'
 export const CONTACT_PATH = '/contact'
 export const DESTINATIONS_PATH = '/destinations'
+export const INTERNATIONAL_FLIGHT_PATH = '/internationalFlight'
 export const PRIVACY_POLICY_PATH = '/privacy-policy'
 export const CANCELLATION_POLICY_PATH = '/cancellation-policy'
 export const TERMS_PATH = '/terms-and-conditions'
@@ -22,6 +23,7 @@ export const SITE_PATHS = [
   HOME_PATH,
   SERVICES_PATH,
   DESTINATIONS_PATH,
+  INTERNATIONAL_FLIGHT_PATH,
   ABOUT_PATH,
   CONTACT_PATH,
   PRIVACY_POLICY_PATH,

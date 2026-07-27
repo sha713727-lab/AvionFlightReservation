@@ -6,7 +6,9 @@ export const COPY = {
     bookConsultation: 'Talk with an expert',
     bookFreeConsultation: 'Talk with an expert',
     callNow: 'Call Now',
+    callBackRequest: 'Call Back Request',
     exploreServices: 'Explore our services',
+    callToBook: 'Call to book',
   },
   footer: {
     tagline: 'Your trusted travel partner for flight reservations and unforgettable journeys.',
@@ -196,6 +198,24 @@ export const COPY = {
     noticeLabel: 'Important Notice',
     noticeText:
       'We provide support based on available supplier information. Final prices, rules, and availability can change until the booking is confirmed.',
+  },
+  internationalFlight: {
+    badge: 'Independent Travel Agency',
+    titleLineOne: 'Book Your Flight',
+    titleLineTwo: 'By Phone.',
+    description:
+      'No websites. No bots. A real specialist answers, finds your best fare, and confirms your booking.',
+    availability: 'Available 7 days a week · Canada & USA',
+    regionsEyebrow: 'We book flights to',
+    regionsTitle: 'Popular international and domestic routes.',
+    regionsDescription:
+      'Tell us where you are headed — our specialists book Europe, Canada, Mexico, and United States routes by phone.',
+    stepsTitle: 'Three steps. That\'s it.',
+    stepsDescription: 'Call, share your trip details, and we confirm your booking.',
+    ctaTitle: 'Ready to fly?',
+    ctaDescription: 'Call now — we\'ll handle the rest.',
+    metaDescription:
+      'Book international and domestic flights by phone with Avion Flight Reservation. Independent specialists for Europe, Canada, Mexico, and USA routes. Call +1 877 702 9887.',
   },
   ...LEGAL_COPY,
 }

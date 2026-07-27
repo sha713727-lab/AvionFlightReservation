@@ -13,7 +13,7 @@ function pathMeta(path) {
     }
   }
 
-  if (path === '/services' || path === '/destinations') {
+  if (path === '/services' || path === '/destinations' || path === '/internationalFlight') {
     return {
       changeFrequency: SITEMAP_CHANGE_FREQ.primary,
       priority: SITEMAP_PRIORITY.primary,
