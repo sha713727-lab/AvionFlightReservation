@@ -11,6 +11,11 @@ ls -la deploy/certbot/conf/live/aviosupportdesk.com/ || true
 
 echo "==> switching to TLS active.conf and recreating nginx"
 cp deploy/nginx/aviosupportdesk.conf deploy/nginx/active.conf
+mkdir -p deploy/geo
+if [[ ! -s deploy/geo/blocked-cidrs.conf ]] || ! grep -qE '^[0-9a-fA-F:.]+/' deploy/geo/blocked-cidrs.conf; then
+  chmod +x deploy/scripts/build-geo-blocklist.sh || true
+  bash deploy/scripts/build-geo-blocklist.sh || true
+fi
 docker compose -f docker-compose.prod.yml --env-file deploy/.env.production up -d --force-recreate nginx
 
 sleep 2

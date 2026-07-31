@@ -1,0 +1,30 @@
+# ISO 3166-1 alpha-2 countries blocked at nginx.
+# Default is ALLOW the whole world (UK, Europe, USA, Canada, etc.).
+# Only the codes below are denied.
+#
+# South Asia
+IN
+AF
+BD
+PK
+LK
+NP
+BT
+MV
+#
+# Middle East
+AE
+SA
+KW
+QA
+BH
+OM
+IQ
+IR
+YE
+SY
+JO
+LB
+IL
+PS
+EG
