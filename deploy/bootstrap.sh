@@ -23,13 +23,6 @@ mkdir -p deploy/certbot/www deploy/certbot/conf
 cp deploy/nginx/aviosupportdesk.bootstrap.conf "$ACTIVE_CONF"
 
 echo "==> Building and starting stack (HTTP)..."
-mkdir -p deploy/geo
-if [[ ! -f deploy/geo/blocked-cidrs.conf ]]; then
-  printf '%s\n' '# placeholder until build-geo-blocklist.sh runs' > deploy/geo/blocked-cidrs.conf
-fi
-chmod +x deploy/scripts/build-geo-blocklist.sh deploy/apply-geo-access.sh 2>/dev/null || true
-bash deploy/scripts/build-geo-blocklist.sh || echo "WARN: geo blocklist build failed — site stays open worldwide until fixed"
-
 docker compose -f docker-compose.prod.yml --env-file "$ENV_FILE" up -d --build
 
 echo "==> Waiting for API via nginx..."
