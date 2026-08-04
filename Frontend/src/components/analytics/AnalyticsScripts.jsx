@@ -1,5 +1,9 @@
 import Script from 'next/script'
-import { CLARITY_PROJECT_ID, GA_MEASUREMENT_ID } from '@/constants/analytics'
+import {
+  CLARITY_PROJECT_ID,
+  GA_MEASUREMENT_ID,
+  GOOGLE_ADS_ID,
+} from '@/constants/analytics'
 
 export default function AnalyticsScripts() {
   return (
@@ -26,7 +30,8 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
           __html: `window.dataLayer=window.dataLayer||[];
 function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());
-gtag('config','${GA_MEASUREMENT_ID}');`,
+gtag('config','${GA_MEASUREMENT_ID}');
+gtag('config','${GOOGLE_ADS_ID}');`,
         }}
       />
     </>
