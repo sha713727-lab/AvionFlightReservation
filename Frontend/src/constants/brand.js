@@ -1,5 +1,7 @@
 export const AVION_LOGO_SRC = '/avion-logo.webp'
 export const AVION_FAVICON_SRC = '/favicon-32.png'
+export const AVION_FAVICON_48_SRC = '/favicon-48.png'
+export const AVION_FAVICON_192_SRC = '/favicon-192.png'
 export const AVION_APPLE_ICON_SRC = '/apple-touch-icon.png'
 
 export const BRAND_NAME = 'Avion'

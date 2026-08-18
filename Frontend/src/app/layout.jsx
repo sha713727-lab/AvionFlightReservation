@@ -9,6 +9,8 @@ import ConditionalFlightPathEffect from '@/components/effects/ConditionalFlightP
 import { SKIP_TO_CONTENT } from '@/constants/a11y'
 import {
   AVION_APPLE_ICON_SRC,
+  AVION_FAVICON_192_SRC,
+  AVION_FAVICON_48_SRC,
   AVION_FAVICON_SRC,
   BRAND_FULL_NAME,
 } from '@/constants/brand'
@@ -53,8 +55,12 @@ export const metadata = {
     canonical: SITE_URL,
   },
   icons: {
-    icon: [{ url: AVION_FAVICON_SRC, type: 'image/png', sizes: '32x32' }],
-    shortcut: AVION_FAVICON_SRC,
+    icon: [
+      { url: AVION_FAVICON_SRC, type: 'image/png', sizes: '32x32' },
+      { url: AVION_FAVICON_48_SRC, type: 'image/png', sizes: '48x48' },
+      { url: AVION_FAVICON_192_SRC, type: 'image/png', sizes: '192x192' },
+    ],
+    shortcut: AVION_FAVICON_48_SRC,
     apple: AVION_APPLE_ICON_SRC,
   },
   openGraph: {

@@ -26,7 +26,7 @@ async function toWebp(input, output, options) {
 async function toPng(input, output, size) {
   await sharp(input)
     .resize(size, size, { fit: 'cover' })
-    .png({ compressionLevel: 9, palette: true })
+    .png({ compressionLevel: 9 })
     .toFile(output)
 }
 
@@ -53,6 +53,8 @@ await toWebp(logoSource, path.join(publicDir, 'avion-logo.webp'), {
 })
 await toPng(logoSource, path.join(publicDir, 'apple-touch-icon.png'), 180)
 await toPng(logoSource, path.join(publicDir, 'favicon-32.png'), 32)
+await toPng(logoSource, path.join(publicDir, 'favicon-48.png'), 48)
+await toPng(logoSource, path.join(publicDir, 'favicon-192.png'), 192)
 await toPng(logoSource, path.join(publicDir, 'avion-favicon.png'), 48)
 
 console.log('Image optimization complete')
