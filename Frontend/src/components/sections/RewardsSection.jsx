@@ -1,7 +1,7 @@
 'use client'
 
 import { FaGift, FaPhone } from 'react-icons/fa'
-import Image from 'next/image'
+import OptimizedImage from '@/components/media/OptimizedImage'
 import { useState } from 'react'
 import Container from '@/components/ui/Container'
 import SectionHeading from '@/components/ui/SectionHeading'
@@ -49,7 +49,7 @@ function RewardsSection() {
             <FadeIn direction="left">
               <div className="group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 hover:scale-[1.02] hover:rotate-1 hover:shadow-xl">
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
-                  <Image
+                  <OptimizedImage
                     src={REWARDS_CABIN_IMAGE_SRC}
                     alt={COPY.rewards.imageAlt}
                     fill

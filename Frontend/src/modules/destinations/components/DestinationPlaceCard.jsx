@@ -1,11 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import { FadeIn } from '@/components/animations/FadeIn'
+import LazyVideo from '@/components/media/LazyVideo'
+import OptimizedImage from '@/components/media/OptimizedImage'
 import { COPY } from '@/constants/copy'
 import { cn } from '@/utils/cn'
-import { isUploadMediaPath } from '@/utils/mediaUrl'
 
 export default function DestinationPlaceCard({
   name,
@@ -20,7 +20,6 @@ export default function DestinationPlaceCard({
   const [hasError, setHasError] = useState(false)
   const isVideo = mediaType === 'video' && Boolean(mediaUrl)
   const imageSrc = (mediaType === 'image' && mediaUrl ? mediaUrl : null) || image || mediaUrl || ''
-  const useNativeImg = isUploadMediaPath(imageSrc)
 
   return (
     <article
@@ -31,38 +30,24 @@ export default function DestinationPlaceCard({
       )}
     >
       {isVideo ? (
-        <video
+        <LazyVideo
           src={mediaUrl}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          aria-label={alt}
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          label={alt}
+          className="transition-transform duration-700 ease-out group-hover:scale-105"
         />
       ) : !hasError && imageSrc ? (
-        useNativeImg ? (
-          <img
-            src={imageSrc}
-            alt={alt}
-            onError={() => setHasError(true)}
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-          />
-        ) : (
-          <Image
-            src={imageSrc}
-            alt={alt}
-            fill
-            sizes={
-              featured
-                ? '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
-                : '(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw'
-            }
-            onError={() => setHasError(true)}
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-          />
-        )
+        <OptimizedImage
+          src={imageSrc}
+          alt={alt}
+          fill
+          sizes={
+            featured
+              ? '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
+              : '(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw'
+          }
+          onError={() => setHasError(true)}
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        />
       ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent" />
       )}
@@ -71,7 +56,7 @@ export default function DestinationPlaceCard({
 
       <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
         <FadeIn direction="up">
-          <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/65">
+          <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/80">
             {tierTitle}
           </p>
         </FadeIn>
@@ -83,7 +68,7 @@ export default function DestinationPlaceCard({
         >
           {name}
         </h3>
-        <p className="mt-2 text-sm text-white/80">
+        <p className="mt-2 text-sm text-white/85">
           {COPY.destinations.redeemFromLabel}{' '}
           <span className="font-semibold text-secondary">
             {points.toLocaleString()} {COPY.destinations.pointsLabel}

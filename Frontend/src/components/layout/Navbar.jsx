@@ -78,7 +78,7 @@ export default function Navbar({ overDarkHero = false }) {
                 href={phoneHref}
                 aria-label={`${COPY.cta.callNow}: ${phoneNumber}`}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-sm shadow-accent/20 lg:hidden"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-accent text-white shadow-sm shadow-accent/20 lg:hidden"
               >
                 <HiPhone className="h-4 w-4 shrink-0" aria-hidden />
               </motion.a>
@@ -86,7 +86,10 @@ export default function Navbar({ overDarkHero = false }) {
               <motion.button
                 type="button"
                 whileTap={{ scale: 0.9 }}
-                className={cn('p-2 lg:hidden', useLightNav ? 'text-white' : 'text-primary')}
+                className={cn(
+                  'inline-flex h-11 w-11 items-center justify-center lg:hidden',
+                  useLightNav ? 'text-white' : 'text-primary',
+                )}
                 onClick={() => setMobileOpen((open) => !open)}
                 aria-expanded={mobileOpen}
                 aria-label={mobileOpen ? 'Close menu' : 'Open menu'}

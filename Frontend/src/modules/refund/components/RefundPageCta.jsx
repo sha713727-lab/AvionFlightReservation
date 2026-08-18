@@ -23,7 +23,7 @@ export default function RefundPageCta() {
         <FadeIn>
           <div className="mx-auto flex max-w-4xl flex-col items-start justify-between gap-8 rounded-[2rem] bg-primary px-6 py-10 text-white sm:px-10 lg:flex-row lg:items-center lg:px-12">
             <div className="max-w-xl">
-              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-white/50">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-white/75">
                 {COPY.refund.contactEyebrow}
               </p>
               <h2

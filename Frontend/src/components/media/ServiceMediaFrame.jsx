@@ -1,8 +1,8 @@
 'use client'
 
-import Image from 'next/image'
+import OptimizedImage from '@/components/media/OptimizedImage'
+import LazyVideo from '@/components/media/LazyVideo'
 import { cn } from '@/utils/cn'
-import { isUploadMediaPath } from '@/utils/mediaUrl'
 
 export default function ServiceMediaFrame({
   mediaType = 'image',
@@ -14,10 +14,11 @@ export default function ServiceMediaFrame({
   className,
   imageClassName,
   sizes = '(max-width: 1024px) 100vw, 50vw',
+  priority = false,
 }) {
   const isVideo = mediaType === 'video' && Boolean(mediaUrl)
   const imageSrc = image || mediaUrl || ''
-  const useNativeImg = isUploadMediaPath(imageSrc)
+  const label = imageAlt || title
 
   return (
     <div
@@ -25,35 +26,14 @@ export default function ServiceMediaFrame({
       style={{ aspectRatio: aspect }}
     >
       {isVideo ? (
-        <video
-          src={mediaUrl}
-          autoPlay
-          muted
-          loop
-          playsInline
-          controls
-          preload="auto"
-          aria-label={imageAlt || title}
-          className={cn(
-            'absolute inset-0 h-full w-full object-cover object-center',
-            imageClassName,
-          )}
-        />
-      ) : useNativeImg ? (
-        <img
-          src={imageSrc}
-          alt={imageAlt}
-          className={cn(
-            'absolute inset-0 h-full w-full object-cover object-center',
-            imageClassName,
-          )}
-        />
+        <LazyVideo src={mediaUrl} label={label} className={imageClassName} />
       ) : imageSrc ? (
-        <Image
+        <OptimizedImage
           src={imageSrc}
-          alt={imageAlt}
+          alt={label}
           fill
           sizes={sizes}
+          priority={priority}
           className={cn('object-cover object-center', imageClassName)}
         />
       ) : null}

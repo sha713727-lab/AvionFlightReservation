@@ -106,7 +106,7 @@ export default function Modal({
             <button
               type="button"
               onClick={onClose}
-              className="absolute top-4 right-4 rounded-lg p-2 text-text-secondary transition-colors hover:bg-background hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              className="absolute top-4 right-4 inline-flex h-11 w-11 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-background hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               aria-label="Close dialog"
             >
               <IoClose className="h-5 w-5" />

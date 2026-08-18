@@ -24,7 +24,7 @@ export default function LayeredSectionHeading({
           className={cn(
             'relative z-10 mb-5 inline-flex items-center gap-3 text-xs font-medium uppercase tracking-[0.2em]',
             align === 'center' && 'justify-center',
-            dark ? 'text-white/50' : 'text-text-muted',
+              dark ? 'text-white/75' : 'text-text-muted',
           )}
         >
           <span
@@ -60,10 +60,10 @@ export default function LayeredSectionHeading({
         </span>
 
         <h2
-          id={accentTitle ? undefined : titleId}
+          id={titleId}
           className={cn(
             'relative z-10 font-semibold uppercase tracking-tight',
-            'text-[clamp(2rem,5vw,3.25rem)] transition-all duration-300',
+            'text-[clamp(2rem,5vw,3.25rem)] transition-transform duration-300',
             'group-hover/layered:-translate-y-0.5',
             dark
               ? 'text-white group-hover/layered:text-white/90'
@@ -75,22 +75,22 @@ export default function LayeredSectionHeading({
       </div>
 
       {accentTitle && (
-        <h2
-          id={titleId}
+        <p
           className={cn(
-            'relative z-10 mt-6 font-semibold',
+            'relative z-10 mt-6 font-heading font-semibold',
             dark ? 'text-secondary' : 'text-accent',
+            'text-[clamp(1.35rem,2.5vw,1.75rem)]',
           )}
         >
           {accentTitle}
-        </h2>
+        </p>
       )}
 
       {description && (
         <p
           className={cn(
             'relative z-10 mx-auto mt-4 max-w-2xl text-base leading-relaxed transition-colors duration-300',
-            dark ? 'text-white/60 group-hover/layered:text-white/70' : 'text-text-secondary group-hover/layered:text-text',
+            dark ? 'text-white/80 group-hover/layered:text-white/90' : 'text-text-secondary group-hover/layered:text-text',
           )}
         >
           {description}

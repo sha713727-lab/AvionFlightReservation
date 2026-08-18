@@ -3,6 +3,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { API_MESSAGES } from '../constants/messages.js'
 import { validationError } from './errors.js'
+import { optimizeImageUpload } from './optimize-image.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -127,8 +128,15 @@ export async function writeServiceMediaFile(
   }
 
   await ensureServiceUploadsDir()
-  const storedFilename = buildServiceMediaFilename(serviceId, ext)
-  await writeFile(path.join(SERVICE_UPLOADS_DIR, storedFilename), buffer)
+  let storedExt = ext
+  let storedBuffer = buffer
+  if (mediaType === 'image') {
+    const optimized = await optimizeImageUpload(buffer)
+    storedExt = optimized.ext
+    storedBuffer = optimized.buffer
+  }
+  const storedFilename = buildServiceMediaFilename(serviceId, storedExt)
+  await writeFile(path.join(SERVICE_UPLOADS_DIR, storedFilename), storedBuffer)
 
   return {
     mediaUrl: publicUrlForFilename(storedFilename),

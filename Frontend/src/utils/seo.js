@@ -5,7 +5,7 @@ import {
   PHONE_NUMBER,
   SITE_URL,
 } from '@/constants/contact'
-import { AVION_HERO_BACKGROUND_SRC } from '@/constants/images'
+import { AVION_OG_IMAGE_SRC } from '@/constants/images'
 
 export const SEO_ROBOTS_INDEX = {
   index: true,
@@ -21,7 +21,7 @@ export function buildPageMetadata({
   description,
   path,
   keywords,
-  ogImage = AVION_HERO_BACKGROUND_SRC,
+  ogImage = AVION_OG_IMAGE_SRC,
 }) {
   const canonical = `${SITE_URL}${path}`
 

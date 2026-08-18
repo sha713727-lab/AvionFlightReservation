@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 const root = path.dirname(fileURLToPath(import.meta.url))
 
 const STATIC_CACHE = 'public, max-age=31536000, immutable'
-const ASSET_CACHE = 'public, max-age=86400, stale-while-revalidate=604800'
+const ASSET_CACHE = 'public, max-age=31536000, stale-while-revalidate=86400'
 
 const nextConfig = {
   output: 'standalone',
@@ -15,10 +15,27 @@ const nextConfig = {
   },
   images: {
     formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 2678400,
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [32, 48, 64, 96, 128, 256, 384],
+    qualities: [70, 75],
+    localPatterns: [
+      { pathname: '/**' },
+    ],
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'aviosupportdesk.com',
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.aviosupportdesk.com',
+        pathname: '/uploads/**',
       },
       {
         protocol: 'http',
@@ -68,6 +85,18 @@ const nextConfig = {
     return [
       {
         source: '/_next/static/:path*',
+        headers: [{ key: 'Cache-Control', value: STATIC_CACHE }],
+      },
+      {
+        source: '/:path*.webp',
+        headers: [{ key: 'Cache-Control', value: ASSET_CACHE }],
+      },
+      {
+        source: '/:path*.avif',
+        headers: [{ key: 'Cache-Control', value: ASSET_CACHE }],
+      },
+      {
+        source: '/:path*.woff2',
         headers: [{ key: 'Cache-Control', value: STATIC_CACHE }],
       },
       {

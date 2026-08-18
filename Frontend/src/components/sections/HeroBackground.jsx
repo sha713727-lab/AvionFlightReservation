@@ -1,15 +1,16 @@
-import Image from 'next/image'
+import OptimizedImage from '@/components/media/OptimizedImage'
 import { HERO_BACKGROUND_SRC } from '@/constants/images'
 
 export default function HeroBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden" aria-hidden>
-      <Image
+      <OptimizedImage
         src={HERO_BACKGROUND_SRC}
         alt=""
         fill
         priority
-        sizes="100vw"
+        quality={70}
+        sizes="(max-width: 768px) 100vw, 1920px"
         className="object-cover object-[62%_center] md:object-[68%_center]"
       />
 

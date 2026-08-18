@@ -31,7 +31,7 @@ export default function DestinationsPageHero({ cityNames = [] }) {
       <Container className="relative z-10">
         <div className="mx-auto max-w-4xl text-center">
           <FadeIn>
-            <p className="mb-5 text-xs font-medium uppercase tracking-[0.22em] text-white/50">
+            <p className="mb-5 text-xs font-medium uppercase tracking-[0.22em] text-white/75">
               {COPY.destinations.pageEyebrow}
             </p>
           </FadeIn>

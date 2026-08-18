@@ -63,7 +63,7 @@ export default function ContactPageHero() {
 
               <div className="relative z-10 space-y-6">
                 <div>
-                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/50">
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/75">
                     {CONTACT_LABELS.phoneSupport}
                   </p>
                   <a
@@ -75,7 +75,7 @@ export default function ContactPageHero() {
                 </div>
 
                 <div>
-                  <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/45">
+                  <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/75">
                     {CONTACT_LABELS.reservationEmail}
                   </p>
                   <a
@@ -88,7 +88,7 @@ export default function ContactPageHero() {
                 </div>
 
                 <div>
-                  <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/45">
+                  <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/75">
                     {CONTACT_LABELS.mailingAddress}
                   </p>
                   <address className="mt-2 not-italic text-sm leading-relaxed text-white/80">
@@ -101,7 +101,7 @@ export default function ContactPageHero() {
                 </div>
 
                 <div>
-                  <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/45">
+                  <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/75">
                     {CONTACT_LABELS.supportHours}
                   </p>
                   <p className="mt-2 whitespace-nowrap text-sm leading-relaxed text-white/80">

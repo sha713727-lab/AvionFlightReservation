@@ -26,7 +26,7 @@ export default function FooterContactDetails() {
     <div className="rounded-2xl border border-white/15 bg-white/5 p-5 sm:p-6">
       <div className="space-y-5">
         <div>
-          <p className="mb-1.5 text-xs font-medium uppercase tracking-[0.16em] text-white/40">
+          <p className="mb-1.5 text-xs font-medium uppercase tracking-[0.16em] text-white/75">
             {CONTACT_LABELS.mailingAddress}
           </p>
           <address className="not-italic text-sm font-medium leading-relaxed text-white">
@@ -35,7 +35,7 @@ export default function FooterContactDetails() {
         </div>
 
         <div className="space-y-1.5">
-          <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/40">
+          <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/75">
             {CONTACT_LABELS.phoneSupport}
           </p>
           {supportPhones.map((phone) => (
@@ -46,7 +46,7 @@ export default function FooterContactDetails() {
         </div>
 
         <div>
-          <p className="mb-1.5 text-xs font-medium uppercase tracking-[0.16em] text-white/40">
+          <p className="mb-1.5 text-xs font-medium uppercase tracking-[0.16em] text-white/75">
             {CONTACT_LABELS.reservationEmail}
           </p>
           <a
@@ -59,7 +59,7 @@ export default function FooterContactDetails() {
         </div>
 
         <div>
-          <p className="mb-1.5 text-xs font-medium uppercase tracking-[0.16em] text-white/40">
+          <p className="mb-1.5 text-xs font-medium uppercase tracking-[0.16em] text-white/75">
             {CONTACT_LABELS.supportHours}
           </p>
           <p className="text-sm font-medium leading-relaxed text-white">{SUPPORT_HOURS}</p>

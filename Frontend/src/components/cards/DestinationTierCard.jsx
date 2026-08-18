@@ -1,35 +1,24 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import { COPY } from '@/constants/copy'
 import { cn } from '@/utils/cn'
-import { isUploadMediaPath } from '@/utils/mediaUrl'
+import OptimizedImage from '@/components/media/OptimizedImage'
 
 function DestinationImage({ name, image, alt }) {
   const [hasError, setHasError] = useState(false)
-  const useNativeImg = isUploadMediaPath(image)
 
   return (
     <div className="relative h-full w-full">
       {!hasError && image ? (
-        useNativeImg ? (
-          <img
-            src={image}
-            alt={alt}
-            onError={() => setHasError(true)}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        ) : (
-          <Image
-            src={image}
-            alt={alt}
-            fill
-            sizes="(max-width: 768px) 50vw, 25vw"
-            onError={() => setHasError(true)}
-            className="object-cover"
-          />
-        )
+        <OptimizedImage
+          src={image}
+          alt={alt}
+          fill
+          sizes="(max-width: 768px) 50vw, 25vw"
+          onError={() => setHasError(true)}
+          className="object-cover"
+        />
       ) : (
         <div className="flex h-full w-full items-end bg-gradient-to-br from-primary to-accent/90 p-4">
           <span className="text-base font-medium text-white">{name}</span>

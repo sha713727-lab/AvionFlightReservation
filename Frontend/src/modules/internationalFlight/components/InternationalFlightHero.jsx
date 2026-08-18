@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import OptimizedImage from '@/components/media/OptimizedImage'
 import { FaPhone, FaPlane } from 'react-icons/fa'
 import Button from '@/components/buttons/Button'
 import Container from '@/components/ui/Container'
@@ -19,12 +19,13 @@ export default function InternationalFlightHero() {
       className="relative flex min-h-[min(100svh,52rem)] items-center overflow-hidden bg-primary pt-28 pb-16 sm:pt-32 lg:pt-36 lg:pb-24"
       aria-labelledby="international-flight-heading"
     >
-      <Image
+      <OptimizedImage
         src={INTERNATIONAL_FLIGHT_HERO_IMAGE_SRC}
         alt=""
         fill
         priority
-        sizes="100vw"
+        quality={70}
+        sizes="(max-width: 768px) 100vw, 1920px"
         className="object-cover object-center"
       />
       <div className="absolute inset-0 bg-primary/75" aria-hidden />
@@ -55,7 +56,7 @@ export default function InternationalFlightHero() {
           </FadeIn>
 
           <FadeIn delay={0.16}>
-            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
+            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
               {COPY.internationalFlight.description}
             </p>
           </FadeIn>
@@ -75,7 +76,7 @@ export default function InternationalFlightHero() {
           </FadeIn>
 
           <FadeIn delay={0.32}>
-            <p className="mt-6 text-sm text-white/55">{COPY.internationalFlight.availability}</p>
+            <p className="mt-6 text-sm text-white/75">{COPY.internationalFlight.availability}</p>
           </FadeIn>
         </div>
       </Container>

@@ -22,7 +22,7 @@ export default function SectionHeading({
           className={cn(
             'mb-5 inline-flex items-center gap-3 text-xs font-medium uppercase tracking-[0.2em]',
             align === 'center' && 'justify-center',
-            dark ? 'text-white/50' : 'text-text-muted',
+            dark ? 'text-white/75' : 'text-text-muted',
           )}
         >
           <span
@@ -48,7 +48,7 @@ export default function SectionHeading({
       </h2>
       {description && (
         <p
-          className={cn('text-base leading-relaxed', dark ? 'text-white/60' : 'text-text-secondary')}
+          className={cn('text-base leading-relaxed', dark ? 'text-white/80' : 'text-text-secondary')}
         >
           {description}
         </p>

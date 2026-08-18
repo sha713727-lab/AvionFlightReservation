@@ -1,3 +1,5 @@
+'use client'
+
 import { FaPhone } from 'react-icons/fa'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'

@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import OptimizedImage from '@/components/media/OptimizedImage'
 import { HiArrowRight } from 'react-icons/hi'
 import Container from '@/components/ui/Container'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animations/FadeIn'
@@ -18,7 +18,7 @@ export default function InternationalFlightRegions() {
     >
       <Container>
         <FadeIn className="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
-          <p className="mb-3 text-xs font-medium uppercase tracking-[0.22em] text-white/45">
+          <p className="mb-3 text-xs font-medium uppercase tracking-[0.22em] text-white/75">
             {COPY.internationalFlight.regionsEyebrow}
           </p>
           <h2
@@ -27,7 +27,7 @@ export default function InternationalFlightRegions() {
           >
             {COPY.internationalFlight.regionsTitle}
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-white/65">
+          <p className="mt-4 text-base leading-relaxed text-white/80">
             {COPY.internationalFlight.regionsDescription}
           </p>
         </FadeIn>
@@ -41,7 +41,7 @@ export default function InternationalFlightRegions() {
                 className="group relative flex min-h-[14rem] w-full overflow-hidden rounded-2xl text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:min-h-[16rem]"
                 aria-label={`${COPY.cta.callToBook}: ${region.name}`}
               >
-                <Image
+                <OptimizedImage
                   src={region.imageSrc}
                   alt={region.imageAlt}
                   fill

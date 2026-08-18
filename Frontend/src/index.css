@@ -28,8 +28,8 @@
 
   /* Text */
   --color-text: #111827;
-  --color-text-secondary: #6b7280;
-  --color-text-muted: #94a3b8;
+  --color-text-secondary: #4b5563;
+  --color-text-muted: #475569;
 
   --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.06);
   --shadow-card-hover: 0 8px 30px rgba(15, 23, 42, 0.08);
@@ -69,7 +69,7 @@
     color: var(--color-accent);
     line-height: 1.12;
     letter-spacing: -0.03em;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   h1 { font-size: clamp(2.75rem, 6vw, 4.5rem); }
@@ -92,6 +92,35 @@
 @keyframes partner-marquee {
   from { transform: translate3d(0, 0, 0); }
   to { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes hero-copy-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes hero-float {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, -12px, 0); }
+}
+
+.hero-copy-in {
+  animation: hero-copy-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-copy-in:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.hero-float {
+  animation: hero-float 4.5s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
 .partner-marquee {
@@ -278,8 +307,15 @@
     .partner-marquee-track,
     .flight-plane-svg,
     .flight-route-line,
-    .floating-action-enter {
+    .floating-action-enter,
+    .hero-copy-in,
+    .hero-float {
       animation: none !important;
+    }
+
+    .hero-copy-in {
+      opacity: 1;
+      transform: none;
     }
   }
 }

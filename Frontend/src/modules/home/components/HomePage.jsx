@@ -1,21 +1,23 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import FloatingActions from '@/components/layout/FloatingActions'
 import HeroSection from '@/components/sections/HeroSection'
-import BrandsSection from '@/components/sections/BrandsSection'
-import ServicesSection from '@/components/sections/ServicesSection'
-import WhyUsSection from '@/components/sections/WhyUsSection'
-import HowItWorksSection from '@/components/sections/HowItWorksSection'
-import DestinationsSection from '@/components/sections/DestinationsSection'
-import TestimonialsSection from '@/components/sections/TestimonialsSection'
-import RedeemCtaSection from '@/components/sections/RedeemCtaSection'
-import FAQSection from '@/components/sections/FAQSection'
 import CatalogStatus from '@/components/ui/CatalogStatus'
 import CallExpertProvider from '@/modules/call/components/CallExpertProvider'
 import { useHomeCatalog } from '@/hooks/useHomeCatalog'
 import { CATALOG_UI } from '@/constants/catalogUi'
+
+const DestinationsSection = dynamic(() => import('@/components/sections/DestinationsSection'))
+const BrandsSection = dynamic(() => import('@/components/sections/BrandsSection'))
+const ServicesSection = dynamic(() => import('@/components/sections/ServicesSection'))
+const WhyUsSection = dynamic(() => import('@/components/sections/WhyUsSection'))
+const HowItWorksSection = dynamic(() => import('@/components/sections/HowItWorksSection'))
+const TestimonialsSection = dynamic(() => import('@/components/sections/TestimonialsSection'))
+const FAQSection = dynamic(() => import('@/components/sections/FAQSection'))
+const RedeemCtaSection = dynamic(() => import('@/components/sections/RedeemCtaSection'))
 
 export default function HomePage({
   services,

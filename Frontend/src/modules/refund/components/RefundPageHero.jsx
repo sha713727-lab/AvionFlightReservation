@@ -18,7 +18,7 @@ export default function RefundPageHero() {
       <Container className="relative z-10">
         <div className="grid grid-cols-1 items-end gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
           <FadeIn>
-            <p className="mb-4 text-xs font-medium uppercase tracking-[0.22em] text-white/50">
+            <p className="mb-4 text-xs font-medium uppercase tracking-[0.22em] text-white/75">
               {COPY.refund.pageEyebrow}
             </p>
             <h1
@@ -30,7 +30,7 @@ export default function RefundPageHero() {
             <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
               {COPY.refund.pageDescription}
             </p>
-            <p className="mt-6 text-sm text-white/45">
+            <p className="mt-6 text-sm text-white/75">
               <time dateTime={COPY.refund.lastUpdatedIso}>
                 {COPY.refund.lastUpdatedLabel}: {COPY.refund.lastUpdatedDate}
               </time>

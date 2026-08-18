@@ -14,7 +14,7 @@ export default function AboutMission() {
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <FadeIn>
-            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-white/50">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-white/75">
               {COPY.about.missionEyebrow}
             </p>
             <h2

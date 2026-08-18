@@ -15,12 +15,12 @@ export default function FooterNavColumn({ title, links }) {
         onClick={() => setIsOpen((current) => !current)}
         className="flex w-full items-center justify-between py-3 text-left sm:pointer-events-none sm:mb-3 sm:py-0"
       >
-        <h4 className="text-xs font-medium uppercase tracking-[0.15em] text-white/40">
+        <p className="text-xs font-medium uppercase tracking-[0.15em] text-white/75">
           {title}
-        </h4>
+        </p>
         <HiChevronDown
           className={cn(
-            'h-5 w-5 text-white/50 transition-transform duration-200 sm:hidden',
+            'h-5 w-5 text-white/75 transition-transform duration-200 sm:hidden',
             isOpen && 'rotate-180',
           )}
           aria-hidden
@@ -37,7 +37,7 @@ export default function FooterNavColumn({ title, links }) {
       >
         {links.map((link) => (
           <li key={link.label}>
-            <a href={link.href} className="footer-link text-sm text-white/60">
+            <a href={link.href} className="footer-link text-sm text-white/80">
               {link.label}
             </a>
           </li>

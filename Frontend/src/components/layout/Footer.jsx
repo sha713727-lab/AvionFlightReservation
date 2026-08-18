@@ -23,7 +23,7 @@ export default function Footer() {
             >
               <AvionLogo size="lg" tone="dark" hideName />
             </a>
-            <p className="max-w-xs text-sm leading-relaxed text-white/60">
+            <p className="max-w-xs text-sm leading-relaxed text-white/75">
               {COPY.footer.tagline}
             </p>
           </FadeIn>
@@ -40,16 +40,16 @@ export default function Footer() {
         </div>
 
         <div id="disclaimer" className="scroll-mt-28 border-t border-white/10 pt-5">
-          <h3 className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-white">
+          <h2 className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-white">
             {COPY.footer.disclaimerTitle}
-          </h3>
-          <p className="max-w-4xl text-xs leading-relaxed text-white/45">
+          </h2>
+          <p className="max-w-4xl text-xs leading-relaxed text-white/70">
             {COPY.footer.disclaimer}
           </p>
         </div>
 
         <div className="mt-6 border-t border-white/10">
-          <p className="py-5 text-center text-xs leading-relaxed tracking-wide text-white/55 sm:text-sm">
+          <p className="py-5 text-center text-xs leading-relaxed tracking-wide text-white/70 sm:text-sm">
             {COPY.footer.copyrightPrefix} {new Date().getFullYear()}{' '}
             {COPY.footer.copyrightBrand}. {COPY.footer.rightsReserved}
           </p>

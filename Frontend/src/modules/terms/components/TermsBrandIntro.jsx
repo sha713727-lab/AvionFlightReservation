@@ -27,7 +27,7 @@ export default function TermsBrandIntro() {
               </div>
 
               <div className="shrink-0 rounded-2xl border border-white/15 bg-white/5 px-6 py-5 lg:max-w-xs">
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-white/45">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-white/75">
                   {BRAND_FULL_NAME}
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-white/75">

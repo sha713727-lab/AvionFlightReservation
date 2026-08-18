@@ -1,6 +1,5 @@
 import '@/index.css'
-import { Outfit } from 'next/font/google'
-import AnalyticsScripts from '@/components/analytics/AnalyticsScripts'
+import localFont from 'next/font/local'
 import ConditionalAnalytics from '@/components/analytics/ConditionalAnalytics'
 import {
   GoogleTagManager,
@@ -8,22 +7,32 @@ import {
 } from '@/components/analytics/GoogleTagManager'
 import ConditionalFlightPathEffect from '@/components/effects/ConditionalFlightPathEffect'
 import { SKIP_TO_CONTENT } from '@/constants/a11y'
-import { AVION_FAVICON_SRC, AVION_LOGO_SRC, BRAND_FULL_NAME } from '@/constants/brand'
+import {
+  AVION_APPLE_ICON_SRC,
+  AVION_FAVICON_SRC,
+  BRAND_FULL_NAME,
+} from '@/constants/brand'
 import {
   CONTACT_EMAILS,
   PHONE_NUMBER,
   SITE_DESCRIPTION,
   SITE_URL,
 } from '@/constants/contact'
-import { AVION_HERO_BACKGROUND_SRC } from '@/constants/images'
+import { AVION_OG_IMAGE_SRC } from '@/constants/images'
 import { DEFAULT_LOCALE } from '@/constants/locales'
 import CallbackRequestProvider from '@/modules/callback/components/CallbackRequestProvider'
 import ContactSettingsProvider from '@/modules/contact/components/ContactSettingsProvider'
 
-const outfit = Outfit({
-  subsets: ['latin'],
+const outfit = localFont({
+  src: [
+    { path: '../../public/fonts/Outfit-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/Outfit-Bold.woff2', weight: '700', style: 'normal' },
+  ],
   display: 'swap',
   variable: '--font-outfit',
+  preload: true,
+  fallback: ['Arial', 'sans-serif'],
+  adjustFontFallback: 'Arial',
 })
 
 export const metadata = {
@@ -44,22 +53,22 @@ export const metadata = {
     canonical: SITE_URL,
   },
   icons: {
-    icon: AVION_FAVICON_SRC,
+    icon: [{ url: AVION_FAVICON_SRC, type: 'image/png', sizes: '32x32' }],
     shortcut: AVION_FAVICON_SRC,
-    apple: AVION_LOGO_SRC,
+    apple: AVION_APPLE_ICON_SRC,
   },
   openGraph: {
     type: 'website',
     url: SITE_URL,
     title: `${BRAND_FULL_NAME} — Book Flights by Phone`,
     description: SITE_DESCRIPTION,
-    images: [AVION_HERO_BACKGROUND_SRC],
+    images: [AVION_OG_IMAGE_SRC],
   },
   twitter: {
     card: 'summary_large_image',
     title: `${BRAND_FULL_NAME} — Book Flights by Phone`,
     description: SITE_DESCRIPTION,
-    images: [AVION_HERO_BACKGROUND_SRC],
+    images: [AVION_OG_IMAGE_SRC],
   },
 }
 
@@ -87,7 +96,6 @@ export default function RootLayout({ children }) {
         <ConditionalAnalytics>
           <GoogleTagManagerNoscript />
           <GoogleTagManager />
-          <AnalyticsScripts />
         </ConditionalAnalytics>
         <a href="#main-content" className="skip-link">
           {SKIP_TO_CONTENT}

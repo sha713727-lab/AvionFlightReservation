@@ -1,36 +1,40 @@
-import flightBookingServiceImage from '@/assets/images/flightBookingService.png'
-import hotelBookingServiceImage from '@/assets/images/hotelBookingService.png'
-import rewardTravelServiceImage from '@/assets/images/rewardTravelService.png'
-import flightChangeServiceImage from '@/assets/images/flightChangeService.jpg'
-import cancellationServiceImage from '@/assets/images/cancellationService.png'
-import seatSelectionServiceImage from '@/assets/images/seatSelectionService.jpg'
-import baggageServiceImage from '@/assets/images/baggageService.png'
-import tripPlanningServiceImage from '@/assets/images/tripPlanningService.png'
-import vacationPackageServiceImage from '@/assets/images/vacationPackageService.jpg'
+import flightBookingServiceImage from '@/assets/images/flightBookingService.webp'
+import hotelBookingServiceImage from '@/assets/images/hotelBookingService.webp'
+import rewardTravelServiceImage from '@/assets/images/rewardTravelService.webp'
+import flightChangeServiceImage from '@/assets/images/flightChangeService.webp'
+import cancellationServiceImage from '@/assets/images/cancellationService.webp'
+import seatSelectionServiceImage from '@/assets/images/seatSelectionService.webp'
+import baggageServiceImage from '@/assets/images/baggageService.webp'
+import tripPlanningServiceImage from '@/assets/images/tripPlanningService.webp'
+import vacationPackageServiceImage from '@/assets/images/vacationPackageService.webp'
 
-export const AVION_HERO_BACKGROUND_SRC = '/avion-hero-background.png'
+export const AVION_HERO_BACKGROUND_SRC = '/avion-hero-background.webp'
+export const AVION_OG_IMAGE_SRC = '/avion-hero-background.png'
 
 export const HERO_BACKGROUND_SRC = AVION_HERO_BACKGROUND_SRC
 
 export const REWARDS_CABIN_IMAGE_SRC =
-  'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&q=80'
+  'https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=800&q=70'
 
 export const INTERNATIONAL_FLIGHT_HERO_IMAGE_SRC =
-  'https://images.unsplash.com/photo-1436491867331615-027857379939?w=1920&q=80'
+  'https://images.unsplash.com/photo-1436491867331615-027857379939?auto=format&fit=crop&w=1280&q=70'
 
 export const INTERNATIONAL_REGION_IMAGES = {
-  europe: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=900&q=80',
-  canada: 'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=900&q=80',
-  mexico: 'https://images.unsplash.com/photo-1518638150340-f706e86654de?w=900&q=80',
-  usa: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=900&q=80',
+  europe:
+    'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=70',
+  canada:
+    'https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=800&q=70',
+  mexico:
+    'https://images.unsplash.com/photo-1518638150340-f706e86654de?auto=format&fit=crop&w=800&q=70',
+  usa: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=70',
 }
 
-export const FLIGHT_BOOKING_SERVICE_IMAGE = flightBookingServiceImage.src
-export const HOTEL_BOOKING_SERVICE_IMAGE = hotelBookingServiceImage.src
-export const REWARD_TRAVEL_SERVICE_IMAGE = rewardTravelServiceImage.src
-export const FLIGHT_CHANGE_SERVICE_IMAGE = flightChangeServiceImage.src
-export const CANCELLATION_SERVICE_IMAGE = cancellationServiceImage.src
-export const SEAT_SELECTION_SERVICE_IMAGE = seatSelectionServiceImage.src
-export const BAGGAGE_SERVICE_IMAGE = baggageServiceImage.src
-export const TRIP_PLANNING_SERVICE_IMAGE = tripPlanningServiceImage.src
-export const VACATION_PACKAGE_SERVICE_IMAGE = vacationPackageServiceImage.src
+export const FLIGHT_BOOKING_SERVICE_IMAGE = flightBookingServiceImage
+export const HOTEL_BOOKING_SERVICE_IMAGE = hotelBookingServiceImage
+export const REWARD_TRAVEL_SERVICE_IMAGE = rewardTravelServiceImage
+export const FLIGHT_CHANGE_SERVICE_IMAGE = flightChangeServiceImage
+export const CANCELLATION_SERVICE_IMAGE = cancellationServiceImage
+export const SEAT_SELECTION_SERVICE_IMAGE = seatSelectionServiceImage
+export const BAGGAGE_SERVICE_IMAGE = baggageServiceImage
+export const TRIP_PLANNING_SERVICE_IMAGE = tripPlanningServiceImage
+export const VACATION_PACKAGE_SERVICE_IMAGE = vacationPackageServiceImage

@@ -2,6 +2,7 @@ import { mkdir, unlink, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { API_MESSAGES } from '../constants/messages.js'
 import { validationError } from './errors.js'
+import { optimizeImageUpload } from './optimize-image.js'
 import {
   extensionForMime,
   maxBytesForMediaType,
@@ -73,8 +74,15 @@ export async function writePlaceMediaFile(
   }
 
   await ensurePlaceUploadsDir()
-  const storedFilename = buildPlaceMediaFilename(placeId, ext)
-  await writeFile(path.join(PLACE_UPLOADS_DIR, storedFilename), buffer)
+  let storedExt = ext
+  let storedBuffer = buffer
+  if (mediaType === 'image') {
+    const optimized = await optimizeImageUpload(buffer)
+    storedExt = optimized.ext
+    storedBuffer = optimized.buffer
+  }
+  const storedFilename = buildPlaceMediaFilename(placeId, storedExt)
+  await writeFile(path.join(PLACE_UPLOADS_DIR, storedFilename), storedBuffer)
 
   return {
     mediaUrl: publicPlaceUrlForFilename(storedFilename),

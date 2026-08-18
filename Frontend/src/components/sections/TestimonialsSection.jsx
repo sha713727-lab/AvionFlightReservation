@@ -81,7 +81,7 @@ export default function TestimonialsSection() {
           <button
             type="button"
             onClick={prev}
-            className="absolute -left-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-border bg-card p-2 text-primary shadow-sm transition-colors hover:border-accent/30 hover:text-accent md:-left-14 md:flex"
+            className="absolute -left-2 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card text-primary shadow-sm transition-colors hover:border-accent/30 hover:text-accent md:-left-14 md:flex"
             aria-label={COPY.testimonials.previousLabel}
           >
             <HiChevronLeft className="h-5 w-5" />
@@ -107,7 +107,7 @@ export default function TestimonialsSection() {
           <button
             type="button"
             onClick={next}
-            className="absolute -right-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-border bg-card p-2 text-primary shadow-sm transition-colors hover:border-accent/30 hover:text-accent md:-right-14 md:flex"
+            className="absolute -right-2 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card text-primary shadow-sm transition-colors hover:border-accent/30 hover:text-accent md:-right-14 md:flex"
             aria-label={COPY.testimonials.nextLabel}
           >
             <HiChevronRight className="h-5 w-5" />
@@ -119,13 +119,17 @@ export default function TestimonialsSection() {
                 key={index}
                 type="button"
                 onClick={() => goTo(index)}
-                className={cn(
-                  'h-2.5 rounded-full transition-all duration-200',
-                  index === safeActivePage ? 'w-8 bg-accent' : 'w-2.5 bg-border hover:bg-accent/40',
-                )}
+                className="inline-flex h-11 min-w-11 items-center justify-center rounded-full"
                 aria-label={`Show testimonials page ${index + 1}`}
                 aria-current={index === safeActivePage ? 'true' : undefined}
-              />
+              >
+                <span
+                  className={cn(
+                    'rounded-full transition-all duration-200',
+                    index === safeActivePage ? 'h-2.5 w-8 bg-accent' : 'h-2.5 w-2.5 bg-border hover:bg-accent/40',
+                  )}
+                />
+              </button>
             ))}
           </div>
         </div>

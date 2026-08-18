@@ -1,3 +1,5 @@
+'use client'
+
 import Container from '@/components/ui/Container'
 import LayeredSectionHeading from '@/components/ui/LayeredSectionHeading'
 import Accordion from '@/components/ui/Accordion'

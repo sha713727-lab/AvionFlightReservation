@@ -1,6 +1,5 @@
 import { cn } from '@/utils/cn'
 import { AVION_LOGO_SRC, BRAND_NAME, BRAND_TAGLINE } from '@/constants/brand'
-import { SITE_NAME } from '@/constants/contact'
 
 const LOGO_SIZES = {
   sm: {
@@ -57,7 +56,7 @@ export default function AvionLogo({
     <div className={cn('inline-flex min-w-0 items-center gap-2.5 sm:gap-3', className)} {...props}>
       <img
         src={AVION_LOGO_SRC}
-        alt={`${SITE_NAME} logo`}
+        alt=""
         width={logoSize.width}
         height={logoSize.height}
         decoding="async"
