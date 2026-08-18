@@ -4,7 +4,10 @@ const FLIGHT_ROUTE = 'M -12 62 C 16 42 37 38 53 48 C 72 60 88 44 112 34'
 
 export default function FlightPathEffect() {
   return (
-    <div className="pointer-events-none fixed inset-0 z-[2] overflow-hidden opacity-55 sm:opacity-60 lg:opacity-70" aria-hidden>
+    <div
+      className="pointer-events-none fixed inset-0 z-[2] overflow-hidden opacity-55 contain-strict sm:opacity-60 lg:opacity-70"
+      aria-hidden
+    >
       <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
         <defs>
           <linearGradient id="planeBody" x1="0%" x2="100%" y1="0%" y2="100%">

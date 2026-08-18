@@ -1,4 +1,4 @@
-export const AVION_LOGO_SRC = '/avion-logo.svg'
+export const AVION_LOGO_SRC = '/avion-logo.webp'
 export const AVION_FAVICON_SRC = '/favicon-32.png'
 export const AVION_APPLE_ICON_SRC = '/apple-touch-icon.png'
 

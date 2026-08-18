@@ -33,6 +33,7 @@ export default function ServiceMediaFrame({
           alt={label}
           fill
           sizes={sizes}
+          quality={70}
           priority={priority}
           className={cn('object-cover object-center', imageClassName)}
         />

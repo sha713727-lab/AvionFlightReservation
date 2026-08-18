@@ -45,9 +45,14 @@ await toWebp(
   path.join(publicDir, 'avion-hero-background.webp'),
   { width: 1600, quality: 72 },
 )
-await toPng(path.join(publicDir, 'avion-logo.svg'), path.join(publicDir, 'apple-touch-icon.png'), 180)
-await toPng(path.join(publicDir, 'avion-logo.svg'), path.join(publicDir, 'favicon-32.png'), 32)
-await toPng(path.join(publicDir, 'avion-logo.svg'), path.join(publicDir, 'avion-favicon.png'), 48)
-await toPng(path.join(publicDir, 'avion-logo.svg'), path.join(publicDir, 'avion-logo.png'), 96)
+const logoSource = path.join(publicDir, 'avion-logo.png')
+await toWebp(logoSource, path.join(publicDir, 'avion-logo.webp'), {
+  width: 256,
+  height: 256,
+  quality: 88,
+})
+await toPng(logoSource, path.join(publicDir, 'apple-touch-icon.png'), 180)
+await toPng(logoSource, path.join(publicDir, 'favicon-32.png'), 32)
+await toPng(logoSource, path.join(publicDir, 'avion-favicon.png'), 48)
 
 console.log('Image optimization complete')

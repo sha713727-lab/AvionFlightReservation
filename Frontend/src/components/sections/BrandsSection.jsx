@@ -7,12 +7,11 @@ import { COPY } from '@/constants/copy'
 import { PARTNERS } from '@/constants/partners'
 
 export default function BrandsSection() {
-  const track = [...PARTNERS, ...PARTNERS]
-
   return (
-    <section className="bg-background overflow-hidden pt-16 pb-8 sm:pb-10" aria-label="Trusted partners">
+    <section className="overflow-hidden bg-background pt-16 pb-8 sm:pb-10" aria-labelledby="partners-heading">
       <Container>
         <LayeredSectionHeading
+          titleId="partners-heading"
           watermark={COPY.partners.watermark}
           title={COPY.partners.title}
           description={COPY.partners.description}
@@ -20,10 +19,13 @@ export default function BrandsSection() {
         />
       </Container>
 
-      <div className="partner-marquee overflow-hidden py-2">
+      <div className="partner-marquee overflow-hidden py-2" aria-hidden>
         <div className="partner-marquee-track flex w-max items-start gap-12 px-12 sm:gap-14 sm:px-16 md:px-20">
-          {track.map((partner, index) => (
-            <PartnerLogo key={`${partner.id}-${index}`} {...partner} />
+          {PARTNERS.map((partner) => (
+            <PartnerLogo key={partner.id} {...partner} decorative />
+          ))}
+          {PARTNERS.map((partner) => (
+            <PartnerLogo key={`${partner.id}-loop`} {...partner} decorative />
           ))}
         </div>
       </div>

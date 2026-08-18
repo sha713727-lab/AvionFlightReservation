@@ -134,8 +134,10 @@ export default function DestinationsSection({ destinations = [] }) {
               >
                 <span
                   className={cn(
-                    'rounded-full transition-all duration-200',
-                    index === safeActive ? 'h-2.5 w-8 bg-accent' : 'h-2.5 w-2.5 bg-border hover:bg-accent/40',
+                    'h-2.5 w-8 origin-center rounded-full transition-transform duration-200',
+                    index === safeActive
+                      ? 'scale-x-100 bg-accent'
+                      : 'scale-x-[0.31] bg-border hover:bg-accent/40',
                   )}
                 />
               </button>

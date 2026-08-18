@@ -191,6 +191,7 @@
 
 .flight-plane-svg {
   animation: flight-plane-visibility 22s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+  will-change: opacity;
   filter: drop-shadow(0 16px 16px rgba(15, 23, 42, 0.22));
 }
 

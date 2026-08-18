@@ -9,7 +9,11 @@ export default function TestimonialCard({ name, country, rating, review, avatar 
         'transition-all duration-300 hover:border-accent/15 hover:shadow-card-hover',
       )}
     >
-      <div className="mb-5 flex gap-0.5" aria-label={`${rating} out of 5 stars`}>
+      <div
+        className="mb-5 flex gap-0.5"
+        role="img"
+        aria-label={`${rating} out of 5 stars`}
+      >
         {Array.from({ length: rating }).map((_, i) => (
           <FaStar key={i} className="h-3.5 w-3.5 text-accent" aria-hidden />
         ))}

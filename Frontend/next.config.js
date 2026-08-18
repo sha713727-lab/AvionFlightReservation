@@ -6,6 +6,23 @@ const root = path.dirname(fileURLToPath(import.meta.url))
 const STATIC_CACHE = 'public, max-age=31536000, immutable'
 const ASSET_CACHE = 'public, max-age=31536000, stale-while-revalidate=86400'
 
+const SECURITY_HEADERS = [
+  { key: 'X-Content-Type-Options', value: 'nosniff' },
+  { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+  { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+  { key: 'Cross-Origin-Opener-Policy', value: 'same-origin-allow-popups' },
+  {
+    key: 'Permissions-Policy',
+    value:
+      'camera=(), microphone=(), geolocation=(), payment=(), usb=(), midi=(), bluetooth=(), interest-cohort=()',
+  },
+  {
+    key: 'Content-Security-Policy',
+    value:
+      "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; upgrade-insecure-requests; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://www.clarity.ms https://scripts.clarity.ms https://*.clarity.ms https://js.callrail.com https://cdn.callrail.com https://*.callrail.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com https://www.google.ca https://www.google.com.mx https://www.google.com.pk https://*.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://*.g.doubleclick.net https://www.clarity.ms https://*.clarity.ms https://c.bing.com https://js.callrail.com https://api.callrail.com https://cdn.callrail.com https://*.callrail.com; frame-src 'self' https://www.googletagmanager.com; media-src 'self'; worker-src 'self' blob:;",
+  },
+]
+
 const nextConfig = {
   output: 'standalone',
   poweredByHeader: false,
@@ -83,6 +100,10 @@ const nextConfig = {
   },
   async headers() {
     return [
+      {
+        source: '/:path*',
+        headers: SECURITY_HEADERS,
+      },
       {
         source: '/_next/static/:path*',
         headers: [{ key: 'Cache-Control', value: STATIC_CACHE }],

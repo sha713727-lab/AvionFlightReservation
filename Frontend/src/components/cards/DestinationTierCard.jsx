@@ -15,6 +15,7 @@ function DestinationImage({ name, image, alt }) {
           src={image}
           alt={alt}
           fill
+          quality={70}
           sizes="(max-width: 768px) 50vw, 25vw"
           onError={() => setHasError(true)}
           className="object-cover"
@@ -46,7 +47,7 @@ export default function DestinationTierCard({ points, title, places }) {
         </p>
         <p className="mt-2 text-xl font-semibold tracking-tight text-accent lg:text-2xl">
           {points.toLocaleString()}
-          <span className="ml-1.5 text-base font-medium text-accent/80">points</span>
+          <span className="ml-1.5 text-base font-medium text-accent">points</span>
         </p>
         <h3 className="mt-2 text-base font-semibold text-primary lg:text-lg">{title}</h3>
       </div>
