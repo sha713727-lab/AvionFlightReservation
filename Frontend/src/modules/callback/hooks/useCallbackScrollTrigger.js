@@ -7,7 +7,7 @@ import {
   CALLBACK_SCROLL_RATIO,
   CALLBACK_SUCCESS_DURATION_MS,
 } from '@/modules/callback/constants'
-import { pushDataLayerEvent } from '@/utils/analytics'
+import { pushDataLayerEvent, trackGoogleAdsLeadConversion } from '@/utils/analytics'
 
 export function useCallbackScrollTrigger() {
   const [isPromptOpen, setIsPromptOpen] = useState(false)
@@ -34,6 +34,7 @@ export function useCallbackScrollTrigger() {
     pushDataLayerEvent(GTM_EVENTS.callbackFormSubmit, {
       callback_cta: 'submit_request',
     })
+    trackGoogleAdsLeadConversion()
     setIsPromptOpen(false)
     setIsFormOpen(false)
     setIsSuccessOpen(true)

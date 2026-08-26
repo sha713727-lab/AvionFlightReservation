@@ -1,6 +1,7 @@
 import '@/index.css'
 import localFont from 'next/font/local'
 import ConditionalAnalytics from '@/components/analytics/ConditionalAnalytics'
+import { GoogleAdsTag } from '@/components/analytics/GoogleAdsTag'
 import {
   GoogleTagManager,
   GoogleTagManagerNoscript,
@@ -102,6 +103,7 @@ export default function RootLayout({ children }) {
         <ConditionalAnalytics>
           <GoogleTagManagerNoscript />
           <GoogleTagManager />
+          <GoogleAdsTag />
         </ConditionalAnalytics>
         <a href="#main-content" className="skip-link">
           {SKIP_TO_CONTENT}
