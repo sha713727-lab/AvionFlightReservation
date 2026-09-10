@@ -1,6 +1,5 @@
 'use client'
 
-import dynamic from 'next/dynamic'
 import { HiPlay } from 'react-icons/hi'
 import Container from '@/components/ui/Container'
 import Button from '@/components/buttons/Button'
@@ -9,10 +8,6 @@ import { COPY } from '@/constants/copy'
 import { HOME_PATH, SERVICES_PATH } from '@/constants/routes'
 import { getSeoPageH1 } from '@/constants/seoPageMeta'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
-
-const FloatingHeroIcons = dynamic(() => import('@/components/sections/FloatingHeroIcons'), {
-  ssr: false,
-})
 
 export default function HeroSection() {
   const callModal = useCallExpertModal()
@@ -23,7 +18,6 @@ export default function HeroSection() {
       aria-labelledby="home-hero-heading"
     >
       <HeroBackground />
-      <FloatingHeroIcons />
 
       <Container className="relative z-10 flex w-full justify-center px-5 pt-24 pb-12 sm:px-6 sm:pt-32 sm:pb-20 lg:pt-44 lg:pb-36">
         <div className="relative mx-auto w-full max-w-5xl text-center">
