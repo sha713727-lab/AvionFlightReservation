@@ -8,8 +8,8 @@ export const GA4_GTAG_SRC = `https://www.googletagmanager.com/gtag/js?id=${GA4_M
 export const GA4_SCRIPT_ID = 'ga4-gtag'
 export const GA4_CONFIG_SCRIPT_ID = 'ga4-gtag-config'
 
-/** Set real codes to emit verification meta; leave REPLACE_WITH_CODE to omit tags. */
-export const GOOGLE_SITE_VERIFICATION = 'REPLACE_WITH_CODE'
+/** Google Search Console HTML tag verification */
+export const GOOGLE_SITE_VERIFICATION = '4tD5n65AQ_vrFiazC7ACAp_v2hrJ_OoUIFbdgpetr3o'
 
 /** Set real code to emit Bing verification meta; leave REPLACE_WITH_CODE to omit. */
 export const BING_SITE_VERIFICATION = 'REPLACE_WITH_CODE'
