@@ -122,7 +122,7 @@ export const SEO_PAGE_META = {
   [TRIP_PLANNING_PATH]: {
     title: 'Trip Planning by Phone — Custom Itineraries | AvioSupportDesk',
     description:
-      'Plan multi-city trips, connections & timing with specialist phone support. Build a clearer itinerary—call now for trip planning help and travel with confidence!',
+      'Plan multi-city trips and connections with specialist phone support. Build a clearer itinerary—call now for trip planning help today!',
     h1: 'Trip Planning by Phone — Custom Travel Itineraries',
     keywords: ['trip planning', 'custom itinerary', 'multi-city travel'],
   },
@@ -199,14 +199,14 @@ export const SEO_PAGE_META = {
   [BLOG_CHANGE_FLIGHT_PATH]: {
     title: 'Change Your Flight Booking — Step-by-Step | AvioSupportDesk',
     description:
-      'Change flight bookings with clear steps on fees, fare differences, same-day options & verification. Ready to rebook? Call AvioSupportDesk for change assistance!',
+      'Change flight bookings with clear steps on fees, fare differences, and same-day options. Ready to rebook? Call AvioSupportDesk for help!',
     h1: 'How to Change Your Flight Booking — Step-by-Step Guide',
     keywords: ['change flight booking', 'flight change fees', 'rebook flight guide'],
   },
   [BLOG_SAVE_MONEY_FLIGHTS_PATH]: {
     title: 'Top 10 Tips to Save Money on Flights | AvioSupportDesk',
     description:
-      'Ten practical ways to lower airfare in 2026—dates, airports, fare brands & bags—without fake deal traps. Want help comparing? Call AvioSupportDesk & book smarter!',
+      'Ten practical ways to lower airfare in 2026—dates, airports, fare brands, and bags—without fake deal traps. Call AvioSupportDesk to compare.',
     h1: 'Top 10 Tips to Save Money on Flight Bookings',
     keywords: ['save money on flights', 'cheap flight tips', 'airfare savings'],
   },
@@ -227,21 +227,21 @@ export const SEO_PAGE_META = {
   [PRIVACY_POLICY_PATH]: {
     title: 'Privacy Policy — Your Data Protection | AvioSupportDesk',
     description:
-      'Read how AvioSupportDesk collects & uses contact details for travel help, cookies, and GDPR/CCPA requests. Questions? Call now and our team will assist you today!',
+      'Read how AvioSupportDesk collects and uses contact details for travel help, cookies, and privacy requests. Questions? Call our team today.',
     h1: 'Privacy Policy — How AvioSupportDesk Protects Your Data',
     keywords: ['privacy policy', 'data protection', 'GDPR', 'CCPA', 'travel support privacy'],
   },
   [CANCELLATION_POLICY_PATH]: {
     title: 'Cancellation Policy — Booking Rules | AvioSupportDesk',
     description:
-      'See how cancellations work for bookings we assist with, including supplier rules & limits. Need to cancel a trip? Call now for cancellation guidance right away!',
+      'See how cancellations work for bookings we assist with, including supplier rules and limits. Need to cancel? Call for guidance now.',
     h1: 'Cancellation Policy — Booking & Supplier Rules',
     keywords: ['cancellation policy', 'booking cancellation rules', 'travel cancel terms'],
   },
   [TERMS_PATH]: {
     title: 'Terms of Service — Travel Support Rules | AvioSupportDesk',
     description:
-      'Review AvioSupportDesk terms: independent of airlines, fees, refunds & liability limits. Need clarity before you book? Call now and ask a specialist any question!',
+      'Review AvioSupportDesk terms: independent of airlines, fees, refunds, and liability limits. Need clarity? Call and ask a specialist.',
     h1: 'Terms of Service — AvioSupportDesk Service Rules',
     keywords: ['terms of service', 'travel assistance terms', 'independent travel support'],
   },

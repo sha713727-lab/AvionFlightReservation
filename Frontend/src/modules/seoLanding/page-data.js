@@ -7,6 +7,7 @@ import {
 import { buildBreadcrumbJsonLd } from '@/constants/breadcrumbs'
 import { getOpeningPlainText } from '@/constants/internalLinks'
 import { getSeoPageMeta } from '@/constants/seoPageMeta'
+import { getGuideFaqsBySlug } from '@/modules/seoLanding/constants/guideFaqs'
 import { GUIDE_HUB, GUIDE_PAGES, getGuidePageBySlug } from '@/modules/seoLanding/constants/guidePages'
 import { getServicePageBySlug } from '@/modules/seoLanding/constants/servicePages'
 
@@ -60,6 +61,7 @@ export function getGuidePageJsonLd(slug) {
   }
 
   const seo = getSeoPageMeta(guide.path)
+  const faqs = getGuideFaqsBySlug(slug)
 
   return [
     buildWebPageJsonLd({
@@ -69,6 +71,7 @@ export function getGuidePageJsonLd(slug) {
       speakable: true,
     }),
     buildBreadcrumbJsonLd(guide.path),
+    ...(faqs.length ? [buildFaqPageJsonLd(faqs)] : []),
   ]
 }
 

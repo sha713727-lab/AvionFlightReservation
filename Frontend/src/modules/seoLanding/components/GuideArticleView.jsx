@@ -13,13 +13,16 @@ import { GUIDE_SOURCES_BY_SLUG } from '@/constants/geoPageSources'
 import { PHONE_HREF, PHONE_NUMBER } from '@/constants/contact'
 import { getSeoPageH1 } from '@/constants/seoPageMeta'
 import CallExpertProvider, { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
+import { getGuideFaqsBySlug } from '@/modules/seoLanding/constants/guideFaqs'
 import { getGuidePageBySlug } from '@/modules/seoLanding/constants/guidePages'
 import { SEO_LANDING_COPY } from '@/modules/seoLanding/constants/seoLandingCopy'
+import PeopleAlsoAskSection from '@/modules/seoLanding/components/PeopleAlsoAskSection'
 
 function GuideArticleContent({ slug }) {
   const guide = getGuidePageBySlug(slug)
   const callModal = useCallExpertModal()
   const sources = GUIDE_SOURCES_BY_SLUG[slug] || []
+  const faqs = getGuideFaqsBySlug(slug)
 
   if (!guide) {
     return null
@@ -81,6 +84,12 @@ function GuideArticleContent({ slug }) {
             <FadeIn delay={0.12} className="mt-12">
               <SourcesSection sources={sources} />
             </FadeIn>
+
+            {faqs.length ? (
+              <FadeIn delay={0.13} className="mt-12">
+                <PeopleAlsoAskSection faqs={faqs} />
+              </FadeIn>
+            ) : null}
           </article>
 
           <FadeIn delay={0.14} className="mt-14 rounded-2xl border border-border bg-card p-8 text-center shadow-sm">

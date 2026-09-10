@@ -22,10 +22,10 @@ export default function BrandsSection() {
       <div className="partner-marquee overflow-hidden py-2" aria-hidden>
         <div className="partner-marquee-track flex w-max items-start gap-12 px-12 sm:gap-14 sm:px-16 md:px-20">
           {PARTNERS.map((partner) => (
-            <PartnerLogo key={partner.id} {...partner} decorative />
+            <PartnerLogo key={partner.id} {...partner} />
           ))}
           {PARTNERS.map((partner) => (
-            <PartnerLogo key={`${partner.id}-loop`} {...partner} decorative />
+            <PartnerLogo key={`${partner.id}-loop`} {...partner} />
           ))}
         </div>
       </div>

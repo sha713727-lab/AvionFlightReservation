@@ -48,6 +48,16 @@ export const viewport = {
   themeColor: '#f8fafc',
 }
 
+const hasGoogleVerification =
+  Boolean(GOOGLE_SITE_VERIFICATION) && GOOGLE_SITE_VERIFICATION !== 'REPLACE_WITH_CODE'
+const hasBingVerification =
+  Boolean(BING_SITE_VERIFICATION) && BING_SITE_VERIFICATION !== 'REPLACE_WITH_CODE'
+
+const siteVerification = {
+  ...(hasGoogleVerification ? { google: GOOGLE_SITE_VERIFICATION } : {}),
+  ...(hasBingVerification ? { other: { 'msvalidate.01': BING_SITE_VERIFICATION } } : {}),
+}
+
 export const metadata = {
   ...buildPathMetadata(HOME_PATH),
   metadataBase: new URL(SITE_URL),
@@ -60,13 +70,7 @@ export const metadata = {
     shortcut: AVION_FAVICON_48_SRC,
     apple: AVION_APPLE_ICON_SRC,
   },
-  // REPLACE_WITH_CODE in constants/analytics.js for both verification values
-  verification: {
-    google: GOOGLE_SITE_VERIFICATION,
-    other: {
-      'msvalidate.01': BING_SITE_VERIFICATION,
-    },
-  },
+  ...(Object.keys(siteVerification).length > 0 ? { verification: siteVerification } : {}),
 }
 
 const loadGa4InHead = process.env.NODE_ENV === 'production'

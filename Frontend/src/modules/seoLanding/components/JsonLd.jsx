@@ -1,5 +1,5 @@
 export default function JsonLd({ data }) {
-  const graphs = Array.isArray(data) ? data : [data]
+  const graphs = (Array.isArray(data) ? data : [data]).filter(Boolean)
 
   return (
     <>
