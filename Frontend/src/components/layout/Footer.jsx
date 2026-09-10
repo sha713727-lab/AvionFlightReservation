@@ -1,7 +1,7 @@
 'use client'
 
 import { COPY } from '@/constants/copy'
-import { FOOTER_LINKS } from '@/constants/navigation'
+import { FOOTER_LINKS, FOOTER_PRIMARY_LEGAL_LINKS } from '@/constants/navigation'
 import { BRAND_FULL_NAME } from '@/constants/brand'
 import { HOME_PATH } from '@/constants/routes'
 import { FadeIn } from '@/components/animations/FadeIn'
@@ -40,15 +40,29 @@ export default function Footer() {
         </div>
 
         <div id="disclaimer" className="scroll-mt-28 border-t border-white/10 pt-5">
-          <h2 className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-white">
+          <p className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-white">
             {COPY.footer.disclaimerTitle}
-          </h2>
+          </p>
           <p className="max-w-4xl text-xs leading-relaxed text-white/70">
             {COPY.footer.disclaimer}
           </p>
         </div>
 
         <div className="mt-6 border-t border-white/10">
+          <nav
+            aria-label="Privacy and Terms"
+            className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 pt-5"
+          >
+            {FOOTER_PRIMARY_LEGAL_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="inline-flex min-h-12 items-center text-sm font-medium text-white underline-offset-4 transition-opacity hover:opacity-80 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
           <p className="py-5 text-center text-xs leading-relaxed tracking-wide text-white/70 sm:text-sm">
             {COPY.footer.copyrightPrefix} {new Date().getFullYear()}{' '}
             {COPY.footer.copyrightBrand}. {COPY.footer.rightsReserved}

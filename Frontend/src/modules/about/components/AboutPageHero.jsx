@@ -4,7 +4,8 @@ import Button from '@/components/buttons/Button'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
-import { SERVICES_PATH } from '@/constants/routes'
+import { ABOUT_PATH, SERVICES_PATH } from '@/constants/routes'
+import { getSeoPageH1 } from '@/constants/seoPageMeta'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 
 export default function AboutPageHero() {
@@ -12,7 +13,7 @@ export default function AboutPageHero() {
 
   return (
     <section
-      className="relative overflow-hidden bg-background pt-32 pb-20 lg:pt-40 lg:pb-28"
+      className="relative overflow-hidden bg-background pt-10 pb-20 lg:pt-14 lg:pb-28"
       aria-labelledby="about-page-heading"
     >
       <div
@@ -37,22 +38,22 @@ export default function AboutPageHero() {
               id="about-page-heading"
               className="font-heading text-[clamp(2.25rem,5.5vw,4rem)] font-semibold leading-[1.08] tracking-tight text-primary"
             >
-              {COPY.about.pageTitle}
+              {getSeoPageH1(ABOUT_PATH)}
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.16}>
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg">
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg speakable-summary">
               {COPY.about.pageDescription}
             </p>
           </FadeIn>
 
           <FadeIn delay={0.24}>
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button variant="primary" size="lg" onClick={callModal.open}>
+            <div className="mt-10 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
+              <Button variant="primary" size="lg" onClick={callModal.open} className="w-full sm:w-auto">
                 {COPY.about.pagePrimaryCta}
               </Button>
-              <Button href={SERVICES_PATH} variant="secondary" size="lg">
+              <Button href={SERVICES_PATH} variant="secondary" size="lg" className="w-full sm:w-auto">
                 {COPY.about.pageSecondaryCta}
               </Button>
             </div>

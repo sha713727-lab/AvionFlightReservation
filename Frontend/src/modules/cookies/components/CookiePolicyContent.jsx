@@ -6,6 +6,8 @@ import Button from '@/components/buttons/Button'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
+import { COOKIE_POLICY_PATH } from '@/constants/routes'
+import { getSeoPageH1 } from '@/constants/seoPageMeta'
 import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
 
 export default function CookiePolicyContent() {
@@ -14,7 +16,7 @@ export default function CookiePolicyContent() {
 
   return (
     <main id="main-content" className="overflow-x-clip">
-      <section className="bg-background pt-32 pb-12 lg:pt-40 lg:pb-16" aria-labelledby="cookie-page-heading">
+      <section className="bg-background pt-10 pb-12 lg:pt-14 lg:pb-16" aria-labelledby="cookie-page-heading">
         <Container>
           <FadeIn className="mx-auto max-w-3xl text-center">
             <p className="mb-4 text-xs font-medium uppercase tracking-[0.22em] text-text-muted">
@@ -24,9 +26,9 @@ export default function CookiePolicyContent() {
               id="cookie-page-heading"
               className="font-heading text-[clamp(2.25rem,5vw,3.75rem)] font-semibold tracking-tight text-primary"
             >
-              {COPY.cookies.pageTitle}
+              {getSeoPageH1(COOKIE_POLICY_PATH)}
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg">
+            <p className="speakable-summary mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg">
               {COPY.cookies.pageDescription}
             </p>
             <p className="mt-6 text-sm text-text-muted">

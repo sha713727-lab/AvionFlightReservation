@@ -42,7 +42,11 @@ export default function AdminPlaceRow({
           ) : place.mediaUrl || place.imageUrl ? (
             <img
               src={place.mediaUrl || place.imageUrl}
-              alt={place.alt}
+              alt={place.alt || `${place.name} flight destination`}
+              width={80}
+              height={64}
+              loading="lazy"
+              decoding="async"
               className="h-16 w-20 shrink-0 rounded-xl object-cover bg-section-alt"
             />
           ) : (

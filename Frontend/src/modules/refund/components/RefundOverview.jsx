@@ -18,9 +18,9 @@ export default function RefundOverview() {
                   <span className="mb-5 inline-flex h-11 w-11 items-center justify-center bg-accent text-white">
                     <Icon className="h-5 w-5" aria-hidden />
                   </span>
-                  <h2 className="font-heading text-xl font-semibold tracking-tight text-primary">
+                  <p className="font-heading text-xl font-semibold tracking-tight text-primary">
                     {card.title}
-                  </h2>
+                  </p>
                   <p className="mt-4 text-sm leading-relaxed text-text-secondary">
                     {card.description}
                   </p>

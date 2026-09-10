@@ -7,13 +7,15 @@ import OptimizedImage from '@/components/media/OptimizedImage'
 
 function DestinationImage({ name, image, alt }) {
   const [hasError, setHasError] = useState(false)
+  const resolvedAlt =
+    (alt && alt.trim()) || `${name} flight destination for phone booking`
 
   return (
     <div className="relative h-full w-full">
       {!hasError && image ? (
         <OptimizedImage
           src={image}
-          alt={alt}
+          alt={resolvedAlt}
           fill
           quality={70}
           sizes="(max-width: 768px) 50vw, 25vw"

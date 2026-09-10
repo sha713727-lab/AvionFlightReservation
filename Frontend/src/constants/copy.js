@@ -10,14 +10,18 @@ export const COPY = {
     exploreServices: 'Explore our services',
     callToBook: 'Call to book',
   },
+  hero: {
+    speakableSummary:
+      'AvioSupportDesk is an independent phone travel desk that helps you book flights and hotels, change or cancel tickets, and redeem points across Canada, the USA, and worldwide. Specialists explain fare rules in plain language with 24/7 support—we are not an airline or bank rewards hotline.',
+  },
   footer: {
-    tagline: 'Your trusted travel partner for flight reservations and unforgettable journeys.',
+    tagline: 'Independent travel assistance for flight reservations and trip support by phone.',
     disclaimerTitle: 'Disclaimer',
     disclaimer:
-      'Avios Support Desk is an independent travel booking assistance service. We are not affiliated with, authorized by, or endorsed by Royal Bank of Canada (RBC), Avion Rewards, or any other airline or bank reward program. All trademarks are the property of their respective owners.',
+      'Avion Flight Reservation (aviosupportdesk.com) is an independent travel booking assistance service. We are not affiliated with, authorized by, or endorsed by Royal Bank of Canada (RBC), Avion Rewards, British Airways Avios, or any airline or bank reward program. Airline, hotel, and program names may appear only to identify customer travel requests. All trademarks are the property of their respective owners.',
     rightsReserved: 'All rights reserved.',
     copyrightPrefix: '©',
-    copyrightBrand: 'Avios Support Desk',
+    copyrightBrand: 'Avion Flight Reservation',
   },
   callModal: {
     title: 'Talk with a travel expert',
@@ -47,29 +51,38 @@ export const COPY = {
     description:
       'Sitting on unused airline miles or credit card rewards? Our specialists help compare options and book travel. Avion Flight Reservation is not affiliated with RBC or Avion Rewards.',
     cta: 'Get redemption help',
-    imageAlt: 'Luxury airplane cabin interior',
+    imageAlt: 'Luxury airplane cabin for points and miles flight redemption',
     modalTitle: 'Need help redeeming your travel points?',
     modalDescription:
       "Speak with our travel specialist today. We'll review your travel points and find useful redemption options.",
   },
   testimonials: {
-    eyebrow: 'Testimonials',
-    title: 'Happy travelers worldwide',
-    description: 'Real stories from people who chose a friendlier way to book.',
-    previousLabel: 'Previous testimonials',
-    nextLabel: 'Next testimonials',
+    eyebrow: 'Reviews',
+    title: 'What Our Customers Say',
+    description:
+      'Placeholder reviews for layout only — replace with real, permissioned customer feedback before publishing.',
+    verifiedBadge: 'Verified',
+    previousLabel: 'Previous reviews',
+    nextLabel: 'Next reviews',
+  },
+  trustBar: {
+    ariaLabel: 'Trust highlights',
+    trustedBy: 'Trusted by {count} Travelers',
+    rating: '{rating}/5 Rating',
+    support: '24/7 Support',
+    airlines: '{count} Airlines',
   },
   services: {
     watermark: 'SERVICES',
     title: 'Flight & Travel Services',
     description:
-      'From flight reservations to hotel bookings and points redemption assistance — handled by licensed travel specialists.',
+      'From flight reservations to hotel bookings and points redemption assistance — handled by travel specialists over the phone.',
     whatYouGet: 'What you get',
     getStarted: 'Talk with an expert',
     pageEyebrow: 'Our services',
     pageTitle: 'Book flights, hotels, and trip support by phone.',
     pageDescription:
-      'Flight booking, hotel reservations, points redemption help, and trip support — delivered by licensed specialists with clear next steps and 24/7 coverage.',
+      'AvioSupportDesk phone services cover flight booking, hotels, points redemption, changes, cancellations, seats, baggage, and trip planning. Call a specialist for clear next steps—we are an independent travel desk, not an airline or bank rewards hotline.',
     metaDescription:
       'Flight booking, hotel booking, and points redemption assistance with Avion Flight Reservation. Independent travel specialists for Canada, USA, Europe, and Mexico. Call +1 877 702 9887.',
     pagePrimaryCta: 'Talk with an expert',
@@ -88,14 +101,14 @@ export const COPY = {
   },
   partners: {
     watermark: 'BOOKING NETWORK',
-    title: 'Airlines & brands we work with',
+    title: 'Airlines and brands travelers ask about',
     description:
-      'We help you book across major airlines, hotels, and payment options. Avion is independent — not affiliated with RBC, Avion Rewards, or any airline.',
+      'We help customers request bookings across major airlines, hotels, and payment options. Avion Flight Reservation is independent — not affiliated with RBC, Avion Rewards, or any airline.',
   },
   whyUs: {
     watermark: 'WHY US',
     title: 'Why Book With Avion Flight Reservation',
-    description: 'Licensed specialists, secure bookings, and dedicated support you can rely on.',
+    description: 'Independent specialists, clear booking guidance, and dedicated phone support.',
     previousLabel: 'Previous reason',
     nextLabel: 'Next reason',
   },
@@ -115,7 +128,7 @@ export const COPY = {
     pageEyebrow: 'Destinations',
     pageTitle: 'Popular flight destinations across Canada, USA, and beyond.',
     pageDescription:
-      'Explore popular routes across Canada, the USA, Europe, Mexico, and beyond — then talk with a specialist to book by phone.',
+      'Browse popular flight destinations across Canada, the USA, Europe, Mexico, and beyond, then book by phone with AvioSupportDesk. A specialist compares routes and fare rules so you choose with clear timing and connection guidance.',
     metaDescription:
       'Browse Canada domestic flights, USA routes, Europe flights, and Mexico vacation travel with Avion Flight Reservation. Call +1 877 702 9887 to book by phone.',
     pagePrimaryCta: 'Talk with an expert',
@@ -146,7 +159,7 @@ export const COPY = {
     pageEyebrow: 'About Us',
     pageTitle: 'Independent travel assistance for flight reservations.',
     pageDescription:
-      'Avion Flight Reservation provides independent travel assistance for flights, hotels, trip planning, and booking questions across Canada, the USA, and worldwide.',
+      'AvioSupportDesk (Avion Flight Reservation) is an independent travel assistance service for flights, hotels, trip planning, and booking questions across Canada, the USA, and worldwide. We explain options by phone—we are not an airline call center or bank rewards desk.',
     metaDescription:
       'Learn about Avion Flight Reservation — independent travel assistance for flight and hotel reservations by phone. Not affiliated with RBC or Avion Rewards. Call +1 877 702 9887.',
     pagePrimaryCta: 'Talk with an expert',
@@ -154,12 +167,24 @@ export const COPY = {
     whoWeAreEyebrow: 'Who We Are',
     whoWeAreTitle: 'Independent travel help, explained clearly.',
     whoWeAreParagraphs: [
-      'Avion Flight Reservation is an independent travel assistance service created to help customers review travel options, understand booking conditions, and receive support before and after making a reservation.',
-      'We focus on clear communication, responsive phone support, and practical guidance for travelers who prefer direct help instead of managing every detail online.',
+      'AvioSupportDesk (Avion Flight Reservation) is an independent travel assistance service created to help customers review travel options, understand booking conditions, and receive support before and after making a reservation.',
+      'Our story started with a simple idea: travelers deserve clear phone help when airline websites, fare rules, and change policies become confusing. We focus on practical guidance across Canada, the USA, and international routes.',
+      'We are not an airline call center. We explain options in plain language, prepare next steps, and connect you with the right booking or support path for your trip.',
     ],
     transparencyLabel: 'Transparency',
     transparencyText:
       'We are not an airline, hotel, bank, rewards program, or card issuer. We are not affiliated with RBC or Avion Rewards. All fares, availability, rules, and changes are subject to the final terms of the actual travel supplier.',
+    teamEyebrow: 'Our Team',
+    teamTitle: 'Specialists ready to help by phone.',
+    teamDescription:
+      'Photo placeholders represent our support desks. Each group focuses on a clear part of the traveler journey.',
+    whyChooseEyebrow: 'Why Choose Us',
+    whyChooseTitle: 'Why travelers choose AvioSupportDesk.',
+    whyChooseDescription:
+      'Independent phone help, clear fee explanations, and 24/7 availability when plans change.',
+    statsEyebrow: 'At a glance',
+    statsTitle: 'AvioSupportDesk support highlights',
+    trustTitle: 'Trust signals we stand behind',
     missionEyebrow: 'Our Mission',
     missionTitle: 'Make travel booking easier at every step.',
     missionDescription:
@@ -180,7 +205,7 @@ export const COPY = {
     pageEyebrow: 'Contact Us',
     pageTitle: 'Contact a travel specialist by phone.',
     pageDescription:
-      'Call Avion Flight Reservation for independent travel booking assistance, flight changes, and support questions across Canada, the USA, and international routes.',
+      'Contact AvioSupportDesk by phone for independent flight booking help, changes, cancellations, and travel questions across Canada, the USA, and international routes. Keep dates, destinations, and booking references ready for faster specialist support.',
     metaDescription:
       'Contact Avion Flight Reservation to book flights by phone. Independent travel specialists for Canada, USA, Europe, and Mexico. Call +1 877 702 9887 — 24/7 support.',
     pagePrimaryCta: 'Call now',
@@ -198,13 +223,38 @@ export const COPY = {
     noticeLabel: 'Important Notice',
     noticeText:
       'We provide support based on available supplier information. Final prices, rules, and availability can change until the booking is confirmed.',
+    formEyebrow: 'Send a message',
+    formTitle: 'Contact form',
+    formDescription:
+      'Share your details and we will open a prefilled email so our team can follow up. For urgent trips, call us now.',
+    formNameLabel: 'Full name',
+    formNamePlaceholder: 'Your name',
+    formEmailLabel: 'Email',
+    formEmailPlaceholder: 'you@example.com',
+    formPhoneLabel: 'Phone',
+    formPhonePlaceholder: '+1 555 000 0000',
+    formSubjectLabel: 'Subject',
+    formSubjectPlaceholder: 'How can we help?',
+    formMessageLabel: 'Message',
+    formMessagePlaceholder: 'Share trip dates, destinations, or booking questions…',
+    formSubmitCta: 'Send message',
+    formSubmittingCta: 'Preparing…',
+    formSuccessTitle: 'Message ready',
+    formSuccessDescription:
+      'Your email app should open with your message. If it does not, call or email us using the details on this page.',
+    mapEyebrow: 'Visit',
+    mapTitle: 'Office location',
+    mapDescription: 'Map placeholder for our Toronto mailing address.',
+    mapPlaceholderLabel: 'Google Maps embed placeholder',
+    hoursEyebrow: 'Business hours',
+    hoursTitle: 'When you can reach us',
   },
   internationalFlight: {
-    badge: 'Independent Travel Agency',
+    badge: 'Independent Travel Assistance',
     titleLineOne: 'Book Your Flight',
     titleLineTwo: 'By Phone.',
     description:
-      'No websites. No bots. A real specialist answers, finds your best fare, and confirms your booking.',
+      'Book international and domestic flights by phone with AvioSupportDesk—a real specialist compares fare options for Europe, Canada, Mexico, and USA routes. No bots: share your trip details, review rules, and confirm when you are ready.',
     availability: 'Available 7 days a week · Canada & USA',
     regionsEyebrow: 'We book flights to',
     regionsTitle: 'Popular international and domestic routes.',

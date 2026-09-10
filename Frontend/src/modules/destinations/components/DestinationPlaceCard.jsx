@@ -20,6 +20,8 @@ export default function DestinationPlaceCard({
   const [hasError, setHasError] = useState(false)
   const isVideo = mediaType === 'video' && Boolean(mediaUrl)
   const imageSrc = (mediaType === 'image' && mediaUrl ? mediaUrl : null) || image || mediaUrl || ''
+  const resolvedAlt =
+    (alt && alt.trim()) || `${name} flight destination for phone booking`
 
   return (
     <article
@@ -32,13 +34,13 @@ export default function DestinationPlaceCard({
       {isVideo ? (
         <LazyVideo
           src={mediaUrl}
-          label={alt}
+          label={resolvedAlt}
           className="transition-transform duration-700 ease-out group-hover:scale-105"
         />
       ) : !hasError && imageSrc ? (
         <OptimizedImage
           src={imageSrc}
-          alt={alt}
+          alt={resolvedAlt}
           fill
           quality={70}
           sizes={

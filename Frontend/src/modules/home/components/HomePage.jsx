@@ -3,7 +3,6 @@
 import dynamic from 'next/dynamic'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import FloatingActions from '@/components/layout/FloatingActions'
 import HeroSection from '@/components/sections/HeroSection'
 import CatalogStatus from '@/components/ui/CatalogStatus'
 import CallExpertProvider from '@/modules/call/components/CallExpertProvider'
@@ -13,8 +12,11 @@ import { CATALOG_UI } from '@/constants/catalogUi'
 const DestinationsSection = dynamic(() => import('@/components/sections/DestinationsSection'))
 const BrandsSection = dynamic(() => import('@/components/sections/BrandsSection'))
 const ServicesSection = dynamic(() => import('@/components/sections/ServicesSection'))
+const HomeServiceLinks = dynamic(() => import('@/components/sections/HomeServiceLinks'))
+const HomeLatestBlogPosts = dynamic(() => import('@/components/sections/HomeLatestBlogPosts'))
 const WhyUsSection = dynamic(() => import('@/components/sections/WhyUsSection'))
 const HowItWorksSection = dynamic(() => import('@/components/sections/HowItWorksSection'))
+const TrustBarSection = dynamic(() => import('@/components/sections/TrustBarSection'))
 const TestimonialsSection = dynamic(() => import('@/components/sections/TestimonialsSection'))
 const FAQSection = dynamic(() => import('@/components/sections/FAQSection'))
 const RedeemCtaSection = dynamic(() => import('@/components/sections/RedeemCtaSection'))
@@ -50,14 +52,16 @@ export default function HomePage({
         <DestinationsSection destinations={catalog.destinations} />
         <BrandsSection />
         <ServicesSection services={catalog.services} />
+        <HomeServiceLinks />
+        <HomeLatestBlogPosts />
         <WhyUsSection />
         <HowItWorksSection />
+        <TrustBarSection />
         <TestimonialsSection />
         <FAQSection faqs={catalog.faqs} />
         <RedeemCtaSection />
       </main>
       <Footer />
-      <FloatingActions />
     </CallExpertProvider>
   )
 }

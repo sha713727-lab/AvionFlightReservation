@@ -1,13 +1,18 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { HiPlay } from 'react-icons/hi'
 import Container from '@/components/ui/Container'
 import Button from '@/components/buttons/Button'
 import HeroBackground from '@/components/sections/HeroBackground'
-import FloatingHeroIcons from '@/components/sections/FloatingHeroIcons'
 import { COPY } from '@/constants/copy'
-import { SERVICES_PATH } from '@/constants/routes'
+import { HOME_PATH, SERVICES_PATH } from '@/constants/routes'
+import { getSeoPageH1 } from '@/constants/seoPageMeta'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
+
+const FloatingHeroIcons = dynamic(() => import('@/components/sections/FloatingHeroIcons'), {
+  ssr: false,
+})
 
 export default function HeroSection() {
   const callModal = useCallExpertModal()
@@ -30,20 +35,14 @@ export default function HeroSection() {
           <div className="relative z-[1] w-full">
             <h1
               id="home-hero-heading"
-              className="mb-6 flex w-full flex-col items-center justify-center gap-3 font-normal tracking-[-0.03em] sm:mb-7 sm:gap-4 sm:tracking-[-0.045em]"
+              className="mb-6 w-full text-center font-heading text-[clamp(1.5rem,6.5vw,3.5rem)] font-semibold leading-[1.15] tracking-[-0.03em] text-primary sm:mb-7 sm:tracking-[-0.045em]"
             >
-              <span className="block w-full max-w-[18ch] text-center text-[clamp(1.5rem,7vw,3.75rem)] leading-[1.2] text-primary sm:max-w-none sm:whitespace-nowrap sm:leading-[1.15]">
-                Redeem Rewards & Book Flights by Phone.
-              </span>
-              <span className="block w-full max-w-[16ch] text-center text-[clamp(1.5rem,7vw,3.75rem)] leading-[1.2] text-accent sm:max-w-none sm:whitespace-nowrap sm:leading-[1.15]">
-                Get Connected With Travel Experts.
-              </span>
+              {getSeoPageH1(HOME_PATH)}
             </h1>
           </div>
 
-          <p className="hero-copy-in relative z-[1] mx-auto mb-8 max-w-xl px-1 text-center text-base font-normal leading-relaxed text-text sm:mb-10 sm:text-lg">
-            Avion Flight Reservation is an independent travel assistance service helping you book
-            flights and hotels across Canada, the USA, and worldwide with 24/7 specialist support.
+          <p className="speakable-summary hero-copy-in relative z-[1] mx-auto mb-8 max-w-xl px-1 text-center text-base font-normal leading-relaxed text-text sm:mb-10 sm:text-lg">
+            {COPY.hero.speakableSummary}
           </p>
 
           <div className="hero-copy-in relative z-[1] flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">

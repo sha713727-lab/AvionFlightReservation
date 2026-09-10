@@ -39,7 +39,7 @@ export default function CallExpertProvider({ children }) {
         <a
           href={phoneHref}
           onClick={handleCallNow}
-          className="mb-6 block text-2xl font-semibold text-primary transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          className="mb-6 flex min-h-12 items-center break-all text-xl font-semibold text-primary transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:text-2xl"
         >
           {phoneNumber}
         </a>

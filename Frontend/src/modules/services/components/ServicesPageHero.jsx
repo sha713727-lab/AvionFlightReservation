@@ -5,6 +5,8 @@ import Button from '@/components/buttons/Button'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
+import { SERVICES_PATH } from '@/constants/routes'
+import { getSeoPageH1 } from '@/constants/seoPageMeta'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 
 const CATALOG_ANCHOR = '#service-catalog'
@@ -14,7 +16,7 @@ export default function ServicesPageHero() {
 
   return (
     <section
-      className="relative overflow-hidden bg-background pt-32 pb-20 lg:pt-40 lg:pb-28"
+      className="relative overflow-hidden bg-background pt-10 pb-20 lg:pt-14 lg:pb-28"
       aria-labelledby="services-page-heading"
     >
       <div
@@ -39,19 +41,19 @@ export default function ServicesPageHero() {
               id="services-page-heading"
               className="font-heading text-[clamp(2.25rem,5.5vw,4rem)] font-semibold leading-[1.08] tracking-tight text-primary"
             >
-              {COPY.services.pageTitle}
+              {getSeoPageH1(SERVICES_PATH)}
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.16}>
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg">
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg speakable-summary">
               {COPY.services.pageDescription}
             </p>
           </FadeIn>
 
           <FadeIn delay={0.24}>
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button variant="primary" size="lg" onClick={callModal.open}>
+            <div className="mt-10 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
+              <Button variant="primary" size="lg" onClick={callModal.open} className="w-full sm:w-auto">
                 {COPY.services.pagePrimaryCta}
               </Button>
               <Button
@@ -60,6 +62,7 @@ export default function ServicesPageHero() {
                 size="lg"
                 icon={HiArrowDown}
                 iconPosition="right"
+                className="w-full sm:w-auto"
               >
                 {COPY.services.pageSecondaryCta}
               </Button>

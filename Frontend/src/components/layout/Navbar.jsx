@@ -15,6 +15,7 @@ import Container from '@/components/ui/Container'
 import MobileNav from '@/components/layout/MobileNav'
 import NavLink from '@/components/layout/NavLink'
 import NavLegalDropdown from '@/components/layout/NavLegalDropdown'
+import TrackedTelLink from '@/components/links/TrackedTelLink'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
 import { cn } from '@/utils/cn'
@@ -52,7 +53,7 @@ export default function Navbar({ overDarkHero = false }) {
               whileTap={{ scale: 0.98 }}
               className="relative z-10 inline-flex min-w-0 shrink-0 items-center"
             >
-              <AvionLogo size="md" hideName tone={useLightNav ? 'dark' : 'light'} />
+              <AvionLogo size="md" hideName priority tone={useLightNav ? 'dark' : 'light'} />
             </motion.a>
 
             <nav
@@ -67,31 +68,31 @@ export default function Navbar({ overDarkHero = false }) {
               <NavLegalDropdown onDark={useLightNav} />
             </nav>
 
-            <div className="relative z-10 flex shrink-0 items-center justify-end gap-2">
+            <div className="relative z-10 flex shrink-0 items-center justify-end gap-2 sm:gap-3">
               <div className="hidden lg:block">
                 <Button variant="primary" size="md" onClick={callModal.open}>
                   {COPY.cta.bookConsultation}
                 </Button>
               </div>
 
-              <motion.a
+              <TrackedTelLink
                 href={phoneHref}
                 aria-label={`${COPY.cta.callNow}: ${phoneNumber}`}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-accent text-white shadow-sm shadow-accent/20 lg:hidden"
+                className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-accent text-white shadow-sm shadow-accent/20 lg:hidden"
               >
-                <HiPhone className="h-4 w-4 shrink-0" aria-hidden />
-              </motion.a>
+                <HiPhone className="h-5 w-5 shrink-0" aria-hidden />
+              </TrackedTelLink>
 
               <motion.button
                 type="button"
                 whileTap={{ scale: 0.9 }}
                 className={cn(
-                  'inline-flex h-11 w-11 items-center justify-center lg:hidden',
+                  'inline-flex h-12 w-12 items-center justify-center rounded-full lg:hidden',
                   useLightNav ? 'text-white' : 'text-primary',
                 )}
                 onClick={() => setMobileOpen((open) => !open)}
                 aria-expanded={mobileOpen}
+                aria-controls="mobile-navigation"
                 aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               >
                 <AnimatePresence mode="wait" initial={false}>

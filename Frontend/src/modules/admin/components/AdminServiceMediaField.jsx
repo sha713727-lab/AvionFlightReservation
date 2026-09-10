@@ -96,6 +96,10 @@ export default function AdminServiceMediaField({
           <img
             src={previewUrl}
             alt=""
+            width={640}
+            height={440}
+            loading="lazy"
+            decoding="async"
             className="aspect-[16/11] w-full object-cover"
           />
         ) : null}

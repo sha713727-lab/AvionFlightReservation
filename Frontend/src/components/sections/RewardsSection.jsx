@@ -9,7 +9,7 @@ import Button from '@/components/buttons/Button'
 import Modal from '@/components/ui/Modal'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
-import { REWARDS_CABIN_IMAGE_SRC } from '@/constants/images'
+import { REWARDS_CABIN_IMAGE_ALT, REWARDS_CABIN_IMAGE_SRC } from '@/constants/images'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 
 function RewardsSection() {
@@ -51,7 +51,7 @@ function RewardsSection() {
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
                   <OptimizedImage
                     src={REWARDS_CABIN_IMAGE_SRC}
-                    alt={COPY.rewards.imageAlt}
+                    alt={REWARDS_CABIN_IMAGE_ALT}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"

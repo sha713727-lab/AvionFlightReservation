@@ -1,31 +1,34 @@
 import '@/index.css'
 import localFont from 'next/font/local'
 import ConditionalAnalytics from '@/components/analytics/ConditionalAnalytics'
+import { Ga4Tag } from '@/components/analytics/Ga4Tag'
 import { GoogleAdsTag } from '@/components/analytics/GoogleAdsTag'
 import {
   GoogleTagManager,
   GoogleTagManagerNoscript,
 } from '@/components/analytics/GoogleTagManager'
 import ConditionalFlightPathEffect from '@/components/effects/ConditionalFlightPathEffect'
+import ConditionalFloatingActions from '@/components/layout/ConditionalFloatingActions'
+import ResourceHints from '@/components/performance/ResourceHints'
 import { SKIP_TO_CONTENT } from '@/constants/a11y'
+import {
+  BING_SITE_VERIFICATION,
+  GOOGLE_SITE_VERIFICATION,
+} from '@/constants/analytics'
 import {
   AVION_APPLE_ICON_SRC,
   AVION_FAVICON_192_SRC,
   AVION_FAVICON_48_SRC,
   AVION_FAVICON_SRC,
-  BRAND_FULL_NAME,
 } from '@/constants/brand'
-import {
-  CONTACT_EMAILS,
-  PHONE_NUMBER,
-  SITE_DESCRIPTION,
-  SITE_URL,
-} from '@/constants/contact'
-import { AVION_OG_IMAGE_SRC } from '@/constants/images'
+import { SITE_URL } from '@/constants/contact'
+import { HOME_PATH } from '@/constants/routes'
 import { DEFAULT_LOCALE } from '@/constants/locales'
+import { buildPathMetadata } from '@/utils/seo'
 import CallbackRequestProvider from '@/modules/callback/components/CallbackRequestProvider'
 import ContactSettingsProvider from '@/modules/contact/components/ContactSettingsProvider'
 
+/** Limited to Regular + Bold; font-display: swap via next/font. */
 const outfit = localFont({
   src: [
     { path: '../../public/fonts/Outfit-Regular.woff2', weight: '400', style: 'normal' },
@@ -38,23 +41,16 @@ const outfit = localFont({
   adjustFontFallback: 'Arial',
 })
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: '#f8fafc',
+}
+
 export const metadata = {
+  ...buildPathMetadata(HOME_PATH),
   metadataBase: new URL(SITE_URL),
-  title: `${BRAND_FULL_NAME} — Book Flights by Phone | Canada & USA`,
-  description: SITE_DESCRIPTION,
-  keywords: [
-    'flight reservation',
-    'book flights by phone',
-    'travel specialist',
-    'hotel booking',
-    'points redemption help',
-    'Canada flights',
-    'USA flights',
-    'international flights',
-  ],
-  alternates: {
-    canonical: SITE_URL,
-  },
   icons: {
     icon: [
       { url: AVION_FAVICON_SRC, type: 'image/png', sizes: '32x32' },
@@ -64,58 +60,44 @@ export const metadata = {
     shortcut: AVION_FAVICON_48_SRC,
     apple: AVION_APPLE_ICON_SRC,
   },
-  openGraph: {
-    type: 'website',
-    url: SITE_URL,
-    title: `${BRAND_FULL_NAME} — Book Flights by Phone`,
-    description: SITE_DESCRIPTION,
-    images: [AVION_OG_IMAGE_SRC],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: `${BRAND_FULL_NAME} — Book Flights by Phone`,
-    description: SITE_DESCRIPTION,
-    images: [AVION_OG_IMAGE_SRC],
+  // REPLACE_WITH_CODE in constants/analytics.js for both verification values
+  verification: {
+    google: GOOGLE_SITE_VERIFICATION,
+    other: {
+      'msvalidate.01': BING_SITE_VERIFICATION,
+    },
   },
 }
 
-export default function RootLayout({ children }) {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: BRAND_FULL_NAME,
-    description:
-      'Independent travel assistance for flight and hotel reservations by phone.',
-    url: SITE_URL,
-    telephone: PHONE_NUMBER,
-    email: CONTACT_EMAILS,
-    areaServed: ['Canada', 'United States', 'Europe', 'Mexico'],
-    priceRange: '$$',
-  }
+const loadGa4InHead = process.env.NODE_ENV === 'production'
 
+export default function RootLayout({ children }) {
   return (
     <html
       lang={DEFAULT_LOCALE}
       data-scroll-behavior="smooth"
       className={`${outfit.variable} ${outfit.className}`}
     >
+      <head>
+        {/* GA4 before other scripts — ID from constants/analytics.js */}
+        {loadGa4InHead ? <Ga4Tag /> : null}
+        <ResourceHints />
+      </head>
       <body>
+        <a href="#main-content" className="skip-link">
+          {SKIP_TO_CONTENT}
+        </a>
+        <ConditionalFlightPathEffect />
+        <ContactSettingsProvider>
+          <CallbackRequestProvider>{children}</CallbackRequestProvider>
+        </ContactSettingsProvider>
+        <ConditionalFloatingActions />
+        {/* Third-party tags at end of body; async/lazyOnload via next/script */}
         <ConditionalAnalytics>
           <GoogleTagManagerNoscript />
           <GoogleTagManager />
           <GoogleAdsTag />
         </ConditionalAnalytics>
-        <a href="#main-content" className="skip-link">
-          {SKIP_TO_CONTENT}
-        </a>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <ConditionalFlightPathEffect />
-        <ContactSettingsProvider>
-          <CallbackRequestProvider>{children}</CallbackRequestProvider>
-        </ContactSettingsProvider>
       </body>
     </html>
   )

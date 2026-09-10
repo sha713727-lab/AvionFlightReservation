@@ -3,54 +3,60 @@ import {
   FaUserTie,
   FaBolt,
   FaShieldAlt,
-  FaTag,
-  FaAward,
+  FaSearchDollar,
+  FaComments,
 } from 'react-icons/fa'
 
 export const WHY_US = [
   {
     id: 'support',
-    title: '24/7 Support',
-    description: 'Round-the-clock assistance whenever you need it, wherever you are.',
+    title: '24/7 Phone Support',
+    description:
+      'Reach a travel specialist by phone when you need booking help, changes, or trip questions.',
     icon: FaHeadset,
   },
   {
     id: 'agents',
-    title: 'Expert Travel Specialists',
-    description: 'Certified travel specialists with years of industry experience.',
+    title: 'Expert Travel Assistance',
+    description:
+      'Specialists help compare options, explain supplier rules, and guide you through each booking step.',
     icon: FaUserTie,
   },
   {
     id: 'fast',
-    title: 'Fast Flight Booking',
-    description: 'Streamlined booking process — confirmed in minutes, not hours.',
+    title: 'Personalized Booking Support',
+    description:
+      'Share your dates, destinations, and preferences — we focus on clear options for your trip.',
     icon: FaBolt,
   },
   {
     id: 'secure',
-    title: 'Secure Payment',
-    description: 'Bank-grade encryption and trusted payment partners.',
+    title: 'Clear Booking Guidance',
+    description:
+      'We explain fares, conditions, and next steps before you confirm so you can decide with confidence.',
     icon: FaShieldAlt,
   },
   {
     id: 'deals',
-    title: 'Best Available Fares',
-    description: 'Access to unpublished fares and exclusive partner rates.',
-    icon: FaTag,
+    title: 'Flexible Travel Solutions',
+    description:
+      'Help with flights, hotels, points redemption requests, and itinerary planning based on your goals.',
+    icon: FaSearchDollar,
   },
   {
     id: 'satisfaction',
-    title: 'Customer Satisfaction',
-    description: '98% success rate with thousands of happy travelers worldwide.',
-    icon: FaAward,
+    title: 'Dedicated Customer Assistance',
+    description:
+      'Independent support for booking questions, changes, cancellations, and supplier policy review.',
+    icon: FaComments,
   },
 ]
 
-export const STATS = [
-  { value: 9995, suffix: '', label: 'Happy Customers', live: true },
-  { value: 98, suffix: '%', label: 'Success Rate' },
-  { value: 50, suffix: '+', label: 'Airline Partners' },
-  { value: 24, suffix: '/7', label: 'Expert Support' },
+export const VALUE_PROPS = [
+  { label: 'Expert Travel Assistance' },
+  { label: 'Personalized Booking Support' },
+  { label: 'Flexible Travel Solutions' },
+  { label: 'Dedicated Customer Assistance' },
 ]
 
 export const STEPS = [
@@ -77,6 +83,6 @@ export const STEPS = [
   {
     step: 5,
     title: 'Travel',
-    description: 'Enjoy your journey with 24/7 support every step of the way.',
+    description: 'Enjoy your journey with ongoing phone support when questions arise.',
   },
 ]

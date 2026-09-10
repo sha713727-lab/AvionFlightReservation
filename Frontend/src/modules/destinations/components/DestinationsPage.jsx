@@ -2,8 +2,10 @@
 
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import FloatingActions from '@/components/layout/FloatingActions'
+import SiteBreadcrumbBar from '@/components/layout/SiteBreadcrumbBar'
+import PageRelatedLinks from '@/components/links/PageRelatedLinks'
 import CatalogStatus from '@/components/ui/CatalogStatus'
+import { DESTINATIONS_PATH } from '@/constants/routes'
 import CallExpertProvider from '@/modules/call/components/CallExpertProvider'
 import DestinationsPageHero from '@/modules/destinations/components/DestinationsPageHero'
 import DestinationsTierStrip from '@/modules/destinations/components/DestinationsTierStrip'
@@ -16,7 +18,8 @@ export default function DestinationsPage({ destinations = [], catalogError = nul
 
   return (
     <CallExpertProvider>
-      <Navbar overDarkHero />
+      <Navbar />
+      <SiteBreadcrumbBar path={DESTINATIONS_PATH} />
       <main id="main-content" className="overflow-x-clip">
         <DestinationsPageHero cityNames={cityNames} />
         {catalogError ? (
@@ -27,9 +30,9 @@ export default function DestinationsPage({ destinations = [], catalogError = nul
         <DestinationsTierStrip destinations={destinations} />
         <DestinationsGallery destinations={destinations} />
         <DestinationsPageCta />
+        <PageRelatedLinks path={DESTINATIONS_PATH} />
       </main>
       <Footer />
-      <FloatingActions />
     </CallExpertProvider>
   )
 }

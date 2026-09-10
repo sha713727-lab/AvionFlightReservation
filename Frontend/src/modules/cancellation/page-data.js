@@ -1,47 +1,23 @@
+import { CONTACT_EMAILS, PHONE_NUMBER, SITE_URL, buildCanonicalUrl } from '@/constants/contact'
+import { withBreadcrumbJsonLd } from '@/constants/breadcrumbs'
+import { CANCELLATION_POLICY_PATH } from '@/constants/routes'
+import { getSeoPageMeta } from '@/constants/seoPageMeta'
 import { COPY } from '@/constants/copy'
 import { BRAND_FULL_NAME } from '@/constants/brand'
-import { CONTACT_EMAILS, PHONE_NUMBER, SITE_URL } from '@/constants/contact'
-import { CANCELLATION_POLICY_PATH } from '@/constants/routes'
+import { buildPathMetadata } from '@/utils/seo'
 
 export function getCancellationPageMetadata() {
-  const canonical = `${SITE_URL}${CANCELLATION_POLICY_PATH}`
-
-  return {
-    title: `Cancellation Policy | ${BRAND_FULL_NAME}`,
-    description: COPY.cancellation.metaDescription,
-    alternates: {
-      canonical,
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-      },
-    },
-    openGraph: {
-      type: 'website',
-      title: `Cancellation Policy | ${BRAND_FULL_NAME}`,
-      description: COPY.cancellation.metaDescription,
-      url: canonical,
-      siteName: BRAND_FULL_NAME,
-    },
-    twitter: {
-      card: 'summary',
-      title: `Cancellation Policy | ${BRAND_FULL_NAME}`,
-      description: COPY.cancellation.metaDescription,
-    },
-  }
+  return buildPathMetadata(CANCELLATION_POLICY_PATH)
 }
 
 export function getCancellationPageJsonLd() {
-  return {
+  const { title, description } = getSeoPageMeta(CANCELLATION_POLICY_PATH)
+  return withBreadcrumbJsonLd(CANCELLATION_POLICY_PATH, {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: `Cancellation Policy | ${BRAND_FULL_NAME}`,
-    description: COPY.cancellation.metaDescription,
-    url: `${SITE_URL}${CANCELLATION_POLICY_PATH}`,
+    name: title,
+    description,
+    url: buildCanonicalUrl(CANCELLATION_POLICY_PATH),
     dateModified: COPY.cancellation.lastUpdatedIso,
     isPartOf: {
       '@type': 'WebSite',
@@ -55,5 +31,5 @@ export function getCancellationPageJsonLd() {
       email: CONTACT_EMAILS,
       telephone: PHONE_NUMBER,
     },
-  }
+  })
 }

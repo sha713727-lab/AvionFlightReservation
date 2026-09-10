@@ -25,9 +25,9 @@ export default function AboutHighlights() {
                   <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent">
                     <Icon className="h-5 w-5" aria-hidden />
                   </span>
-                  <h2 className="mb-2 text-xl font-semibold tracking-tight text-primary">
+                  <p className="mb-2 text-xl font-semibold tracking-tight text-primary">
                     {item.title}
-                  </h2>
+                  </p>
                   <p className="text-sm leading-relaxed text-text-secondary">{item.description}</p>
                 </div>
               </StaggerItem>

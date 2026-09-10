@@ -6,7 +6,12 @@ import Button from '@/components/buttons/Button'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
-import { INTERNATIONAL_FLIGHT_HERO_IMAGE_SRC } from '@/constants/images'
+import {
+  INTERNATIONAL_FLIGHT_HERO_ALT,
+  INTERNATIONAL_FLIGHT_HERO_IMAGE_SRC,
+} from '@/constants/images'
+import { INTERNATIONAL_FLIGHT_PATH } from '@/constants/routes'
+import { getSeoPageH1 } from '@/constants/seoPageMeta'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
 
@@ -16,12 +21,12 @@ export default function InternationalFlightHero() {
 
   return (
     <section
-      className="relative flex min-h-[min(100svh,52rem)] items-center overflow-hidden bg-primary pt-28 pb-16 sm:pt-32 lg:pt-36 lg:pb-24"
+      className="relative flex min-h-[min(100svh,52rem)] items-center overflow-hidden bg-primary pt-10 pb-16 sm:pt-12 lg:pt-14 lg:pb-24"
       aria-labelledby="international-flight-heading"
     >
       <OptimizedImage
         src={INTERNATIONAL_FLIGHT_HERO_IMAGE_SRC}
-        alt=""
+        alt={INTERNATIONAL_FLIGHT_HERO_ALT}
         fill
         priority
         quality={70}
@@ -46,29 +51,26 @@ export default function InternationalFlightHero() {
           <FadeIn delay={0.08}>
             <h1
               id="international-flight-heading"
-              className="font-heading text-[clamp(2.5rem,7vw,4.5rem)] font-semibold leading-[1.05] tracking-tight"
+              className="font-heading text-[clamp(1.75rem,7vw,4rem)] font-semibold leading-[1.08] tracking-tight text-white"
             >
-              <span className="block text-white">{COPY.internationalFlight.titleLineOne}</span>
-              <span className="mt-1 block text-secondary">
-                {COPY.internationalFlight.titleLineTwo}
-              </span>
+              {getSeoPageH1(INTERNATIONAL_FLIGHT_PATH)}
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.16}>
-            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
+            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg speakable-summary">
               {COPY.internationalFlight.description}
             </p>
           </FadeIn>
 
           <FadeIn delay={0.24}>
-            <div className="mt-10 flex justify-center">
+            <div className="mt-10 flex w-full justify-center px-0">
               <Button
                 variant="primary"
                 size="lg"
                 icon={FaPhone}
                 onClick={callModal.open}
-                className="min-w-[16rem]"
+                className="w-full max-w-md"
               >
                 {phoneNumber}
               </Button>

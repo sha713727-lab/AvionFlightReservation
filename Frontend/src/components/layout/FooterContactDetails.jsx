@@ -6,6 +6,7 @@ import {
   SUPPORT_HOURS,
 } from '@/constants/contact'
 import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
+import TrackedTelLink from '@/components/links/TrackedTelLink'
 import { openMailto } from '@/utils/openMailto'
 import { cn } from '@/utils/cn'
 
@@ -39,9 +40,13 @@ export default function FooterContactDetails() {
             {CONTACT_LABELS.phoneSupport}
           </p>
           {supportPhones.map((phone) => (
-            <a key={phone.href} href={phone.href} className={cn(linkClassName, 'block')}>
+            <TrackedTelLink
+              key={phone.href}
+              href={phone.href}
+              className={cn(linkClassName, 'block')}
+            >
               {phone.display}
-            </a>
+            </TrackedTelLink>
           ))}
         </div>
 

@@ -13,7 +13,7 @@ export default function FooterNavColumn({ title, links }) {
         type="button"
         aria-expanded={isOpen}
         onClick={() => setIsOpen((current) => !current)}
-        className="flex w-full items-center justify-between py-3 text-left sm:pointer-events-none sm:mb-3 sm:py-0"
+        className="flex min-h-12 w-full items-center justify-between py-3 text-left sm:pointer-events-none sm:mb-3 sm:min-h-0 sm:py-0"
       >
         <p className="text-xs font-medium uppercase tracking-[0.15em] text-white/75">
           {title}
@@ -37,7 +37,7 @@ export default function FooterNavColumn({ title, links }) {
       >
         {links.map((link) => (
           <li key={link.label}>
-            <a href={link.href} className="footer-link text-sm text-white/80">
+            <a href={link.href} className="footer-link inline-flex min-h-12 items-center text-base text-white/80 sm:min-h-0 sm:text-sm">
               {link.label}
             </a>
           </li>

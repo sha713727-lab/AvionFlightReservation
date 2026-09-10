@@ -7,7 +7,7 @@ export const INTERNATIONAL_FLIGHT_REGIONS = [
     name: 'Europe',
     description: 'Transatlantic & European cities',
     imageSrc: INTERNATIONAL_REGION_IMAGES.europe,
-    imageAlt: 'Eiffel Tower in Paris, Europe',
+    imageAlt: 'Eiffel Tower in Paris for Europe international flight booking',
   },
   {
     id: 'canada',
@@ -15,7 +15,7 @@ export const INTERNATIONAL_FLIGHT_REGIONS = [
     name: 'Canada Domestic',
     description: 'All major Canadian routes',
     imageSrc: INTERNATIONAL_REGION_IMAGES.canada,
-    imageAlt: 'Toronto skyline, Canada',
+    imageAlt: 'Toronto skyline for Canada domestic flight booking',
   },
   {
     id: 'mexico',
@@ -23,7 +23,7 @@ export const INTERNATIONAL_FLIGHT_REGIONS = [
     name: 'Mexico & Cancun',
     description: 'Leisure & resort destinations',
     imageSrc: INTERNATIONAL_REGION_IMAGES.mexico,
-    imageAlt: 'Tropical beach in Mexico',
+    imageAlt: 'Tropical Cancun beach for Mexico vacation flight booking',
   },
   {
     id: 'usa',
@@ -31,7 +31,7 @@ export const INTERNATIONAL_FLIGHT_REGIONS = [
     name: 'United States',
     description: 'Domestic & cross-border routes',
     imageSrc: INTERNATIONAL_REGION_IMAGES.usa,
-    imageAlt: 'New York City skyline at night',
+    imageAlt: 'New York City skyline for USA flight booking by phone',
   },
 ]
 
@@ -41,7 +41,7 @@ export const INTERNATIONAL_FLIGHT_STEPS = [
     number: '01',
     title: 'Call Us',
     description:
-      'Dial our number. A real specialist picks up — no hold queues, no automated menus.',
+      'Dial our number. A travel specialist answers your call to discuss your trip.',
   },
   {
     id: 'share',

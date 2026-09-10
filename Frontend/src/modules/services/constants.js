@@ -1,5 +1,9 @@
 import { FaExchangeAlt, FaPlane, FaRoute } from 'react-icons/fa'
-import { SERVICES_PATH } from '@/constants/routes'
+import {
+  FLIGHT_BOOKING_PATH,
+  FLIGHT_CHANGES_PATH,
+  TRIP_PLANNING_PATH,
+} from '@/constants/routes'
 
 export const SERVICE_CATEGORY_IDS = {
   booking: 'booking',
@@ -14,7 +18,7 @@ export const SERVICE_CATEGORIES = [
     description: 'Flights, hotels, and points redemption by phone',
     icon: FaPlane,
     serviceIds: ['flights', 'hotels', 'rewards'],
-    href: `${SERVICES_PATH}#${SERVICE_CATEGORY_IDS.booking}`,
+    href: FLIGHT_BOOKING_PATH,
   },
   {
     id: SERVICE_CATEGORY_IDS.changes,
@@ -22,7 +26,7 @@ export const SERVICE_CATEGORIES = [
     description: 'Rebooking, cancellations, seats, and baggage help',
     icon: FaExchangeAlt,
     serviceIds: ['changes', 'cancellation', 'seats', 'baggage'],
-    href: `${SERVICES_PATH}#${SERVICE_CATEGORY_IDS.changes}`,
+    href: FLIGHT_CHANGES_PATH,
   },
   {
     id: SERVICE_CATEGORY_IDS.planning,
@@ -30,6 +34,6 @@ export const SERVICE_CATEGORIES = [
     description: 'Custom itineraries and all-inclusive vacation packages',
     icon: FaRoute,
     serviceIds: ['planning', 'packages'],
-    href: `${SERVICES_PATH}#${SERVICE_CATEGORY_IDS.planning}`,
+    href: TRIP_PLANNING_PATH,
   },
 ]

@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /_next/
+Disallow: /checkout/
+Disallow: /thank-you/
+
+Sitemap: https://aviosupportdesk.com/sitemap.xml

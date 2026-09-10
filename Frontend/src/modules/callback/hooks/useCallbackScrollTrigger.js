@@ -25,6 +25,10 @@ export function useCallbackScrollTrigger() {
     pushDataLayerEvent(GTM_EVENTS.callbackRequestClick, {
       callback_cta: 'request_a_callback',
     })
+    pushDataLayerEvent(GTM_EVENTS.callbackFormStart, {
+      conversion_type: 'micro',
+      form_name: 'callback_request',
+    })
     setIsPromptOpen(false)
     setIsSuccessOpen(false)
     setIsFormOpen(true)

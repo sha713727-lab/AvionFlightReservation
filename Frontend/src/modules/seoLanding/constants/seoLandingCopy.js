@@ -1,0 +1,31 @@
+export const SEO_LANDING_COPY = {
+  introHeading: 'Overview',
+  howItWorksHeading: 'How It Works',
+  benefitsHeading: 'Benefits',
+  whyChooseHeading: 'Why Choose AvioSupportDesk',
+  peopleAlsoAskHeading: 'People Also Ask',
+  faqHeading: 'Frequently Asked Questions',
+  relatedHeading: 'Related resources',
+  relatedServicesHeading: 'Related Services',
+  homeServiceLinksTitle: 'Phone travel services we help with',
+  homeServiceLinksDescription:
+    'Explore every main service page—from flight booking and hotel stays to changes, cancellations, seats, baggage, and trip planning.',
+  serviceUtilityHeading: 'On this site',
+  ctaTitle: 'Ready to get help? Contact us now',
+  ctaDescription:
+    'Call AvioSupportDesk for step-by-step phone help with flights, hotels, changes, and more. We are an independent travel assistance service—not affiliated with any airline loyalty program or bank rewards brand.',
+  ctaPhoneLabel: 'Call now',
+  ctaCallbackLabel: 'Request a callback',
+  guidesHubEyebrow: 'Travel guides',
+  guidesHubTitle: 'Practical guides for flights and trips',
+  guidesHubIntro:
+    'AvioSupportDesk travel guides give direct 40–60 word answers to booking, change, baggage, and points questions, then deeper detail below. Use them for self-serve clarity; call our team when your ticket needs one-on-one phone help.',
+  guidesListHeading: 'Browse guides',
+  servicesLinkLabel: 'View all services',
+  guideExpertHeading: 'When to call for expert help',
+  guideConditionsHeading: 'Important conditions and limits',
+  guideExplanationHeading: 'Detailed explanation',
+  guideRelatedHeading: 'Related questions',
+  breadcrumbHome: 'Home',
+  breadcrumbGuides: 'Guides',
+}

@@ -18,7 +18,9 @@ export default function ServiceMediaFrame({
 }) {
   const isVideo = mediaType === 'video' && Boolean(mediaUrl)
   const imageSrc = image || mediaUrl || ''
-  const label = imageAlt || title
+  const label =
+    (imageAlt && imageAlt.trim()) ||
+    (title ? `${title} travel service support by phone` : 'Travel service support by phone')
 
   return (
     <div

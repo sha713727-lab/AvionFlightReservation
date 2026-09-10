@@ -1,17 +1,13 @@
+import JsonLd from '@/modules/seoLanding/components/JsonLd'
 import CookiePage from '@/modules/cookies/components/CookiePage'
 import { getCookiePageJsonLd, getCookiePageMetadata } from '@/modules/cookies/page-data'
 
 export const metadata = getCookiePageMetadata()
 
 export default function Page() {
-  const jsonLd = getCookiePageJsonLd()
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={getCookiePageJsonLd()} />
       <CookiePage />
     </>
   )

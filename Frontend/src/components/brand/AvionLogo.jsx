@@ -1,5 +1,11 @@
 import { cn } from '@/utils/cn'
-import { AVION_LOGO_SRC, BRAND_NAME, BRAND_TAGLINE } from '@/constants/brand'
+import {
+  AVION_LOGO_ALT,
+  AVION_LOGO_PNG_SRC,
+  AVION_LOGO_SRC,
+  BRAND_NAME,
+  BRAND_TAGLINE,
+} from '@/constants/brand'
 
 const LOGO_SIZES = {
   sm: {
@@ -39,12 +45,17 @@ const WORDMARK_TONES = {
   },
 }
 
+/**
+ * Brand mark with WebP + PNG <picture> fallback.
+ * Pass priority for above-the-fold navbar usage (eager, not lazy).
+ */
 export default function AvionLogo({
   size = 'md',
   showWordmark = true,
   compact = false,
   tone = 'light',
   hideName = false,
+  priority = false,
   className,
   ...props
 }) {
@@ -54,14 +65,19 @@ export default function AvionLogo({
 
   return (
     <div className={cn('inline-flex min-w-0 items-center gap-2.5 sm:gap-3', className)} {...props}>
-      <img
-        src={AVION_LOGO_SRC}
-        alt=""
-        width={logoSize.width}
-        height={logoSize.height}
-        decoding="async"
-        className={cn('shrink-0 object-contain', logoSize.className)}
-      />
+      <picture>
+        <source srcSet={AVION_LOGO_SRC} type="image/webp" />
+        <img
+          src={AVION_LOGO_PNG_SRC}
+          alt={AVION_LOGO_ALT}
+          width={logoSize.width}
+          height={logoSize.height}
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : 'auto'}
+          decoding="async"
+          className={cn('shrink-0 object-contain', logoSize.className)}
+        />
+      </picture>
       {showWordmark && (
         <div className="min-w-0 font-heading leading-none">
           <span

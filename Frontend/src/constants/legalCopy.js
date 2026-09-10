@@ -3,26 +3,34 @@ export const LEGAL_COPY = {
     pageEyebrow: 'Legal',
     pageTitle: 'Privacy Policy',
     pageDescription:
-      'This policy explains how customer information may be collected and used when you contact Avion Flight Reservation.',
+      'This Privacy Policy explains how AvioSupportDesk may collect and use contact and travel details when you call or message us for booking help. It covers cookies, sharing with suppliers, GDPR/CCPA rights, and how to request updates to your information.',
     lastUpdatedLabel: 'Last updated',
-    lastUpdatedDate: 'July 10, 2026',
-    lastUpdatedIso: '2026-07-10',
+    lastUpdatedDate: 'September 10, 2026',
+    lastUpdatedIso: '2026-09-10',
     metaDescription:
-      'Privacy Policy for Avion Flight Reservation. Learn what information we may collect for travel support, how it is used, when it may be shared, and how to contact us about your details.',
+      'Privacy Policy for AvioSupportDesk. Learn what we collect for travel support, cookies, sharing, GDPR/CCPA rights, and how to contact us about your details.',
     collectEyebrow: 'Information We May Collect',
     collectTitle: 'Details used to respond to your travel request.',
     collectDescription:
-      'When you contact us for travel assistance, we may collect details needed to respond to your request, such as name, phone number, email address, travel dates, destination, passenger information, and booking reference details.',
+      'When you contact us for travel assistance, we may collect details needed to respond to your request, such as name, phone number, email address, travel dates, destination, passenger information, booking reference details, and messages you send through our contact form or phone support.',
     usageEyebrow: 'How Information Is Used',
     usageTitle: 'Why we use customer information.',
+    cookiesEyebrow: 'Cookies',
+    cookiesTitle: 'How this website may use cookies.',
+    cookiesDescription:
+      'Our website may use cookies and similar technologies to support core browsing, remember limited preferences, and measure basic performance. Essential cookies help pages load correctly. You can manage cookies in your browser settings; blocking cookies may affect some features. See our Cookie Policy for more detail.',
     sharingEyebrow: 'Information Sharing',
     sharingTitle: 'When travel details may be shared.',
     sharingDescription:
-      'Travel details may be shared with relevant suppliers, processors, or support partners only when needed to help complete or manage a travel request.',
+      'Travel details may be shared with relevant suppliers, processors, or support partners only when needed to help complete or manage a travel request. We do not sell personal information.',
     protectionEyebrow: 'Data Protection',
     protectionTitle: 'Responsible handling of customer information.',
     protectionDescription:
-      'We aim to handle customer information responsibly and use reasonable safeguards to protect information used for travel support. Do not submit unnecessary sensitive information through this website.',
+      'We aim to handle customer information responsibly and use reasonable administrative and technical safeguards to protect information used for travel support. Do not submit unnecessary sensitive information (such as full payment card numbers) through website forms.',
+    gdprEyebrow: 'GDPR & CCPA',
+    gdprTitle: 'Rights for visitors in the EEA/UK and California.',
+    gdprDescription:
+      'Depending on where you live, you may have rights to request access to, correction of, or deletion of personal information we hold about your support requests, and to object to or restrict certain processing. California residents may have additional rights under the CCPA/CPRA, including the right to know categories of personal information collected and to request deletion, subject to legal exceptions. We do not sell personal information as that term is commonly understood under CCPA. To exercise privacy rights, contact us using the details below and include enough information for us to verify and locate your request.',
     choiceEyebrow: 'Your Choice',
     choiceTitle: 'Questions and updates about your details.',
     choiceDescription:
@@ -30,14 +38,14 @@ export const LEGAL_COPY = {
     contactEyebrow: 'Privacy Contact',
     contactTitle: 'Reach us about this policy.',
     contactDescription:
-      'For privacy questions related to booking support requests, contact Avion Flight Reservation by phone or email.',
+      'For privacy questions related to booking support requests, contact AvioSupportDesk by phone or email. We will review privacy inquiries during business follow-up windows and respond as promptly as practical.',
     tocLabel: 'On this page',
   },
   cancellation: {
     pageEyebrow: 'Legal',
     pageTitle: 'Cancellation Policy',
     pageDescription:
-      'This policy explains cancellation support and important conditions for travel bookings.',
+      'This Cancellation Policy explains how AvioSupportDesk helps review airline and hotel cancellation rules before you cancel. Outcomes depend on fare type, supplier policy, and timing—we guide the request; refunds and credits stay with the travel supplier.',
     lastUpdatedLabel: 'Last updated',
     lastUpdatedDate: 'July 10, 2026',
     lastUpdatedIso: '2026-07-10',
@@ -65,29 +73,29 @@ export const LEGAL_COPY = {
   },
   terms: {
     pageEyebrow: 'Legal',
-    pageTitle: 'Terms & Conditions',
+    pageTitle: 'Terms of Service',
     pageDescription:
-      'Please read these terms before using our website or requesting travel booking assistance.',
+      'These Terms of Service govern use of the AvioSupportDesk website and phone travel assistance. AvioSupportDesk is an independent travel support service and is NOT affiliated with any airline—read fees, refunds, and liability limits before you book.',
     lastUpdatedLabel: 'Last updated',
-    lastUpdatedDate: 'July 10, 2026',
-    lastUpdatedIso: '2026-07-10',
+    lastUpdatedDate: 'September 10, 2026',
+    lastUpdatedIso: '2026-09-10',
     metaDescription:
-      'Terms & Conditions for Avion Flight Reservation. Review independent service disclosure, booking information, customer responsibility, fees, cancellations, and website use rules.',
-    brandTermsTitle: 'Flight Reservation Terms',
+      'Terms of Service for AvioSupportDesk. Review independent airline disclosure, fees, refunds, liability, and website use before requesting travel support by phone.',
+    brandTermsTitle: 'AvioSupportDesk Terms of Service',
     brandTermsDescription:
-      'These terms are written to help visitors understand how Flight Reservation provides independent travel assistance. Please review them carefully before using this website or requesting support.',
+      'AvioSupportDesk is an independent travel support service and is NOT affiliated with any airline. Review these terms carefully before using this website or requesting support.',
     clausesEyebrow: 'Agreement terms',
     clausesTitle: 'Key conditions for using our travel assistance.',
     contactEyebrow: 'Questions about these terms?',
     contactTitle: 'Contact us before you book.',
     contactDescription:
-      'If you need clarification on these terms before requesting travel support, call or email Avion Flight Reservation.',
+      'If you need clarification on these terms before requesting travel support, call or email AvioSupportDesk.',
   },
   refund: {
     pageEyebrow: 'Legal',
     pageTitle: 'Refund Policy',
     pageDescription:
-      'This policy explains how refund requests are reviewed for travel bookings and assistance services.',
+      'This Refund Policy explains how AvioSupportDesk reviews refund eligibility for travel bookings and assistance fees. Airline and hotel refunds follow supplier rules and timelines; we help clarify what your ticket or rate allows before you submit a request.',
     lastUpdatedLabel: 'Last updated',
     lastUpdatedDate: 'July 10, 2026',
     lastUpdatedIso: '2026-07-10',
@@ -108,7 +116,7 @@ export const LEGAL_COPY = {
     pageEyebrow: 'Legal',
     pageTitle: 'Cookie Policy',
     pageDescription:
-      'This policy explains how cookies and similar technologies may be used on the Avion Flight Reservation website.',
+      'This Cookie Policy explains how cookies and similar technologies may be used on the AvioSupportDesk website to support browsing, performance, and basic site features. You can manage cookies in your browser; blocking some cookies may affect how pages work.',
     lastUpdatedLabel: 'Last updated',
     lastUpdatedDate: 'July 10, 2026',
     lastUpdatedIso: '2026-07-10',

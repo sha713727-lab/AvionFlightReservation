@@ -6,6 +6,7 @@ import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
 import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
+import TrackedTelLink from '@/components/links/TrackedTelLink'
 import { openMailto } from '@/utils/openMailto'
 
 export default function TermsPageCta() {
@@ -38,13 +39,13 @@ export default function TermsPageCta() {
             </div>
 
             <div className="flex items-center gap-4">
-              <a
+              <TrackedTelLink
                 href={phoneHref}
                 aria-label={`Call ${phoneNumber}`}
                 className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white shadow-sm shadow-accent/25 transition-colors hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 <FaPhone className="h-5 w-5" aria-hidden />
-              </a>
+              </TrackedTelLink>
 
               <a
                 href={reservationEmailHref}

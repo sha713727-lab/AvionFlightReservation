@@ -30,6 +30,9 @@ const nextConfig = {
   turbopack: {
     root,
   },
+  experimental: {
+    optimizePackageImports: ['react-icons', 'framer-motion', 'recharts'],
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 2678400,
@@ -85,9 +88,13 @@ const nextConfig = {
       source: '/uploads/:path*',
       destination: `${apiOrigin}/uploads/:path*`,
     }
+    const ogImageRewrite = {
+      source: '/og-image.jpg',
+      destination: '/avion-hero-background.png',
+    }
 
     if (process.env.NODE_ENV === 'production') {
-      return [uploadRewrite]
+      return [uploadRewrite, ogImageRewrite]
     }
 
     return [
@@ -96,6 +103,7 @@ const nextConfig = {
         destination: `${apiOrigin}/api/:path*`,
       },
       uploadRewrite,
+      ogImageRewrite,
     ]
   },
   async headers() {
@@ -108,22 +116,32 @@ const nextConfig = {
         source: '/_next/static/:path*',
         headers: [{ key: 'Cache-Control', value: STATIC_CACHE }],
       },
-      {
-        source: '/:path*.webp',
-        headers: [{ key: 'Cache-Control', value: ASSET_CACHE }],
-      },
-      {
-        source: '/:path*.avif',
-        headers: [{ key: 'Cache-Control', value: ASSET_CACHE }],
-      },
-      {
-        source: '/:path*.woff2',
-        headers: [{ key: 'Cache-Control', value: STATIC_CACHE }],
-      },
-      {
-        source: '/avion-hero-background.png',
-        headers: [{ key: 'Cache-Control', value: ASSET_CACHE }],
-      },
+  {
+    source: '/:path*.webp',
+    headers: [{ key: 'Cache-Control', value: ASSET_CACHE }],
+  },
+  {
+    source: '/:path*.avif',
+    headers: [{ key: 'Cache-Control', value: ASSET_CACHE }],
+  },
+  {
+    source: '/:path*.woff2',
+    headers: [{ key: 'Cache-Control', value: STATIC_CACHE }],
+  },
+  {
+    source: '/fonts/:path*',
+    headers: [{ key: 'Cache-Control', value: STATIC_CACHE }],
+  },
+  {
+    source: '/avion-hero-background.webp',
+    headers: [
+      { key: 'Cache-Control', value: ASSET_CACHE },
+    ],
+  },
+  {
+    source: '/avion-hero-background.png',
+    headers: [{ key: 'Cache-Control', value: ASSET_CACHE }],
+  },
       {
         source: '/:path*.png',
         headers: [{ key: 'Cache-Control', value: ASSET_CACHE }],
@@ -145,6 +163,12 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.aviosupportdesk.com' }],
+        destination: 'https://aviosupportdesk.com/:path*',
+        permanent: true,
+      },
+      {
         source: '/en',
         destination: '/',
         permanent: false,
@@ -153,6 +177,16 @@ const nextConfig = {
         source: '/en/:path*',
         destination: '/:path*',
         permanent: false,
+      },
+      {
+        source: '/internationalFlight',
+        destination: '/international-flights',
+        permanent: true,
+      },
+      {
+        source: '/internationalFlight/:path*',
+        destination: '/international-flights',
+        permanent: true,
       },
     ]
   },

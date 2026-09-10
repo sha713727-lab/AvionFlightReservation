@@ -5,6 +5,8 @@ import Button from '@/components/buttons/Button'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
+import { DESTINATIONS_PATH } from '@/constants/routes'
+import { getSeoPageH1 } from '@/constants/seoPageMeta'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 
 const GALLERY_ANCHOR = '#destination-gallery'
@@ -16,7 +18,7 @@ export default function DestinationsPageHero({ cityNames = [] }) {
 
   return (
     <section
-      className="relative overflow-hidden bg-primary pt-32 pb-20 lg:pt-40 lg:pb-28"
+      className="relative overflow-hidden bg-primary pt-10 pb-20 lg:pt-14 lg:pb-28"
       aria-labelledby="destinations-page-heading"
     >
       <div
@@ -39,21 +41,21 @@ export default function DestinationsPageHero({ cityNames = [] }) {
           <FadeIn delay={0.08}>
             <h1
               id="destinations-page-heading"
-              className="font-heading text-[clamp(2.35rem,6vw,4.25rem)] font-semibold leading-[1.05] tracking-tight text-white"
+              className="font-heading text-[clamp(1.75rem,7vw,4.25rem)] font-semibold leading-[1.05] tracking-tight text-white"
             >
-              {COPY.destinations.pageTitle}
+              {getSeoPageH1(DESTINATIONS_PATH)}
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.16}>
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg speakable-summary">
               {COPY.destinations.pageDescription}
             </p>
           </FadeIn>
 
           <FadeIn delay={0.24}>
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button variant="primary" size="lg" onClick={callModal.open}>
+            <div className="mt-10 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
+              <Button variant="primary" size="lg" onClick={callModal.open} className="w-full sm:w-auto">
                 {COPY.destinations.pagePrimaryCta}
               </Button>
               <Button
@@ -62,7 +64,7 @@ export default function DestinationsPageHero({ cityNames = [] }) {
                 size="lg"
                 icon={HiArrowDown}
                 iconPosition="right"
-                className="border-white/25 text-white hover:border-white hover:bg-white/10"
+                className="w-full border-white/25 text-white hover:border-white hover:bg-white/10 sm:w-auto"
               >
                 {COPY.destinations.pageSecondaryCta}
               </Button>

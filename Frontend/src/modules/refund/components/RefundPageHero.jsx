@@ -3,11 +3,13 @@
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
+import { REFUND_POLICY_PATH } from '@/constants/routes'
+import { getSeoPageH1 } from '@/constants/seoPageMeta'
 
 export default function RefundPageHero() {
   return (
     <section
-      className="relative overflow-hidden bg-primary pt-32 pb-16 lg:pt-40 lg:pb-20"
+      className="relative overflow-hidden bg-primary pt-10 pb-16 lg:pt-14 lg:pb-20"
       aria-labelledby="refund-page-heading"
     >
       <div
@@ -25,9 +27,9 @@ export default function RefundPageHero() {
               id="refund-page-heading"
               className="font-heading text-[clamp(2.25rem,5vw,3.75rem)] font-semibold leading-[1.08] tracking-tight text-white"
             >
-              {COPY.refund.pageTitle}
+              {getSeoPageH1(REFUND_POLICY_PATH)}
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
+            <p className="speakable-summary mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
               {COPY.refund.pageDescription}
             </p>
             <p className="mt-6 text-sm text-white/75">

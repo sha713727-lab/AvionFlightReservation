@@ -2,7 +2,9 @@
 
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import FloatingActions from '@/components/layout/FloatingActions'
+import SiteBreadcrumbBar from '@/components/layout/SiteBreadcrumbBar'
+import PageRelatedLinks from '@/components/links/PageRelatedLinks'
+import { INTERNATIONAL_FLIGHT_PATH } from '@/constants/routes'
 import CallExpertProvider from '@/modules/call/components/CallExpertProvider'
 import InternationalFlightHero from '@/modules/internationalFlight/components/InternationalFlightHero'
 import InternationalFlightRegions from '@/modules/internationalFlight/components/InternationalFlightRegions'
@@ -12,15 +14,16 @@ import InternationalFlightCta from '@/modules/internationalFlight/components/Int
 export default function InternationalFlightPage() {
   return (
     <CallExpertProvider>
-      <Navbar overDarkHero />
+      <Navbar />
+      <SiteBreadcrumbBar path={INTERNATIONAL_FLIGHT_PATH} />
       <main id="main-content" className="overflow-x-clip">
         <InternationalFlightHero />
         <InternationalFlightRegions />
         <InternationalFlightSteps />
         <InternationalFlightCta />
+        <PageRelatedLinks path={INTERNATIONAL_FLIGHT_PATH} />
       </main>
       <Footer />
-      <FloatingActions />
     </CallExpertProvider>
   )
 }

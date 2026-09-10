@@ -11,13 +11,26 @@ import vacationPackageServiceImage from '@/assets/images/vacationPackageService.
 export const AVION_HERO_BACKGROUND_SRC = '/avion-hero-background.webp'
 export const AVION_OG_IMAGE_SRC = '/avion-hero-background.png'
 
+/** Absolute OG/Twitter image URL required in social meta tags. */
+export const SEO_OG_IMAGE_ABSOLUTE = 'https://aviosupportdesk.com/og-image.jpg'
+
+/** Public brand name used in Open Graph site_name. */
+export const SEO_SITE_NAME = 'AvioSupportDesk'
+
 export const HERO_BACKGROUND_SRC = AVION_HERO_BACKGROUND_SRC
+
+/** Decorative homepage hero plane background — empty alt (text overlay carries meaning). */
+export const HERO_BACKGROUND_ALT = ''
 
 export const REWARDS_CABIN_IMAGE_SRC =
   'https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=800&q=70'
+export const REWARDS_CABIN_IMAGE_ALT =
+  'Premium airplane cabin seats for points and miles flight redemption'
 
 export const INTERNATIONAL_FLIGHT_HERO_IMAGE_SRC =
   'https://images.unsplash.com/photo-1436491867331615-027857379939?auto=format&fit=crop&w=1280&q=70'
+export const INTERNATIONAL_FLIGHT_HERO_ALT =
+  'Passenger jet flying above clouds for international flight booking by phone'
 
 export const INTERNATIONAL_REGION_IMAGES = {
   europe:
@@ -38,3 +51,16 @@ export const SEAT_SELECTION_SERVICE_IMAGE = seatSelectionServiceImage
 export const BAGGAGE_SERVICE_IMAGE = baggageServiceImage
 export const TRIP_PLANNING_SERVICE_IMAGE = tripPlanningServiceImage
 export const VACATION_PACKAGE_SERVICE_IMAGE = vacationPackageServiceImage
+
+/** Fallback keyword-rich alts when catalog imageAlt is empty. */
+export const SERVICE_IMAGE_ALT_FALLBACKS = {
+  'flight-booking': 'Travel specialist booking airline flights by phone',
+  'hotel-booking': 'Hotel room ready for phone hotel reservation booking',
+  'reward-travel': 'Airplane cabin for points and miles redemption travel',
+  'flight-change': 'Airport departure board during flight change rebooking',
+  cancellation: 'Boarding pass for flight cancellation and refund help',
+  'seat-selection': 'Airplane cabin seats for airline seat selection help',
+  baggage: 'Checked luggage for airline baggage fee assistance',
+  'trip-planning': 'World map and passport for custom trip planning',
+  'vacation-package': 'Tropical resort for vacation package flight and hotel bookings',
+}

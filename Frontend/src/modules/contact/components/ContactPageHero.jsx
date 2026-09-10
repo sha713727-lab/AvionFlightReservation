@@ -10,7 +10,10 @@ import {
   MAILING_ADDRESS_LINES,
   SUPPORT_HOURS,
 } from '@/constants/contact'
+import { CONTACT_PATH } from '@/constants/routes'
+import { getSeoPageH1 } from '@/constants/seoPageMeta'
 import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
+import TrackedTelLink from '@/components/links/TrackedTelLink'
 import { openMailto } from '@/utils/openMailto'
 
 export default function ContactPageHero() {
@@ -24,7 +27,7 @@ export default function ContactPageHero() {
 
   return (
     <section
-      className="relative overflow-hidden bg-background pt-28 pb-16 lg:pt-36 lg:pb-20"
+      className="relative overflow-hidden bg-background pt-10 pb-16 lg:pt-14 lg:pb-20"
       aria-labelledby="contact-page-heading"
     >
       <div
@@ -40,22 +43,22 @@ export default function ContactPageHero() {
             </p>
             <h1
               id="contact-page-heading"
-              className="font-heading text-[clamp(2.25rem,5vw,3.75rem)] font-semibold leading-[1.08] tracking-tight text-primary"
+              className="font-heading text-[clamp(1.75rem,6vw,3.75rem)] font-semibold leading-[1.08] tracking-tight text-primary"
             >
-              {COPY.contactPage.pageTitle}
+              {getSeoPageH1(CONTACT_PATH)}
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-text-secondary sm:text-lg">
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-text-secondary sm:text-lg speakable-summary">
               {COPY.contactPage.pageDescription}
             </p>
-            <div className="mt-8">
-              <Button href={phoneHref} variant="primary" size="lg" icon={FaPhone}>
+            <div className="mt-8 flex w-full max-w-xl flex-col gap-3 sm:flex-row">
+              <Button href={phoneHref} variant="primary" size="lg" icon={FaPhone} className="w-full sm:w-auto">
                 {COPY.contactPage.pagePrimaryCta}
               </Button>
             </div>
           </FadeIn>
 
           <FadeIn delay={0.12}>
-            <aside className="relative flex h-full flex-col justify-between overflow-hidden rounded-[2rem] bg-primary p-8 text-white sm:p-10">
+            <aside className="relative flex h-full flex-col justify-between overflow-hidden rounded-[1.5rem] bg-primary p-6 text-white sm:rounded-[2rem] sm:p-10">
               <div
                 className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-accent/30 blur-3xl"
                 aria-hidden
@@ -66,12 +69,12 @@ export default function ContactPageHero() {
                   <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/75">
                     {CONTACT_LABELS.phoneSupport}
                   </p>
-                  <a
+                  <TrackedTelLink
                     href={phoneHref}
-                    className="mt-3 block font-heading text-[clamp(1.5rem,3.5vw,2.25rem)] font-semibold tracking-tight text-white transition-colors hover:text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                    className="mt-3 flex min-h-12 items-center font-heading text-[clamp(1.35rem,4vw,2.25rem)] font-semibold tracking-tight text-white transition-colors hover:text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                   >
                     {phoneNumber}
-                  </a>
+                  </TrackedTelLink>
                 </div>
 
                 <div>
@@ -81,7 +84,7 @@ export default function ContactPageHero() {
                   <a
                     href={reservationEmailHref}
                     onClick={handleEmailClick}
-                    className="mt-2 block cursor-pointer text-sm text-white/80 underline-offset-2 transition-colors hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                    className="mt-2 flex min-h-12 items-center break-all text-base text-white/80 underline-offset-2 transition-colors hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                   >
                     {reservationEmail}
                   </a>
@@ -104,7 +107,7 @@ export default function ContactPageHero() {
                   <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/75">
                     {CONTACT_LABELS.supportHours}
                   </p>
-                  <p className="mt-2 whitespace-nowrap text-sm leading-relaxed text-white/80">
+                  <p className="mt-2 text-base leading-relaxed text-white/80">
                     {SUPPORT_HOURS}
                   </p>
                 </div>

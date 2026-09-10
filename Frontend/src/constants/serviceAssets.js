@@ -19,6 +19,7 @@ import {
   BAGGAGE_SERVICE_IMAGE,
   TRIP_PLANNING_SERVICE_IMAGE,
   VACATION_PACKAGE_SERVICE_IMAGE,
+  SERVICE_IMAGE_ALT_FALLBACKS,
 } from '@/constants/images'
 
 export const SERVICE_ICON_MAP = {
@@ -49,11 +50,16 @@ export function resolveServiceVisuals(service) {
   const icon = SERVICE_ICON_MAP[service.iconKey] || SERVICE_ICON_MAP.plane
   const fallbackImage =
     SERVICE_IMAGE_MAP[service.imageKey] || SERVICE_IMAGE_MAP['flight-booking']
+  const imageAlt =
+    service.imageAlt?.trim() ||
+    SERVICE_IMAGE_ALT_FALLBACKS[service.imageKey] ||
+    `${service.title} travel support by phone`
 
   if (service.mediaUrl && service.mediaType === 'video') {
     return {
       ...service,
       icon,
+      imageAlt,
       mediaType: 'video',
       mediaUrl: service.mediaUrl,
       image: fallbackImage,
@@ -64,6 +70,7 @@ export function resolveServiceVisuals(service) {
     return {
       ...service,
       icon,
+      imageAlt,
       mediaType: 'image',
       mediaUrl: service.mediaUrl,
       image: service.mediaUrl,
@@ -73,6 +80,7 @@ export function resolveServiceVisuals(service) {
   return {
     ...service,
     icon,
+    imageAlt,
     mediaType: 'image',
     mediaUrl: null,
     image: fallbackImage,

@@ -22,7 +22,26 @@ export const CONTACT_LABELS = {
 }
 
 export const SITE_NAME = 'Avion Flight Reservation'
+
+/** Canonical production origin — always https + non-www. */
+export const CANONICAL_ORIGIN = 'https://aviosupportdesk.com'
+
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://aviosupportdesk.com'
+  process.env.NEXT_PUBLIC_SITE_URL || CANONICAL_ORIGIN
+
 export const SITE_DESCRIPTION =
   'Book flights and hotels with Avion Flight Reservation. Independent travel assistance for USA and Canada. Call +1 877 702 9887 for 24/7 flight reservation support.'
+
+/**
+ * Absolute canonical URL for a site path.
+ * Homepage → https://aviosupportdesk.com/
+ * Other pages → https://aviosupportdesk.com/path (no trailing slash)
+ */
+export function buildCanonicalUrl(path = '/') {
+  if (!path || path === '/') {
+    return `${CANONICAL_ORIGIN}/`
+  }
+
+  const normalized = path.startsWith('/') ? path : `/${path}`
+  return `${CANONICAL_ORIGIN}${normalized.replace(/\/+$/, '')}`
+}

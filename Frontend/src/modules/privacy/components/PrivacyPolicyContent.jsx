@@ -82,6 +82,14 @@ export default function PrivacyPolicyContent() {
             </PolicySection>
 
             <PolicySection
+              id="cookies"
+              eyebrow={COPY.privacy.cookiesEyebrow}
+              title={COPY.privacy.cookiesTitle}
+            >
+              <p>{COPY.privacy.cookiesDescription}</p>
+            </PolicySection>
+
+            <PolicySection
               id="information-sharing"
               eyebrow={COPY.privacy.sharingEyebrow}
               title={COPY.privacy.sharingTitle}
@@ -95,6 +103,14 @@ export default function PrivacyPolicyContent() {
               title={COPY.privacy.protectionTitle}
             >
               <p>{COPY.privacy.protectionDescription}</p>
+            </PolicySection>
+
+            <PolicySection
+              id="gdpr-ccpa"
+              eyebrow={COPY.privacy.gdprEyebrow}
+              title={COPY.privacy.gdprTitle}
+            >
+              <p>{COPY.privacy.gdprDescription}</p>
             </PolicySection>
 
             <PolicySection

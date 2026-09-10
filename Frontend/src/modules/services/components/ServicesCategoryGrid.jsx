@@ -35,7 +35,7 @@ export default function ServicesCategoryGrid() {
             return (
               <StaggerItem key={category.id}>
                 <a
-                  href={`#${category.id}`}
+                  href={category.href}
                   className={cn(
                     'group flex h-full flex-col rounded-2xl border border-border bg-card p-7',
                     'shadow-card transition-all duration-300',

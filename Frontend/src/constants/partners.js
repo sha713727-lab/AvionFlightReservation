@@ -1,8 +1,8 @@
 export const PARTNER_LOGO_BASE_PATH = '/partners'
 
 /**
- * Partner marks use official brand colors and recognizable marks.
- * Prefer SVG assets under /public/partners over monogram fallbacks.
+ * Airline and brand marks customers may ask about when booking.
+ * Logos are for identification only — not partnership endorsements.
  */
 export const PARTNERS = [
   { id: 'wyndham', name: 'Wyndham Rewards', logoSrc: `${PARTNER_LOGO_BASE_PATH}/wyndham.svg` },

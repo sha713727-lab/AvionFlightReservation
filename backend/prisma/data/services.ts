@@ -13,7 +13,7 @@ export const SERVICE_SEED = [
     ],
     iconKey: 'plane',
     imageKey: 'flight-booking',
-    imageAlt: 'Flight booking by phone with Avion Flight Reservation',
+    imageAlt: 'Travel specialist booking airline flights by phone',
     sortOrder: 1,
   },
   {
@@ -30,7 +30,7 @@ export const SERVICE_SEED = [
     ],
     iconKey: 'hotel',
     imageKey: 'hotel-booking',
-    imageAlt: 'Hotel booking and hotel reservation service',
+    imageAlt: 'Hotel room ready for phone hotel reservation booking',
     sortOrder: 2,
   },
   {
@@ -47,7 +47,7 @@ export const SERVICE_SEED = [
     ],
     iconKey: 'gift',
     imageKey: 'reward-travel',
-    imageAlt: 'Points redemption help for travel bookings',
+    imageAlt: 'Airplane cabin for points and miles redemption travel',
     sortOrder: 3,
   },
   {
@@ -64,7 +64,7 @@ export const SERVICE_SEED = [
     ],
     iconKey: 'exchange',
     imageKey: 'flight-change',
-    imageAlt: 'Flight change assistance and rebooking support',
+    imageAlt: 'Airport departure board during flight change rebooking',
     sortOrder: 4,
   },
   {
@@ -81,7 +81,7 @@ export const SERVICE_SEED = [
     ],
     iconKey: 'ban',
     imageKey: 'cancellation',
-    imageAlt: 'Flight cancellation support for refunds and credits',
+    imageAlt: 'Boarding pass for flight cancellation and refund help',
     sortOrder: 5,
   },
   {
@@ -98,7 +98,7 @@ export const SERVICE_SEED = [
     ],
     iconKey: 'chair',
     imageKey: 'seat-selection',
-    imageAlt: 'Airline seat selection assistance',
+    imageAlt: 'Airplane cabin seats for airline seat selection help',
     sortOrder: 6,
   },
   {
@@ -115,7 +115,7 @@ export const SERVICE_SEED = [
     ],
     iconKey: 'suitcase',
     imageKey: 'baggage',
-    imageAlt: 'Baggage booking and excess baggage assistance',
+    imageAlt: 'Checked luggage for airline baggage fee assistance',
     sortOrder: 7,
   },
   {
@@ -132,7 +132,7 @@ export const SERVICE_SEED = [
     ],
     iconKey: 'route',
     imageKey: 'trip-planning',
-    imageAlt: 'Custom trip planning with flight and hotel support',
+    imageAlt: 'World map and passport for custom trip planning',
     sortOrder: 8,
   },
   {
@@ -149,7 +149,7 @@ export const SERVICE_SEED = [
     ],
     iconKey: 'beach',
     imageKey: 'vacation-package',
-    imageAlt: 'Vacation packages with flight and hotel bookings',
+    imageAlt: 'Tropical resort for vacation package flight and hotel bookings',
     sortOrder: 9,
   },
 ] as const

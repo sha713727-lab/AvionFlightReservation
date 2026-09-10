@@ -1,17 +1,13 @@
+import JsonLd from '@/modules/seoLanding/components/JsonLd'
 import AboutPage from '@/modules/about/components/AboutPage'
 import { getAboutPageJsonLd, getAboutPageMetadata } from '@/modules/about/page-data'
 
 export const metadata = getAboutPageMetadata()
 
 export default function Page() {
-  const jsonLd = getAboutPageJsonLd()
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={getAboutPageJsonLd()} />
       <AboutPage />
     </>
   )

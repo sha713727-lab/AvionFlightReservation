@@ -1,3 +1,4 @@
+import JsonLd from '@/modules/seoLanding/components/JsonLd'
 import InternationalFlightPage from '@/modules/internationalFlight/components/InternationalFlightPage'
 import {
   getInternationalFlightPageJsonLd,
@@ -7,14 +8,9 @@ import {
 export const metadata = getInternationalFlightPageMetadata()
 
 export default function Page() {
-  const jsonLd = getInternationalFlightPageJsonLd()
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={getInternationalFlightPageJsonLd()} />
       <InternationalFlightPage />
     </>
   )

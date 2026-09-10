@@ -3,11 +3,13 @@
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
+import { CANCELLATION_POLICY_PATH } from '@/constants/routes'
+import { getSeoPageH1 } from '@/constants/seoPageMeta'
 
 export default function CancellationPageHero() {
   return (
     <section
-      className="relative overflow-hidden bg-background pt-32 pb-14 lg:pt-40 lg:pb-16"
+      className="relative overflow-hidden bg-background pt-10 pb-14 lg:pt-14 lg:pb-16"
       aria-labelledby="cancellation-page-heading"
     >
       <div
@@ -28,12 +30,12 @@ export default function CancellationPageHero() {
               id="cancellation-page-heading"
               className="font-heading text-[clamp(2.25rem,5vw,3.75rem)] font-semibold leading-[1.08] tracking-tight text-primary"
             >
-              {COPY.cancellation.pageTitle}
+              {getSeoPageH1(CANCELLATION_POLICY_PATH)}
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.14}>
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg">
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg speakable-summary">
               {COPY.cancellation.pageDescription}
             </p>
           </FadeIn>

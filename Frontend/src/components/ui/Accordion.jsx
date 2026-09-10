@@ -26,7 +26,7 @@ export default function Accordion({ items }) {
                 aria-expanded={isOpen}
                 aria-controls={`faq-panel-${item.id}`}
                 onClick={() => setOpenId(isOpen ? null : item.id)}
-                className="flex min-h-11 w-full items-center justify-between gap-4 px-6 py-5 text-left text-sm font-medium text-primary transition-colors duration-300 hover:text-accent"
+                className="flex min-h-12 w-full items-center justify-between gap-4 px-5 py-4 text-left text-base font-medium text-primary transition-colors duration-300 hover:text-accent sm:px-6"
               >
                 {item.question}
                 <span
@@ -46,7 +46,9 @@ export default function Accordion({ items }) {
               hidden={!isOpen}
               className={isOpen ? 'block' : 'hidden'}
             >
-              <p className="px-6 pb-5 text-sm leading-relaxed text-text-secondary">{item.answer}</p>
+              <p className="faq-answer px-5 pb-5 text-base leading-relaxed text-text-secondary sm:px-6">
+                {item.answer}
+              </p>
             </div>
           </div>
         )

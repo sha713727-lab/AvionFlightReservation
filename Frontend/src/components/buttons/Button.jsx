@@ -3,6 +3,7 @@
 import { cn } from '@/utils/cn'
 import { dialPhone } from '@/utils/dialPhone'
 import { openMailto } from '@/utils/openMailto'
+import { resolveCtaEventLabel, trackCtaClick } from '@/utils/analytics'
 
 const variants = {
   primary:
@@ -18,10 +19,11 @@ const variants = {
   navy: 'bg-primary text-white hover:bg-primary-hover hover:shadow-lg hover:shadow-primary/20',
 }
 
+/** All sizes meet ≥48px tap height on touch devices. */
 const sizes = {
-  sm: 'px-5 py-2 text-sm rounded-full',
-  md: 'px-6 py-2.5 text-sm rounded-full',
-  lg: 'px-7 py-3.5 text-base rounded-full',
+  sm: 'min-h-12 px-5 py-3 text-sm rounded-full',
+  md: 'min-h-12 px-6 py-3 text-sm rounded-full sm:text-base',
+  lg: 'min-h-12 px-7 py-3.5 text-base rounded-full',
 }
 
 export default function Button({
@@ -34,6 +36,8 @@ export default function Button({
   iconPosition = 'left',
   onClick,
   type = 'button',
+  ctaLabel,
+  trackCta = true,
   ...props
 }) {
   const classes = cn(
@@ -46,6 +50,11 @@ export default function Button({
     sizes[size],
     className,
   )
+
+  const fireCtaTracking = () => {
+    if (!trackCta) return
+    trackCtaClick(resolveCtaEventLabel({ ctaLabel, href, children }))
+  }
 
   const content = (
     <>
@@ -67,6 +76,8 @@ export default function Button({
 
   if (href) {
     const handleClick = (event) => {
+      fireCtaTracking()
+
       if (onClick) {
         onClick(event)
         return
@@ -91,8 +102,15 @@ export default function Button({
     )
   }
 
+  const handleButtonClick = (event) => {
+    fireCtaTracking()
+    if (onClick) {
+      onClick(event)
+    }
+  }
+
   return (
-    <button type={type} className={classes} onClick={onClick} {...props}>
+    <button type={type} className={classes} onClick={handleButtonClick} {...props}>
       {content}
     </button>
   )

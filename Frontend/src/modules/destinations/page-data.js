@@ -1,31 +1,21 @@
-import { COPY } from '@/constants/copy'
-import { BRAND_FULL_NAME } from '@/constants/brand'
+import { withBreadcrumbJsonLd } from '@/constants/breadcrumbs'
 import { DESTINATIONS_PATH } from '@/constants/routes'
-import { buildPageMetadata, buildWebPageJsonLd } from '@/utils/seo'
-
-const DESTINATIONS_KEYWORDS = [
-  'Canada domestic flights',
-  'USA flights',
-  'Europe flights',
-  'Mexico flights',
-  'Cancun flights',
-  'international flights',
-  'flight destinations',
-]
+import { getSeoPageMeta } from '@/constants/seoPageMeta'
+import { buildPathMetadata, buildWebPageJsonLd } from '@/utils/seo'
 
 export function getDestinationsPageMetadata() {
-  return buildPageMetadata({
-    title: `Flight Destinations | Canada, USA & Europe | ${BRAND_FULL_NAME}`,
-    description: COPY.destinations.metaDescription,
-    path: DESTINATIONS_PATH,
-    keywords: DESTINATIONS_KEYWORDS,
-  })
+  return buildPathMetadata(DESTINATIONS_PATH)
 }
 
 export function getDestinationsPageJsonLd() {
-  return buildWebPageJsonLd({
-    name: `Flight Destinations | ${BRAND_FULL_NAME}`,
-    description: COPY.destinations.metaDescription,
-    path: DESTINATIONS_PATH,
-  })
+  const { title, description } = getSeoPageMeta(DESTINATIONS_PATH)
+  return withBreadcrumbJsonLd(
+    DESTINATIONS_PATH,
+    buildWebPageJsonLd({
+      name: title,
+      description,
+      path: DESTINATIONS_PATH,
+      speakable: true,
+    }),
+  )
 }

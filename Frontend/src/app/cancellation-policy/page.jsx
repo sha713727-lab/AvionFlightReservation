@@ -1,3 +1,4 @@
+import JsonLd from '@/modules/seoLanding/components/JsonLd'
 import CancellationPage from '@/modules/cancellation/components/CancellationPage'
 import {
   getCancellationPageJsonLd,
@@ -7,14 +8,9 @@ import {
 export const metadata = getCancellationPageMetadata()
 
 export default function Page() {
-  const jsonLd = getCancellationPageJsonLd()
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={getCancellationPageJsonLd()} />
       <CancellationPage />
     </>
   )

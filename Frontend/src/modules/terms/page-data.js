@@ -1,47 +1,23 @@
+import { CONTACT_EMAILS, PHONE_NUMBER, SITE_URL, buildCanonicalUrl } from '@/constants/contact'
+import { withBreadcrumbJsonLd } from '@/constants/breadcrumbs'
+import { TERMS_PATH } from '@/constants/routes'
+import { getSeoPageMeta } from '@/constants/seoPageMeta'
 import { COPY } from '@/constants/copy'
 import { BRAND_FULL_NAME } from '@/constants/brand'
-import { CONTACT_EMAILS, PHONE_NUMBER, SITE_URL } from '@/constants/contact'
-import { TERMS_PATH } from '@/constants/routes'
+import { buildPathMetadata } from '@/utils/seo'
 
 export function getTermsPageMetadata() {
-  const canonical = `${SITE_URL}${TERMS_PATH}`
-
-  return {
-    title: `Terms & Conditions | ${BRAND_FULL_NAME}`,
-    description: COPY.terms.metaDescription,
-    alternates: {
-      canonical,
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-      },
-    },
-    openGraph: {
-      type: 'website',
-      title: `Terms & Conditions | ${BRAND_FULL_NAME}`,
-      description: COPY.terms.metaDescription,
-      url: canonical,
-      siteName: BRAND_FULL_NAME,
-    },
-    twitter: {
-      card: 'summary',
-      title: `Terms & Conditions | ${BRAND_FULL_NAME}`,
-      description: COPY.terms.metaDescription,
-    },
-  }
+  return buildPathMetadata(TERMS_PATH)
 }
 
 export function getTermsPageJsonLd() {
-  return {
+  const { title, description } = getSeoPageMeta(TERMS_PATH)
+  return withBreadcrumbJsonLd(TERMS_PATH, {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: `Terms & Conditions | ${BRAND_FULL_NAME}`,
-    description: COPY.terms.metaDescription,
-    url: `${SITE_URL}${TERMS_PATH}`,
+    name: title,
+    description,
+    url: buildCanonicalUrl(TERMS_PATH),
     dateModified: COPY.terms.lastUpdatedIso,
     isPartOf: {
       '@type': 'WebSite',
@@ -55,5 +31,5 @@ export function getTermsPageJsonLd() {
       email: CONTACT_EMAILS,
       telephone: PHONE_NUMBER,
     },
-  }
+  })
 }

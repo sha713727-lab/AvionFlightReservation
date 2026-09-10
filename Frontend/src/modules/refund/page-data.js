@@ -1,47 +1,23 @@
+import { CONTACT_EMAILS, PHONE_NUMBER, SITE_URL, buildCanonicalUrl } from '@/constants/contact'
+import { withBreadcrumbJsonLd } from '@/constants/breadcrumbs'
+import { REFUND_POLICY_PATH } from '@/constants/routes'
+import { getSeoPageMeta } from '@/constants/seoPageMeta'
 import { COPY } from '@/constants/copy'
 import { BRAND_FULL_NAME } from '@/constants/brand'
-import { CONTACT_EMAILS, PHONE_NUMBER, SITE_URL } from '@/constants/contact'
-import { REFUND_POLICY_PATH } from '@/constants/routes'
+import { buildPathMetadata } from '@/utils/seo'
 
 export function getRefundPageMetadata() {
-  const canonical = `${SITE_URL}${REFUND_POLICY_PATH}`
-
-  return {
-    title: `Refund Policy | ${BRAND_FULL_NAME}`,
-    description: COPY.refund.metaDescription,
-    alternates: {
-      canonical,
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-      },
-    },
-    openGraph: {
-      type: 'website',
-      title: `Refund Policy | ${BRAND_FULL_NAME}`,
-      description: COPY.refund.metaDescription,
-      url: canonical,
-      siteName: BRAND_FULL_NAME,
-    },
-    twitter: {
-      card: 'summary',
-      title: `Refund Policy | ${BRAND_FULL_NAME}`,
-      description: COPY.refund.metaDescription,
-    },
-  }
+  return buildPathMetadata(REFUND_POLICY_PATH)
 }
 
 export function getRefundPageJsonLd() {
-  return {
+  const { title, description } = getSeoPageMeta(REFUND_POLICY_PATH)
+  return withBreadcrumbJsonLd(REFUND_POLICY_PATH, {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: `Refund Policy | ${BRAND_FULL_NAME}`,
-    description: COPY.refund.metaDescription,
-    url: `${SITE_URL}${REFUND_POLICY_PATH}`,
+    name: title,
+    description,
+    url: buildCanonicalUrl(REFUND_POLICY_PATH),
     dateModified: COPY.refund.lastUpdatedIso,
     isPartOf: {
       '@type': 'WebSite',
@@ -55,5 +31,5 @@ export function getRefundPageJsonLd() {
       email: CONTACT_EMAILS,
       telephone: PHONE_NUMBER,
     },
-  }
+  })
 }

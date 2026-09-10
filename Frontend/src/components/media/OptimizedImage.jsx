@@ -1,6 +1,12 @@
 import Image from 'next/image'
 import { cn } from '@/utils/cn'
 
+/**
+ * Next.js Image wrapper with CLS-safe sizing and lazy/eager loading rules.
+ * Hero/LCP images: pass priority (sets loading="eager" + fetchPriority="high").
+ * All other images: loading="lazy".
+ * Formats: next/image serves AVIF/WebP when configured in next.config.js.
+ */
 export default function OptimizedImage({
   src,
   alt,
@@ -11,9 +17,19 @@ export default function OptimizedImage({
   width,
   height,
   quality = 75,
+  placeholder,
+  blurDataURL,
   onError,
 }) {
   if (!src) return null
+
+  if (typeof alt !== 'string') {
+    throw new Error('OptimizedImage requires an alt string (use "" for decorative images)')
+  }
+
+  if (!fill && (width == null || height == null)) {
+    throw new Error('OptimizedImage requires width and height when fill is false')
+  }
 
   return (
     <Image
@@ -26,10 +42,12 @@ export default function OptimizedImage({
       quality={quality}
       priority={priority}
       fetchPriority={priority ? 'high' : 'auto'}
-      loading={priority ? undefined : 'lazy'}
+      loading={priority ? 'eager' : 'lazy'}
       decoding="async"
+      placeholder={placeholder}
+      blurDataURL={blurDataURL}
       onError={onError}
-      className={cn(className)}
+      className={cn('max-w-full', className)}
     />
   )
 }

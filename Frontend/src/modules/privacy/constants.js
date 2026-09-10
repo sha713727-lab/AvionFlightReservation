@@ -50,8 +50,10 @@ export const PRIVACY_USAGE_ITEMS = [
 export const PRIVACY_SECTIONS = [
   { id: 'information-we-may-collect', label: 'Information We May Collect' },
   { id: 'how-information-is-used', label: 'How Information Is Used' },
+  { id: 'cookies', label: 'Cookies' },
   { id: 'information-sharing', label: 'Information Sharing' },
   { id: 'data-protection', label: 'Data Protection' },
+  { id: 'gdpr-ccpa', label: 'GDPR & CCPA Rights' },
   { id: 'your-choice', label: 'Your Choice' },
   { id: 'privacy-contact', label: 'Privacy Contact' },
 ]

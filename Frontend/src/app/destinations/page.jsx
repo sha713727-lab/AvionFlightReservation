@@ -1,3 +1,4 @@
+import JsonLd from '@/modules/seoLanding/components/JsonLd'
 import DestinationsPage from '@/modules/destinations/components/DestinationsPage'
 import {
   getDestinationsPageJsonLd,
@@ -10,15 +11,11 @@ export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
 export default async function Page() {
-  const jsonLd = getDestinationsPageJsonLd()
   const catalog = await loadDestinationsCatalog()
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={getDestinationsPageJsonLd()} />
       <DestinationsPage
         destinations={catalog.destinations}
         catalogError={catalog.error}

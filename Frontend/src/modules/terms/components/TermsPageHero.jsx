@@ -3,11 +3,13 @@
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
+import { TERMS_PATH } from '@/constants/routes'
+import { getSeoPageH1 } from '@/constants/seoPageMeta'
 
 export default function TermsPageHero() {
   return (
     <section
-      className="relative overflow-hidden bg-section-alt pt-32 pb-16 lg:pt-40 lg:pb-20"
+      className="relative overflow-hidden bg-section-alt pt-10 pb-16 lg:pt-14 lg:pb-20"
       aria-labelledby="terms-page-heading"
     >
       <div
@@ -28,12 +30,12 @@ export default function TermsPageHero() {
               id="terms-page-heading"
               className="font-heading text-[clamp(2.25rem,5vw,3.75rem)] font-semibold leading-[1.08] tracking-tight text-primary"
             >
-              {COPY.terms.pageTitle}
+              {getSeoPageH1(TERMS_PATH)}
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.14}>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:mx-auto sm:text-lg">
+            <p className="speakable-summary mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:mx-auto sm:text-lg">
               {COPY.terms.pageDescription}
             </p>
           </FadeIn>

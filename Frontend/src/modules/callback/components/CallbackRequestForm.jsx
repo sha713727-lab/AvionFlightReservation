@@ -9,7 +9,7 @@ import { cn } from '@/utils/cn'
 import { nextMinuteDatetimeLocal } from '@/utils/datetimeLocal'
 
 const inputClassName = cn(
-  'w-full rounded-xl border border-border bg-section px-4 py-3 text-sm text-text',
+  'w-full min-h-12 rounded-xl border border-border bg-section px-4 py-3 text-base text-text',
   'placeholder:text-text-muted transition-colors',
   'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent',
   'disabled:cursor-not-allowed disabled:opacity-60',

@@ -95,7 +95,7 @@ export default function Modal({
             aria-modal="true"
             aria-labelledby={title ? titleId : undefined}
             className={cn(
-              'relative z-10 w-full max-w-md rounded-2xl bg-card p-8 shadow-2xl',
+              'relative z-10 w-full max-w-md max-h-[min(90dvh,40rem)] overflow-y-auto rounded-2xl bg-card p-5 shadow-2xl sm:p-8',
               className,
             )}
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -106,7 +106,7 @@ export default function Modal({
             <button
               type="button"
               onClick={onClose}
-              className="absolute top-4 right-4 inline-flex h-11 w-11 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-background hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              className="absolute top-3 right-3 inline-flex h-12 w-12 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-background hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:top-4 sm:right-4"
               aria-label="Close dialog"
             >
               <IoClose className="h-5 w-5" />

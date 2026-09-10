@@ -9,26 +9,16 @@ import WhyUsCard from '@/components/cards/WhyUsCard'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animations/FadeIn'
 import { EASE } from '@/components/animations/motionPresets'
 import { COPY } from '@/constants/copy'
-import { WHY_US, STATS } from '@/data/services'
-import { useCounter } from '@/hooks/useCounter'
+import { WHY_US, VALUE_PROPS } from '@/data/services'
 import { cn } from '@/utils/cn'
 
 const AUTO_INTERVAL_MS = 3500
 const TRANSITION = { duration: 0.28, ease: EASE }
 
-function StatCounter({ value, suffix = '', label }) {
-  const { count, ref } = useCounter(value)
-
+function ValueProp({ label }) {
   return (
-    <div
-      ref={ref}
-      className="group cursor-default text-center transition-transform duration-300 hover:-translate-y-0.5"
-    >
-      <p className="mb-1 text-3xl font-semibold tracking-tight text-primary transition-colors duration-300 group-hover:text-accent lg:text-4xl">
-        {count.toLocaleString()}
-        {suffix}
-      </p>
-      <p className="text-sm text-text-secondary transition-colors duration-300 group-hover:text-text">
+    <div className="group cursor-default text-center transition-transform duration-300 hover:-translate-y-0.5">
+      <p className="text-base font-semibold tracking-tight text-primary transition-colors duration-300 group-hover:text-accent lg:text-lg">
         {label}
       </p>
     </div>
@@ -155,9 +145,9 @@ export default function WhyUsSection() {
         </StaggerContainer>
 
         <FadeIn>
-          <div className="grid grid-cols-2 gap-8 border border-border bg-card px-8 py-12 shadow-sm lg:grid-cols-4">
-            {STATS.map((stat) => (
-              <StatCounter key={stat.label} {...stat} />
+          <div className="grid grid-cols-1 gap-8 border border-border bg-card px-8 py-12 shadow-sm sm:grid-cols-2 lg:grid-cols-4">
+            {VALUE_PROPS.map((item) => (
+              <ValueProp key={item.label} label={item.label} />
             ))}
           </div>
         </FadeIn>

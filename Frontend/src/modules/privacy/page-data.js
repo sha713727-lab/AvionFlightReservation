@@ -1,47 +1,23 @@
+import { CONTACT_EMAILS, PHONE_NUMBER, SITE_URL, buildCanonicalUrl } from '@/constants/contact'
+import { withBreadcrumbJsonLd } from '@/constants/breadcrumbs'
+import { PRIVACY_POLICY_PATH } from '@/constants/routes'
+import { getSeoPageMeta } from '@/constants/seoPageMeta'
 import { COPY } from '@/constants/copy'
 import { BRAND_FULL_NAME } from '@/constants/brand'
-import { CONTACT_EMAILS, PHONE_NUMBER, SITE_URL } from '@/constants/contact'
-import { PRIVACY_POLICY_PATH } from '@/constants/routes'
+import { buildPathMetadata } from '@/utils/seo'
 
 export function getPrivacyPageMetadata() {
-  const canonical = `${SITE_URL}${PRIVACY_POLICY_PATH}`
-
-  return {
-    title: `Privacy Policy | ${BRAND_FULL_NAME}`,
-    description: COPY.privacy.metaDescription,
-    alternates: {
-      canonical,
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-      },
-    },
-    openGraph: {
-      type: 'website',
-      title: `Privacy Policy | ${BRAND_FULL_NAME}`,
-      description: COPY.privacy.metaDescription,
-      url: canonical,
-      siteName: BRAND_FULL_NAME,
-    },
-    twitter: {
-      card: 'summary',
-      title: `Privacy Policy | ${BRAND_FULL_NAME}`,
-      description: COPY.privacy.metaDescription,
-    },
-  }
+  return buildPathMetadata(PRIVACY_POLICY_PATH)
 }
 
 export function getPrivacyPageJsonLd() {
-  return {
+  const { title, description } = getSeoPageMeta(PRIVACY_POLICY_PATH)
+  return withBreadcrumbJsonLd(PRIVACY_POLICY_PATH, {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: `Privacy Policy | ${BRAND_FULL_NAME}`,
-    description: COPY.privacy.metaDescription,
-    url: `${SITE_URL}${PRIVACY_POLICY_PATH}`,
+    name: title,
+    description,
+    url: buildCanonicalUrl(PRIVACY_POLICY_PATH),
     dateModified: COPY.privacy.lastUpdatedIso,
     isPartOf: {
       '@type': 'WebSite',
@@ -55,5 +31,5 @@ export function getPrivacyPageJsonLd() {
       email: CONTACT_EMAILS,
       telephone: PHONE_NUMBER,
     },
-  }
+  })
 }

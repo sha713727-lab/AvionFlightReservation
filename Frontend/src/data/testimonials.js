@@ -1,34 +1,67 @@
-export const TESTIMONIALS = [
+/**
+ * PLACEHOLDER customer reviews for the homepage.
+ * REPLACE each entry with a real, permissioned customer review before publish.
+ * Do not treat these strings as verified customer feedback.
+ */
+export const PLACEHOLDER_REVIEWS = [
   {
-    id: 1,
-    name: 'Sarah Mitchell',
-    country: 'United States',
+    id: 'review-1',
+    // PLACEHOLDER: replace name with real customer first name + last initial
+    name: 'Jordan M.',
     rating: 5,
-    review: 'Avion found me an incredible business class deal to Tokyo. Their agent handled everything — I just showed up at the airport. Absolutely seamless experience.',
-    avatar: 'SM',
+    // PLACEHOLDER: replace with real review text (2–3 sentences)
+    text: 'Calling made my last-minute date change much clearer. The specialist walked me through the airline fee and fare difference before I agreed to anything. I appreciated the straightforward explanation.',
+    // PLACEHOLDER: replace with the real review date (ISO + display)
+    dateIso: '2026-08-12',
+    dateLabel: 'August 12, 2026',
+    verified: true,
   },
   {
-    id: 2,
-    name: 'James Okonkwo',
-    country: 'United Kingdom',
+    id: 'review-2',
+    // PLACEHOLDER: replace name
+    name: 'Priya S.',
     rating: 5,
-    review: 'I had 200,000 miles sitting unused for years. They helped me redeem them for a luxury Maldives trip. Worth every minute on the phone with their specialist.',
-    avatar: 'JO',
+    // PLACEHOLDER: replace review text
+    text: 'I needed help comparing a points redemption against a cash fare. They explained taxes and surcharges in plain language so I could choose with confidence. Support felt patient and organized.',
+    dateIso: '2026-07-28',
+    dateLabel: 'July 28, 2026',
+    verified: true,
   },
   {
-    id: 3,
-    name: 'Elena Rodriguez',
-    country: 'Spain',
+    id: 'review-3',
+    // PLACEHOLDER: replace name
+    name: 'Daniel R.',
     rating: 5,
-    review: 'Last-minute flight change due to a family emergency. They rebooked everything within 30 minutes at no extra stress. True 24/7 professionals.',
-    avatar: 'ER',
+    // PLACEHOLDER: replace review text
+    text: 'Our family booking had mixed cabin needs and a tight connection. The agent checked the itinerary with us and flagged what to confirm with the airline. That extra review before payment was helpful.',
+    dateIso: '2026-07-03',
+    dateLabel: 'July 3, 2026',
+    verified: true,
   },
   {
-    id: 4,
-    name: 'Michael Chen',
-    country: 'Canada',
+    id: 'review-4',
+    // PLACEHOLDER: replace name
+    name: 'Elena K.',
     rating: 5,
-    review: 'Compared prices online for weeks. Avion beat every quote and included seat selection and baggage. Will never book alone again.',
-    avatar: 'MC',
+    // PLACEHOLDER: replace review text
+    text: 'I called about a cancellation credit versus a refund path. They outlined what usually depends on the fare rules and what I should ask the ticket seller. Clear next steps made the process less stressful.',
+    dateIso: '2026-06-18',
+    dateLabel: 'June 18, 2026',
+    verified: true,
   },
 ]
+
+/**
+ * PLACEHOLDER aggregate rating values for schema + trust bar.
+ * REPLACE with real aggregate stats from your review platform before publish.
+ */
+export const PLACEHOLDER_AGGREGATE_RATING = {
+  ratingValue: '4.8',
+  bestRating: '5',
+  worstRating: '1',
+  // PLACEHOLDER: replace ratingCount with your real total review count
+  ratingCount: '128',
+  // PLACEHOLDER: replace travelersLabel count with a real traveler/support metric
+  travelersLabel: '2,500+',
+  airlinesLabel: '100+',
+}
