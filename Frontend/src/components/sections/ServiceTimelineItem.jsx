@@ -19,6 +19,7 @@ export default function ServiceTimelineItem({
   imageAlt,
   mediaType = 'image',
   mediaUrl = null,
+  explorePath = null,
   reversed = false,
 }) {
   const number = String(index + 1).padStart(2, '0')
@@ -52,6 +53,19 @@ export default function ServiceTimelineItem({
           <Button variant="primary" size="md" icon={HiArrowRight} iconPosition="right" onClick={callModal.open}>
             {COPY.services.getStarted}
           </Button>
+          {explorePath ? (
+            <Button
+              href={explorePath}
+              variant="ghost"
+              size="sm"
+              icon={HiArrowRight}
+              iconPosition="right"
+              ctaLabel="explore_services_button"
+              className="px-0 text-accent hover:bg-transparent hover:text-accent-hover"
+            >
+              {COPY.services.exploreService}
+            </Button>
+          ) : null}
         </div>
 
         <div className="group/img relative mt-2 overflow-hidden rounded-2xl border border-border transition-transform duration-300 hover:scale-[1.02]">

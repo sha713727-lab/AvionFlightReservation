@@ -2,13 +2,13 @@ export const SERVICE_SEED = [
   {
     slug: 'flights',
     title: 'Flight Booking',
-    tagline: 'Exclusive fares and flexible routes to destinations worldwide.',
+    tagline: 'Clear fare options and flexible routes to destinations worldwide.',
     description:
-      'Our travel specialists help you book flights by phone across Canada, the USA, Europe, Mexico, and worldwide using the best available routes and fares.',
+      'Our travel specialists help you book flights by phone across Canada, the USA, Europe, Mexico, and worldwide using available routes and published fares.',
     features: [
-      'Access to exclusive unpublished fares',
+      'Compare published fares across major airlines',
       'Multi-city and complex routing handled for you',
-      'Business & first-class deals at economy prices',
+      'Guidance on cabin options and fare trade-offs',
       '24/7 support before, during, and after your flight',
     ],
     iconKey: 'plane',
@@ -24,9 +24,9 @@ export const SERVICE_SEED = [
       'We arrange hotel reservations that match your style and budget, from city-center business hotels to secluded beachfront resorts.',
     features: [
       'Personally vetted hotel recommendations',
-      'Member rates and exclusive perks',
-      'Free upgrades when available',
-      'Flexible cancellation options',
+      'Rate types and cancellation windows explained',
+      'Resort and facility fees flagged when shown',
+      'Flexible cancellation options when available',
     ],
     iconKey: 'hotel',
     imageKey: 'hotel-booking',
@@ -41,9 +41,9 @@ export const SERVICE_SEED = [
       'Turn airline miles and credit card rewards into travel. Our specialists help compare redemption options and book the trip that fits your points value.',
     features: [
       'Points & miles valuation and strategy',
-      'Business-class redemptions on a budget',
-      'Transfer partner optimization',
-      'End-to-end redemption booking',
+      'Award cabin options explained clearly',
+      'Transfer partner timing guidance',
+      'End-to-end redemption booking help',
     ],
     iconKey: 'gift',
     imageKey: 'reward-travel',
@@ -57,10 +57,10 @@ export const SERVICE_SEED = [
     description:
       'Plans change — we handle flight change assistance, airline policy review, and rebooking support with minimal hassle.',
     features: [
-      'Same-day change assistance',
+      'Same-day change assistance when available',
       'Airline policy navigation on your behalf',
       'Alternative routing when flights cancel',
-      'Credit and voucher management',
+      'Credit and voucher management guidance',
     ],
     iconKey: 'exchange',
     imageKey: 'flight-change',
@@ -74,10 +74,10 @@ export const SERVICE_SEED = [
     description:
       'Need flight cancellation support? We manage refunds, credits, and supplier communication so every eligible option is reviewed.',
     features: [
-      'Full cancellation handling',
-      'Refund and credit recovery',
-      'Travel insurance claim support',
-      'Future travel credit tracking',
+      'Full cancellation handling support',
+      'Refund and credit outcome review',
+      'Travel insurance claim pointers',
+      'Future travel credit tracking notes',
     ],
     iconKey: 'ban',
     imageKey: 'cancellation',
@@ -87,12 +87,12 @@ export const SERVICE_SEED = [
   {
     slug: 'seats',
     title: 'Seat Selection',
-    tagline: 'Secure the best seats for comfort on every journey.',
+    tagline: 'Secure preferred seats for comfort on every journey.',
     description:
       'From extra legroom to window seats and family seating together, we manage airline seat selection for a smoother journey.',
     features: [
-      'Preferred seat assignments',
-      'Extra legroom and exit row booking',
+      'Preferred seat assignments when maps allow',
+      'Extra legroom and exit row booking help',
       'Family and group seating together',
       'Last-minute seat change assistance',
     ],
@@ -108,10 +108,10 @@ export const SERVICE_SEED = [
     description:
       'Avoid surprise fees at the airport. We arrange baggage booking, excess baggage, sports equipment transport, and priority handling in advance.',
     features: [
-      'Pre-paid excess baggage booking',
-      'Sports and oversized equipment transport',
-      'Priority baggage handling',
-      'Lost luggage claim assistance',
+      'Pre-paid excess baggage booking help',
+      'Sports and oversized equipment guidance',
+      'Priority baggage handling when offered',
+      'Lost luggage claim process pointers',
     ],
     iconKey: 'suitcase',
     imageKey: 'baggage',
@@ -127,8 +127,8 @@ export const SERVICE_SEED = [
     features: [
       'Fully customized day-by-day itineraries',
       'Local experience recommendations',
-      'Ground transfers and logistics',
-      'Real-time itinerary adjustments',
+      'Ground transfers and logistics planning',
+      'Real-time itinerary adjustment support',
     ],
     iconKey: 'route',
     imageKey: 'trip-planning',
@@ -140,11 +140,11 @@ export const SERVICE_SEED = [
     title: 'Vacation Packages',
     tagline: 'All-inclusive packages combining flights, hotels, and experiences.',
     description:
-      'One call, one price, everything included. Our vacation packages bundle flight and hotel bookings with stays and experiences into seamless getaways.',
+      'One call, one plan overview. Our vacation packages help bundle flight and hotel bookings with stays and experiences into seamless getaways.',
     features: [
-      'Flight + hotel bundle savings',
-      'Honeymoon and group packages',
-      'All-inclusive resort bookings',
+      'Flight + hotel bundle planning help',
+      'Honeymoon and group package options',
+      'All-inclusive resort booking support',
       'Guided tours and excursions add-ons',
     ],
     iconKey: 'beach',

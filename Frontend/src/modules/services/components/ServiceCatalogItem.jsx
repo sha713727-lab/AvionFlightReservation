@@ -20,6 +20,7 @@ export default function ServiceCatalogItem({
   imageAlt,
   mediaType = 'image',
   mediaUrl = null,
+  explorePath = null,
   reversed = false,
 }) {
   const number = String(index + 1).padStart(2, '0')
@@ -72,7 +73,7 @@ export default function ServiceCatalogItem({
               ))}
             </ul>
 
-            <div>
+            <div className="flex flex-wrap items-center gap-4">
               <Button
                 variant="primary"
                 size="md"
@@ -82,6 +83,19 @@ export default function ServiceCatalogItem({
               >
                 {COPY.services.getStarted}
               </Button>
+              {explorePath ? (
+                <Button
+                  href={explorePath}
+                  variant="ghost"
+                  size="sm"
+                  icon={HiArrowRight}
+                  iconPosition="right"
+                  ctaLabel="explore_services_button"
+                  className="px-0 text-accent hover:bg-transparent hover:text-accent-hover"
+                >
+                  {COPY.services.exploreService}
+                </Button>
+              ) : null}
             </div>
           </div>
         </FadeIn>

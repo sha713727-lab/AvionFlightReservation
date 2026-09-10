@@ -79,6 +79,7 @@ export const COPY = {
       'From flight reservations to hotel bookings and points redemption assistance — handled by travel specialists over the phone.',
     whatYouGet: 'What you get',
     getStarted: 'Talk with an expert',
+    exploreService: 'Explore Service',
     pageEyebrow: 'Our services',
     pageTitle: 'Book flights, hotels, and trip support by phone.',
     pageDescription:
