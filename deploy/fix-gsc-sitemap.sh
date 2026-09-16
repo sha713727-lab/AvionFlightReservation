@@ -26,10 +26,25 @@ for arg in "$@"; do
   esac
 done
 
-set -a
-# shellcheck disable=SC1090
-source "$ENV_FILE"
-set +a
+if [[ ! -f "$ENV_FILE" ]]; then
+  echo "Missing $ENV_FILE" >&2
+  exit 1
+fi
+
+# Never `source` .env — values often break bash (quotes, $, newlines).
+read_env() {
+  local key="$1"
+  local line
+  line="$(grep -E "^${key}=" "$ENV_FILE" | tail -n 1 || true)"
+  printf '%s' "${line#*=}" | sed -e 's/^"//' -e 's/"$//' -e "s/^'//" -e "s/'$//"
+}
+
+CERTBOT_EMAIL="${CERTBOT_EMAIL:-$(read_env CERTBOT_EMAIL)}"
+if [[ -z "${DOMAIN_FROM_ENV:=$(read_env DOMAIN)}" ]]; then
+  true
+else
+  DOMAIN="$DOMAIN_FROM_ENV"
+fi
 
 echo "==> Pull latest (this repo only)"
 git fetch origin main
@@ -40,6 +55,10 @@ cat deploy/nginx/aviosupportdesk.conf > deploy/nginx/active.conf
 cp -f Frontend/public/googlebc6e5bbda029aa82.html deploy/nginx/static/googlebc6e5bbda029aa82.html
 
 if [[ "$RSA_CERT" -eq 1 ]]; then
+  if [[ -z "$CERTBOT_EMAIL" ]]; then
+    echo "CERTBOT_EMAIL missing in $ENV_FILE — required for --rsa-cert" >&2
+    exit 1
+  fi
   echo "==> Reissuing Let's Encrypt RSA certificate (keeps same domain)"
   "${COMPOSE[@]}" --profile tools run --rm certbot certonly \
     --webroot \
