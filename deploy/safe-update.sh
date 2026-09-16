@@ -54,6 +54,26 @@ cat deploy/nginx/aviosupportdesk.conf > deploy/nginx/active.conf
 cp -f Frontend/public/sitemap.xml deploy/nginx/static/sitemap.xml
 cp -f Frontend/public/sitemap_index.xml deploy/nginx/static/sitemap_index.xml
 
+# Preserve multi-site HTTPS vhosts. git tracks HTTP-only enabled.conf for bootstrap;
+# without this, `git reset --hard` drops SSL blocks and browsers get aviosupportdesk.com
+# cert on jumpifzero/flightbugs/quantara → ERR_CERT_COMMON_NAME_INVALID.
+CERT_LIVE="$ROOT_DIR/deploy/certbot/conf/live"
+if [[ -f "$CERT_LIVE/jumpifzero.com/fullchain.pem" \
+   && -f "$CERT_LIVE/flightbugs.com/fullchain.pem" \
+   && -f "$CERT_LIVE/quantarafinancial.info/fullchain.pem" ]]; then
+  echo "==> Restoring HTTPS multi-site vhosts (certs present)"
+  cp -f deploy/nginx/sites/other-sites.conf.tpl deploy/nginx/sites/enabled.conf
+elif [[ -f "$CERT_LIVE/jumpifzero.com-0002/fullchain.pem" \
+   && -f "$CERT_LIVE/flightbugs.com/fullchain.pem" \
+   && -f "$CERT_LIVE/quantarafinancial.info/fullchain.pem" ]]; then
+  echo "==> WARN: jumpifzero.com live path missing; found jumpifzero.com-0002"
+  echo "    Run: bash deploy/enable-multi-site-edge.sh"
+  cp -f deploy/nginx/sites/other-sites.http-only.conf.tpl deploy/nginx/sites/enabled.conf
+else
+  echo "==> Multi-site certs incomplete — keeping HTTP-only other-site vhosts"
+  cp -f deploy/nginx/sites/other-sites.http-only.conf.tpl deploy/nginx/sites/enabled.conf
+fi
+
 echo "==> Containers in THIS project:"
 "${COMPOSE[@]}" ps --format 'table {{.Name}}\t{{.Status}}\t{{.Ports}}' || "${COMPOSE[@]}" ps
 

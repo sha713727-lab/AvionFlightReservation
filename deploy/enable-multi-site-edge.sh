@@ -93,6 +93,31 @@ issue_cert() {
     --rsa-key-size 2048 \
     --force-renewal \
     "${domains[@]}"
+
+  # Certbot sometimes writes name-0002 while nginx expects name/ — align lineage.
+  if [[ -f "$CERT_DIR/${primary}-0002/fullchain.pem" ]]; then
+    echo "==> Aligning cert lineage ${primary}-0002 → ${primary}"
+    "${COMPOSE[@]}" --profile tools run --rm certbot delete \
+      --cert-name "$primary" --non-interactive 2>/dev/null || true
+    "${COMPOSE[@]}" --profile tools run --rm certbot certonly \
+      --webroot \
+      --webroot-path=/var/www/certbot \
+      --email "$CERTBOT_EMAIL" \
+      --agree-tos \
+      --no-eff-email \
+      --non-interactive \
+      --cert-name "$primary" \
+      --key-type rsa \
+      --rsa-key-size 2048 \
+      "${domains[@]}"
+    "${COMPOSE[@]}" --profile tools run --rm certbot delete \
+      --cert-name "${primary}-0002" --non-interactive 2>/dev/null || true
+  fi
+
+  if [[ ! -f "$CERT_DIR/$primary/fullchain.pem" ]]; then
+    echo "ERROR: missing $CERT_DIR/$primary/fullchain.pem after issue" >&2
+    exit 1
+  fi
 }
 
 issue_cert jumpifzero.com www.jumpifzero.com
@@ -106,10 +131,11 @@ cat deploy/nginx/aviosupportdesk.conf > deploy/nginx/active.conf
 "${COMPOSE[@]}" up -d --no-deps --force-recreate nginx
 
 sleep 3
-echo "==> Verify HTTPS"
+echo "==> Verify HTTPS + cert CN"
 for host in jumpifzero.com flightbugs.com quantarafinancial.info aviosupportdesk.com; do
   code="$(curl -sI --resolve "${host}:443:127.0.0.1" "https://${host}/" | awk 'NR==1{print $2}')"
-  echo "  https://$host => ${code:-err}"
+  cn="$(echo | openssl s_client -connect 127.0.0.1:443 -servername "$host" 2>/dev/null | openssl x509 -noout -subject 2>/dev/null | sed 's/^subject=//')"
+  echo "  https://$host => ${code:-err} | ${cn:-no-cert}"
 done
 
 echo "==> Done. Do NOT run host certbot --nginx anymore."
