@@ -6,6 +6,7 @@
 #   cd /var/www/aviosupportdesk
 #   bash deploy/safe-update.sh              # pull + nginx reload (sitemap/config)
 #   bash deploy/safe-update.sh --frontend   # also rebuild frontend (meta/robots/JS)
+#   bash deploy/safe-update.sh --recreate-nginx  # remount nginx volumes (brief 80/443 blip for THIS edge only)
 
 set -euo pipefail
 
@@ -16,12 +17,14 @@ ENV_FILE="${ENV_FILE:-deploy/.env.production}"
 COMPOSE=(docker compose -f docker-compose.prod.yml --env-file "$ENV_FILE")
 DOMAIN="${DOMAIN:-aviosupportdesk.com}"
 REBUILD_FRONTEND=0
+RECREATE_NGINX=0
 
 for arg in "$@"; do
   case "$arg" in
     --frontend) REBUILD_FRONTEND=1 ;;
+    --recreate-nginx) RECREATE_NGINX=1 ;;
     -h|--help)
-      echo "Usage: bash deploy/safe-update.sh [--frontend]"
+      echo "Usage: bash deploy/safe-update.sh [--frontend] [--recreate-nginx]"
       exit 0
       ;;
     *)
@@ -45,8 +48,9 @@ git fetch origin main
 echo "==> Updating working tree to origin/main"
 git reset --hard origin/main
 
-echo "==> Syncing nginx active.conf from aviosupportdesk.conf"
-cp deploy/nginx/aviosupportdesk.conf deploy/nginx/active.conf
+echo "==> Syncing nginx active.conf in-place (keeps Docker bind-mount inode)"
+# IMPORTANT: do not use `cp` here — replacing the inode leaves the container on stale config.
+cat deploy/nginx/aviosupportdesk.conf > deploy/nginx/active.conf
 
 echo "==> Containers in THIS project:"
 "${COMPOSE[@]}" ps --format 'table {{.Name}}\t{{.Status}}\t{{.Ports}}' || "${COMPOSE[@]}" ps
@@ -58,17 +62,29 @@ if [[ "$REBUILD_FRONTEND" -eq 1 ]]; then
   "${COMPOSE[@]}" up -d --no-deps --force-recreate frontend
 fi
 
-echo "==> Validating THIS project's nginx config"
-"${COMPOSE[@]}" exec -T nginx nginx -t
+if [[ "$RECREATE_NGINX" -eq 1 ]]; then
+  echo "==> Recreating ONLY aviosupportdesk-nginx (remounts config/static volumes)"
+  echo "    Note: this process owns host :80/:443 — expect a 1–3s blip for sites on those ports."
+  "${COMPOSE[@]}" up -d --no-deps --force-recreate nginx
+else
+  echo "==> Validating THIS project's nginx config"
+  "${COMPOSE[@]}" exec -T nginx nginx -t
+  echo "==> Reloading THIS project's nginx (graceful — no container recreate)"
+  "${COMPOSE[@]}" exec -T nginx nginx -s reload
+fi
 
-echo "==> Reloading THIS project's nginx (graceful — no container recreate, no port drop)"
-"${COMPOSE[@]}" exec -T nginx nginx -s reload
+echo "==> Confirm loaded sitemap locations"
+"${COMPOSE[@]}" exec -T nginx nginx -T 2>/dev/null | grep -E 'sitemap(_index)?\.xml' || true
+"${COMPOSE[@]}" exec -T nginx ls -la /var/www/static || true
 
 echo "==> Health checks for $DOMAIN only"
 sleep 3
 curl -fsS -o /dev/null -w "homepage:%{http_code}\n" "https://${DOMAIN}/" || true
-curl -fsS -o /dev/null -w "sitemap:%{http_code}\n" "https://${DOMAIN}/sitemap.xml" || true
-curl -fsS -o /dev/null -w "sitemap_index:%{http_code}\n" "https://${DOMAIN}/sitemap_index.xml" || true
-curl -fsS "https://${DOMAIN}/sitemap.xml" | head -n 5 || true
+curl -fsS -o /dev/null -w "sitemap:%{http_code} ctype:%{content_type}\n" "https://${DOMAIN}/sitemap.xml" || true
+curl -fsS -o /dev/null -w "sitemap_index:%{http_code} ctype:%{content_type}\n" "https://${DOMAIN}/sitemap_index.xml" || true
+echo "-- sitemap.xml cache-control --"
+curl -fsSI "https://${DOMAIN}/sitemap.xml" | grep -i cache-control || true
+echo "-- sitemap_index.xml cache-control --"
+curl -fsSI "https://${DOMAIN}/sitemap_index.xml" | grep -i cache-control || true
 
-echo "==> Done. Other VPS sites were not restarted."
+echo "==> Done. Other compose projects were not restarted."
