@@ -55,7 +55,14 @@ cat deploy/nginx/aviosupportdesk.conf > deploy/nginx/active.conf
 cp -f deploy/nginx/sites/other-sites.http-only.conf.tpl deploy/nginx/sites/enabled.conf
 
 "${COMPOSE[@]}" up -d --no-deps --force-recreate nginx
-sleep 2
+sleep 3
+
+if ! "${COMPOSE[@]}" ps nginx | grep -q 'Up'; then
+  echo "ERROR: nginx failed to start. Logs:"
+  "${COMPOSE[@]}" logs --tail=80 nginx || true
+  exit 1
+fi
+
 "${COMPOSE[@]}" exec -T nginx nginx -t
 "${COMPOSE[@]}" exec -T nginx nginx -s reload || true
 
