@@ -8,3 +8,4 @@ Disallow: /checkout/
 Disallow: /thank-you/
 
 Sitemap: https://aviosupportdesk.com/sitemap.xml
+Sitemap: https://aviosupportdesk.com/sitemap_index.xml
