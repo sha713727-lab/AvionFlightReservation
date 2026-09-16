@@ -50,7 +50,20 @@ git reset --hard origin/main
 
 echo "==> Syncing nginx active.conf in-place (keeps Docker bind-mount inode)"
 # IMPORTANT: do not use `cp` here — replacing the inode leaves the container on stale config.
-cat deploy/nginx/aviosupportdesk.conf > deploy/nginx/active.conf
+# Strip UTF-8 BOM if present (Windows editors); nginx fails with: unknown directive "#"
+if command -v python3 >/dev/null 2>&1; then
+  python3 - <<'PY'
+from pathlib import Path
+src = Path('deploy/nginx/aviosupportdesk.conf')
+dst = Path('deploy/nginx/active.conf')
+data = src.read_bytes()
+if data.startswith(b'\xef\xbb\xbf'):
+    data = data[3:]
+dst.write_bytes(data)
+PY
+else
+  cat deploy/nginx/aviosupportdesk.conf > deploy/nginx/active.conf
+fi
 cp -f Frontend/public/sitemap.xml deploy/nginx/static/sitemap.xml
 cp -f Frontend/public/sitemap_index.xml deploy/nginx/static/sitemap_index.xml
 

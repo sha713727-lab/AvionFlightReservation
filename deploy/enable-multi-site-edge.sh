@@ -10,6 +10,30 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
+# nginx rejects UTF-8 BOM as "unknown directive #"
+write_active_conf() {
+  local src="${1:-deploy/nginx/aviosupportdesk.conf}"
+  local dst="deploy/nginx/active.conf"
+  if command -v python3 >/dev/null 2>&1; then
+    python3 - "$src" "$dst" <<'PY'
+import sys
+from pathlib import Path
+src, dst = Path(sys.argv[1]), Path(sys.argv[2])
+data = src.read_bytes()
+if data.startswith(b"\xef\xbb\xbf"):
+    data = data[3:]
+dst.write_bytes(data)
+PY
+  else
+    # sed fallback: drop leading BOM bytes if present
+    if [[ "$(head -c 3 "$src" | wc -c)" -eq 3 ]] && head -c 3 "$src" | cmp -s - <(printf '\xef\xbb\xbf'); then
+      tail -c +4 "$src" > "$dst"
+    else
+      cat "$src" > "$dst"
+    fi
+  fi
+}
+
 ENV_FILE="${ENV_FILE:-deploy/.env.production}"
 COMPOSE=(docker compose -f docker-compose.prod.yml --env-file "$ENV_FILE")
 CERT_DIR="$ROOT_DIR/deploy/certbot/conf/live"
@@ -51,7 +75,7 @@ git fetch origin main
 git reset --hard origin/main
 
 echo "==> Phase 1: HTTP-only vhosts (so ACME + sites work without certs yet)"
-cat deploy/nginx/aviosupportdesk.conf > deploy/nginx/active.conf
+write_active_conf deploy/nginx/aviosupportdesk.conf
 cp -f deploy/nginx/sites/other-sites.http-only.conf.tpl deploy/nginx/sites/enabled.conf
 
 "${COMPOSE[@]}" up -d --no-deps --force-recreate nginx
@@ -126,7 +150,7 @@ issue_cert quantarafinancial.info www.quantarafinancial.info
 
 echo "==> Phase 2: enable HTTPS vhosts"
 cp -f deploy/nginx/sites/other-sites.conf.tpl deploy/nginx/sites/enabled.conf
-cat deploy/nginx/aviosupportdesk.conf > deploy/nginx/active.conf
+write_active_conf deploy/nginx/aviosupportdesk.conf
 "${COMPOSE[@]}" exec -T nginx nginx -t
 "${COMPOSE[@]}" up -d --no-deps --force-recreate nginx
 
