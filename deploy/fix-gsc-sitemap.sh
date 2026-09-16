@@ -66,6 +66,8 @@ if [[ "$RSA_CERT" -eq 1 ]]; then
     --email "${CERTBOT_EMAIL}" \
     --agree-tos \
     --no-eff-email \
+    --non-interactive \
+    --cert-name "${DOMAIN}" \
     --key-type rsa \
     --rsa-key-size 2048 \
     --force-renewal \
