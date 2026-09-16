@@ -7,5 +7,6 @@ Disallow: /_next/
 Disallow: /checkout/
 Disallow: /thank-you/
 
+# Prefer extensionless /sitemap — some crawlers/WAFs fail on *.xml paths.
+Sitemap: https://aviosupportdesk.com/sitemap
 Sitemap: https://aviosupportdesk.com/sitemap.xml
-Sitemap: https://aviosupportdesk.com/sitemaps/urls.xml
