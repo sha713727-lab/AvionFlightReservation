@@ -90,6 +90,28 @@ fi
 "${COMPOSE[@]}" exec -T nginx nginx -t
 "${COMPOSE[@]}" exec -T nginx nginx -s reload || true
 
+purge_cert_lineage() {
+  local name="$1"
+  echo "  purge cert lineage: $name"
+  "${COMPOSE[@]}" --profile tools run --rm certbot delete \
+    --cert-name "$name" --non-interactive >/dev/null 2>&1 || true
+  # Certbot can leave archive/ after a partial delete and then refuse reissue.
+  rm -rf "$ROOT_DIR/deploy/certbot/conf/live/$name"
+  rm -rf "$ROOT_DIR/deploy/certbot/conf/archive/$name"
+  rm -f "$ROOT_DIR/deploy/certbot/conf/renewal/${name}.conf"
+}
+
+purge_domain_certs() {
+  local primary="$1"
+  local path
+  purge_cert_lineage "$primary"
+  shopt -s nullglob
+  for path in "$CERT_DIR"/${primary}-*; do
+    purge_cert_lineage "$(basename "$path")"
+  done
+  shopt -u nullglob
+}
+
 issue_cert() {
   local primary="$1"
   shift
@@ -99,11 +121,8 @@ issue_cert() {
     domains+=(-d "$d")
   done
 
-  if [[ -f "$CERT_DIR/$primary/fullchain.pem" ]]; then
-    echo "==> Cert exists for $primary — renewing RSA if needed"
-  else
-    echo "==> Issuing cert for $primary"
-  fi
+  echo "==> Issuing clean cert for $primary (remove stale -000N lineages first)"
+  purge_domain_certs "$primary"
 
   "${COMPOSE[@]}" --profile tools run --rm certbot certonly \
     --webroot \
@@ -115,33 +134,14 @@ issue_cert() {
     --cert-name "$primary" \
     --key-type rsa \
     --rsa-key-size 2048 \
-    --force-renewal \
     "${domains[@]}"
-
-  # Certbot sometimes writes name-0002 while nginx expects name/ — align lineage.
-  if [[ -f "$CERT_DIR/${primary}-0002/fullchain.pem" ]]; then
-    echo "==> Aligning cert lineage ${primary}-0002 → ${primary}"
-    "${COMPOSE[@]}" --profile tools run --rm certbot delete \
-      --cert-name "$primary" --non-interactive 2>/dev/null || true
-    "${COMPOSE[@]}" --profile tools run --rm certbot certonly \
-      --webroot \
-      --webroot-path=/var/www/certbot \
-      --email "$CERTBOT_EMAIL" \
-      --agree-tos \
-      --no-eff-email \
-      --non-interactive \
-      --cert-name "$primary" \
-      --key-type rsa \
-      --rsa-key-size 2048 \
-      "${domains[@]}"
-    "${COMPOSE[@]}" --profile tools run --rm certbot delete \
-      --cert-name "${primary}-0002" --non-interactive 2>/dev/null || true
-  fi
 
   if [[ ! -f "$CERT_DIR/$primary/fullchain.pem" ]]; then
     echo "ERROR: missing $CERT_DIR/$primary/fullchain.pem after issue" >&2
+    ls -la "$CERT_DIR" | grep -E "$primary" || true
     exit 1
   fi
+  echo "  ok: $CERT_DIR/$primary/fullchain.pem"
 }
 
 issue_cert jumpifzero.com www.jumpifzero.com
