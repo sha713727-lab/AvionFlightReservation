@@ -7,7 +7,7 @@ const frontendRoot = path.resolve(scriptDir, '..')
 const routesPath = path.join(frontendRoot, 'src/constants/routes.js')
 const seoPath = path.join(frontendRoot, 'src/utils/seo.js')
 const robotsTxtPath = path.join(frontendRoot, 'public/robots.txt')
-const sitemapPath = path.join(frontendRoot, 'src/app/sitemap.js')
+const sitemapXmlPath = path.join(frontendRoot, 'public/sitemap.xml')
 const analyticsPath = path.join(frontendRoot, 'src/constants/analytics.js')
 const seoPageMetaPath = path.join(frontendRoot, 'src/constants/seoPageMeta.js')
 const contactPath = path.join(frontendRoot, 'src/constants/contact.js')
@@ -171,7 +171,7 @@ function validateCanonicalHelpers(contactSource) {
   }
 }
 
-function validateRobotsAndSitemap(robotsTxtSource, sitemapSource) {
+function validateRobotsAndSitemap(robotsTxtSource, sitemapXmlSource, sitePaths) {
   const requiredDisallows = [
     '/api/',
     '/admin/',
@@ -197,14 +197,29 @@ function validateRobotsAndSitemap(robotsTxtSource, sitemapSource) {
   if (!robotsTxtSource.includes('Sitemap: https://aviosupportdesk.com/sitemap.xml')) {
     fail('public/robots.txt must use absolute Sitemap URL https://aviosupportdesk.com/sitemap.xml')
   }
-  if (!sitemapSource.includes('SITE_PATHS')) {
-    fail('sitemap.js must use SITE_PATHS')
+  if (/Sitemap:\s*https:\/\/aviosupportdesk\.com\/sitemap\s*$/m.test(robotsTxtSource)) {
+    fail('public/robots.txt must not list extensionless /sitemap as Sitemap')
   }
-  if (!sitemapSource.includes("https://aviosupportdesk.com")) {
-    fail('sitemap.js must use absolute https://aviosupportdesk.com URLs')
+  if (!sitemapXmlSource.includes('<?xml version="1.0" encoding="UTF-8"?>')) {
+    fail('public/sitemap.xml must include XML declaration')
   }
-  if (!sitemapSource.includes('2026-09-10')) {
-    fail('sitemap.js must set lastmod to 2026-09-10')
+  if (!sitemapXmlSource.includes('xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"')) {
+    fail('public/sitemap.xml must use sitemap 0.9 namespace')
+  }
+  if (!sitemapXmlSource.includes('<urlset')) {
+    fail('public/sitemap.xml must contain urlset')
+  }
+  if (/<changefreq>|<priority>/.test(sitemapXmlSource)) {
+    fail('public/sitemap.xml must not include changefreq or priority')
+  }
+  for (const urlPath of sitePaths) {
+    const loc =
+      urlPath === '/'
+        ? 'https://aviosupportdesk.com/'
+        : `https://aviosupportdesk.com${urlPath}`
+    if (!sitemapXmlSource.includes(`<loc>${loc}</loc>`)) {
+      fail(`public/sitemap.xml missing loc for ${urlPath}`)
+    }
   }
 }
 
@@ -343,7 +358,7 @@ function validateMetadataCoverage(sitePaths) {
 const routesSource = fs.readFileSync(routesPath, 'utf8')
 const seoSource = fs.readFileSync(seoPath, 'utf8')
 const robotsTxtSource = fs.readFileSync(robotsTxtPath, 'utf8')
-const sitemapSource = fs.readFileSync(sitemapPath, 'utf8')
+const sitemapXmlSource = fs.readFileSync(sitemapXmlPath, 'utf8')
 const analyticsSource = fs.readFileSync(analyticsPath, 'utf8')
 const contactSource = fs.readFileSync(contactPath, 'utf8')
 
@@ -353,7 +368,7 @@ validatePagesExist(sitePaths)
 validateSeoExports(seoSource)
 validateCanonicalHelpers(contactSource)
 validateNoPublicNoindex()
-validateRobotsAndSitemap(robotsTxtSource, sitemapSource)
+validateRobotsAndSitemap(robotsTxtSource, sitemapXmlSource, sitePaths)
 validateAnalytics(analyticsSource)
 validateContactNap(contactSource)
 validateBannedClaims()

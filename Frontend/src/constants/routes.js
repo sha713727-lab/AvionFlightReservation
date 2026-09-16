@@ -121,18 +121,3 @@ export const SITEMAP_LEGAL_PATHS = [
   COOKIE_POLICY_PATH,
 ]
 
-export const SITEMAP_CHANGE_FREQ = {
-  home: 'weekly',
-  service: 'weekly',
-  blog: 'daily',
-  static: 'monthly',
-  legal: 'monthly',
-}
-
-export const SITEMAP_PRIORITY = {
-  home: 1.0,
-  service: 0.9,
-  blog: 0.8,
-  static: 0.7,
-  legal: 0.6,
-}

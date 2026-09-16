@@ -8,7 +8,7 @@ const SITEMAP_PATH = join(process.cwd(), 'public', 'sitemap.xml')
 
 /**
  * Serves the static sitemap with explicit XML headers.
- * Prefer this over app/sitemap.js so Google always gets stable XML (no RSC/500 flakiness).
+ * Production uses nginx static; this is the Next fallback for local/dev.
  */
 export function GET() {
   const body = readFileSync(SITEMAP_PATH, 'utf8')

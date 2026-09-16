@@ -51,6 +51,8 @@ git reset --hard origin/main
 echo "==> Syncing nginx active.conf in-place (keeps Docker bind-mount inode)"
 # IMPORTANT: do not use `cp` here — replacing the inode leaves the container on stale config.
 cat deploy/nginx/aviosupportdesk.conf > deploy/nginx/active.conf
+cp -f Frontend/public/sitemap.xml deploy/nginx/static/sitemap.xml
+cp -f Frontend/public/sitemap_index.xml deploy/nginx/static/sitemap_index.xml
 
 echo "==> Containers in THIS project:"
 "${COMPOSE[@]}" ps --format 'table {{.Name}}\t{{.Status}}\t{{.Ports}}' || "${COMPOSE[@]}" ps
@@ -74,13 +76,15 @@ else
 fi
 
 echo "==> Confirm loaded sitemap locations"
-"${COMPOSE[@]}" exec -T nginx nginx -T 2>/dev/null | grep -E 'sitemap(_index)?\.xml' || true
+"${COMPOSE[@]}" exec -T nginx nginx -T 2>/dev/null | grep -E 'location = /sitemap|sitemap(_index)?\.xml' || true
 "${COMPOSE[@]}" exec -T nginx ls -la /var/www/static || true
 
 echo "==> Health checks for $DOMAIN only"
 sleep 3
 curl -fsS -o /dev/null -w "homepage:%{http_code}\n" "https://${DOMAIN}/" || true
 curl -fsS -o /dev/null -w "sitemap:%{http_code} ctype:%{content_type}\n" "https://${DOMAIN}/sitemap.xml" || true
+echo -n "sitemap_redirect:"
+curl -sI "https://${DOMAIN}/sitemap" | tr -d '\r' | awk '/^HTTP/{c=$2} tolower($1)=="location:"{l=$2} END{print c " location:" l}'
 curl -fsS -o /dev/null -w "sitemap_index:%{http_code} ctype:%{content_type}\n" "https://${DOMAIN}/sitemap_index.xml" || true
 echo "-- sitemap.xml cache-control --"
 curl -fsSI "https://${DOMAIN}/sitemap.xml" | grep -i cache-control || true
@@ -88,3 +92,4 @@ echo "-- sitemap_index.xml cache-control --"
 curl -fsSI "https://${DOMAIN}/sitemap_index.xml" | grep -i cache-control || true
 
 echo "==> Done. Other compose projects were not restarted."
+echo "    GSC: remove old /sitemap if listed, submit sitemap.xml; confirm Success in GSC UI."

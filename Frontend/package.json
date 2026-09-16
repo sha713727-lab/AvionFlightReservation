@@ -7,6 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "eslint .",
+    "sitemap:generate": "node scripts/generate-sitemap.mjs",
     "seo:validate": "node scripts/seo-validate.mjs",
     "start": "next start"
   },

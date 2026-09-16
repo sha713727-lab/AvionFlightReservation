@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # Critical GSC sitemap fix for AvioSupportDesk only.
-# - Disables HTTP/2
-# - Serves extensionless /sitemap (avoids *.xml bot blocks)
-# - Optionally reissues RSA cert (YE2 ECDSA can break some Google fetches)
+# - Syncs nginx edge (canonical /sitemap.xml, 301 /sitemap)
+# - Optionally reissues RSA cert
 #
 # Usage:
 #   cd /var/www/aviosupportdesk
@@ -53,6 +52,8 @@ git reset --hard origin/main
 echo "==> Sync nginx config in-place"
 cat deploy/nginx/aviosupportdesk.conf > deploy/nginx/active.conf
 cp -f Frontend/public/googlebc6e5bbda029aa82.html deploy/nginx/static/googlebc6e5bbda029aa82.html
+cp -f Frontend/public/sitemap.xml deploy/nginx/static/sitemap.xml
+cp -f Frontend/public/sitemap_index.xml deploy/nginx/static/sitemap_index.xml
 
 if [[ "$RSA_CERT" -eq 1 ]]; then
   if [[ -z "$CERTBOT_EMAIL" ]]; then
@@ -75,7 +76,7 @@ if [[ "$RSA_CERT" -eq 1 ]]; then
     -d "www.${DOMAIN}"
 fi
 
-echo "==> Rebuild frontend (robots + /sitemap route)"
+echo "==> Rebuild frontend (robots.txt)"
 "${COMPOSE[@]}" build --no-cache frontend
 "${COMPOSE[@]}" up -d --no-deps --force-recreate frontend
 
@@ -86,8 +87,9 @@ sleep 4
 echo "==> Verify"
 for path in /sitemap /sitemap.xml /googlebc6e5bbda029aa82.html /robots.txt; do
   echo -n "$path => "
-  curl -sI "https://${DOMAIN}${path}" | tr -d '\r' | awk 'BEGIN{c="?"} /^HTTP/{c=$2} tolower($1)=="content-type:"{t=$0} END{print c " | " t}'
+  curl -sI "https://${DOMAIN}${path}" | tr -d '\r' | awk 'BEGIN{c="?"} /^HTTP/{c=$2} tolower($1)=="content-type:"{t=$0} tolower($1)=="location:"{l=$0} END{print c " | " t " | " l}'
 done
-echo "==> Body /sitemap (first lines)"
-curl -fsS "https://${DOMAIN}/sitemap" | head -n 6
-echo "==> Done. In GSC submit: sitemap   (NOT sitemap.xml)"
+echo "==> Body /sitemap.xml (first lines)"
+curl -fsSL "https://${DOMAIN}/sitemap.xml" | head -n 8
+echo "==> Done. In GSC: remove /sitemap if present, then submit: sitemap.xml"
+echo "    Do not claim GSC Success until the Sitemaps UI shows it."
