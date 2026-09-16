@@ -16,6 +16,7 @@ const supportPhoneSchema = z
 export const contactSettingsSchema = z.object({
   reservationEmail: z.string().email(),
   supportPhones: z.array(z.string().min(1)).min(1),
+  callbacksEnabled: z.boolean(),
   updatedAt: z.string().min(1),
 })
 
@@ -29,6 +30,7 @@ export const contactSettingsFormSchema = z.object({
     .array(supportPhoneSchema)
     .min(1, 'Add at least one contact number.')
     .max(5, 'You can add up to 5 contact numbers.'),
+  callbacksEnabled: z.boolean().optional(),
 })
 
 export function toMailtoHref(email) {

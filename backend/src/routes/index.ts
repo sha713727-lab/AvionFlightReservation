@@ -100,8 +100,9 @@ export async function registerRoutes(
   const adminPlacesController = new AdminPlacesController(
     new AdminPlacesService(new AdminPlaceRepository(context.db), catalogCache),
   )
+  const settingsService = new SettingsService(new SettingsRepository(context.db), catalogCache)
   const callbackRequestController = new CallbackRequestController(
-    new CallbackRequestService(new CallbackRequestRepository(context.db)),
+    new CallbackRequestService(new CallbackRequestRepository(context.db), settingsService),
   )
   const adminCallbacksController = new AdminCallbacksController(
     new AdminCallbacksService(new AdminCallbackRepository(context.db)),
@@ -109,9 +110,7 @@ export async function registerRoutes(
   const adminFaqsController = new AdminFaqsController(
     new AdminFaqsService(new AdminFaqRepository(context.db), catalogCache),
   )
-  const settingsController = new SettingsController(
-    new SettingsService(new SettingsRepository(context.db), catalogCache),
-  )
+  const settingsController = new SettingsController(settingsService)
 
   await app.register(
     async (api) => {

@@ -9,7 +9,7 @@ import {
   toTelHref,
 } from '@/modules/admin/services/adminSettingsApi'
 
-function buildValue(email, phones) {
+function buildValue(email, phones, callbacksEnabled) {
   const list = phones.length > 0 ? phones : getFallbackSupportPhones()
   const supportPhones = list.map((display) => ({
     display,
@@ -23,10 +23,11 @@ function buildValue(email, phones) {
     supportPhones,
     phoneNumber: primary.display,
     phoneHref: primary.href,
+    callbacksEnabled: Boolean(callbacksEnabled),
   }
 }
 
-const fallbackValue = buildValue(getFallbackContactEmail(), getFallbackSupportPhones())
+const fallbackValue = buildValue(getFallbackContactEmail(), getFallbackSupportPhones(), false)
 
 const ContactSettingsContext = createContext(fallbackValue)
 
@@ -39,6 +40,7 @@ export default function ContactSettingsProvider({ children }) {
   const [supportPhones, setSupportPhones] = useState(
     fallbackValue.supportPhones.map((phone) => phone.display),
   )
+  const [callbacksEnabled, setCallbacksEnabled] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -49,10 +51,12 @@ export default function ContactSettingsProvider({ children }) {
         if (cancelled) return
         setReservationEmail(data.reservationEmail)
         setSupportPhones(data.supportPhones)
+        setCallbacksEnabled(Boolean(data.callbacksEnabled))
       } catch {
         if (cancelled) return
         setReservationEmail(fallbackValue.reservationEmail)
         setSupportPhones(fallbackValue.supportPhones.map((phone) => phone.display))
+        setCallbacksEnabled(false)
       }
     }
 
@@ -63,8 +67,8 @@ export default function ContactSettingsProvider({ children }) {
   }, [])
 
   const value = useMemo(
-    () => buildValue(reservationEmail, supportPhones),
-    [reservationEmail, supportPhones],
+    () => buildValue(reservationEmail, supportPhones, callbacksEnabled),
+    [reservationEmail, supportPhones, callbacksEnabled],
   )
 
   return (

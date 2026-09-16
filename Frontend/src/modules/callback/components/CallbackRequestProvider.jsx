@@ -4,6 +4,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo } from 'reac
 import { usePathname } from 'next/navigation'
 import CallbackRequestModal from '@/modules/callback/components/CallbackRequestModal'
 import { useCallbackScrollTrigger } from '@/modules/callback/hooks/useCallbackScrollTrigger'
+import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
 import { ADMIN_PATH } from '@/constants/routes'
 
 const LEGACY_SESSION_KEY = 'avion-callback-modal-done'
@@ -45,8 +46,16 @@ function CallbackRequestController({ children }) {
   )
 }
 
+function DisabledCallbackRequestProvider({ children }) {
+  const value = useMemo(() => ({ open: () => {} }), [])
+  return (
+    <CallbackRequestContext.Provider value={value}>{children}</CallbackRequestContext.Provider>
+  )
+}
+
 export default function CallbackRequestProvider({ children }) {
   const pathname = usePathname()
+  const { callbacksEnabled } = useContactSettings()
   const isAdminRoute = pathname === ADMIN_PATH || pathname.startsWith(`${ADMIN_PATH}/`)
 
   useEffect(() => {
@@ -59,6 +68,10 @@ export default function CallbackRequestProvider({ children }) {
 
   if (isAdminRoute) {
     return children
+  }
+
+  if (!callbacksEnabled) {
+    return <DisabledCallbackRequestProvider>{children}</DisabledCallbackRequestProvider>
   }
 
   return <CallbackRequestController key={pathname}>{children}</CallbackRequestController>

@@ -15,7 +15,7 @@ export const SEO_LANDING_COPY = {
   ctaDescription:
     'Call AvioSupportDesk for step-by-step phone help with flights, hotels, changes, and more. We are an independent travel assistance service—not affiliated with any airline loyalty program or bank rewards brand.',
   ctaPhoneLabel: 'Call now',
-  ctaCallbackLabel: 'Request a callback',
+  ctaCallbackLabel: 'Call a specialist',
   guidesHubEyebrow: 'Travel guides',
   guidesHubTitle: 'Practical guides for flights and trips',
   guidesHubIntro:

@@ -14,6 +14,20 @@ function parsePhones(value: unknown): string[] {
   return phones.length > 0 ? phones : [...DEFAULT_PHONES]
 }
 
+function toDto(row: {
+  reservationEmail: string
+  supportPhones: unknown
+  callbacksEnabled: boolean
+  updatedAt: Date
+}): ContactSettingsDto {
+  return {
+    reservationEmail: row.reservationEmail,
+    supportPhones: parsePhones(row.supportPhones),
+    callbacksEnabled: row.callbacksEnabled,
+    updatedAt: row.updatedAt.toISOString(),
+  }
+}
+
 export class SettingsRepository {
   constructor(private readonly db: DatabaseClient) {}
 
@@ -24,14 +38,11 @@ export class SettingsRepository {
         id: SETTINGS_ID,
         reservationEmail: DEFAULT_EMAIL,
         supportPhones: DEFAULT_PHONES,
+        callbacksEnabled: false,
       },
       update: {},
     })
-    return {
-      reservationEmail: row.reservationEmail,
-      supportPhones: parsePhones(row.supportPhones),
-      updatedAt: row.updatedAt.toISOString(),
-    }
+    return toDto(row)
   }
 
   async updateContact(input: ContactSettingsWriteInput): Promise<ContactSettingsDto> {
@@ -41,16 +52,16 @@ export class SettingsRepository {
         id: SETTINGS_ID,
         reservationEmail: input.reservationEmail,
         supportPhones: input.supportPhones,
+        callbacksEnabled: input.callbacksEnabled ?? false,
       },
       update: {
         reservationEmail: input.reservationEmail,
         supportPhones: input.supportPhones,
+        ...(input.callbacksEnabled !== undefined
+          ? { callbacksEnabled: input.callbacksEnabled }
+          : {}),
       },
     })
-    return {
-      reservationEmail: row.reservationEmail,
-      supportPhones: parsePhones(row.supportPhones),
-      updatedAt: row.updatedAt.toISOString(),
-    }
+    return toDto(row)
   }
 }

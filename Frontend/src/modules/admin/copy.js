@@ -225,6 +225,12 @@ export const ADMIN_COPY = {
   callbacksDeleteBody: 'This permanently removes the callback request from the admin list.',
   callbacksDeleteConfirm: 'Delete request',
   callbacksDeletingCta: 'Deleting…',
+  callbacksEnabledLabel: 'Enable public callback requests',
+  callbacksEnabledHint:
+    'When off, the public site hides the callback modal and CTA. Existing requests stay in this inbox.',
+  callbacksEnabledLoading: 'Loading callback setting…',
+  callbacksEnabledOnSuccess: 'Public callback requests are now enabled.',
+  callbacksEnabledOffSuccess: 'Public callback requests are now disabled.',
   callbackStatusLabels: {
     new: 'New',
     contacted: 'Contacted',

@@ -35,6 +35,10 @@ export function unauthorizedError(message: string, errorCode: ErrorCode): AppErr
   return new AppError(message, HTTP_STATUS.UNAUTHORIZED, errorCode)
 }
 
+export function forbiddenError(message: string, errorCode: ErrorCode): AppError {
+  return new AppError(message, HTTP_STATUS.FORBIDDEN, errorCode)
+}
+
 export function conflictError(message: string, errorCode: ErrorCode): AppError {
   return new AppError(message, HTTP_STATUS.CONFLICT, errorCode)
 }

@@ -14,7 +14,8 @@ import { useContactSettings } from '@/modules/contact/components/ContactSettings
 export default function InternationalFlightCta() {
   const callModal = useCallExpertModal()
   const callbackModal = useCallbackRequestModal()
-  const { phoneNumber } = useContactSettings()
+  const { phoneNumber, callbacksEnabled } = useContactSettings()
+  const showCallbackCta = callbacksEnabled && typeof callbackModal?.open === 'function'
 
   return (
     <section
@@ -43,15 +44,17 @@ export default function InternationalFlightCta() {
             >
               {phoneNumber}
             </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              icon={MdOutlinePhoneCallback}
-              onClick={callbackModal?.open}
-              className="w-full border-white/80 text-white hover:border-white hover:bg-white/10 hover:text-white sm:w-auto"
-            >
-              {COPY.cta.callBackRequest}
-            </Button>
+            {showCallbackCta ? (
+              <Button
+                variant="outline"
+                size="lg"
+                icon={MdOutlinePhoneCallback}
+                onClick={callbackModal.open}
+                className="w-full border-white/80 text-white hover:border-white hover:bg-white/10 hover:text-white sm:w-auto"
+              >
+                {COPY.cta.callBackRequest}
+              </Button>
+            ) : null}
           </div>
 
           <address className="mt-10 flex items-start justify-center gap-2 not-italic text-sm leading-relaxed text-white/70">

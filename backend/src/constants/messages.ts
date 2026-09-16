@@ -49,6 +49,7 @@ export const API_MESSAGES = {
   ADMIN_PLACE_MEDIA_REMOVED: 'Place media removed successfully',
   ADMIN_PLACE_MEDIA_MISSING: 'No media file was provided',
   CALLBACK_CREATED: 'Callback request submitted successfully',
+  CALLBACK_DISABLED: 'Callback requests are currently disabled',
   ADMIN_CALLBACKS_LISTED: 'Callback requests retrieved successfully',
   ADMIN_CALLBACK_UPDATED: 'Callback request updated successfully',
   ADMIN_CALLBACK_DELETED: 'Callback request deleted successfully',

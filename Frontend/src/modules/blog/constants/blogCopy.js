@@ -13,7 +13,7 @@ export const BLOG_COPY = {
   ctaDescription:
     'Talk with an independent travel specialist about cancellations, changes, delays, or booking questions. We explain airline rules in plain language before you act.',
   ctaPhoneLabel: 'Call now',
-  ctaCallbackLabel: 'Request a callback',
+  ctaCallbackLabel: 'Call a specialist',
   homeLatestTitle: 'Latest from the AvioSupportDesk Blog',
   homeLatestDescription: 'Fresh guides on refunds, airline contacts, delay rights, flight changes, and booking savings.',
   homeLatestCta: 'View all blog posts',

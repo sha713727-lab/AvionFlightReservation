@@ -11,6 +11,7 @@ export const contactSettingsBodySchema = z.object({
     .array(supportPhoneSchema)
     .min(1, 'Add at least one contact number')
     .max(5, 'You can add up to 5 contact numbers'),
+  callbacksEnabled: z.boolean().optional(),
 })
 
 export type ContactSettingsBody = z.infer<typeof contactSettingsBodySchema>

@@ -5,6 +5,7 @@ import { ADMIN_COPY } from '@/modules/admin/constants'
 import AdminCallbackDeleteModal from '@/modules/admin/components/AdminCallbackDeleteModal'
 import AdminCallbackRow from '@/modules/admin/components/AdminCallbackRow'
 import { useAdminCallbacks } from '@/modules/admin/hooks/useAdminCallbacks'
+import { useAdminCallbacksEnabled } from '@/modules/admin/hooks/useAdminCallbacksEnabled'
 import { cn } from '@/utils/cn'
 
 const selectClassName = cn(
@@ -35,6 +36,15 @@ export default function AdminCallbacksHome({ token }) {
     refresh,
     clearFeedback,
   } = useAdminCallbacks(token)
+
+  const {
+    enabled: callbacksEnabled,
+    setEnabled: setCallbacksEnabled,
+    isLoading: isToggleLoading,
+    isSaving: isToggleSaving,
+    error: toggleError,
+    successMessage: toggleSuccess,
+  } = useAdminCallbacksEnabled(token)
 
   const [deletingItem, setDeletingItem] = useState(null)
 
@@ -85,6 +95,40 @@ export default function AdminCallbacksHome({ token }) {
         >
           {ADMIN_COPY.callbacksRefreshCta}
         </button>
+      </div>
+
+      <div className="rounded-2xl border border-border bg-section px-4 py-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="min-w-0">
+            <label
+              htmlFor="callbacks-enabled-toggle"
+              className="text-sm font-medium text-primary"
+            >
+              {ADMIN_COPY.callbacksEnabledLabel}
+            </label>
+            <p className="mt-1 text-xs text-text-muted">{ADMIN_COPY.callbacksEnabledHint}</p>
+          </div>
+          <input
+            id="callbacks-enabled-toggle"
+            type="checkbox"
+            className="h-5 w-5 shrink-0 cursor-pointer rounded border-border text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-40"
+            checked={callbacksEnabled}
+            disabled={isToggleLoading || isToggleSaving}
+            onChange={(event) => {
+              void setCallbacksEnabled(event.target.checked)
+            }}
+          />
+        </div>
+        {toggleError ? (
+          <p className="mt-3 text-sm text-error" role="alert">
+            {toggleError}
+          </p>
+        ) : null}
+        {toggleSuccess ? (
+          <p className="mt-3 text-sm text-success" role="status">
+            {toggleSuccess}
+          </p>
+        ) : null}
       </div>
 
       <div>
