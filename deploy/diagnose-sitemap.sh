@@ -5,8 +5,23 @@ cd "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 COMPOSE=(docker compose -f docker-compose.prod.yml --env-file deploy/.env.production)
 DOMAIN="${DOMAIN:-aviosupportdesk.com}"
 
+echo "==> DNS (must match this VPS public IP)"
+echo "public IP => $(curl -s --max-time 8 https://api.ipify.org || echo unknown)"
+echo "A       => $(getent ahostsv4 "$DOMAIN" | awk '{print $1}' | sort -u | tr '\n' ' ')"
+echo "AAAA    => $(getent ahostsv6 "$DOMAIN" | awk '{print $1}' | sort -u | tr '\n' ' ')"
+
+echo "==> TLS certificate (GSC rejects ECDSA-only or incomplete chains more often than curl)"
+if command -v openssl >/dev/null 2>&1; then
+  openssl s_client -connect "${DOMAIN}:443" -servername "$DOMAIN" -showcerts </dev/null 2>/dev/null | grep -E '^ [0-9] s:|^ [0-9] i:|^Verify return code|Peer signature type|Server public key' || true
+else
+  echo "openssl not installed on host — run: apt-get install -y openssl"
+fi
+
 echo "==> ufw"
 ufw status || true
+echo "==> host packet filters that bypass ufw (docker publishes past ufw)"
+iptables -S DOCKER-USER 2>/dev/null || echo "(no DOCKER-USER chain)"
+iptables -S INPUT 2>/dev/null | grep -iE 'DROP|REJECT' || echo "(no INPUT drops)"
 echo "==> fail2ban"
 fail2ban-client status 2>/dev/null || echo "fail2ban not active"
 echo "==> listening 80/443"
@@ -25,4 +40,8 @@ for path in /sitemap.xml /sitemap_index.xml /sitemaps/urls.xml /robots.txt; do
 done
 echo "==> recent sitemap access log (if any)"
 "${COMPOSE[@]}" exec -T nginx sh -c 'tail -n 30 /var/log/nginx/sitemap.log 2>/dev/null || echo "(no sitemap.log yet)"'
+
+echo "==> REAL Googlebot hits (66.249.x.x / 2001:4860:4801::) across all nginx logs"
+"${COMPOSE[@]}" exec -T nginx sh -c 'grep -rhoE "^(66\.249\.[0-9]+\.[0-9]+|2001:4860:4801:[0-9a-f:]*)" /var/log/nginx/ 2>/dev/null | sort | uniq -c | sort -rn | head -n 20 || true'
+"${COMPOSE[@]}" exec -T nginx sh -c 'grep -rh "66\.249\." /var/log/nginx/ 2>/dev/null | grep -i sitemap | tail -n 10 || echo "(Google has never fetched a sitemap URL from this server)"'
 echo "==> Done"
