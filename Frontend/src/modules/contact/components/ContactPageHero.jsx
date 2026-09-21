@@ -47,7 +47,7 @@ export default function ContactPageHero() {
             >
               {getSeoPageH1(CONTACT_PATH)}
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-text-secondary sm:text-lg speakable-summary">
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-text-secondary sm:text-lg">
               {COPY.contactPage.pageDescription}
             </p>
             <div className="mt-8 flex w-full max-w-xl flex-col gap-3 sm:flex-row">

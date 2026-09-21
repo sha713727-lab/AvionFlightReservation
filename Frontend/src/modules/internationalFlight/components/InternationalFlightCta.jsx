@@ -7,6 +7,7 @@ import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
 import { MAILING_ADDRESS_LINES } from '@/constants/contact'
+import { CTA_PLACEMENT } from '@/constants/analytics'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 import { useCallbackRequestModal } from '@/modules/callback/components/CallbackRequestProvider'
 import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
@@ -39,7 +40,7 @@ export default function InternationalFlightCta() {
               variant="dark"
               size="lg"
               icon={FaPhone}
-              onClick={callModal.open}
+              onClick={() => callModal.open(CTA_PLACEMENT.pageCta)}
               className="w-full bg-primary text-secondary hover:bg-primary-hover sm:w-auto"
             >
               {phoneNumber}

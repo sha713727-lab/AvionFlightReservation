@@ -15,7 +15,6 @@ export function getServicesPageJsonLd() {
       name: title,
       description,
       path: SERVICES_PATH,
-      speakable: true,
     }),
   )
 }

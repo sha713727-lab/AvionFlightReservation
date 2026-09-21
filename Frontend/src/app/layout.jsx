@@ -21,10 +21,11 @@ import {
   AVION_FAVICON_48_SRC,
   AVION_FAVICON_SRC,
 } from '@/constants/brand'
-import { SITE_URL } from '@/constants/contact'
+import { SITE_DESCRIPTION, SITE_URL } from '@/constants/contact'
 import { HOME_PATH } from '@/constants/routes'
+import { getSeoPageMeta } from '@/constants/seoPageMeta'
 import { DEFAULT_LOCALE } from '@/constants/locales'
-import { buildPathMetadata } from '@/utils/seo'
+import { SEO_ROBOTS_INDEX } from '@/utils/seo'
 import CallbackRequestProvider from '@/modules/callback/components/CallbackRequestProvider'
 import ContactSettingsProvider from '@/modules/contact/components/ContactSettingsProvider'
 
@@ -58,8 +59,14 @@ const siteVerification = {
   ...(hasBingVerification ? { other: { 'msvalidate.01': BING_SITE_VERIFICATION } } : {}),
 }
 
+/**
+ * Site-wide defaults only. Canonical, Open Graph, and Twitter data belong to
+ * each route so error pages never inherit the homepage canonical (audit T12).
+ */
 export const metadata = {
-  ...buildPathMetadata(HOME_PATH),
+  title: getSeoPageMeta(HOME_PATH).title,
+  description: SITE_DESCRIPTION,
+  robots: SEO_ROBOTS_INDEX,
   metadataBase: new URL(SITE_URL),
   icons: {
     icon: [
@@ -97,9 +104,11 @@ export default function RootLayout({ children }) {
         </ContactSettingsProvider>
         <ConditionalFloatingActions />
         {/* Third-party tags at end of body; async/lazyOnload via next/script */}
-        <ConditionalAnalytics>
+        <ConditionalAnalytics includeAdmin>
           <GoogleTagManagerNoscript />
           <GoogleTagManager />
+        </ConditionalAnalytics>
+        <ConditionalAnalytics>
           <GoogleAdsTag />
         </ConditionalAnalytics>
       </body>

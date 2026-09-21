@@ -3,7 +3,7 @@ import { SEO_LANDING_COPY } from '@/modules/seoLanding/constants/seoLandingCopy'
 
 /**
  * People Also Ask block for service pages.
- * H2 section + H3 questions, direct answer (speakable), then detail.
+ * H2 section + H3 questions, direct answer first, then detail.
  */
 export default function PeopleAlsoAskSection({ faqs, linkMap }) {
   if (!faqs?.length) {
@@ -28,7 +28,7 @@ export default function PeopleAlsoAskSection({ faqs, linkMap }) {
             <h3 className="font-heading text-base font-semibold text-primary sm:text-lg">
               {faq.question}
             </h3>
-            <p className="speakable-summary faq-answer mt-3 text-sm leading-relaxed text-text-secondary sm:text-base">
+            <p className="mt-3 text-sm leading-relaxed text-text-secondary sm:text-base">
               <LinkedCopy text={faq.answer} linkMap={linkMap} />
             </p>
             {faq.detail ? (

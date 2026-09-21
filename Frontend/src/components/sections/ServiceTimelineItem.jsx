@@ -6,6 +6,7 @@ import Button from '@/components/buttons/Button'
 import { FadeIn } from '@/components/animations/FadeIn'
 import ServiceMediaFrame from '@/components/media/ServiceMediaFrame'
 import ServiceTitleHero from '@/components/sections/ServiceTitleHero'
+import { CTA_PLACEMENT } from '@/constants/analytics'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 
 export default function ServiceTimelineItem({
@@ -50,7 +51,7 @@ export default function ServiceTimelineItem({
         </ul>
 
         <div className="flex flex-wrap items-center gap-4">
-          <Button variant="primary" size="md" icon={HiArrowRight} iconPosition="right" onClick={callModal.open}>
+          <Button variant="primary" size="md" icon={HiArrowRight} iconPosition="right" onClick={() => callModal.open(CTA_PLACEMENT.serviceStep)}>
             {COPY.services.getStarted}
           </Button>
           {explorePath ? (

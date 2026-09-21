@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { FadeIn } from '@/components/animations/FadeIn'
 import LazyVideo from '@/components/media/LazyVideo'
 import OptimizedImage from '@/components/media/OptimizedImage'
-import { COPY } from '@/constants/copy'
 import { cn } from '@/utils/cn'
 
 export default function DestinationPlaceCard({
@@ -12,7 +11,6 @@ export default function DestinationPlaceCard({
   image,
   alt,
   tierTitle,
-  points,
   featured = false,
   mediaUrl = null,
   mediaType = null,
@@ -71,12 +69,6 @@ export default function DestinationPlaceCard({
         >
           {name}
         </h3>
-        <p className="mt-2 text-sm text-white/85">
-          {COPY.destinations.redeemFromLabel}{' '}
-          <span className="font-semibold text-secondary">
-            {points.toLocaleString()} {COPY.destinations.pointsLabel}
-          </span>
-        </p>
       </div>
     </article>
   )

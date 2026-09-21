@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { inquiryStatusSchema } from '@/schemas/adminInquiry'
 
 const adminCatalogItemSchema = z.object({
   id: z.string().min(1),
@@ -16,6 +17,15 @@ const adminRecentCallbackSchema = z.object({
   createdAt: z.string().min(1),
 })
 
+const adminRecentInquirySchema = z.object({
+  id: z.string().min(1),
+  referenceCode: z.string().min(1),
+  name: z.string().min(1),
+  subject: z.string().min(1),
+  status: inquiryStatusSchema,
+  createdAt: z.string().min(1),
+})
+
 export const adminDashboardSummarySchema = z.object({
   counts: z.object({
     servicesActive: z.coerce.number().int().nonnegative(),
@@ -25,6 +35,8 @@ export const adminDashboardSummarySchema = z.object({
     faqsActive: z.coerce.number().int().nonnegative(),
     callbacksNew: z.coerce.number().int().nonnegative(),
     callbacksTotal: z.coerce.number().int().nonnegative(),
+    inquiriesNew: z.coerce.number().int().nonnegative(),
+    inquiriesTotal: z.coerce.number().int().nonnegative(),
   }),
   system: z.object({
     database: z.enum(['up', 'down']),
@@ -33,4 +45,5 @@ export const adminDashboardSummarySchema = z.object({
   recentServices: z.array(adminCatalogItemSchema),
   recentFaqs: z.array(adminCatalogItemSchema),
   recentCallbacks: z.array(adminRecentCallbackSchema),
+  recentInquiries: z.array(adminRecentInquirySchema),
 })

@@ -24,7 +24,7 @@ export const TERMS_CLAUSES = [
     number: '01',
     title: 'Independent Service Disclosure',
     description:
-      'AvioSupportDesk is an independent travel support service and is NOT affiliated with any airline. Avion Flight Reservation (aviosupportdesk.com) is not an airline, airport, hotel, bank, rewards program, or card issuer. Brand names, airline names, hotel names, or travel program names may be used only to identify customer travel requests. We are not affiliated with RBC, Avion Rewards, British Airways Avios, or any airline.',
+      'AvioSupportDesk (aviosupportdesk.com) is an independent travel support service. We are not an airline, airport, hotel, bank, rewards program, or card issuer. Brand names, airline names, hotel names, or travel program names may be used only to identify customer travel requests. We are not affiliated with RBC, Avion Rewards, British Airways Avios, or any airline.',
   },
   {
     id: 'service-description',
@@ -45,21 +45,21 @@ export const TERMS_CLAUSES = [
     number: '04',
     title: 'Fees Transparency',
     description:
-      'Service fees (if any), supplier fees, airline penalties, fare differences, taxes, and optional ancillaries may apply depending on the request. Applicable charges should be reviewed and accepted before confirmation. We aim to explain fee categories in plain language before you authorize a booking action.',
+      'Any AvioSupportDesk assistance fee is quoted and explained before we start billable work. That fee is separate from airline, hotel, or other supplier charges, penalties, fare differences, taxes, and optional ancillaries controlled by those providers. See our Service Fees page at /service-fees for how assistance fees are described; we do not publish fixed price lists on this site.',
   },
   {
     id: 'changes-cancellations-refunds',
     number: '05',
     title: 'Changes, Cancellations, and Refunds',
     description:
-      'Changes, cancellations, and refunds depend on supplier rules and the fare or booking type selected. Some bookings may be non-refundable or may carry penalties. Refund timing and method (cash vs credit) are controlled by the seller of record and payment networks. See our Refund Policy and Cancellation Policy for additional detail.',
+      'Changes, cancellations, and supplier-side refunds depend on airline, hotel, or seller rules and the fare or booking type you selected. Supplier refunds (cash or credit) are processed by the seller of record and payment networks—not by AvioSupportDesk. Assistance fees paid to AvioSupportDesk for completed or in-progress work follow our Refund Policy, which is separate from supplier refund rules. See our Refund Policy and Cancellation Policy for full detail.',
   },
   {
     id: 'customer-responsibility',
     number: '06',
     title: 'Customer Responsibility',
     description:
-      'Customers must provide accurate passenger names, travel dates, contact details, and payment information. Errors may result in additional charges or denial of travel. Customers remain responsible for passports, visas, entry rules, and arriving on time.',
+      'Customers must provide accurate passenger names, travel dates, contact details, and payment information. Errors may result in additional charges or denial of travel. Customers remain responsible for passports, visas, entry rules, and arriving on time. Do not submit passwords, one-time codes (OTPs), or full payment card details through public website forms; share sensitive credentials only through channels we direct during an active support session.',
   },
   {
     id: 'limitation-of-liability',

@@ -12,6 +12,7 @@ import Container from '@/components/ui/Container'
 import { GUIDE_SOURCES_BY_SLUG } from '@/constants/geoPageSources'
 import { PHONE_HREF, PHONE_NUMBER } from '@/constants/contact'
 import { getSeoPageH1 } from '@/constants/seoPageMeta'
+import { CTA_PLACEMENT } from '@/constants/analytics'
 import CallExpertProvider, { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 import { getGuideFaqsBySlug } from '@/modules/seoLanding/constants/guideFaqs'
 import { getGuidePageBySlug } from '@/modules/seoLanding/constants/guidePages'
@@ -46,7 +47,7 @@ function GuideArticleContent({ slug }) {
             </FadeIn>
 
             <FadeIn delay={0.06} className="mt-6">
-              <p className="speakable-summary text-base font-medium leading-relaxed text-primary sm:text-lg">
+              <p className="text-base font-medium leading-relaxed text-primary sm:text-lg">
                 {guide.directAnswer}
               </p>
             </FadeIn>
@@ -101,7 +102,7 @@ function GuideArticleContent({ slug }) {
               <Button href={PHONE_HREF} variant="primary" size="lg">
                 {SEO_LANDING_COPY.ctaPhoneLabel} · {PHONE_NUMBER}
               </Button>
-              <Button variant="secondary" size="lg" onClick={callModal.open}>
+              <Button variant="secondary" size="lg" onClick={() => callModal.open(CTA_PLACEMENT.guide)}>
                 {SEO_LANDING_COPY.ctaCallbackLabel}
               </Button>
             </div>

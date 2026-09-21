@@ -1,10 +1,14 @@
 import {
+  ORGANIZATION_ID,
   buildFaqPageJsonLd,
   buildPathMetadata,
   buildServiceJsonLd,
+  buildWebPageId,
   buildWebPageJsonLd,
 } from '@/utils/seo'
 import { buildBreadcrumbJsonLd } from '@/constants/breadcrumbs'
+import { buildCanonicalUrl } from '@/constants/contact'
+import { GEO_BYLINES } from '@/constants/geo'
 import { getOpeningPlainText } from '@/constants/internalLinks'
 import { getSeoPageMeta } from '@/constants/seoPageMeta'
 import { getGuideFaqsBySlug } from '@/modules/seoLanding/constants/guideFaqs'
@@ -33,7 +37,6 @@ export function getServicePageJsonLd(slug) {
       name: page.h1,
       description: seo.description,
       path: page.path,
-      speakable: true,
     }),
     buildServiceJsonLd({
       name: page.h1,
@@ -44,6 +47,25 @@ export function getServicePageJsonLd(slug) {
     buildBreadcrumbJsonLd(page.path),
     buildFaqPageJsonLd(page.faqs),
   ]
+}
+
+/**
+ * Editorial Article node for guides.
+ * Organizational authorship + the review date shown on the page.
+ */
+function buildGuideArticleJsonLd(guide, description) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${buildCanonicalUrl(guide.path)}#article`,
+    headline: guide.question,
+    description,
+    url: buildCanonicalUrl(guide.path),
+    dateModified: GEO_BYLINES.lastUpdatedIso,
+    author: { '@id': ORGANIZATION_ID },
+    publisher: { '@id': ORGANIZATION_ID },
+    mainEntityOfPage: { '@id': buildWebPageId(guide.path) },
+  }
 }
 
 export function getGuidePageMetadata(slug) {
@@ -68,8 +90,8 @@ export function getGuidePageJsonLd(slug) {
       name: guide.question,
       description: seo.description,
       path: guide.path,
-      speakable: true,
     }),
+    buildGuideArticleJsonLd(guide, seo.description),
     buildBreadcrumbJsonLd(guide.path),
     ...(faqs.length ? [buildFaqPageJsonLd(faqs)] : []),
   ]
@@ -86,7 +108,6 @@ export function getGuidesHubJsonLd() {
       name: GUIDE_HUB.h1,
       description: seo.description,
       path: GUIDE_HUB.path,
-      speakable: true,
     }),
     buildBreadcrumbJsonLd(GUIDE_HUB.path),
   ]

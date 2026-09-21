@@ -7,7 +7,7 @@ export const DESTINATION_SEED = [
     places: [
       {
         name: 'Montreal',
-        alt: 'Flights to Montreal with Avion Flight Reservation',
+        alt: 'Flights to Montreal with AvioSupportDesk',
         imageUrl:
           'https://images.unsplash.com/photo-1596436889106-be35e843f974?w=900&h=675&fit=crop&q=80',
       },

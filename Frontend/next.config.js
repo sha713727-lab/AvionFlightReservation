@@ -154,10 +154,6 @@ const nextConfig = {
         source: '/:path*.ico',
         headers: [{ key: 'Cache-Control', value: ASSET_CACHE }],
       },
-      {
-        source: '/partners/:path*',
-        headers: [{ key: 'Cache-Control', value: ASSET_CACHE }],
-      },
     ]
   },
   async redirects() {

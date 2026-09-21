@@ -5,6 +5,7 @@ import NorthAmericanPhoneInput from '@/components/forms/NorthAmericanPhoneInput'
 import { COPY } from '@/constants/copy'
 import {
   CONTACT_FORM_FIELD_NAMES,
+  CONTACT_FORM_MESSAGES,
   CONTACT_FORM_SUBJECTS,
 } from '@/modules/contact/constants'
 import { useContactForm } from '@/modules/contact/hooks/useContactForm'
@@ -27,8 +28,16 @@ function FieldError({ id, message }) {
 }
 
 export default function ContactForm() {
-  const { values, errors, formError, isSubmitting, isSuccess, setField, handleSubmit } =
-    useContactForm()
+  const {
+    values,
+    errors,
+    formError,
+    isSubmitting,
+    isSuccess,
+    referenceCode,
+    setField,
+    handleSubmit,
+  } = useContactForm()
 
   return (
     <form className="space-y-5" onSubmit={handleSubmit} noValidate>
@@ -40,8 +49,10 @@ export default function ContactForm() {
 
       {isSuccess ? (
         <div className="rounded-xl border border-accent/20 bg-accent/5 px-4 py-3" role="status">
-          <p className="font-medium text-primary">{COPY.contactPage.formSuccessTitle}</p>
-          <p className="mt-1 text-sm text-text-secondary">{COPY.contactPage.formSuccessDescription}</p>
+          <p className="font-medium text-primary">{CONTACT_FORM_MESSAGES.submitSuccessTitle}</p>
+          <p className="mt-1 text-sm text-text-secondary">
+            {CONTACT_FORM_MESSAGES.submitSuccessDescription(referenceCode)}
+          </p>
         </div>
       ) : null}
 

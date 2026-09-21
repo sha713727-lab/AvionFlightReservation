@@ -1,11 +1,12 @@
 import {
+  ORGANIZATION_ID,
   buildFaqPageJsonLd,
   buildPathMetadata,
+  buildWebPageId,
   buildWebPageJsonLd,
 } from '@/utils/seo'
-import { BRAND_FULL_NAME } from '@/constants/brand'
 import { buildBreadcrumbJsonLd } from '@/constants/breadcrumbs'
-import { SITE_URL, buildCanonicalUrl } from '@/constants/contact'
+import { buildCanonicalUrl } from '@/constants/contact'
 import { getSeoPageMeta } from '@/constants/seoPageMeta'
 import { BLOG_AUTHOR } from '@/modules/blog/constants/blogCopy'
 import {
@@ -18,24 +19,18 @@ function buildArticleJsonLd(post, seo) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    '@id': `${buildCanonicalUrl(post.path)}#article`,
     headline: post.title,
     description: seo.description,
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
     author: {
-      '@type': 'Organization',
+      '@id': ORGANIZATION_ID,
       name: BLOG_AUTHOR.name,
       url: buildCanonicalUrl(BLOG_AUTHOR.path),
     },
-    publisher: {
-      '@type': 'Organization',
-      name: BRAND_FULL_NAME,
-      url: SITE_URL,
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': buildCanonicalUrl(post.path),
-    },
+    publisher: { '@id': ORGANIZATION_ID },
+    mainEntityOfPage: { '@id': buildWebPageId(post.path) },
     wordCount: post.wordCount,
     url: buildCanonicalUrl(post.path),
   }
@@ -52,7 +47,6 @@ export function getBlogHubJsonLd() {
       name: BLOG_HUB.h1,
       description: seo.description,
       path: BLOG_HUB.path,
-      speakable: true,
     }),
     buildBreadcrumbJsonLd(BLOG_HUB.path),
   ]
@@ -79,7 +73,6 @@ export function getBlogPostJsonLd(slug) {
       name: post.h1,
       description: seo.description,
       path: post.path,
-      speakable: true,
     }),
     buildBreadcrumbJsonLd(post.path),
   ]

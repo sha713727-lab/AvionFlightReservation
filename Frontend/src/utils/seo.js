@@ -1,9 +1,9 @@
 import { BRAND_FULL_NAME } from '@/constants/brand'
 import {
+  CANONICAL_ORIGIN,
   CONTACT_EMAILS,
-  MAILING_ADDRESS_LINES,
+  MAILING_ADDRESS,
   PHONE_NUMBER,
-  SITE_URL,
   buildCanonicalUrl,
 } from '@/constants/contact'
 import { SEO_OG_IMAGE_ABSOLUTE, SEO_SITE_NAME } from '@/constants/images'
@@ -76,87 +76,74 @@ export function buildPathMetadata(path) {
   })
 }
 
+/**
+ * Stable node identifiers — every record joins one graph (audit §11).
+ * Page/service nodes are namespaced by their own canonical URL.
+ */
+export const ORGANIZATION_ID = `${CANONICAL_ORIGIN}/#organization`
+export const WEBSITE_ID = `${CANONICAL_ORIGIN}/#website`
+
+export function buildWebPageId(path) {
+  return `${buildCanonicalUrl(path)}#webpage`
+}
+
+export function buildServiceId(path) {
+  return `${buildCanonicalUrl(path)}#service`
+}
+
+/**
+ * Organization record for a service/contact page.
+ * No priceRange — assistance fees are quoted, never published as a range.
+ */
 export function buildTravelAssistanceJsonLd({ description, path, includeAddress = false }) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': ORGANIZATION_ID,
     name: BRAND_FULL_NAME,
     description,
-    url: `${SITE_URL}${path}`,
+    url: buildCanonicalUrl(path),
     telephone: PHONE_NUMBER,
     email: CONTACT_EMAILS,
     areaServed: ['Canada', 'United States', 'Europe', 'Mexico'],
-    priceRange: '$$',
-    parentOrganization: {
-      '@type': 'Organization',
-      name: BRAND_FULL_NAME,
-      url: SITE_URL,
-    },
   }
 
   if (includeAddress) {
     jsonLd.address = {
       '@type': 'PostalAddress',
-      streetAddress: MAILING_ADDRESS_LINES[0],
-      addressLocality: 'Toronto',
-      addressRegion: 'ON',
-      postalCode: 'M5X 1C9',
-      addressCountry: 'CA',
+      streetAddress: MAILING_ADDRESS.streetAddress,
+      addressLocality: MAILING_ADDRESS.addressLocality,
+      addressRegion: MAILING_ADDRESS.addressRegion,
+      postalCode: MAILING_ADDRESS.postalCode,
+      addressCountry: MAILING_ADDRESS.addressCountry,
     }
   }
 
   return jsonLd
 }
 
-/** CSS selectors Google Speakable / answer engines may use for voice snippets. */
-export const SPEAKABLE_CSS_SELECTORS = ['.speakable-summary', 'h1', '.faq-answer']
-
-export function buildWebPageJsonLd({ name, description, path, speakable = false }) {
-  const jsonLd = {
+export function buildWebPageJsonLd({ name, description, path }) {
+  return {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
+    '@id': buildWebPageId(path),
     name,
     description,
-    url: `${SITE_URL}${path}`,
-    isPartOf: {
-      '@type': 'WebSite',
-      '@id': `${SITE_URL}/#website`,
-      name: BRAND_FULL_NAME,
-      url: SITE_URL,
-    },
-    about: {
-      '@type': 'Organization',
-      '@id': `${SITE_URL}/#organization`,
-      name: BRAND_FULL_NAME,
-      url: SITE_URL,
-      email: CONTACT_EMAILS,
-      telephone: PHONE_NUMBER,
-    },
+    url: buildCanonicalUrl(path),
+    isPartOf: { '@id': WEBSITE_ID },
+    about: { '@id': ORGANIZATION_ID },
   }
-
-  if (speakable) {
-    jsonLd.speakable = {
-      '@type': 'SpeakableSpecification',
-      cssSelector: SPEAKABLE_CSS_SELECTORS,
-    }
-  }
-
-  return jsonLd
 }
 
 export function buildWebSiteJsonLd({ name, description, path = '/' }) {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': WEBSITE_ID,
     name,
     description,
-    url: `${SITE_URL}${path === '/' ? '' : path}`,
-    publisher: {
-      '@type': 'Organization',
-      '@id': `${SITE_URL}/#organization`,
-      name: BRAND_FULL_NAME,
-      url: SITE_URL,
-    },
+    url: buildCanonicalUrl(path),
+    publisher: { '@id': ORGANIZATION_ID },
   }
 }
 
@@ -192,22 +179,17 @@ export function buildFaqPageJsonLd(faqs) {
   }
 }
 
+/** Service records carry no Offer — pricing is quoted, not published. */
 export function buildServiceJsonLd({ name, description, path, serviceType }) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    '@id': buildServiceId(path),
     name,
     description,
-    url: `${SITE_URL}${path}`,
+    url: buildCanonicalUrl(path),
     serviceType,
-    provider: {
-      '@type': 'Organization',
-      '@id': `${SITE_URL}/#organization`,
-      name: BRAND_FULL_NAME,
-      url: SITE_URL,
-      telephone: PHONE_NUMBER,
-      email: CONTACT_EMAILS,
-    },
+    provider: { '@id': ORGANIZATION_ID },
     areaServed: ['Canada', 'United States', 'Europe', 'Mexico'],
   }
 }

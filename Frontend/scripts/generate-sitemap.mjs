@@ -5,7 +5,16 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { SITE_PATHS } from '../src/constants/routes.js'
+import {
+  CANCELLATION_POLICY_PATH,
+  COOKIE_POLICY_PATH,
+  PRIVACY_POLICY_PATH,
+  REFUND_POLICY_PATH,
+  SITE_PATHS,
+  TERMS_PATH,
+} from '../src/constants/routes.js'
+import { LEGAL_COPY } from '../src/constants/legalCopy.js'
+import { GEO_BYLINES } from '../src/constants/geo.js'
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url))
 const frontendRoot = path.resolve(scriptDir, '..')
@@ -22,6 +31,9 @@ const INDEX_OUT_PATHS = [
   path.join(frontendRoot, 'public', 'sitemap_index.xml'),
   path.join(repoRoot, 'deploy', 'nginx', 'static', 'sitemap_index.xml'),
 ]
+
+const ROBOTS_SRC = path.join(frontendRoot, 'public', 'robots.txt')
+const ROBOTS_OUT = path.join(repoRoot, 'deploy', 'nginx', 'static', 'robots.txt')
 
 function fail(message) {
   process.stderr.write(`generate-sitemap: ${message}\n`)
@@ -60,6 +72,25 @@ function loadBlogLastmods() {
     lastmodByPath.set(`/blog/${slugMatch[1]}`, updatedMatch[1])
   }
   return lastmodByPath
+}
+
+/** lastmod comes from dates published on the page itself, not the build clock. */
+function loadStaticLastmods() {
+  const entries = new Map([
+    [PRIVACY_POLICY_PATH, LEGAL_COPY.privacy.lastUpdatedIso],
+    [TERMS_PATH, LEGAL_COPY.terms.lastUpdatedIso],
+    [REFUND_POLICY_PATH, LEGAL_COPY.refund.lastUpdatedIso],
+    [CANCELLATION_POLICY_PATH, LEGAL_COPY.cancellation.lastUpdatedIso],
+    [COOKIE_POLICY_PATH, LEGAL_COPY.cookies.lastUpdatedIso],
+  ])
+
+  for (const urlPath of SITE_PATHS) {
+    if (urlPath.startsWith('/guides/')) {
+      entries.set(urlPath, GEO_BYLINES.lastUpdatedIso)
+    }
+  }
+
+  return entries
 }
 
 function escapeXml(value) {
@@ -110,7 +141,7 @@ function writeUtf8NoBom(filePath, contents) {
 }
 
 assertRoutesExist(SITE_PATHS)
-const lastmodByPath = loadBlogLastmods()
+const lastmodByPath = new Map([...loadStaticLastmods(), ...loadBlogLastmods()])
 const urlset = buildUrlset(SITE_PATHS, lastmodByPath)
 const indexXml = buildSitemapIndex()
 
@@ -121,6 +152,11 @@ for (const out of INDEX_OUT_PATHS) {
   writeUtf8NoBom(out, indexXml)
 }
 
+if (!fs.existsSync(ROBOTS_SRC)) {
+  fail(`Missing robots.txt at ${ROBOTS_SRC}`)
+}
+fs.copyFileSync(ROBOTS_SRC, ROBOTS_OUT)
+
 process.stdout.write(
-  `generate-sitemap: OK (${SITE_PATHS.length} urls, ${lastmodByPath.size} lastmod)\n`,
+  `generate-sitemap: OK (${SITE_PATHS.length} urls, ${lastmodByPath.size} lastmod, robots synced)\n`,
 )

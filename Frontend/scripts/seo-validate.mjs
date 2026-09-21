@@ -31,7 +31,15 @@ const REQUIRED_GTM_EVENTS = [
   'callback_form_start',
   'callback_form_submit',
   'phone_click',
+  'call_link_click',
   'email_click',
+  'assistance_cta_click',
+  'service_fee_view',
+  'inquiry_submit_success',
+  'qualified_assistance_lead',
+  'fee_quote_accepted',
+  'assistance_completed',
+  'official_support_misdial',
 ]
 
 const BANNED_PUBLIC_PATTERNS = [
@@ -149,15 +157,20 @@ function validateNoPublicNoindex() {
   const srcRoot = path.join(frontendRoot, 'src')
   const files = collectPublicSourceFiles(srcRoot)
   for (const file of files) {
+    const relative = path.relative(frontendRoot, file).replace(/\\/g, '/')
+    // 404 routes must stay noindex and must not inherit homepage canonicals.
+    if (relative.endsWith('/not-found.jsx') || relative.endsWith('/not-found.tsx')) {
+      continue
+    }
     const source = fs.readFileSync(file, 'utf8')
     if (/index:\s*false/.test(source)) {
-      fail(`Public source must not set robots index:false: ${path.relative(frontendRoot, file)}`)
+      fail(`Public source must not set robots index:false: ${relative}`)
     }
     if (/content=["'][^"']*noindex/i.test(source) || /robots:\s*["'][^"']*noindex/i.test(source)) {
-      fail(`Public source must not set noindex robots meta: ${path.relative(frontendRoot, file)}`)
+      fail(`Public source must not set noindex robots meta: ${relative}`)
     }
     if (/X-Robots-Tag/i.test(source)) {
-      fail(`Public source must not set X-Robots-Tag: ${path.relative(frontendRoot, file)}`)
+      fail(`Public source must not set X-Robots-Tag: ${relative}`)
     }
   }
 }
@@ -172,14 +185,9 @@ function validateCanonicalHelpers(contactSource) {
 }
 
 function validateRobotsAndSitemap(robotsTxtSource, sitemapXmlSource, sitePaths) {
-  const requiredDisallows = [
-    '/api/',
-    '/admin/',
-    '/private/',
-    '/_next/',
-    '/checkout/',
-    '/thank-you/',
-  ]
+  const requiredDisallows = ['/api/', '/admin/', '/private/']
+  // Utility pages must stay crawlable so their noindex instruction can be read.
+  const mustNotDisallow = ['/thank-you', '/_next/', '/fonts/', '/images/']
   if (!robotsTxtSource.includes('User-agent: *')) {
     fail('public/robots.txt must include User-agent: *')
   }
@@ -189,6 +197,11 @@ function validateRobotsAndSitemap(robotsTxtSource, sitemapXmlSource, sitePaths) 
   for (const pathRule of requiredDisallows) {
     if (!robotsTxtSource.includes(`Disallow: ${pathRule}`)) {
       fail(`public/robots.txt must disallow ${pathRule}`)
+    }
+  }
+  for (const pathRule of mustNotDisallow) {
+    if (new RegExp(`Disallow:\\s*${pathRule}`, 'i').test(robotsTxtSource)) {
+      fail(`public/robots.txt must not block ${pathRule}`)
     }
   }
   if (/(^|\n)Disallow: \/\s*(\n|$)/.test(robotsTxtSource)) {
@@ -335,15 +348,14 @@ function validateSeoPageMetaMap(sitePaths) {
   }
 
   const homeTitle = blocks.find(([, key]) => key === 'HOME_PATH')?.[2] || ''
-  if (!homeTitle.includes('Avio Support Desk')) {
-    fail('Homepage SEO title must include "Avio Support Desk"')
+  if (!homeTitle.includes('AvioSupportDesk')) {
+    fail('Homepage SEO title must include "AvioSupportDesk"')
   }
 }
 
 function validateMetadataCoverage(sitePaths) {
   const missing = []
   for (const urlPath of sitePaths) {
-    if (urlPath === '/') continue
     const pageFile = pathToPageFile(urlPath)
     const source = fs.readFileSync(pageFile, 'utf8')
     if (!/export const metadata\b/.test(source)) {
@@ -352,6 +364,50 @@ function validateMetadataCoverage(sitePaths) {
   }
   if (missing.length > 0) {
     fail(`Missing metadata export on routes: ${missing.join(', ')}`)
+  }
+}
+
+/** Error routes must not inherit the homepage canonical or Open Graph data. */
+function validateErrorRouteMetadata() {
+  const layoutSource = fs.readFileSync(path.join(appDir, 'layout.jsx'), 'utf8')
+  if (/buildPathMetadata\(/.test(layoutSource)) {
+    fail('Root layout must not spread page metadata — canonicals belong to each route')
+  }
+  if (/alternates|openGraph|twitter/.test(layoutSource)) {
+    fail('Root layout must not define alternates/openGraph/twitter')
+  }
+
+  const notFoundSource = fs.readFileSync(path.join(appDir, 'not-found.jsx'), 'utf8')
+  // robots: null keeps the framework's single noindex directive unduplicated.
+  for (const field of [
+    'alternates: null',
+    'openGraph: null',
+    'twitter: null',
+    'robots: null',
+  ]) {
+    if (!notFoundSource.includes(field)) {
+      fail(`not-found.jsx must clear inherited metadata (${field})`)
+    }
+  }
+}
+
+/** Structured data must stay one graph with stable ids and no invented pricing. */
+function validateStructuredData(seoSource) {
+  for (const required of [
+    "ORGANIZATION_ID = `${CANONICAL_ORIGIN}/#organization`",
+    "WEBSITE_ID = `${CANONICAL_ORIGIN}/#website`",
+    '#webpage',
+    '#service',
+  ]) {
+    if (!seoSource.includes(required)) {
+      fail(`seo.js must define graph identifier: ${required}`)
+    }
+  }
+  if (/speakable:/i.test(seoSource)) {
+    fail('seo.js must not inject generic speakable markup')
+  }
+  if (/(priceRange|aggregateRating|ratingValue|offers)\s*:/i.test(seoSource)) {
+    fail('seo.js must not publish unverified price or rating data')
   }
 }
 
@@ -374,6 +430,8 @@ validateContactNap(contactSource)
 validateBannedClaims()
 validateSeoPageMetaMap(sitePaths)
 validateMetadataCoverage(sitePaths)
+validateErrorRouteMetadata()
+validateStructuredData(seoSource)
 
 process.stdout.write(
   `seo-validate: OK (${sitePaths.length} indexable paths, unique SEO meta, metadata coverage, ${REQUIRED_SEO_EXPORTS.length} seo exports, banned-claim scan clean)\n`,

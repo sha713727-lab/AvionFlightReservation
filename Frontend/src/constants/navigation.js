@@ -1,6 +1,7 @@
 import {
   ABOUT_PATH,
   BAGGAGE_ASSISTANCE_PATH,
+  BLOG_PATH,
   CANCELLATION_POLICY_PATH,
   CONTACT_PATH,
   COOKIE_POLICY_PATH,
@@ -8,15 +9,17 @@ import {
   FLIGHT_BOOKING_PATH,
   FLIGHT_CANCELLATION_PATH,
   FLIGHT_CHANGES_PATH,
-  BLOG_PATH,
   GUIDES_PATH,
   HOME_PATH,
+  HOW_IT_WORKS_PATH,
   HOTEL_BOOKING_PATH,
+  INDEPENDENT_SERVICE_DISCLOSURE_PATH,
   INTERNATIONAL_FLIGHT_PATH,
   POINTS_REDEMPTION_PATH,
   PRIVACY_POLICY_PATH,
   REFUND_POLICY_PATH,
   SEAT_SELECTION_PATH,
+  SERVICE_FEES_PATH,
   SERVICES_PATH,
   TERMS_PATH,
   TRIP_PLANNING_PATH,
@@ -31,6 +34,8 @@ export const LEGAL_LINKS = [
   { label: 'Refund Policy', href: REFUND_POLICY_PATH },
   { label: 'Cancellation Policy', href: CANCELLATION_POLICY_PATH },
   { label: 'Cookie Policy', href: COOKIE_POLICY_PATH },
+  { label: 'Service Fees', href: SERVICE_FEES_PATH },
+  { label: 'Independent Service Disclosure', href: INDEPENDENT_SERVICE_DISCLOSURE_PATH },
   { label: 'Disclaimer', href: FOOTER_DISCLAIMER_HASH },
 ]
 
@@ -41,13 +46,19 @@ export const FOOTER_PRIMARY_LEGAL_LINKS = [
 ]
 
 export const NAV_LINKS = [
+  { label: 'Points & Flight Help', href: POINTS_REDEMPTION_PATH },
+  { label: 'How It Works', href: HOW_IT_WORKS_PATH },
+  { label: 'Service Fees', href: SERVICE_FEES_PATH },
+  { label: 'Guides', href: GUIDES_PATH },
+  { label: 'About', href: ABOUT_PATH },
+  { label: 'Contact', href: CONTACT_PATH },
+]
+
+/** Secondary destinations kept out of primary nav prominence (audit §7). */
+export const SECONDARY_NAV_LINKS = [
   { label: 'Services', href: SERVICES_PATH },
   { label: 'Destinations', href: DESTINATIONS_PATH },
-  { label: 'International Flights', href: INTERNATIONAL_FLIGHT_PATH },
-  { label: 'Guides', href: GUIDES_PATH },
   { label: 'Blog', href: BLOG_PATH },
-  { label: 'About Us', href: ABOUT_PATH },
-  { label: 'Contact Us', href: CONTACT_PATH },
 ]
 
 export const FOOTER_LINKS = {
@@ -55,6 +66,8 @@ export const FOOTER_LINKS = {
     { label: 'AvioSupportDesk home', href: HOME_PATH },
     { label: 'about AvioSupportDesk', href: ABOUT_PATH },
     { label: 'contact travel support', href: CONTACT_PATH },
+    { label: 'how it works', href: HOW_IT_WORKS_PATH },
+    { label: 'service fees', href: SERVICE_FEES_PATH },
     { label: 'flight destinations', href: DESTINATIONS_PATH },
     { label: 'international flights by phone', href: INTERNATIONAL_FLIGHT_PATH },
     { label: 'travel guides hub', href: GUIDES_PATH },

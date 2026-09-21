@@ -22,7 +22,7 @@ export const BLOG_COPY = {
 }
 
 export const BLOG_AUTHOR = {
-  name: 'Jordan Hale',
-  role: 'Travel Expert at AvioSupportDesk',
+  name: 'AvioSupportDesk',
+  role: 'independent travel assistance editorial',
   path: '/about',
 }

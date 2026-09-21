@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { GEO_BYLINES, GEO_COPY } from '@/constants/geo'
 
 /**
- * Author / fact-check attribution for GEO trust signals.
+ * Organizational authorship attribution (no invented individual experts).
  */
 export default function AuthorBox({
   updatedLabel = GEO_BYLINES.lastUpdatedLabel,
@@ -19,8 +19,12 @@ export default function AuthorBox({
       <p className="mt-2 text-sm leading-relaxed text-text-muted">
         {GEO_COPY.authorLastUpdatedPrefix}{' '}
         <time dateTime={updatedIso}>{updatedLabel}</time>
-        {' | '}
-        {GEO_COPY.authorFactCheckedPrefix} {GEO_BYLINES.factCheckerName}
+        {GEO_BYLINES.factCheckerName ? (
+          <>
+            {' | '}
+            {GEO_COPY.authorFactCheckedPrefix} {GEO_BYLINES.factCheckerName}
+          </>
+        ) : null}
       </p>
       <p className="mt-2 text-xs text-text-muted">
         <Link

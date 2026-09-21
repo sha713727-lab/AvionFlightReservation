@@ -10,14 +10,16 @@ import { useHomeCatalog } from '@/hooks/useHomeCatalog'
 import { CATALOG_UI } from '@/constants/catalogUi'
 
 const DestinationsSection = dynamic(() => import('@/components/sections/DestinationsSection'))
-const BrandsSection = dynamic(() => import('@/components/sections/BrandsSection'))
+const SupplierMentionsSection = dynamic(
+  () => import('@/components/sections/SupplierMentionsSection'),
+)
 const ServicesSection = dynamic(() => import('@/components/sections/ServicesSection'))
 const HomeServiceLinks = dynamic(() => import('@/components/sections/HomeServiceLinks'))
+const HomeFeeTransparency = dynamic(() => import('@/components/sections/HomeFeeTransparency'))
+const HomeAvionResources = dynamic(() => import('@/components/sections/HomeAvionResources'))
 const HomeLatestBlogPosts = dynamic(() => import('@/components/sections/HomeLatestBlogPosts'))
 const WhyUsSection = dynamic(() => import('@/components/sections/WhyUsSection'))
 const HowItWorksSection = dynamic(() => import('@/components/sections/HowItWorksSection'))
-const TrustBarSection = dynamic(() => import('@/components/sections/TrustBarSection'))
-const TestimonialsSection = dynamic(() => import('@/components/sections/TestimonialsSection'))
 const FAQSection = dynamic(() => import('@/components/sections/FAQSection'))
 const RedeemCtaSection = dynamic(() => import('@/components/sections/RedeemCtaSection'))
 
@@ -49,15 +51,15 @@ export default function HomePage({
             <CatalogStatus state="error" message={catalog.catalogError} />
           </div>
         ) : null}
-        <DestinationsSection destinations={catalog.destinations} />
-        <BrandsSection />
+        <HowItWorksSection />
+        <HomeFeeTransparency />
+        <HomeAvionResources />
         <ServicesSection services={catalog.services} />
         <HomeServiceLinks />
-        <HomeLatestBlogPosts />
+        <DestinationsSection destinations={catalog.destinations} />
+        <SupplierMentionsSection />
         <WhyUsSection />
-        <HowItWorksSection />
-        <TrustBarSection />
-        <TestimonialsSection />
+        <HomeLatestBlogPosts />
         <FAQSection faqs={catalog.faqs} />
         <RedeemCtaSection />
       </main>

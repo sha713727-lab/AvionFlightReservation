@@ -72,9 +72,10 @@ export const ABOUT_WHY_CHOOSE = [
     icon: FaShieldAlt,
   },
   {
-    id: 'always-on',
-    title: '24/7 availability',
-    description: 'Reach support any day of the year when flights shift or plans change mid-trip.',
+    id: 'quoted-fees',
+    title: 'Assistance fees quoted first',
+    description:
+      'Optional paid help starts only after you accept a written scope and fee. Supplier charges stay separate.',
     icon: FaClock,
   },
   {
@@ -85,40 +86,14 @@ export const ABOUT_WHY_CHOOSE = [
   },
 ]
 
-export const ABOUT_STATS = [
-  { id: 'support-hours', value: '24/7', label: 'Phone support coverage' },
-  { id: 'regions', value: '4+', label: 'Regions we book regularly' },
-  { id: 'services', value: '8+', label: 'Travel support services' },
-  { id: 'focus', value: '100%', label: 'Independent of airlines' },
-]
+/** Verified highlights only — no unverified traveler counts or ratings. */
+export const ABOUT_STATS = []
 
-export const ABOUT_TEAM = [
-  {
-    id: 'booking-leads',
-    name: 'Booking Specialists',
-    role: 'Flight & hotel reservations',
-    bio: 'Help travelers compare itineraries, fare brands, and confirmation steps by phone.',
-    initials: 'BS',
-  },
-  {
-    id: 'change-desk',
-    name: 'Changes & Cancellations Desk',
-    role: 'Rebooking and refund guidance',
-    bio: 'Walk customers through airline change fees, credits, and supplier cancellation rules.',
-    initials: 'CC',
-  },
-  {
-    id: 'points-desk',
-    name: 'Points & Miles Advisors',
-    role: 'Award travel assistance',
-    bio: 'Explain redemption options, taxes, and when cash fares may beat points.',
-    initials: 'PM',
-  },
-]
+export const ABOUT_TEAM = []
 
 export const ABOUT_TRUST_BADGES = [
   { id: 'independent', label: 'Independent travel support', icon: FaShieldAlt },
   { id: 'secure', label: 'Secure contact handling', icon: FaLock },
-  { id: 'phone', label: 'Live phone assistance', icon: FaHeadset },
+  { id: 'phone', label: 'Phone assistance available', icon: FaHeadset },
   { id: 'clear', label: 'Clear fee explanations', icon: FaComments },
 ]

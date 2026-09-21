@@ -25,6 +25,14 @@ export const GUIDE_FLIGHT_CHANGES_PATH = '/guides/flight-changes'
 export const GUIDE_FLIGHT_CANCELLATIONS_PATH = '/guides/flight-cancellations'
 export const GUIDE_BAGGAGE_PATH = '/guides/baggage'
 export const GUIDE_POINTS_PATH = '/guides/points-and-miles'
+export const GUIDE_AVION_FLIGHT_BOOKING_PATH = '/guides/avion-points-flight-booking'
+export const GUIDE_AVION_REDEMPTION_CHART_PATH = '/guides/avion-points-redemption-chart'
+export const GUIDE_AVION_POINTS_VALUE_PATH = '/guides/avion-points-value'
+export const GUIDE_AVION_TRANSFER_PARTNERS_PATH = '/guides/avion-transfer-partners'
+export const TOOL_AVION_POINTS_CALCULATOR_PATH = '/tools/avion-points-value-calculator'
+export const SERVICE_FEES_PATH = '/service-fees'
+export const HOW_IT_WORKS_PATH = '/how-it-works'
+export const INDEPENDENT_SERVICE_DISCLOSURE_PATH = '/independent-service-disclosure'
 export const PRIVACY_POLICY_PATH = '/privacy-policy'
 export const CANCELLATION_POLICY_PATH = '/cancellation-policy'
 export const TERMS_PATH = '/terms-and-conditions'
@@ -36,6 +44,7 @@ export const ADMIN_SERVICES_PATH = '/admin/services'
 export const ADMIN_DESTINATIONS_PATH = '/admin/destinations'
 export const ADMIN_PLACES_PATH = '/admin/places'
 export const ADMIN_CALLBACKS_PATH = '/admin/callbacks'
+export const ADMIN_INQUIRIES_PATH = '/admin/inquiries'
 export const ADMIN_FAQS_PATH = '/admin/faqs'
 export const ADMIN_CONTACT_PATH = '/admin/contact'
 export const ADMIN_SECURITY_PATH = '/admin/security'
@@ -65,6 +74,14 @@ export const SITE_PATHS = [
   GUIDE_FLIGHT_CANCELLATIONS_PATH,
   GUIDE_BAGGAGE_PATH,
   GUIDE_POINTS_PATH,
+  GUIDE_AVION_FLIGHT_BOOKING_PATH,
+  GUIDE_AVION_REDEMPTION_CHART_PATH,
+  GUIDE_AVION_POINTS_VALUE_PATH,
+  GUIDE_AVION_TRANSFER_PARTNERS_PATH,
+  TOOL_AVION_POINTS_CALCULATOR_PATH,
+  SERVICE_FEES_PATH,
+  HOW_IT_WORKS_PATH,
+  INDEPENDENT_SERVICE_DISCLOSURE_PATH,
   ABOUT_PATH,
   CONTACT_PATH,
   PRIVACY_POLICY_PATH,
@@ -97,6 +114,11 @@ export const SITEMAP_GUIDE_PATHS = [
   GUIDE_FLIGHT_CANCELLATIONS_PATH,
   GUIDE_BAGGAGE_PATH,
   GUIDE_POINTS_PATH,
+  GUIDE_AVION_FLIGHT_BOOKING_PATH,
+  GUIDE_AVION_REDEMPTION_CHART_PATH,
+  GUIDE_AVION_POINTS_VALUE_PATH,
+  GUIDE_AVION_TRANSFER_PARTNERS_PATH,
+  TOOL_AVION_POINTS_CALCULATOR_PATH,
 ]
 
 /** Blog hub + posts. */
@@ -110,7 +132,13 @@ export const SITEMAP_BLOG_PATHS = [
 ]
 
 /** Static marketing pages. */
-export const SITEMAP_STATIC_PATHS = [ABOUT_PATH, CONTACT_PATH]
+export const SITEMAP_STATIC_PATHS = [
+  ABOUT_PATH,
+  CONTACT_PATH,
+  SERVICE_FEES_PATH,
+  HOW_IT_WORKS_PATH,
+  INDEPENDENT_SERVICE_DISCLOSURE_PATH,
+]
 
 /** Legal / policy pages. */
 export const SITEMAP_LEGAL_PATHS = [

@@ -35,7 +35,7 @@ export default function PrivacyPageHero() {
           </FadeIn>
 
           <FadeIn delay={0.14}>
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg speakable-summary">
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg">
               {COPY.privacy.pageDescription}
             </p>
           </FadeIn>

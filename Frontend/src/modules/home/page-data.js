@@ -1,32 +1,27 @@
-import { AVION_LOGO_SRC } from '@/constants/brand'
-import {
-  CANONICAL_ORIGIN,
-  MAILING_ADDRESS_LINES,
-  PHONE_NUMBER,
-} from '@/constants/contact'
+import { AVION_LOGO_SRC, BRAND_NAME } from '@/constants/brand'
+import { getVerifiedSameAs } from '@/constants/businessFacts'
+import { CANONICAL_ORIGIN, MAILING_ADDRESS, PHONE_NUMBER } from '@/constants/contact'
 import { COPY } from '@/constants/copy'
 import { HOME_PATH } from '@/constants/routes'
 import { getSeoPageMeta } from '@/constants/seoPageMeta'
-import { PLACEHOLDER_AGGREGATE_RATING } from '@/data/testimonials'
-import { buildWebPageJsonLd } from '@/utils/seo'
+import { ORGANIZATION_ID, buildWebPageJsonLd, buildWebSiteJsonLd } from '@/utils/seo'
+
+const ORGANIZATION_DESCRIPTION =
+  'Independent travel assistance helping customers compare Avion points flight options and complete permitted booking steps for a separately quoted assistance fee.'
 
 /**
  * Homepage-only WebSite JSON-LD (schema.org).
  * No SearchAction — site has no /search page.
  */
 export function getHomeWebSiteJsonLd() {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'AvioSupportDesk',
-    alternateName: 'Avio Support Desk',
-    url: CANONICAL_ORIGIN,
-  }
+  return buildWebSiteJsonLd({
+    name: BRAND_NAME,
+    description: ORGANIZATION_DESCRIPTION,
+    path: HOME_PATH,
+  })
 }
 
-/**
- * Homepage WebPage JSON-LD with SpeakableSpecification for answer engines.
- */
+/** Homepage WebPage JSON-LD — joins the shared graph by @id. */
 export function getHomeWebPageJsonLd() {
   const seo = getSeoPageMeta(HOME_PATH)
 
@@ -34,84 +29,43 @@ export function getHomeWebPageJsonLd() {
     name: seo.title,
     description: COPY.hero.speakableSummary,
     path: HOME_PATH,
-    speakable: true,
   })
 }
 
 /**
- * Homepage-only Organization JSON-LD (schema.org).
- *
- * FILL / CONFIRM BEFORE PUBLISH:
- * - sameAs[] — replace with live social profile URLs
- * - foundingDate — confirm year if different from 2026
- * - aggregateRating — PLACEHOLDER values; replace with real review-platform stats
+ * Homepage Organization JSON-LD — the canonical entity node.
+ * sameAs only includes verified own profiles from BUSINESS_FACTS.
+ * No aggregateRating — unsupported review counts must not be published.
  */
 export function getHomeOrganizationJsonLd() {
   const logoPath = AVION_LOGO_SRC.startsWith('/') ? AVION_LOGO_SRC : `/${AVION_LOGO_SRC}`
-  const rating = PLACEHOLDER_AGGREGATE_RATING
+  const sameAs = getVerifiedSameAs()
 
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'AvioSupportDesk',
-    alternateName: 'Avio Support Desk',
+    '@id': ORGANIZATION_ID,
+    name: BRAND_NAME,
     url: CANONICAL_ORIGIN,
     logo: `${CANONICAL_ORIGIN}${logoPath.replace(/\.webp$/i, '.png')}`,
-    description:
-      '24/7 airline customer support service providing flight booking, cancellation, refund assistance, and travel support worldwide.',
-    foundingDate: '2026',
+    description: ORGANIZATION_DESCRIPTION,
     contactPoint: [
       {
         '@type': 'ContactPoint',
         telephone: PHONE_NUMBER.replace(/\s+/g, '-'),
         contactType: 'customer service',
-        areaServed: ['US', 'CA', 'GB', 'AU', 'IN'],
+        areaServed: ['CA', 'US'],
         availableLanguage: ['English'],
-        contactOption: 'TollFree',
       },
-    ],
-    sameAs: [
-      'https://www.facebook.com/aviosupportdesk',
-      'https://twitter.com/aviosupportdesk',
-      'https://www.linkedin.com/company/aviosupportdesk',
     ],
     address: {
       '@type': 'PostalAddress',
-      streetAddress: MAILING_ADDRESS_LINES[0],
-      addressLocality: 'Toronto',
-      addressRegion: 'ON',
-      postalCode: 'M5X 1C9',
-      addressCountry: 'CA',
+      streetAddress: MAILING_ADDRESS.streetAddress,
+      addressLocality: MAILING_ADDRESS.addressLocality,
+      addressRegion: MAILING_ADDRESS.addressRegion,
+      postalCode: MAILING_ADDRESS.postalCode,
+      addressCountry: MAILING_ADDRESS.addressCountry,
     },
-    // PLACEHOLDER AggregateRating — replace with real stats before publish
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: rating.ratingValue,
-      bestRating: rating.bestRating,
-      worstRating: rating.worstRating,
-      ratingCount: rating.ratingCount,
-    },
-  }
-}
-
-/**
- * Standalone AggregateRating JSON-LD for the homepage reviews section.
- * PLACEHOLDER: keep in sync with PLACEHOLDER_AGGREGATE_RATING until real stats exist.
- */
-export function getHomeAggregateRatingJsonLd() {
-  const rating = PLACEHOLDER_AGGREGATE_RATING
-
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'AggregateRating',
-    itemReviewed: {
-      '@type': 'Organization',
-      name: 'AvioSupportDesk',
-      url: CANONICAL_ORIGIN,
-    },
-    ratingValue: rating.ratingValue,
-    bestRating: rating.bestRating,
-    worstRating: rating.worstRating,
-    ratingCount: rating.ratingCount,
+    ...(sameAs.length > 0 ? { sameAs } : {}),
   }
 }

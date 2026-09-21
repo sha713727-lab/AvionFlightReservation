@@ -6,6 +6,7 @@ import {
   HiOutlineCollection,
   HiOutlineGlobe,
   HiOutlineHome,
+  HiOutlineInbox,
   HiOutlineLocationMarker,
   HiOutlineLockClosed,
   HiOutlineMail,
@@ -15,6 +16,7 @@ import {
 import AvionLogo from '@/components/brand/AvionLogo'
 import {
   ADMIN_CALLBACKS_PATH,
+  ADMIN_INQUIRIES_PATH,
   ADMIN_CONTACT_PATH,
   ADMIN_DESTINATIONS_PATH,
   ADMIN_FAQS_PATH,
@@ -51,6 +53,11 @@ const NAV_ITEMS = [
     href: ADMIN_CALLBACKS_PATH,
     label: 'Callbacks',
     icon: HiOutlinePhone,
+  },
+  {
+    href: ADMIN_INQUIRIES_PATH,
+    label: 'Inquiries',
+    icon: HiOutlineInbox,
   },
   {
     href: ADMIN_FAQS_PATH,

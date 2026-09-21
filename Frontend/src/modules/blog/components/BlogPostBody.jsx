@@ -1,13 +1,7 @@
 import BlogRichText from '@/modules/blog/components/BlogRichText'
 import { BLOG_LINK_MAP } from '@/modules/blog/constants/blogHelpers'
 
-function isParagraphBlock(block) {
-  return !block.type || block.type === 'p'
-}
-
 export default function BlogPostBody({ blocks }) {
-  const firstParagraphIndex = blocks.findIndex(isParagraphBlock)
-
   return (
     <div className="space-y-5 text-sm leading-relaxed text-text-secondary sm:text-base">
       {blocks.map((block, index) => {
@@ -63,10 +57,7 @@ export default function BlogPostBody({ blocks }) {
         }
 
         return (
-          <p
-            key={`p-${index}`}
-            className={index === firstParagraphIndex ? 'speakable-summary' : undefined}
-          >
+          <p key={`p-${index}`}>
             <BlogRichText text={block.text} linkMap={BLOG_LINK_MAP} />
           </p>
         )

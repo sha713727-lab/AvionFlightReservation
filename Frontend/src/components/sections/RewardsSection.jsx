@@ -10,6 +10,7 @@ import Modal from '@/components/ui/Modal'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
 import { REWARDS_CABIN_IMAGE_ALT, REWARDS_CABIN_IMAGE_SRC } from '@/constants/images'
+import { CTA_PLACEMENT } from '@/constants/analytics'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 
 function RewardsSection() {
@@ -18,7 +19,7 @@ function RewardsSection() {
 
   const openCallModal = () => {
     setModalOpen(false)
-    callModal.open()
+    callModal.open(CTA_PLACEMENT.rewardsSection)
   }
 
   return (

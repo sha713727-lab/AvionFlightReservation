@@ -31,7 +31,7 @@ export const SERVICE_CATEGORIES = [
   {
     id: SERVICE_CATEGORY_IDS.planning,
     title: 'Trip Planning',
-    description: 'Custom itineraries and all-inclusive vacation packages',
+    description: 'Custom itineraries and trip-planning assistance',
     icon: FaRoute,
     serviceIds: ['planning', 'packages'],
     href: TRIP_PLANNING_PATH,

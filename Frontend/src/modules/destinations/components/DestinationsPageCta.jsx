@@ -4,6 +4,7 @@ import { FaPhone } from 'react-icons/fa'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
+import { CTA_PLACEMENT } from '@/constants/analytics'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 
 export default function DestinationsPageCta() {
@@ -26,7 +27,7 @@ export default function DestinationsPageCta() {
 
             <button
               type="button"
-              onClick={callModal.open}
+              onClick={() => callModal.open(CTA_PLACEMENT.pageCta)}
               className="mt-8 inline-flex w-full max-w-md items-center justify-center gap-3 rounded-full bg-white px-8 py-4 text-base font-semibold text-primary shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-[1.03] hover:-translate-y-0.5 hover:bg-white/95 active:scale-[0.98] sm:w-auto lg:text-lg"
             >
               <FaPhone className="h-4 w-4 shrink-0" aria-hidden />

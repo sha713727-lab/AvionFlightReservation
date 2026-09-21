@@ -7,6 +7,7 @@ import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
 import { DESTINATIONS_PATH } from '@/constants/routes'
 import { getSeoPageH1 } from '@/constants/seoPageMeta'
+import { CTA_PLACEMENT } from '@/constants/analytics'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 
 const GALLERY_ANCHOR = '#destination-gallery'
@@ -48,14 +49,14 @@ export default function DestinationsPageHero({ cityNames = [] }) {
           </FadeIn>
 
           <FadeIn delay={0.16}>
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg speakable-summary">
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">
               {COPY.destinations.pageDescription}
             </p>
           </FadeIn>
 
           <FadeIn delay={0.24}>
             <div className="mt-10 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
-              <Button variant="primary" size="lg" onClick={callModal.open} className="w-full sm:w-auto">
+              <Button variant="primary" size="lg" onClick={() => callModal.open(CTA_PLACEMENT.pageHero)} className="w-full sm:w-auto">
                 {COPY.destinations.pagePrimaryCta}
               </Button>
               <Button

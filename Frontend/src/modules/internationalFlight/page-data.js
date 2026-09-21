@@ -14,7 +14,6 @@ export function getInternationalFlightPageJsonLd() {
       name: title,
       description,
       path: INTERNATIONAL_FLIGHT_PATH,
-      speakable: true,
     }),
     buildTravelAssistanceJsonLd({
       description,

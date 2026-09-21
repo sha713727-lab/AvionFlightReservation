@@ -21,7 +21,7 @@ export const HERO_BACKGROUND_SRC = AVION_HERO_BACKGROUND_SRC
 
 /** Homepage hero visual — airplane wing over cloudy sky. */
 export const HERO_BACKGROUND_ALT =
-  'Airplane wing against cloudy sky for 24/7 airline customer support'
+  'Airplane wing against cloudy sky for airline customer support'
 
 export const REWARDS_CABIN_IMAGE_SRC =
   'https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=800&q=70'

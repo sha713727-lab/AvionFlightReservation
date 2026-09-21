@@ -6,6 +6,7 @@ import Container from '@/components/ui/Container'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
 import { INTERNATIONAL_FLIGHT_REGIONS } from '@/modules/internationalFlight/constants'
+import { CTA_PLACEMENT } from '@/constants/analytics'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 
 export default function InternationalFlightRegions() {
@@ -37,7 +38,7 @@ export default function InternationalFlightRegions() {
             <StaggerItem key={region.id}>
               <button
                 type="button"
-                onClick={callModal.open}
+                onClick={() => callModal.open(CTA_PLACEMENT.serviceCard)}
                 className="group relative flex min-h-[14rem] w-full overflow-hidden rounded-2xl text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:min-h-[16rem]"
                 aria-label={`${COPY.cta.callToBook}: ${region.name}`}
               >

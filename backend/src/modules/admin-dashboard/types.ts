@@ -14,6 +14,22 @@ export type AdminRecentCallbackItem = {
   createdAt: string
 }
 
+export type AdminRecentInquiryItem = {
+  id: string
+  referenceCode: string
+  name: string
+  subject: string
+  status:
+    | 'new'
+    | 'contacted'
+    | 'qualified'
+    | 'quote_accepted'
+    | 'completed'
+    | 'misdial'
+    | 'closed'
+  createdAt: string
+}
+
 export type AdminDashboardSummary = {
   counts: {
     servicesActive: number
@@ -23,6 +39,8 @@ export type AdminDashboardSummary = {
     faqsActive: number
     callbacksNew: number
     callbacksTotal: number
+    inquiriesNew: number
+    inquiriesTotal: number
   }
   system: {
     database: 'up' | 'down'
@@ -31,4 +49,5 @@ export type AdminDashboardSummary = {
   recentServices: AdminCatalogItem[]
   recentFaqs: AdminCatalogItem[]
   recentCallbacks: AdminRecentCallbackItem[]
+  recentInquiries: AdminRecentInquiryItem[]
 }

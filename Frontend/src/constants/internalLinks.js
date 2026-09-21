@@ -4,6 +4,9 @@ import {
   FLIGHT_BOOKING_PATH,
   FLIGHT_CANCELLATION_PATH,
   FLIGHT_CHANGES_PATH,
+  GUIDE_AVION_FLIGHT_BOOKING_PATH,
+  GUIDE_AVION_POINTS_VALUE_PATH,
+  GUIDE_AVION_REDEMPTION_CHART_PATH,
   GUIDE_BAGGAGE_PATH,
   GUIDE_FLIGHT_BOOKING_PATH,
   GUIDE_FLIGHT_CANCELLATIONS_PATH,
@@ -11,11 +14,15 @@ import {
   GUIDE_POINTS_PATH,
   GUIDES_PATH,
   HOME_PATH,
+  HOW_IT_WORKS_PATH,
   HOTEL_BOOKING_PATH,
+  INDEPENDENT_SERVICE_DISCLOSURE_PATH,
   INTERNATIONAL_FLIGHT_PATH,
   POINTS_REDEMPTION_PATH,
   SEAT_SELECTION_PATH,
+  SERVICE_FEES_PATH,
   SERVICES_PATH,
+  TOOL_AVION_POINTS_CALCULATOR_PATH,
   TRIP_PLANNING_PATH,
 } from '@/constants/routes'
 
@@ -38,8 +45,9 @@ export const MAIN_SERVICE_LINKS = [
   {
     href: POINTS_REDEMPTION_PATH,
     title: 'Points Redemption',
-    anchor: 'points and miles redemption help',
-    description: 'Independent guidance for award space, transfers, and surcharge trade-offs.',
+    anchor: 'Avion points booking assistance',
+    description:
+      'Independent Avion redemption guidance with a separately quoted assistance fee.',
   },
   {
     href: FLIGHT_CHANGES_PATH,
@@ -76,6 +84,34 @@ export const MAIN_SERVICE_LINKS = [
     title: 'International Flights',
     anchor: 'international flights by phone',
     description: 'Long-haul and transborder booking help with connection buffers explained.',
+  },
+]
+
+/** Avion education + tool destinations surfaced before conversion. */
+export const AVION_RESOURCE_LINKS = [
+  {
+    href: GUIDE_AVION_FLIGHT_BOOKING_PATH,
+    title: 'How to book flights with Avion points',
+    description:
+      'Portal redemptions, eligible fixed-chart awards, and partner transfers explained with official sources.',
+  },
+  {
+    href: GUIDE_AVION_REDEMPTION_CHART_PATH,
+    title: 'Avion redemption chart explained',
+    description:
+      'When chart levels apply, observed point levels and CAD caps, and the cash you may still owe.',
+  },
+  {
+    href: GUIDE_AVION_POINTS_VALUE_PATH,
+    title: 'What Avion points are worth',
+    description:
+      'Worked comparisons for different balances instead of one universal cents-per-point claim.',
+  },
+  {
+    href: TOOL_AVION_POINTS_CALCULATOR_PATH,
+    title: 'Avion points value calculator',
+    description:
+      'Compare a cash fare with a redemption using your own quotes, before and after assistance fees.',
   },
 ]
 
@@ -125,8 +161,15 @@ export const SERVICE_INTERNAL_LINKS = {
       serviceCard(TRIP_PLANNING_PATH),
     ],
     relatedGuides: [
+      {
+        href: GUIDE_AVION_FLIGHT_BOOKING_PATH,
+        label: 'how to book flights with Avion points',
+      },
+      {
+        href: GUIDE_AVION_REDEMPTION_CHART_PATH,
+        label: 'Avion points redemption chart explained',
+      },
       { href: GUIDE_POINTS_PATH, label: 'points and miles basics guide' },
-      { href: GUIDE_FLIGHT_BOOKING_PATH, label: 'how to book a flight by phone' },
     ],
   },
   [FLIGHT_CHANGES_PATH]: {
@@ -233,6 +276,24 @@ export function buildServiceLinkMap(path) {
   }
 
   map.services = { href: SERVICES_PATH, label: 'all travel services' }
+  map['service-fees'] = { href: SERVICE_FEES_PATH, label: 'service fees' }
+  map['how-it-works'] = { href: HOW_IT_WORKS_PATH, label: 'how it works' }
+  map['independent-service-disclosure'] = {
+    href: INDEPENDENT_SERVICE_DISCLOSURE_PATH,
+    label: 'independent service disclosure',
+  }
+  map['tool-avion-points-calculator'] = {
+    href: TOOL_AVION_POINTS_CALCULATOR_PATH,
+    label: 'Avion points value calculator',
+  }
+  map['guide-avion-points-flight-booking'] = {
+    href: GUIDE_AVION_FLIGHT_BOOKING_PATH,
+    label: 'how to book flights with Avion points',
+  }
+  map['guide-avion-points-redemption-chart'] = {
+    href: GUIDE_AVION_REDEMPTION_CHART_PATH,
+    label: 'Avion points redemption chart explained',
+  }
   return map
 }
 

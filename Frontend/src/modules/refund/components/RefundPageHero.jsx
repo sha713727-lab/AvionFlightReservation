@@ -29,7 +29,7 @@ export default function RefundPageHero() {
             >
               {getSeoPageH1(REFUND_POLICY_PATH)}
             </h1>
-            <p className="speakable-summary mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
               {COPY.refund.pageDescription}
             </p>
             <p className="mt-6 text-sm text-white/75">

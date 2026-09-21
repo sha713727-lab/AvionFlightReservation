@@ -1,5 +1,6 @@
 ﻿import {
   ADMIN_CALLBACKS_PATH,
+  ADMIN_INQUIRIES_PATH,
   ADMIN_CONTACT_PATH,
   ADMIN_DESTINATIONS_PATH,
   ADMIN_FAQS_PATH,
@@ -46,6 +47,12 @@ export const ADMIN_NAV_ITEMS = [
     label: 'Callbacks',
     href: ADMIN_CALLBACKS_PATH,
     icon: 'callbacks',
+  },
+  {
+    id: 'inquiries',
+    label: 'Inquiries',
+    href: ADMIN_INQUIRIES_PATH,
+    icon: 'inquiries',
   },
   {
     id: 'faqs',
@@ -95,6 +102,7 @@ export const ADMIN_ERROR_MESSAGES = {
   destinationsConflict: 'A destination with this slug already exists.',
   placesGeneric: 'Unable to complete the places request. Please try again.',
   callbacksGeneric: 'Unable to complete the callbacks request. Please try again.',
+  inquiriesGeneric: 'Unable to complete the inquiries request. Please try again.',
   faqsGeneric: 'Unable to complete the FAQs request. Please try again.',
   faqsConflict: 'An FAQ with this slug already exists.',
   settingsGeneric: 'Unable to complete the contact settings request. Please try again.',

@@ -27,11 +27,48 @@ export const GTM_EVENTS = {
   callbackFormStart: 'callback_form_start',
   callbackFormSubmit: 'callback_form_submit',
   phoneClick: 'phone_click',
+  callLinkClick: 'call_link_click',
   emailClick: 'email_click',
   ctaClick: 'cta_click',
+  assistanceCtaClick: 'assistance_cta_click',
+  serviceFeeView: 'service_fee_view',
+  inquirySubmitSuccess: 'inquiry_submit_success',
+  /** CRM-stage outcomes — fired from admin when staff set inquiry status. */
+  qualifiedAssistanceLead: 'qualified_assistance_lead',
+  feeQuoteAccepted: 'fee_quote_accepted',
+  assistanceCompleted: 'assistance_completed',
+  officialSupportMisdial: 'official_support_misdial',
+}
+
+/**
+ * Maps admin inquiry statuses to CRM outcome events (audit §13).
+ * Only outcome statuses fire analytics — never PII.
+ */
+export const INQUIRY_STATUS_CRM_EVENTS = {
+  qualified: GTM_EVENTS.qualifiedAssistanceLead,
+  quote_accepted: GTM_EVENTS.feeQuoteAccepted,
+  completed: GTM_EVENTS.assistanceCompleted,
+  misdial: GTM_EVENTS.officialSupportMisdial,
 }
 
 export const CTA_EVENT_CATEGORY = 'engagement'
+
+/** Non-sensitive CTA placement labels only — never customer data. */
+export const CTA_PLACEMENT = {
+  hero: 'hero',
+  callModal: 'call_modal',
+  navbar: 'navbar',
+  floating: 'floating',
+  contactForm: 'contact_form',
+  serviceFeesPage: 'service_fees_page',
+  pageHero: 'page_hero',
+  pageCta: 'page_cta',
+  serviceCard: 'service_card',
+  serviceStep: 'service_step',
+  guide: 'guide_article',
+  blogPost: 'blog_post',
+  rewardsSection: 'rewards_section',
+}
 
 export const CTA_EVENT_LABELS = {
   callNow: 'call_now_button',

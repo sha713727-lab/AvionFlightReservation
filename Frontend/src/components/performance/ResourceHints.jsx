@@ -1,12 +1,8 @@
-import {
-  DNS_PREFETCH_ORIGINS,
-  PRECONNECT_ORIGINS,
-  PRELOAD_FONTS,
-} from '@/constants/performance'
+import { DNS_PREFETCH_ORIGINS, PRECONNECT_ORIGINS } from '@/constants/performance'
 
 /**
- * Early connection + font hints for LCP/FCP.
- * Rendered in <head> from the root layout.
+ * Early connection hints for LCP/FCP, rendered in <head> from the root layout.
+ * Fonts are preloaded by next/font from /_next/static/media — never duplicate them.
  */
 export default function ResourceHints() {
   return (
@@ -21,16 +17,6 @@ export default function ResourceHints() {
       ))}
       {DNS_PREFETCH_ORIGINS.map((href) => (
         <link key={`dns-${href}`} rel="dns-prefetch" href={href} />
-      ))}
-      {PRELOAD_FONTS.map((font) => (
-        <link
-          key={font.href}
-          rel="preload"
-          href={font.href}
-          as="font"
-          type={font.type}
-          crossOrigin="anonymous"
-        />
       ))}
     </>
   )

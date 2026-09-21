@@ -5,8 +5,14 @@ import Container from '@/components/ui/Container'
 import Button from '@/components/buttons/Button'
 import HeroBackground from '@/components/sections/HeroBackground'
 import { COPY } from '@/constants/copy'
-import { HOME_PATH, SERVICES_PATH } from '@/constants/routes'
+import {
+  INDEPENDENT_SERVICE_DISCLOSURE_SHORT,
+  OFFICIAL_AVION_TRAVEL_LABEL,
+  OFFICIAL_AVION_TRAVEL_URL,
+} from '@/constants/disclosures'
+import { HOME_PATH, SERVICE_FEES_PATH } from '@/constants/routes'
 import { getSeoPageH1 } from '@/constants/seoPageMeta'
+import { CTA_PLACEMENT } from '@/constants/analytics'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 
 export default function HeroSection() {
@@ -35,29 +41,47 @@ export default function HeroSection() {
             </h1>
           </div>
 
-          <p className="speakable-summary hero-copy-in relative z-[1] mx-auto mb-8 max-w-xl px-1 text-center text-base font-normal leading-relaxed text-text sm:mb-10 sm:text-lg">
+          <p className="hero-copy-in relative z-[1] mx-auto mb-4 max-w-xl px-1 text-center text-base font-normal leading-relaxed text-text sm:mb-5 sm:text-lg">
             {COPY.hero.speakableSummary}
+          </p>
+
+          <p
+            className="hero-copy-in relative z-[1] mx-auto mb-8 max-w-xl px-1 text-center text-sm leading-relaxed text-text-secondary sm:mb-10"
+            role="note"
+          >
+            {COPY.hero.disclosure || INDEPENDENT_SERVICE_DISCLOSURE_SHORT}
           </p>
 
           <div className="hero-copy-in relative z-[1] flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
             <Button
               variant="primary"
               size="lg"
-              onClick={callModal.open}
+              onClick={() => callModal.open(CTA_PLACEMENT.hero)}
               className="w-full sm:w-auto"
             >
-              {COPY.cta.callNow}
+              {COPY.cta.talkWithExpert}
             </Button>
             <Button
-              href={SERVICES_PATH}
+              href={SERVICE_FEES_PATH}
               variant="secondary"
               size="lg"
               icon={HiPlay}
               className="w-full sm:w-auto"
             >
-              {COPY.cta.exploreServices}
+              {COPY.cta.seeFees}
             </Button>
           </div>
+
+          <p className="hero-copy-in relative z-[1] mx-auto mt-6 max-w-xl text-center text-sm text-text-secondary">
+            <a
+              href={OFFICIAL_AVION_TRAVEL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-accent underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              {OFFICIAL_AVION_TRAVEL_LABEL}
+            </a>
+          </p>
         </div>
       </Container>
     </section>

@@ -3,6 +3,7 @@ import type {
   AdminCatalogItem,
   AdminDashboardSummary,
   AdminRecentCallbackItem,
+  AdminRecentInquiryItem,
 } from './types.js'
 
 const RECENT_LIMIT = 5
@@ -35,6 +36,8 @@ function mapFaqItem(row: {
   }
 }
 
+import { toInquiryStatus } from '../admin-inquiries/status.js'
+
 function mapCallbackStatus(value: string): AdminRecentCallbackItem['status'] {
   if (value === 'contacted' || value === 'closed') return value
   return 'new'
@@ -58,6 +61,24 @@ function mapCallbackItem(row: {
   }
 }
 
+function mapInquiryItem(row: {
+  id: string
+  referenceCode: string
+  name: string
+  subject: string
+  status: string
+  createdAt: Date
+}): AdminRecentInquiryItem {
+  return {
+    id: row.id,
+    referenceCode: row.referenceCode,
+    name: row.name,
+    subject: row.subject,
+    status: toInquiryStatus(row.status),
+    createdAt: row.createdAt.toISOString(),
+  }
+}
+
 export class AdminDashboardRepository {
   constructor(private readonly db: PrismaClient) {}
 
@@ -70,9 +91,12 @@ export class AdminDashboardRepository {
       faqsActive,
       callbacksNew,
       callbacksTotal,
+      inquiriesNew,
+      inquiriesTotal,
       recentServices,
       recentFaqs,
       recentCallbacks,
+      recentInquiries,
       databaseUp,
     ] = await Promise.all([
       this.db.service.count({ where: { isActive: true } }),
@@ -82,6 +106,8 @@ export class AdminDashboardRepository {
       this.db.faq.count({ where: { isActive: true } }),
       this.db.callbackRequest.count({ where: { status: 'new' } }),
       this.db.callbackRequest.count(),
+      this.db.inquiryRequest.count({ where: { status: 'new' } }),
+      this.db.inquiryRequest.count(),
       this.db.service.findMany({
         where: { isActive: true },
         orderBy: [{ sortOrder: 'asc' }, { updatedAt: 'desc' }],
@@ -106,6 +132,18 @@ export class AdminDashboardRepository {
           createdAt: true,
         },
       }),
+      this.db.inquiryRequest.findMany({
+        orderBy: [{ createdAt: 'desc' }],
+        take: RECENT_LIMIT,
+        select: {
+          id: true,
+          referenceCode: true,
+          name: true,
+          subject: true,
+          status: true,
+          createdAt: true,
+        },
+      }),
       this.db.$queryRaw`SELECT 1`.then(() => true).catch(() => false),
     ])
 
@@ -118,6 +156,8 @@ export class AdminDashboardRepository {
         faqsActive,
         callbacksNew,
         callbacksTotal,
+        inquiriesNew,
+        inquiriesTotal,
       },
       system: {
         database: databaseUp ? 'up' : 'down',
@@ -126,6 +166,7 @@ export class AdminDashboardRepository {
       recentServices: recentServices.map(mapCatalogItem),
       recentFaqs: recentFaqs.map(mapFaqItem),
       recentCallbacks: recentCallbacks.map(mapCallbackItem),
+      recentInquiries: recentInquiries.map(mapInquiryItem),
     }
   }
 }

@@ -5,6 +5,7 @@ import Button from '@/components/buttons/Button'
 import { FadeIn } from '@/components/animations/FadeIn'
 import ServiceMediaFrame from '@/components/media/ServiceMediaFrame'
 import { COPY } from '@/constants/copy'
+import { CTA_PLACEMENT } from '@/constants/analytics'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 import { cn } from '@/utils/cn'
 
@@ -79,7 +80,7 @@ export default function ServiceCatalogItem({
                 size="md"
                 icon={HiArrowRight}
                 iconPosition="right"
-                onClick={callModal.open}
+                onClick={() => callModal.open(CTA_PLACEMENT.serviceCard)}
               >
                 {COPY.services.getStarted}
               </Button>

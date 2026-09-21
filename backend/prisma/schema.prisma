@@ -90,6 +90,23 @@ model CallbackRequest {
   @@map("callback_requests")
 }
 
+model InquiryRequest {
+  id            String   @id @default(cuid())
+  referenceCode String   @unique
+  name          String
+  email         String
+  phone         String
+  subject       String
+  message       String
+  status        String   @default("new")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([status, createdAt])
+  @@index([createdAt])
+  @@map("inquiry_requests")
+}
+
 model SiteSettings {
   id               String   @id @default("default")
   reservationEmail String

@@ -28,7 +28,7 @@ function GuidesHubContent() {
             <h1 className="mt-4 font-heading text-[clamp(2rem,4.5vw,3rem)] font-semibold leading-tight text-primary">
               {getSeoPageH1(GUIDE_HUB.path)}
             </h1>
-            <p className="speakable-summary mt-6 text-base leading-relaxed text-text-secondary sm:text-lg">
+            <p className="mt-6 text-base leading-relaxed text-text-secondary sm:text-lg">
               {GUIDE_HUB.intro}
             </p>
           </FadeIn>

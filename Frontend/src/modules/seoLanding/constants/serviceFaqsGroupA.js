@@ -80,39 +80,39 @@ export const HOTEL_BOOKING_FAQS = [
 
 export const POINTS_REDEMPTION_FAQS = [
   {
-    question: 'How do I start points redemption for flights with AvioSupportDesk?',
+    question: 'Are you the official Avion Rewards support desk?',
     answer:
-      'Tell us your program, approximate balance, route, dates, and cabin. We outline award patterns, partners, and taxes you may see at checkout.',
+      'No. AvioSupportDesk provides independent paid travel assistance and is not affiliated with RBC or Avion Rewards. For account access and official program support, use the official program channels.',
     detail:
-      'If you proceed, we guide the redemption or mixed cash-and-points flow the program supports. Keeping alternate dates ready often reveals better award levels.',
+      'Our phone number is for optional assistance only. It is not a substitute for official Avion or RBC support.',
   },
   {
-    question: 'Can I get miles redemption help if my points are still in a bank account?',
+    question: 'Do I have to pay you to redeem my points?',
     answer:
-      'Yes. Miles redemption help often starts with whether transferring to an airline partner fits your route. You authorize transfers from your own secure accounts.',
+      'Our assistance is optional. You can use the official program’s available self-service channels. If you choose our help, we explain our separate fee before you agree; program and supplier charges are separate.',
     detail:
-      'We explain steps and timing while you complete the move. We do not transfer points on your behalf or claim to represent any bank or airline program.',
+      'See {{service-fees}} for how quotes work. Never treat our fee as an RBC or Avion charge.',
   },
   {
-    question: 'What is award travel help and how is it different from cash booking?',
+    question: 'Will you ask for my account password or one-time code?',
     answer:
-      'Award travel help focuses on redeeming miles or points for seats. Cash booking uses published fares and different change rules.',
+      'No. You keep control of your account and enter credentials only through the official service. We can explain steps and compare options within the agreed scope.',
     detail:
-      'Award space is controlled by airlines and can differ by date even when cash seats remain. We compare sample cash fares with award levels when both are visible.',
+      'Do not send passwords, OTPs, full card numbers, or passport scans through the inquiry form.',
   },
   {
-    question: 'How much do taxes and carrier surcharges cost on award tickets?',
+    question: 'How do Avion redemption paths differ?',
     answer:
-      'Government taxes and carrier surcharges are set by airlines and programs, not by us. Long-haul awards can still require a large cash portion.',
+      'Travel-portal redemption, an eligible fixed-points chart, and conversion to an eligible airline partner are different mechanisms. Eligibility depends on membership and current program terms.',
     detail:
-      'We walk through amounts shown before you confirm. Any separate service fee from our team is explained up front if it applies.',
+      'Read the {{guide-avion-points-flight-booking}} and {{guide-avion-points-redemption-chart}} before transferring points you cannot reverse easily.',
   },
   {
-    question: 'Can I change an award ticket after points redemption is complete?',
+    question: 'Who should I contact for an existing Avion booking?',
     answer:
-      'Award change rules often differ from cash tickets and may require the operating carrier. We recap ticket numbers and the change path that applies.',
+      'Start with whoever issued the ticket and the official program or supplier channels that control the reservation. We can help explain options within our assistance scope, but we cannot override supplier rules.',
     detail:
-      'Program fees or redeposit rules can apply, and award space must still be available for a new flight.',
+      'Bring confirmation details—not account passwords—if you request optional help.',
   },
 ]
 

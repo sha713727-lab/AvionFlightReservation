@@ -14,7 +14,6 @@ export function getAboutPageJsonLd() {
       name: title,
       description,
       path: ABOUT_PATH,
-      speakable: true,
     }),
     buildTravelAssistanceJsonLd({
       description,

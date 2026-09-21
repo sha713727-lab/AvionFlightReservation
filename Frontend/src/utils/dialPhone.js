@@ -11,6 +11,10 @@ export function dialPhone(phoneHref) {
     contact_method: 'phone',
     link_url: phoneHref,
   })
+  pushDataLayerEvent(GTM_EVENTS.callLinkClick, {
+    conversion_type: 'micro',
+    contact_method: 'phone',
+  })
 
   const link = document.createElement('a')
   link.href = phoneHref

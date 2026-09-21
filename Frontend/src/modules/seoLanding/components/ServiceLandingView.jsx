@@ -8,6 +8,7 @@ import SiteBreadcrumbBar from '@/components/layout/SiteBreadcrumbBar'
 import Container from '@/components/ui/Container'
 import { PHONE_HREF, PHONE_NUMBER } from '@/constants/contact'
 import { getSeoPageH1 } from '@/constants/seoPageMeta'
+import { CTA_PLACEMENT } from '@/constants/analytics'
 import CallExpertProvider, { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 import ServiceLandingBody from '@/modules/seoLanding/components/ServiceLandingBody'
 import { getServicePageBySlug } from '@/modules/seoLanding/constants/servicePages'
@@ -46,7 +47,7 @@ function ServiceLandingContent({ slug }) {
               <Button href={PHONE_HREF} variant="primary" size="lg">
                 {SEO_LANDING_COPY.ctaPhoneLabel} · {PHONE_NUMBER}
               </Button>
-              <Button variant="secondary" size="lg" onClick={callModal.open}>
+              <Button variant="secondary" size="lg" onClick={() => callModal.open(CTA_PLACEMENT.pageCta)}>
                 {SEO_LANDING_COPY.ctaCallbackLabel}
               </Button>
             </div>

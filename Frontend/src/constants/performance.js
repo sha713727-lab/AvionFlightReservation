@@ -6,6 +6,7 @@ export const PRECONNECT_ORIGINS = [
   { href: 'https://googleads.g.doubleclick.net', crossOrigin: true },
 ]
 
+/** Only origins this site actually requests — hints must match the tag inventory. */
 export const DNS_PREFETCH_ORIGINS = [
   'https://www.googletagmanager.com',
   'https://www.google-analytics.com',
@@ -13,14 +14,4 @@ export const DNS_PREFETCH_ORIGINS = [
   'https://googleads.g.doubleclick.net',
   'https://www.google.com',
   'https://images.unsplash.com',
-  'https://www.clarity.ms',
-  'https://scripts.clarity.ms',
-  'https://js.callrail.com',
-  'https://cdn.callrail.com',
-]
-
-/** Local font files preloaded alongside next/font (display: swap). */
-export const PRELOAD_FONTS = [
-  { href: '/fonts/Outfit-Regular.woff2', type: 'font/woff2' },
-  { href: '/fonts/Outfit-Bold.woff2', type: 'font/woff2' },
 ]

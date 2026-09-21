@@ -67,7 +67,7 @@ export const SERVICE_EXPLORE_PATH_BY_SLUG = {
   seats: SEAT_SELECTION_PATH,
   baggage: BAGGAGE_ASSISTANCE_PATH,
   planning: TRIP_PLANNING_PATH,
-  packages: SERVICES_PATH,
+  packages: TRIP_PLANNING_PATH,
 }
 
 export function getServiceExplorePath(service) {

@@ -4,7 +4,35 @@ import { HiOutlineExclamationCircle } from 'react-icons/hi'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
-import { REFUND_PROCESS_STEPS } from '@/modules/refund/constants'
+import {
+  ASSISTANCE_FEE_REFUND_STEPS,
+  REFUND_PROCESS_STEPS,
+} from '@/modules/refund/constants'
+
+function StepList({ steps }) {
+  return (
+    <div className="relative mx-auto max-w-3xl">
+      <div
+        className="absolute left-6 top-3 bottom-3 hidden w-px bg-border sm:left-8 sm:block"
+        aria-hidden
+      />
+      <ol className="space-y-5">
+        {steps.map((step, index) => (
+          <li key={step.id} className="relative flex gap-4 sm:gap-6">
+            <FadeIn direction="left" delay={index * 0.06} className="flex flex-1 gap-4 sm:gap-6">
+              <span className="relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent font-heading text-sm font-semibold text-white shadow-sm shadow-accent/25 sm:h-16 sm:w-16 sm:text-base">
+                {step.number}
+              </span>
+              <div className="flex-1 rounded-2xl border border-border bg-card px-5 py-5 shadow-card sm:px-6">
+                <p className="text-base font-medium leading-relaxed text-primary">{step.title}</p>
+              </div>
+            </FadeIn>
+          </li>
+        ))}
+      </ol>
+    </div>
+  )
+}
 
 export default function RefundProcess() {
   return (
@@ -23,29 +51,20 @@ export default function RefundProcess() {
           >
             {COPY.refund.processTitle}
           </h2>
+          <p className="mt-4 text-base leading-relaxed text-text-secondary">
+            Supplier ticket refunds and AvioSupportDesk assistance-fee reviews follow different rules.
+          </p>
         </FadeIn>
 
-        <div className="relative mx-auto max-w-3xl">
-          <div
-            className="absolute left-6 top-3 bottom-3 hidden w-px bg-border sm:left-8 sm:block"
-            aria-hidden
-          />
+        <h3 className="mx-auto mb-6 max-w-3xl text-lg font-semibold text-primary">
+          Supplier refund path
+        </h3>
+        <StepList steps={REFUND_PROCESS_STEPS} />
 
-          <ol className="space-y-5">
-            {REFUND_PROCESS_STEPS.map((step, index) => (
-              <li key={step.id} className="relative flex gap-4 sm:gap-6">
-                <FadeIn direction="left" delay={index * 0.06} className="flex flex-1 gap-4 sm:gap-6">
-                  <span className="relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent font-heading text-sm font-semibold text-white shadow-sm shadow-accent/25 sm:h-16 sm:w-16 sm:text-base">
-                    {step.number}
-                  </span>
-                  <div className="flex-1 rounded-2xl border border-border bg-card px-5 py-5 shadow-card sm:px-6">
-                    <p className="text-base font-medium leading-relaxed text-primary">{step.title}</p>
-                  </div>
-                </FadeIn>
-              </li>
-            ))}
-          </ol>
-        </div>
+        <h3 className="mx-auto mb-6 mt-14 max-w-3xl text-lg font-semibold text-primary">
+          Assistance fee path
+        </h3>
+        <StepList steps={ASSISTANCE_FEE_REFUND_STEPS} />
 
         <FadeIn delay={0.15} className="mx-auto mt-12 max-w-3xl">
           <div className="flex gap-4 rounded-2xl border border-accent/20 bg-accent/5 p-5 sm:p-6">

@@ -1,4 +1,8 @@
 import { GEO_SOURCE_URLS } from '@/constants/geo'
+import {
+  OFFICIAL_AVION_TERMS_URL,
+  OFFICIAL_AVION_TRAVEL_URL,
+} from '@/constants/disclosures'
 
 /** Sources / references for guide articles. */
 export const GUIDE_SOURCES_BY_SLUG = {
@@ -26,6 +30,22 @@ export const GUIDE_SOURCES_BY_SLUG = {
     { label: 'U.S. DOT — Fly Rights', href: GEO_SOURCE_URLS.DOT_FLY_RIGHTS },
     { label: 'IATA — Travel & Baggage', href: GEO_SOURCE_URLS.IATA_BAGGAGE },
     { label: 'U.S. DOT — Refunds', href: GEO_SOURCE_URLS.DOT_REFUNDS },
+  ],
+  'avion-points-flight-booking': [
+    { label: 'Avion Rewards — Travel', href: OFFICIAL_AVION_TRAVEL_URL },
+    { label: 'Avion Rewards — Terms and conditions', href: OFFICIAL_AVION_TERMS_URL },
+  ],
+  'avion-points-redemption-chart': [
+    { label: 'Avion Rewards — Travel (chart display)', href: OFFICIAL_AVION_TRAVEL_URL },
+    { label: 'Avion Rewards — Terms and conditions', href: OFFICIAL_AVION_TERMS_URL },
+  ],
+  'avion-points-value': [
+    { label: 'Avion Rewards — Travel', href: OFFICIAL_AVION_TRAVEL_URL },
+    { label: 'Avion Rewards — Terms and conditions', href: OFFICIAL_AVION_TERMS_URL },
+  ],
+  'avion-transfer-partners': [
+    { label: 'Avion Rewards — Terms and conditions', href: OFFICIAL_AVION_TERMS_URL },
+    { label: 'Avion Rewards — Travel', href: OFFICIAL_AVION_TRAVEL_URL },
   ],
 }
 

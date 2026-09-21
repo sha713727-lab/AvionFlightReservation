@@ -3,28 +3,28 @@ export const FAQ_SEED = [
     slug: 'book-with-avion-points',
     question: 'How do I book a flight using my Avion points?',
     answer:
-      'Call Avios Support Desk with your travel dates, destination, and points details. Our specialists review available redemption options and help you book a flight using your points where the program and airline rules allow. Avios Support Desk is independent and is not affiliated with RBC or Avion Rewards.',
+      'AvioSupportDesk provides independent help comparing Avion redemption options. Share your travel dates, destination, and approximate points balance—never passwords or one-time codes. Eligible options depend on membership and current program rules. You can also use official Avion Rewards self-service tools. If you choose our help, we quote a separate assistance fee before paid work begins. We are not affiliated with RBC or Avion Rewards.',
     sortOrder: 1,
   },
   {
     slug: 'change-or-cancel',
     question: 'How do I change or cancel an existing flight reservation?',
     answer:
-      'Call Avios Support Desk with your booking reference, passenger names, and travel dates. Our specialists review the airline or supplier rules for your fare and help process the change or cancellation according to those terms. Fees, refunds, and credits depend on the ticket rules and supplier policy.',
+      'Contact AvioSupportDesk with your booking reference, passenger names, and travel dates. We review who issued the ticket and the supplier rules for your fare, then explain change or cancellation options within our assistance scope. Fees, refunds, and credits depend on the ticket rules and supplier policy—not on AvioSupportDesk alone.',
     sortOrder: 2,
   },
   {
-    slug: 'travel-insurance',
-    question: 'Does my Avion flight booking include travel insurance?',
+    slug: 'are-you-official-avion',
+    question: 'Are you the official Avion Rewards support desk?',
     answer:
-      'Travel insurance is not automatically included with every booking. If you want coverage for trip cancellation, medical emergencies, or baggage, ask an Avios Support Desk specialist when you book so we can review available options for your trip. Always confirm what is and is not covered before you travel.',
+      'No. AvioSupportDesk provides independent paid travel assistance and is not affiliated with RBC or Avion Rewards. For account access and official program support, use the official program channels. Our phone number is for optional assistance only.',
     sortOrder: 3,
   },
   {
     slug: 'airline-points-booking',
     question: 'Can I book any airline with Avion points?',
     answer:
-      'Avios Support Desk is an independent travel assistance service and is not affiliated with RBC or Avion Rewards. Our specialists can help you explore flight options and points or miles redemption support based on the programs and airlines available for your trip. Call us with your route and dates, and we will review what options apply to you.',
+      'Not every airline or fare is available through every redemption path. Options may include a travel portal, an eligible fixed-points chart, or conversion to an eligible airline partner when your membership supports it. AvioSupportDesk can help compare options within our scope; we do not invent inventory or waive program restrictions.',
     sortOrder: 4,
   },
 ] as const

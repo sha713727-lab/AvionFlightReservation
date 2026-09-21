@@ -1,6 +1,7 @@
 import { BRAND_FULL_NAME } from '@/constants/brand'
 import {
   ADMIN_CALLBACKS_PATH,
+  ADMIN_INQUIRIES_PATH,
   ADMIN_CONTACT_PATH,
   ADMIN_DESTINATIONS_PATH,
   ADMIN_FAQS_PATH,
@@ -79,6 +80,14 @@ export function getAdminCallbacksMetadata() {
     title: ADMIN_COPY.callbacksTitle,
     description: ADMIN_COPY.callbacksDescription,
     path: ADMIN_CALLBACKS_PATH,
+  })
+}
+
+export function getAdminInquiriesMetadata() {
+  return buildAdminMetadata({
+    title: ADMIN_COPY.inquiriesTitle,
+    description: ADMIN_COPY.inquiriesDescription,
+    path: ADMIN_INQUIRIES_PATH,
   })
 }
 

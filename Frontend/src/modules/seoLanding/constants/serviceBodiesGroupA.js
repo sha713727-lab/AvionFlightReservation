@@ -64,32 +64,32 @@ export const HOTEL_BOOKING_BODY = {
 
 export const POINTS_REDEMPTION_BODY = {
   speakableSummary:
-    'AvioSupportDesk points redemption help explains award space, taxes, and transfer timing for airline miles and bank travel points before you move balances. We compare cash fares with awards on your route and never claim to represent any bank or airline program. You authorize transfers from your own accounts.',
+    'AvioSupportDesk provides independent Avion points booking assistance: we help you compare redemption options, understand remaining cash charges, and work through permitted booking steps for a separately quoted assistance fee. You keep control of your rewards account.',
   opening:
-    'AvioSupportDesk points redemption help is independent guidance for travelers who hold airline miles or bank travel points and want a clear read on award space, taxes, and transfer timing before they move balances. Programs differ—Air Canada Aeroplan, United MileagePlus, American AAdvantage, Delta SkyMiles, and bank portals each price awards differently, and long-haul tickets can carry heavy carrier surcharges. This service is for members who want miles redemption or mixed cash-and-points options explained by phone, without claiming we represent RBC Avion Rewards, Avios, or any airline. You authorize transfers from your own secure accounts; we help you decide whether points redemption beats paying cash via {{flight-booking}} on that route. Peak award dates can show only high-level space even when cash seats remain, so flexibility of two or three days often changes the math more than hunting a single nonstop. Read the {{guide-points-and-miles}} or {{contact}} our team before you transfer balances you cannot reverse easily.',
+    'AvioSupportDesk Avion points booking assistance is optional paid help for members who want a clearer comparison of cash fares, fixed-chart redemptions, travel-portal options, and eligible transfer-partner awards before they commit. We are not RBC or Avion Rewards and we do not access your account credentials. Eligible options depend on your membership product or tier and current program terms. Prefer self-service? Use the official Avion Rewards travel tools. Prefer guided comparison? Request a written quote for our separate assistance fee, then approve any option yourself. Start with the {{guide-avion-points-flight-booking}} or {{guide-avion-points-redemption-chart}}, try the {{tool-avion-points-calculator}}, or {{contact}} us with your route and approximate balance. Broader miles concepts remain in the {{guide-points-and-miles}}.',
   howItWorks: [
-    'Tell us the program or card currency, approximate balance, route, cabin, and how many days of date flexibility you have.',
-    'We outline typical award levels, partner airlines, and cash taxes or fuel surcharges you may see at checkout.',
-    'If a transfer is required, we explain partner timing (often near-instant to a few days) while you complete the transfer yourself.',
-    'When you proceed, we guide the award booking or phone-redemption steps the program supports and confirm passenger details.',
-    'After ticketing, we recap ticket numbers, operating carriers, and how award change or cancel rules usually differ from cash fares.',
+    'Share origin, destination, dates or flexibility, passenger count, cabin preference, and approximate Avion points balance—never passwords or one-time codes.',
+    'We outline which mechanisms may apply: travel-portal redemption, an eligible fixed-points chart, or conversion to an eligible airline partner when supported for your membership.',
+    'You receive a written comparison of options we can evaluate, including remaining cash charges when known, plus our separately quoted assistance fee.',
+    'Paid work begins only after you accept the quote. You complete account-controlled steps through official program channels.',
+    'After you confirm an option, we help document next steps for receipts, changes, or questions that remain within our assistance scope.',
   ],
   benefits: [
-    'Side-by-side sense of cash fare versus points redemption value when both prices are visible.',
-    'Early warning when a “cheap” award still requires large surcharges on certain European or long-haul partners.',
-    'Help spotting partner routings that unlock space when nonstop award seats are gone.',
-    'Clear separation of program rules versus what AvioSupportDesk can and cannot change.',
-    'Support for saver versus higher award buckets so you understand why the same flight prices differently by date.',
-    'Guidance on keeping login access ready if the program requires you to complete online steps during the call.',
+    'Written cash-versus-points comparison for routes we can evaluate within the agreed scope.',
+    'Clear separation of our assistance fee from airline, tax, surcharge, and program charges.',
+    'Guidance that keeps account control with you—no password or OTP collection on public forms.',
+    'Links to educational guides on booking steps, chart conditions, and points value examples.',
+    'Honest limits: we do not guarantee award inventory, waive supplier rules, or claim official program authority.',
+    'A path back to official self-service when that better matches your need.',
   ],
   whyChooseIntro:
-    'Choose AvioSupportDesk when you want candid award travel help—not loyalty marketing. We explain trade-offs and leave official program decisions with you and the issuer.',
+    'Choose AvioSupportDesk when you want independent Avion redemption help with transparent fees—not an imitation rewards desk. Official account decisions stay with you and the program.',
   whyChoose: [
-    'We never claim to move bank points on your behalf or waive airline surcharge policies.',
-    'Transfer advice comes before you lock points into a partner you may not need.',
-    'Mixed cash-and-points flows are walked through only when the program actually supports them.',
-    'Change paths after redemption are summarized so you know whether to call the operating carrier next.',
-    'Service fees, if any, are stated up front—return to {{home}} or browse {{services}} for related booking help.',
+    'Independence is stated before you call or submit an inquiry.',
+    'Assistance fees are quoted before paid work starts—see {{service-fees}}.',
+    'We distinguish portal, chart, and transfer paths instead of treating them as one inventory system.',
+    'Change and cancel paths after redemption depend on the ticket issuer and program rules, which we explain without promising outcomes we cannot control.',
+    'Related process and identity pages: {{how-it-works}} and {{independent-service-disclosure}}—or return to {{home}} and {{services}}.',
   ],
 }
 

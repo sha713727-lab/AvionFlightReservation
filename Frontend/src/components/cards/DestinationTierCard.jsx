@@ -49,9 +49,14 @@ export default function DestinationTierCard({ points, title, places }) {
         </p>
         <p className="mt-2 text-xl font-semibold tracking-tight text-accent lg:text-2xl">
           {points.toLocaleString()}
-          <span className="ml-1.5 text-base font-medium text-accent">points</span>
+          <span className="ml-1.5 text-base font-medium text-accent">
+            {COPY.destinations.pointsLabel}
+          </span>
         </p>
         <h3 className="mt-2 text-base font-semibold text-primary lg:text-lg">{title}</h3>
+        <p className="mt-2 text-xs leading-relaxed text-text-secondary">
+          {COPY.destinations.pointsDisclaimer}
+        </p>
       </div>
 
       <div className="flex flex-1 flex-col p-4 pt-4 lg:p-5 lg:pt-5">
@@ -60,7 +65,10 @@ export default function DestinationTierCard({ points, title, places }) {
         </p>
         <div className="grid grid-cols-2 gap-4">
           {places.map((place) => (
-            <div key={place.name} className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border bg-section-alt">
+            <div
+              key={place.name}
+              className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border bg-section-alt"
+            >
               <DestinationImage {...place} />
             </div>
           ))}

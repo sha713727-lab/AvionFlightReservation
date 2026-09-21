@@ -66,6 +66,7 @@ else
 fi
 cp -f Frontend/public/sitemap.xml deploy/nginx/static/sitemap.xml
 cp -f Frontend/public/sitemap_index.xml deploy/nginx/static/sitemap_index.xml
+cp -f Frontend/public/robots.txt deploy/nginx/static/robots.txt
 
 # Preserve multi-site HTTPS vhosts. git tracks HTTP-only enabled.conf for bootstrap;
 # without this, `git reset --hard` drops SSL blocks and browsers get aviosupportdesk.com

@@ -54,6 +54,7 @@ cat deploy/nginx/aviosupportdesk.conf > deploy/nginx/active.conf
 cp -f Frontend/public/googlebc6e5bbda029aa82.html deploy/nginx/static/googlebc6e5bbda029aa82.html
 cp -f Frontend/public/sitemap.xml deploy/nginx/static/sitemap.xml
 cp -f Frontend/public/sitemap_index.xml deploy/nginx/static/sitemap_index.xml
+cp -f Frontend/public/robots.txt deploy/nginx/static/robots.txt
 
 if [[ "$RSA_CERT" -eq 1 ]]; then
   if [[ -z "$CERTBOT_EMAIL" ]]; then

@@ -63,6 +63,9 @@ export default function PrivacyPolicyContent() {
               eyebrow={COPY.privacy.usageEyebrow}
               title={COPY.privacy.usageTitle}
             >
+              {COPY.privacy.usageDescription ? (
+                <p>{COPY.privacy.usageDescription}</p>
+              ) : null}
               <StaggerContainer className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {PRIVACY_USAGE_ITEMS.map((item) => {
                   const Icon = item.icon

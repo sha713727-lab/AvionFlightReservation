@@ -12,6 +12,7 @@ import {
 } from '@/constants/images'
 import { INTERNATIONAL_FLIGHT_PATH } from '@/constants/routes'
 import { getSeoPageH1 } from '@/constants/seoPageMeta'
+import { CTA_PLACEMENT } from '@/constants/analytics'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
 
@@ -58,7 +59,7 @@ export default function InternationalFlightHero() {
           </FadeIn>
 
           <FadeIn delay={0.16}>
-            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg speakable-summary">
+            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
               {COPY.internationalFlight.description}
             </p>
           </FadeIn>
@@ -69,7 +70,7 @@ export default function InternationalFlightHero() {
                 variant="primary"
                 size="lg"
                 icon={FaPhone}
-                onClick={callModal.open}
+                onClick={() => callModal.open(CTA_PLACEMENT.pageHero)}
                 className="w-full max-w-md"
               >
                 {phoneNumber}

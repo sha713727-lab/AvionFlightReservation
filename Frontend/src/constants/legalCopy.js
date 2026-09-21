@@ -5,20 +5,22 @@ export const LEGAL_COPY = {
     pageDescription:
       'This Privacy Policy explains how AvioSupportDesk may collect and use contact and travel details when you call or message us for booking help. It covers cookies, sharing with suppliers, GDPR/CCPA rights, and how to request updates to your information.',
     lastUpdatedLabel: 'Last updated',
-    lastUpdatedDate: 'September 10, 2026',
-    lastUpdatedIso: '2026-09-10',
+    lastUpdatedDate: 'September 21, 2026',
+    lastUpdatedIso: '2026-09-21',
     metaDescription:
       'Privacy Policy for AvioSupportDesk. Learn what we collect for travel support, cookies, sharing, GDPR/CCPA rights, and how to contact us about your details.',
     collectEyebrow: 'Information We May Collect',
     collectTitle: 'Details used to respond to your travel request.',
     collectDescription:
-      'When you contact us for travel assistance, we may collect details needed to respond to your request, such as name, phone number, email address, travel dates, destination, passenger information, booking reference details, and messages you send through our contact form or phone support.',
+      'When you contact us for travel assistance, we may collect details needed to respond to your request, such as name, phone number, email address, travel dates, destination, passenger information, booking reference details, and messages you send by phone or through our inquiry form (name, email, phone, subject, and message). We may assign a reference code to your inquiry so we can follow up consistently. Do not send passwords, one-time codes (OTPs), or full payment card numbers through our website forms or email.',
     usageEyebrow: 'How Information Is Used',
     usageTitle: 'Why we use customer information.',
+    usageDescription:
+      'We use the information you provide to respond to support requests, handle contact form inquiries, coordinate travel assistance, and communicate updates related to your booking support request.',
     cookiesEyebrow: 'Cookies',
     cookiesTitle: 'How this website may use cookies.',
     cookiesDescription:
-      'Our website may use cookies and similar technologies to support core browsing, remember limited preferences, and measure basic performance. Essential cookies help pages load correctly. You can manage cookies in your browser settings; blocking cookies may affect some features. See our Cookie Policy for more detail.',
+      'Our website may use cookies and similar technologies to support core browsing, remember limited preferences, and measure site performance. We may load tags through Google Tag Manager, including Google Analytics 4 (GA4) for aggregated usage measurement, conversion events that do not include names, emails, phone numbers, or message text (for example assistance CTA clicks, service-fee page views, call-link clicks, and successful inquiry submissions), and Google Ads tags when configured for advertising measurement. Essential cookies help pages load correctly. You can manage cookies in your browser settings; blocking cookies may affect some features. See our Cookie Policy for more detail.',
     sharingEyebrow: 'Information Sharing',
     sharingTitle: 'When travel details may be shared.',
     sharingDescription:
@@ -26,7 +28,7 @@ export const LEGAL_COPY = {
     protectionEyebrow: 'Data Protection',
     protectionTitle: 'Responsible handling of customer information.',
     protectionDescription:
-      'We aim to handle customer information responsibly and use reasonable administrative and technical safeguards to protect information used for travel support. Do not submit unnecessary sensitive information (such as full payment card numbers) through website forms.',
+      'We aim to handle customer information responsibly and use reasonable administrative and technical safeguards to protect information used for travel support. Contact form inquiries are stored so our team can review and follow up on your request. Do not submit unnecessary sensitive information (such as full payment card numbers) through website forms. Do not include personal information in website URLs or analytics query parameters.',
     gdprEyebrow: 'GDPR & CCPA',
     gdprTitle: 'Rights for visitors in the EEA/UK and California.',
     gdprDescription:
@@ -50,7 +52,7 @@ export const LEGAL_COPY = {
     lastUpdatedDate: 'July 10, 2026',
     lastUpdatedIso: '2026-07-10',
     metaDescription:
-      'Cancellation Policy for Avion Flight Reservation. Learn how cancellation rules work, what to review before cancelling, what happens after cancellation, and important supplier limitations.',
+      'Cancellation Policy for AvioSupportDesk. Learn how cancellation rules work, what to review before cancelling, what happens after cancellation, and supplier limitations.',
     rulesEyebrow: 'Cancellation Rules',
     rulesTitle: 'Rules depend on your booking and supplier.',
     rulesDescription:
@@ -68,7 +70,7 @@ export const LEGAL_COPY = {
     contactEyebrow: 'Need Cancellation Help?',
     contactTitle: 'Talk with a specialist before you cancel.',
     contactDescription:
-      'Call Avion Flight Reservation for cancellation guidance, rule review, and support with your booking request.',
+      'Call AvioSupportDesk for cancellation guidance, rule review, and support with your booking request.',
     tocLabel: 'On this page',
   },
   terms: {
@@ -100,7 +102,7 @@ export const LEGAL_COPY = {
     lastUpdatedDate: 'July 10, 2026',
     lastUpdatedIso: '2026-07-10',
     metaDescription:
-      'Refund Policy for Avion Flight Reservation. Learn refund eligibility, supplier refund timelines, service fee rules, and the refund request process for travel bookings.',
+      'Refund Policy for AvioSupportDesk. Learn supplier refund eligibility, timelines, assistance-fee rules, and the refund request process for travel bookings.',
     overviewLabel: 'Policy overview',
     processEyebrow: 'Refund Request Process',
     processTitle: 'How refund requests are handled.',
@@ -110,7 +112,7 @@ export const LEGAL_COPY = {
     contactEyebrow: 'Need refund help?',
     contactTitle: 'Share your booking details with a specialist.',
     contactDescription:
-      'Call or email Avion Flight Reservation for refund eligibility review and supplier rule guidance.',
+      'Call or email AvioSupportDesk for refund eligibility review and supplier rule guidance.',
   },
   cookies: {
     pageEyebrow: 'Legal',
@@ -121,25 +123,27 @@ export const LEGAL_COPY = {
     lastUpdatedDate: 'July 10, 2026',
     lastUpdatedIso: '2026-07-10',
     metaDescription:
-      'Cookie Policy for Avion Flight Reservation. Learn how cookies may be used on our website to support browsing, performance, and basic site functionality.',
+      'Cookie Policy for AvioSupportDesk. Learn how cookies and analytics tags may be used on our website to support browsing, measurement, and advertising.',
     whatEyebrow: 'What Are Cookies',
     whatTitle: 'Small files used to support website function.',
     whatDescription:
       'Cookies are small text files stored on your device when you visit a website. They may help the site remember preferences, improve performance, and support basic browsing features.',
     howEyebrow: 'How We May Use Cookies',
-    howTitle: 'Cookies may support essential website operations.',
+    howTitle: 'Cookies and related tags used on this site.',
     howItems: [
       'Enable core site pages and navigation to load correctly',
-      'Help measure basic website performance and reliability',
+      'Google Tag Manager (GTM) to load and manage measurement tags',
+      'Google Analytics 4 (GA4) to understand aggregated site usage',
+      'Google Ads tags for advertising measurement when configured',
       'Remember limited preferences during a browsing session',
     ],
     controlEyebrow: 'Your Choices',
     controlTitle: 'You can manage cookies in your browser settings.',
     controlDescription:
-      'Most browsers allow you to block, delete, or limit cookies. If you disable cookies, some website features may not work as expected.',
+      'Most browsers allow you to block, delete, or limit cookies. If you disable cookies, some website features may not work as expected. Additional processors may appear in our Content Security Policy; treat this policy as the disclosure of tags we intentionally load in production.',
     contactEyebrow: 'Questions',
     contactTitle: 'Contact us about this cookie policy.',
     contactDescription:
-      'For questions about cookies used on this website, contact Avion Flight Reservation by phone or email.',
+      'For questions about cookies used on this website, contact AvioSupportDesk by phone or email.',
   },
 }

@@ -35,7 +35,7 @@ export default function TermsPageHero() {
           </FadeIn>
 
           <FadeIn delay={0.14}>
-            <p className="speakable-summary mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:mx-auto sm:text-lg">
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:mx-auto sm:text-lg">
               {COPY.terms.pageDescription}
             </p>
           </FadeIn>

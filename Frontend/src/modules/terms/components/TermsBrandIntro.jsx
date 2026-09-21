@@ -21,7 +21,7 @@ export default function TermsBrandIntro() {
                 >
                   {COPY.terms.brandTermsTitle}
                 </h2>
-                <p className="speakable-summary mt-4 text-base leading-relaxed text-white/70 sm:text-lg">
+                <p className="mt-4 text-base leading-relaxed text-white/70 sm:text-lg">
                   {COPY.terms.brandTermsDescription}
                 </p>
               </div>

@@ -1,11 +1,14 @@
 import HomePage from '@/modules/home/components/HomePage'
+import { HOME_PATH } from '@/constants/routes'
 import {
-  getHomeAggregateRatingJsonLd,
   getHomeOrganizationJsonLd,
   getHomeWebPageJsonLd,
   getHomeWebSiteJsonLd,
 } from '@/modules/home/page-data'
 import { loadHomeCatalog } from '@/services/api/loadCatalog'
+import { buildPathMetadata } from '@/utils/seo'
+
+export const metadata = buildPathMetadata(HOME_PATH)
 
 /** Always SSR from the live API — never serve a cached empty catalog page. */
 export const dynamic = 'force-dynamic'
@@ -16,7 +19,6 @@ export default async function Page() {
   const websiteJsonLd = getHomeWebSiteJsonLd()
   const webPageJsonLd = getHomeWebPageJsonLd()
   const organizationJsonLd = getHomeOrganizationJsonLd()
-  const aggregateRatingJsonLd = getHomeAggregateRatingJsonLd()
 
   return (
     <>
@@ -31,11 +33,6 @@ export default async function Page() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-      />
-      {/* PLACEHOLDER AggregateRating JSON-LD — replace values in data/testimonials.js before publish */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateRatingJsonLd) }}
       />
       <HomePage
         services={catalog.services}

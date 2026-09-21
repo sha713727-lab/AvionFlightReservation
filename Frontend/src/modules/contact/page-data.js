@@ -1,51 +1,47 @@
 import { withBreadcrumbJsonLd } from '@/constants/breadcrumbs'
-import { BRAND_FULL_NAME } from '@/constants/brand'
 import { CONTACT_PATH } from '@/constants/routes'
 import { getSeoPageMeta } from '@/constants/seoPageMeta'
-import { SPEAKABLE_CSS_SELECTORS, buildPathMetadata } from '@/utils/seo'
+import {
+  ORGANIZATION_ID,
+  WEBSITE_ID,
+  buildPathMetadata,
+  buildWebPageId,
+} from '@/utils/seo'
 import {
   CONTACT_EMAILS,
-  MAILING_ADDRESS_LINES,
+  MAILING_ADDRESS,
   PHONE_NUMBER,
-  SITE_URL,
-  SUPPORT_HOURS,
   buildCanonicalUrl,
 } from '@/constants/contact'
+
 export function getContactPageMetadata() {
   return buildPathMetadata(CONTACT_PATH)
 }
 
+/**
+ * ContactPage node joined to the shared graph.
+ * hoursAvailable omitted until the owner verifies staffed hours.
+ */
 function buildContactPageJsonLd(description) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
+    '@id': buildWebPageId(CONTACT_PATH),
     name: 'Contact AvioSupportDesk',
     description,
     url: buildCanonicalUrl(CONTACT_PATH),
-    speakable: {
-      '@type': 'SpeakableSpecification',
-      cssSelector: SPEAKABLE_CSS_SELECTORS,
-    },
-    isPartOf: {
-      '@type': 'WebSite',
-      name: BRAND_FULL_NAME,
-      url: SITE_URL,
-    },
+    isPartOf: { '@id': WEBSITE_ID },
     mainEntity: {
-      '@type': 'Organization',
-      '@id': `${SITE_URL}/#organization`,
-      name: 'AvioSupportDesk',
-      alternateName: BRAND_FULL_NAME,
-      url: SITE_URL,
+      '@id': ORGANIZATION_ID,
       telephone: PHONE_NUMBER,
       email: CONTACT_EMAILS,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: MAILING_ADDRESS_LINES[0],
-        addressLocality: 'Toronto',
-        addressRegion: 'ON',
-        postalCode: 'M5X 1C9',
-        addressCountry: 'CA',
+        streetAddress: MAILING_ADDRESS.streetAddress,
+        addressLocality: MAILING_ADDRESS.addressLocality,
+        addressRegion: MAILING_ADDRESS.addressRegion,
+        postalCode: MAILING_ADDRESS.postalCode,
+        addressCountry: MAILING_ADDRESS.addressCountry,
       },
       contactPoint: [
         {
@@ -54,7 +50,6 @@ function buildContactPageJsonLd(description) {
           contactType: 'customer service',
           areaServed: ['US', 'CA'],
           availableLanguage: ['English'],
-          hoursAvailable: SUPPORT_HOURS,
         },
       ],
     },

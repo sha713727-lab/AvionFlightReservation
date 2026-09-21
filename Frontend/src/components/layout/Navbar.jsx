@@ -7,6 +7,7 @@ import { COPY } from '@/constants/copy'
 import { NAV_LINKS } from '@/constants/navigation'
 import { SITE_NAME } from '@/constants/contact'
 import { HOME_PATH } from '@/constants/routes'
+import { CTA_PLACEMENT } from '@/constants/analytics'
 import { useScrollDirection } from '@/hooks/useScrollDirection'
 import { EASE } from '@/components/animations/motionPresets'
 import AvionLogo from '@/components/brand/AvionLogo'
@@ -70,7 +71,11 @@ export default function Navbar({ overDarkHero = false }) {
 
             <div className="relative z-10 flex shrink-0 items-center justify-end gap-2 sm:gap-3">
               <div className="hidden lg:block">
-                <Button variant="primary" size="md" onClick={callModal.open}>
+                <Button
+                  variant="primary"
+                  size="md"
+                  onClick={() => callModal.open(CTA_PLACEMENT.navbar)}
+                >
                   {COPY.cta.bookConsultation}
                 </Button>
               </div>

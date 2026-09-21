@@ -22,20 +22,22 @@ export const GEO_SOURCE_URLS = {
   UNITED_SEATS: 'https://www.united.com/en/us/fly/travel/seats.html',
 }
 
+/** Organizational authorship only — no invented individual experts. */
 export const GEO_BYLINES = {
-  authorName: 'Jordan Hale',
-  authorRole: 'Travel Expert at AvioSupportDesk',
-  factCheckerName: 'Maya Ortiz',
-  lastUpdatedLabel: 'September 10, 2026',
-  lastUpdatedIso: '2026-09-10',
+  authorName: 'AvioSupportDesk',
+  authorRole: 'independent travel assistance editorial',
+  factCheckerName: '',
+  lastUpdatedLabel: 'September 21, 2026',
+  lastUpdatedIso: '2026-09-21',
   aboutPath: '/about',
 }
 
 export const GEO_COPY = {
   sourcesHeading: 'Sources / References',
-  authorWrittenPrefix: 'Written by',
+  authorWrittenPrefix: 'Published by',
   authorFactCheckedPrefix: 'Fact-checked by',
-  authorLastUpdatedPrefix: 'Last updated:',
+  authorLastUpdatedPrefix: 'Last reviewed:',
   externalLinkRel: 'noopener noreferrer',
-  comparisonCaptionFallback: 'Compare published policy themes; always verify on the carrier site for your ticket.',
+  comparisonCaptionFallback:
+    'Compare published policy themes; always verify on the carrier site for your ticket.',
 }

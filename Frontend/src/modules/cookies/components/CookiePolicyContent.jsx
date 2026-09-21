@@ -28,7 +28,7 @@ export default function CookiePolicyContent() {
             >
               {getSeoPageH1(COOKIE_POLICY_PATH)}
             </h1>
-            <p className="speakable-summary mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg">
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg">
               {COPY.cookies.pageDescription}
             </p>
             <p className="mt-6 text-sm text-text-muted">

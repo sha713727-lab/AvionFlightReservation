@@ -3,6 +3,7 @@
 import {
   HiOutlineAnnotation,
   HiOutlineCollection,
+  HiOutlineInbox,
   HiOutlineLocationMarker,
   HiOutlinePhone,
   HiOutlineServer,
@@ -12,6 +13,7 @@ import AdminBarChart from '@/modules/admin/components/AdminBarChart'
 import AdminCatalogList from '@/modules/admin/components/AdminCatalogList'
 import AdminCoverageChart from '@/modules/admin/components/AdminCoverageChart'
 import AdminRecentCallbacks from '@/modules/admin/components/AdminRecentCallbacks'
+import AdminRecentInquiries from '@/modules/admin/components/AdminRecentInquiries'
 import CatalogMixDonut from '@/modules/admin/components/CatalogMixDonut'
 import AdminStatCard from '@/modules/admin/components/AdminStatCard'
 import { useAdminDashboard } from '@/modules/admin/hooks/useAdminDashboard'
@@ -36,12 +38,13 @@ export default function AdminDashboardHome({ token }) {
     )
   }
 
-  const { counts, system, recentServices, recentFaqs, recentCallbacks } = summary
+  const { counts, system, recentServices, recentFaqs, recentCallbacks, recentInquiries } =
+    summary
   const databaseUp = system.database === 'up'
 
   return (
     <div className="space-y-6 lg:space-y-8">
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
         <AdminStatCard
           label={ADMIN_COPY.statsServices}
           value={counts.servicesActive}
@@ -74,9 +77,19 @@ export default function AdminDashboardHome({ token }) {
           icon={HiOutlinePhone}
           tone="accent"
         />
+        <AdminStatCard
+          label={ADMIN_COPY.statsInquiriesNew}
+          value={counts.inquiriesNew}
+          hint={`${counts.inquiriesTotal} ${ADMIN_COPY.statsInquiriesTotal}`}
+          icon={HiOutlineInbox}
+          tone="primary"
+        />
       </div>
 
-      <AdminRecentCallbacks items={recentCallbacks} />
+      <div className="grid gap-6 xl:grid-cols-2">
+        <AdminRecentCallbacks items={recentCallbacks} />
+        <AdminRecentInquiries items={recentInquiries} />
+      </div>
 
       <div className="grid gap-6 xl:grid-cols-2">
         <AdminCoverageChart counts={counts} />

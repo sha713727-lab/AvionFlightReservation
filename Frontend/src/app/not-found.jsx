@@ -1,16 +1,36 @@
 import Link from 'next/link'
 
-const NOT_FOUND_TITLE = 'Page not found'
-const NOT_FOUND_MESSAGE = 'The page you requested could not be found.'
+const NOT_FOUND_TITLE = 'Page not found | AvioSupportDesk'
+const NOT_FOUND_HEADING = 'Page not found'
+const NOT_FOUND_DESCRIPTION =
+  'The page you requested could not be found on AvioSupportDesk.'
+const NOT_FOUND_MESSAGE =
+  'The page you requested could not be found. It may have moved or never existed.'
 const NOT_FOUND_LINK_LABEL = 'Return home'
 const HOME_PATH = '/'
 
+/**
+ * Own title, no inherited homepage canonical/OG, and a single noindex directive.
+ * Next.js emits the noindex robots meta for this route, so none is declared here.
+ */
+export const metadata = {
+  title: NOT_FOUND_TITLE,
+  description: NOT_FOUND_DESCRIPTION,
+  alternates: null,
+  openGraph: null,
+  twitter: null,
+  robots: null,
+}
+
 export default function NotFound() {
   return (
-    <main id="main-content" className="flex min-h-svh items-center justify-center bg-background px-6 py-20 text-center">
+    <main
+      id="main-content"
+      className="flex min-h-svh items-center justify-center bg-background px-6 py-20 text-center"
+    >
       <section className="max-w-md rounded-3xl bg-card p-8 shadow-card">
         <p className="text-sm font-semibold uppercase tracking-[0.3em] text-text-muted">404</p>
-        <h1 className="mt-4 text-3xl font-semibold text-accent">{NOT_FOUND_TITLE}</h1>
+        <h1 className="mt-4 text-3xl font-semibold text-accent">{NOT_FOUND_HEADING}</h1>
         <p className="mt-4 text-text-secondary">{NOT_FOUND_MESSAGE}</p>
         <Link
           href={HOME_PATH}

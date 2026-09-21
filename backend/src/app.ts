@@ -104,7 +104,7 @@ export async function buildApp(context: AppContext): Promise<FastifyInstance> {
     await app.register(swagger, {
       openapi: {
         info: {
-          title: 'Avion Flight Reservation API',
+          title: 'AvioSupportDesk API',
           description:
             'Public catalog API plus protected admin operations endpoints.',
           version: '1.0.0',

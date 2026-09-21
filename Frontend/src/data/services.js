@@ -10,42 +10,42 @@ import {
 export const WHY_US = [
   {
     id: 'support',
-    title: '24/7 Phone Support',
+    title: 'Phone assistance available',
     description:
-      'Reach a travel specialist by phone when you need booking help, changes, or trip questions.',
+      'Reach a travel specialist by phone when you need booking help, changes, or trip questions during staffed hours.',
     icon: FaHeadset,
   },
   {
     id: 'agents',
-    title: 'Expert Travel Assistance',
+    title: 'Independent travel assistance',
     description:
       'Specialists help compare options, explain supplier rules, and guide you through each booking step.',
     icon: FaUserTie,
   },
   {
     id: 'fast',
-    title: 'Personalized Booking Support',
+    title: 'Personalized booking support',
     description:
       'Share your dates, destinations, and preferences — we focus on clear options for your trip.',
     icon: FaBolt,
   },
   {
     id: 'secure',
-    title: 'Clear Booking Guidance',
+    title: 'Clear booking guidance',
     description:
-      'We explain fares, conditions, and next steps before you confirm so you can decide with confidence.',
+      'We explain fares, conditions, and our separate assistance fee before you confirm so you can decide with confidence.',
     icon: FaShieldAlt,
   },
   {
     id: 'deals',
-    title: 'Flexible Travel Solutions',
+    title: 'Flexible travel solutions',
     description:
       'Help with flights, hotels, points redemption requests, and itinerary planning based on your goals.',
     icon: FaSearchDollar,
   },
   {
     id: 'satisfaction',
-    title: 'Dedicated Customer Assistance',
+    title: 'Dedicated customer assistance',
     description:
       'Independent support for booking questions, changes, cancellations, and supplier policy review.',
     icon: FaComments,
@@ -62,27 +62,27 @@ export const VALUE_PROPS = [
 export const STEPS = [
   {
     step: 1,
-    title: 'Contact',
-    description: 'Call or request help with your flight reservation needs.',
+    title: 'Request',
+    description: 'Call or submit an inquiry with itinerary basics—never passwords or OTPs.',
   },
   {
     step: 2,
-    title: 'Discuss',
-    description: 'Our specialist learns your preferences, budget, and timeline.',
+    title: 'Options',
+    description: 'We review eligibility and outline options within our stated assistance scope.',
   },
   {
     step: 3,
-    title: 'Options',
-    description: 'Receive curated flight options and fares tailored to you.',
+    title: 'Written quote',
+    description: 'You receive our assistance fee and scope in writing before paid work begins.',
   },
   {
     step: 4,
-    title: 'Confirm',
-    description: 'Review, approve, and secure your booking with confidence.',
+    title: 'Accept',
+    description: 'You approve the quote. You complete account-controlled steps yourself.',
   },
   {
     step: 5,
-    title: 'Travel',
-    description: 'Enjoy your journey with ongoing phone support when questions arise.',
+    title: 'Follow-up',
+    description: 'We help document next steps within the agreed scope after you confirm an option.',
   },
 ]

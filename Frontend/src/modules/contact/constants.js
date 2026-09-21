@@ -72,7 +72,11 @@ export const CONTACT_FORM_MESSAGES = {
   subjectRequired: 'Choose a subject.',
   messageRequired: 'Enter a message (at least 20 characters).',
   messageTooLong: 'Message must be 2000 characters or fewer.',
-  submitFailed: 'We could not open your email app. Please call or email us directly.',
+  submitFailed:
+    'We could not send your message right now. Please try again shortly or call us using the number on this page.',
+  submitSuccessTitle: 'Message received',
+  submitSuccessDescription: (referenceCode) =>
+    `Your reference is ${referenceCode}. We will follow up using the contact details you provided.`,
 }
 
 export const CONTACT_MAP = {

@@ -7,6 +7,7 @@ import {
 } from '@/modules/contact/constants'
 import { submitContactForm } from '@/modules/contact/services/contactFormApi'
 import { contactFormSchema } from '@/schemas/contactForm'
+import { trackInquirySubmitSuccess } from '@/utils/analytics'
 
 const EMPTY_VALUES = {
   [CONTACT_FORM_FIELD_NAMES.name]: '',
@@ -22,11 +23,13 @@ export function useContactForm() {
   const [formError, setFormError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const [referenceCode, setReferenceCode] = useState('')
 
   const setField = (field, value) => {
     setValues((current) => ({ ...current, [field]: value }))
     setFormError('')
     setIsSuccess(false)
+    setReferenceCode('')
     setErrors((current) => {
       if (!current[field]) return current
       const next = { ...current }
@@ -56,9 +59,11 @@ export function useContactForm() {
     setErrors({})
     setFormError('')
     try {
-      submitContactForm(result.data)
+      const created = await submitContactForm(result.data)
       setValues(EMPTY_VALUES)
+      setReferenceCode(created.referenceCode)
       setIsSuccess(true)
+      trackInquirySubmitSuccess(created.referenceCode)
     } catch {
       setFormError(CONTACT_FORM_MESSAGES.submitFailed)
     } finally {
@@ -72,6 +77,7 @@ export function useContactForm() {
     formError,
     isSubmitting,
     isSuccess,
+    referenceCode,
     setField,
     handleSubmit,
   }

@@ -10,6 +10,7 @@ import SiteBreadcrumbBar from '@/components/layout/SiteBreadcrumbBar'
 import Container from '@/components/ui/Container'
 import { PHONE_HREF, PHONE_NUMBER } from '@/constants/contact'
 import { getSeoPageH1 } from '@/constants/seoPageMeta'
+import { CTA_PLACEMENT } from '@/constants/analytics'
 import CallExpertProvider, { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 import BlogPostBody from '@/modules/blog/components/BlogPostBody'
 import BlogPostCard from '@/modules/blog/components/BlogPostCard'
@@ -90,7 +91,7 @@ function BlogPostContent({ slug }) {
               <Button href={PHONE_HREF} variant="primary" size="lg">
                 {BLOG_COPY.ctaPhoneLabel} · {PHONE_NUMBER}
               </Button>
-              <Button variant="secondary" size="lg" onClick={callModal.open}>
+              <Button variant="secondary" size="lg" onClick={() => callModal.open(CTA_PLACEMENT.blogPost)}>
                 {BLOG_COPY.ctaCallbackLabel}
               </Button>
             </div>

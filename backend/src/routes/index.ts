@@ -41,10 +41,18 @@ import { CallbackRequestController } from '../modules/callbacks/controller.js'
 import { CallbackRequestRepository } from '../modules/callbacks/repository.js'
 import { CallbackRequestService } from '../modules/callbacks/service.js'
 import { registerCallbackRoutes } from '../modules/callbacks/routes.js'
+import { InquiryRequestController } from '../modules/inquiries/controller.js'
+import { InquiryRequestRepository } from '../modules/inquiries/repository.js'
+import { InquiryRequestService } from '../modules/inquiries/service.js'
+import { registerInquiryRoutes } from '../modules/inquiries/routes.js'
 import { AdminCallbacksController } from '../modules/admin-callbacks/controller.js'
 import { AdminCallbackRepository } from '../modules/admin-callbacks/repository.js'
 import { AdminCallbacksService } from '../modules/admin-callbacks/service.js'
 import { registerAdminCallbackRoutes } from '../modules/admin-callbacks/routes.js'
+import { AdminInquiriesController } from '../modules/admin-inquiries/controller.js'
+import { AdminInquiryRepository } from '../modules/admin-inquiries/repository.js'
+import { AdminInquiriesService } from '../modules/admin-inquiries/service.js'
+import { registerAdminInquiryRoutes } from '../modules/admin-inquiries/routes.js'
 import { AdminFaqsController } from '../modules/admin-faqs/controller.js'
 import { AdminFaqRepository } from '../modules/admin-faqs/repository.js'
 import { AdminFaqsService } from '../modules/admin-faqs/service.js'
@@ -104,8 +112,14 @@ export async function registerRoutes(
   const callbackRequestController = new CallbackRequestController(
     new CallbackRequestService(new CallbackRequestRepository(context.db), settingsService),
   )
+  const inquiryRequestController = new InquiryRequestController(
+    new InquiryRequestService(new InquiryRequestRepository(context.db)),
+  )
   const adminCallbacksController = new AdminCallbacksController(
     new AdminCallbacksService(new AdminCallbackRepository(context.db)),
+  )
+  const adminInquiriesController = new AdminInquiriesController(
+    new AdminInquiriesService(new AdminInquiryRepository(context.db)),
   )
   const adminFaqsController = new AdminFaqsController(
     new AdminFaqsService(new AdminFaqRepository(context.db), catalogCache),
@@ -119,6 +133,7 @@ export async function registerRoutes(
       await registerDestinationRoutes(api, destinationController, catalogOptions)
       await registerFaqRoutes(api, faqController, catalogOptions)
       await registerCallbackRoutes(api, callbackRequestController)
+      await registerInquiryRoutes(api, inquiryRequestController)
       await registerSettingsRoutes(api, settingsController, adminAuthService)
       await registerAdminAuthRoutes(api, adminAuthController, adminAuthService)
       await registerAdminDashboardRoutes(api, adminDashboardController, adminAuthService)
@@ -126,6 +141,7 @@ export async function registerRoutes(
       await registerAdminDestinationRoutes(api, adminDestinationsController, adminAuthService)
       await registerAdminPlaceRoutes(api, adminPlacesController, adminAuthService)
       await registerAdminCallbackRoutes(api, adminCallbacksController, adminAuthService)
+      await registerAdminInquiryRoutes(api, adminInquiriesController, adminAuthService)
       await registerAdminFaqRoutes(api, adminFaqsController, adminAuthService)
     },
     { prefix: API_PREFIX },

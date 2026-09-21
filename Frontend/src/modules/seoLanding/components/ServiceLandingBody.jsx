@@ -101,7 +101,7 @@ export default function ServiceLandingBody({ page }) {
         <h2 id="service-intro" className="sr-only">
           {SEO_LANDING_COPY.introHeading}
         </h2>
-        <p className="speakable-summary text-base leading-relaxed text-text-secondary sm:text-lg">
+        <p className="text-base leading-relaxed text-text-secondary sm:text-lg">
           <LinkedCopy text={page.speakableSummary} linkMap={linkMap} />
         </p>
         <p className="mt-4 text-sm leading-relaxed text-text-secondary sm:text-base">
