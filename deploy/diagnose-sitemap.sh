@@ -41,7 +41,15 @@ done
 echo "==> recent sitemap access log (if any)"
 "${COMPOSE[@]}" exec -T nginx sh -c 'tail -n 30 /var/log/nginx/sitemap.log 2>/dev/null || echo "(no sitemap.log yet)"'
 
-echo "==> REAL Googlebot hits (66.249.x.x / 2001:4860:4801::) across all nginx logs"
-"${COMPOSE[@]}" exec -T nginx sh -c 'grep -rhoE "^(66\.249\.[0-9]+\.[0-9]+|2001:4860:4801:[0-9a-f:]*)" /var/log/nginx/ 2>/dev/null | sort | uniq -c | sort -rn | head -n 20 || true'
-"${COMPOSE[@]}" exec -T nginx sh -c 'grep -rh "66\.249\." /var/log/nginx/ 2>/dev/null | grep -i sitemap | tail -n 10 || echo "(Google has never fetched a sitemap URL from this server)"'
+# The main access log is the nginx image default (symlinked to stdout), so it lives in the
+# container log, not in /var/www or /var/log/nginx. Only sitemap.log is a real file.
+echo "==> REAL Googlebot hits (66.249.x.x) on sitemap URLs — dedicated sitemap.log"
+sitemap_goog="$("${COMPOSE[@]}" exec -T nginx sh -c 'grep -c "66\.249\." /var/log/nginx/sitemap.log 2>/dev/null || true' | tr -dc '0-9')"
+echo "count: ${sitemap_goog:-0}"
+"${COMPOSE[@]}" exec -T nginx sh -c 'grep "66\.249\." /var/log/nginx/sitemap.log 2>/dev/null | tail -n 10 || true'
+
+echo "==> REAL Googlebot hits (66.249.x.x) site-wide — nginx container log"
+all_goog="$("${COMPOSE[@]}" logs --no-color --since 72h nginx 2>/dev/null | grep -c '66\.249\.' || true)"
+echo "count (last 72h): ${all_goog:-0}"
+"${COMPOSE[@]}" logs --no-color --since 72h nginx 2>/dev/null | grep '66\.249\.' | tail -n 15 || true
 echo "==> Done"
