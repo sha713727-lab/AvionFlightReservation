@@ -15,7 +15,7 @@ export default function Accordion({ items }) {
           <div
             key={item.id}
             className={cn(
-              'rounded-xl border bg-card overflow-hidden transition-colors duration-300',
+              'overflow-hidden rounded-xl border bg-card',
               isOpen ? 'border-accent/30 shadow-md shadow-accent/5' : 'border-border hover:border-accent/20',
             )}
           >
@@ -26,16 +26,19 @@ export default function Accordion({ items }) {
                 aria-expanded={isOpen}
                 aria-controls={`faq-panel-${item.id}`}
                 onClick={() => setOpenId(isOpen ? null : item.id)}
-                className="flex min-h-12 w-full items-center justify-between gap-4 px-5 py-4 text-left text-base font-medium text-primary transition-colors duration-300 hover:text-accent sm:px-6"
+                className="flex min-h-12 w-full items-center justify-between gap-4 px-5 py-4 text-left text-base font-medium text-primary transition-colors hover:text-accent sm:px-6"
               >
                 {item.question}
                 <span
                   className={cn(
-                    'flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-transform duration-300',
-                    isOpen ? 'rotate-180 bg-accent/10 text-accent' : 'bg-section-alt text-text-secondary',
+                    'flex h-8 w-8 shrink-0 items-center justify-center rounded-full',
+                    isOpen ? 'bg-accent/10 text-accent' : 'bg-section-alt text-text-secondary',
                   )}
                 >
-                  <IoChevronDown className="h-4 w-4" aria-hidden />
+                  <IoChevronDown
+                    className={cn('h-4 w-4', isOpen && 'rotate-180')}
+                    aria-hidden
+                  />
                 </span>
               </button>
             </h3>

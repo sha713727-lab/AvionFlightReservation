@@ -14,8 +14,6 @@ const GALLERY_ANCHOR = '#destination-gallery'
 
 export default function DestinationsPageHero({ cityNames = [] }) {
   const callModal = useCallExpertModal()
-  const marqueeCities =
-    cityNames.length > 0 ? [...cityNames, ...cityNames] : []
 
   return (
     <section
@@ -74,21 +72,23 @@ export default function DestinationsPageHero({ cityNames = [] }) {
         </div>
       </Container>
 
-      <div className="partner-marquee relative z-10 mt-14 overflow-hidden border-y border-white/10 py-4" aria-hidden>
-        {marqueeCities.length > 0 ? (
-          <div className="partner-marquee-track flex w-max gap-8 whitespace-nowrap px-8">
-            {marqueeCities.map((city, index) => (
+      {cityNames.length > 0 ? (
+        <div
+          className="relative z-10 mt-14 border-y border-white/10 py-4"
+          aria-hidden
+        >
+          <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-6 gap-y-2 px-6">
+            {cityNames.map((city) => (
               <span
-                key={`${city}-${index}`}
+                key={city}
                 className="text-sm font-medium uppercase tracking-[0.22em] text-white/35"
               >
                 {city}
-                <span className="ml-8 text-accent/70">•</span>
               </span>
             ))}
           </div>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
     </section>
   )
 }

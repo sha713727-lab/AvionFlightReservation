@@ -18,8 +18,8 @@ export default function AboutHighlights() {
                 <div
                   className={cn(
                     'flex h-full flex-col rounded-2xl border border-border bg-card p-7',
-                    'shadow-card transition-all duration-300',
-                    'hover:-translate-y-1 hover:border-accent/30 hover:shadow-card-hover',
+                    'shadow-card transition-colors duration-200',
+                    'hover:border-accent/30 hover:shadow-card-hover',
                   )}
                 >
                   <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent">

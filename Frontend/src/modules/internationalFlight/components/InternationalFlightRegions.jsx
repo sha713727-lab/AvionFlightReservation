@@ -47,7 +47,7 @@ export default function InternationalFlightRegions() {
                   alt={region.imageAlt}
                   fill
                   sizes="(max-width: 640px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="object-cover"
                 />
                 <div
                   className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/45 to-primary/10"

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
 import { HiMenuAlt3, HiX, HiPhone } from 'react-icons/hi'
 import { COPY } from '@/constants/copy'
 import { NAV_LINKS } from '@/constants/navigation'
@@ -9,7 +8,6 @@ import { SITE_NAME } from '@/constants/contact'
 import { HOME_PATH } from '@/constants/routes'
 import { CTA_PLACEMENT } from '@/constants/analytics'
 import { useScrollDirection } from '@/hooks/useScrollDirection'
-import { EASE } from '@/components/animations/motionPresets'
 import AvionLogo from '@/components/brand/AvionLogo'
 import Button from '@/components/buttons/Button'
 import Container from '@/components/ui/Container'
@@ -32,12 +30,9 @@ export default function Navbar({ overDarkHero = false }) {
 
   return (
     <>
-      <motion.header
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: EASE }}
+      <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500',
+          'fixed top-0 left-0 right-0 z-50 w-full',
           isScrolled
             ? 'glass pt-4 pb-3 shadow-sm shadow-primary/5'
             : overDarkHero
@@ -47,15 +42,13 @@ export default function Navbar({ overDarkHero = false }) {
       >
         <Container>
           <div className="flex items-center justify-between gap-4">
-            <motion.a
+            <a
               href={HOME_PATH}
               aria-label={`${SITE_NAME} home`}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
               className="relative z-10 inline-flex min-w-0 shrink-0 items-center"
             >
               <AvionLogo size="md" hideName priority tone={useLightNav ? 'dark' : 'light'} />
-            </motion.a>
+            </a>
 
             <nav
               className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex"
@@ -88,9 +81,8 @@ export default function Navbar({ overDarkHero = false }) {
                 <HiPhone className="h-5 w-5 shrink-0" aria-hidden />
               </TrackedTelLink>
 
-              <motion.button
+              <button
                 type="button"
-                whileTap={{ scale: 0.9 }}
                 className={cn(
                   'inline-flex h-12 w-12 items-center justify-center rounded-full lg:hidden',
                   useLightNav ? 'text-white' : 'text-primary',
@@ -100,38 +92,18 @@ export default function Navbar({ overDarkHero = false }) {
                 aria-controls="mobile-navigation"
                 aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               >
-                <AnimatePresence mode="wait" initial={false}>
-                  {mobileOpen ? (
-                    <motion.span
-                      key="close"
-                      initial={{ rotate: -90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: 90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <HiX className="w-6 h-6" />
-                    </motion.span>
-                  ) : (
-                    <motion.span
-                      key="menu"
-                      initial={{ rotate: 90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: -90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <HiMenuAlt3 className="w-6 h-6" />
-                    </motion.span>
-                  )}
-                </AnimatePresence>
-              </motion.button>
+                {mobileOpen ? (
+                  <HiX className="h-6 w-6" aria-hidden />
+                ) : (
+                  <HiMenuAlt3 className="h-6 w-6" aria-hidden />
+                )}
+              </button>
             </div>
           </div>
         </Container>
-      </motion.header>
+      </header>
 
-      <AnimatePresence>
-        {mobileOpen && <MobileNav isOpen={mobileOpen} onClose={closeMobileNav} />}
-      </AnimatePresence>
+      {mobileOpen ? <MobileNav isOpen={mobileOpen} onClose={closeMobileNav} /> : null}
     </>
   )
 }

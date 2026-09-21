@@ -40,7 +40,7 @@ function RewardsSection() {
                 align="left"
                 className="mb-8 max-w-lg"
               />
-              <div className="inline-block transition-transform duration-300 hover:scale-[1.03] active:scale-[0.98]">
+              <div>
                 <Button variant="primary" size="lg" icon={FaGift} onClick={() => setModalOpen(true)}>
                   {COPY.rewards.cta}
                 </Button>
@@ -48,17 +48,16 @@ function RewardsSection() {
             </FadeIn>
 
             <FadeIn direction="left">
-              <div className="group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 hover:scale-[1.02] hover:rotate-1 hover:shadow-xl">
+              <div className="relative overflow-hidden rounded-2xl shadow-lg">
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
                   <OptimizedImage
                     src={REWARDS_CABIN_IMAGE_SRC}
                     alt={REWARDS_CABIN_IMAGE_ALT}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="object-cover"
                   />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </div>
             </FadeIn>
           </div>

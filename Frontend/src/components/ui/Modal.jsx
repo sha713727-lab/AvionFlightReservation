@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useId, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { IoClose } from 'react-icons/io5'
 import { cn } from '@/utils/cn'
 
@@ -36,7 +35,6 @@ export default function Modal({
     const preferred = dialog?.querySelector('input, select, textarea')
     const focusable = dialog?.querySelectorAll(FOCUSABLE_SELECTOR)
     const first = preferred || focusable?.[0]
-    // Defer so mobile keyboards attach after the dialog is painted.
     const focusTimer = window.setTimeout(() => {
       first?.focus({ preventScroll: true })
     }, 0)
@@ -75,51 +73,42 @@ export default function Modal({
     }
   }, [isOpen])
 
+  if (!isOpen) {
+    return null
+  }
+
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+      <div
+        className="absolute inset-0 bg-primary/60 backdrop-blur-sm"
+        aria-hidden
+        onClick={closeOnBackdrop ? onClose : undefined}
+      />
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={title ? titleId : undefined}
+        className={cn(
+          'relative z-10 w-full max-w-md max-h-[min(90dvh,40rem)] overflow-y-auto rounded-2xl bg-card p-5 shadow-2xl sm:p-8',
+          className,
+        )}
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute top-3 right-3 inline-flex h-12 w-12 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-background hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:top-4 sm:right-4"
+          aria-label="Close dialog"
         >
-          <div
-            className="absolute inset-0 bg-primary/60 backdrop-blur-sm"
-            aria-hidden
-            onClick={closeOnBackdrop ? onClose : undefined}
-          />
-          <motion.div
-            ref={dialogRef}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={title ? titleId : undefined}
-            className={cn(
-              'relative z-10 w-full max-w-md max-h-[min(90dvh,40rem)] overflow-y-auto rounded-2xl bg-card p-5 shadow-2xl sm:p-8',
-              className,
-            )}
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <button
-              type="button"
-              onClick={onClose}
-              className="absolute top-3 right-3 inline-flex h-12 w-12 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-background hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:top-4 sm:right-4"
-              aria-label="Close dialog"
-            >
-              <IoClose className="h-5 w-5" />
-            </button>
-            {title && (
-              <h3 id={titleId} className="mb-4 pr-8 text-xl font-semibold">
-                {title}
-              </h3>
-            )}
-            {children}
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          <IoClose className="h-5 w-5" />
+        </button>
+        {title && (
+          <h3 id={titleId} className="mb-4 pr-8 text-xl font-semibold">
+            {title}
+          </h3>
+        )}
+        {children}
+      </div>
+    </div>
   )
 }

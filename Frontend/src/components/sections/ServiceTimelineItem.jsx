@@ -42,7 +42,7 @@ export default function ServiceTimelineItem({
           {features.map((feature) => (
             <li
               key={feature}
-              className="flex items-center gap-3 text-sm text-text-secondary transition-all duration-300 hover:translate-x-1 hover:text-text"
+              className="flex items-center gap-3 text-sm text-text-secondary transition-colors duration-200 hover:text-text"
             >
               <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
               {feature}
@@ -69,7 +69,7 @@ export default function ServiceTimelineItem({
           ) : null}
         </div>
 
-        <div className="group/img relative mt-2 overflow-hidden rounded-2xl border border-border transition-transform duration-300 hover:scale-[1.02]">
+        <div className="group/img relative mt-2 overflow-hidden rounded-2xl border border-border">
           <ServiceMediaFrame
             mediaType={mediaType}
             image={image}
@@ -77,10 +77,8 @@ export default function ServiceTimelineItem({
             imageAlt={imageAlt}
             title={title}
             aspect="16 / 10"
-            imageClassName="transition-transform duration-700 ease-out group-hover/img:scale-105"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
-          <div className="absolute inset-0 bg-accent/0 transition-colors duration-500 group-hover/img:bg-accent/10" />
         </div>
       </div>
     </FadeIn>
@@ -92,9 +90,7 @@ export default function ServiceTimelineItem({
         className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 lg:flex"
         aria-hidden
       >
-        <span className="relative flex h-2.5 w-2.5 items-center justify-center rounded-full bg-accent ring-4 ring-section">
-          <span className="absolute inset-0 rounded-full bg-accent animate-ping-soft opacity-45" />
-        </span>
+        <span className="flex h-2.5 w-2.5 items-center justify-center rounded-full bg-accent ring-4 ring-section" />
       </div>
 
       {reversed ? (

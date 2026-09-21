@@ -14,7 +14,7 @@ export default function RefundOverview() {
 
             return (
               <FadeIn key={card.id} delay={index * 0.08}>
-                <article className="flex h-full flex-col border-t-4 border-accent bg-section px-6 py-8 shadow-card transition-transform duration-300 hover:-translate-y-1.5">
+                <article className="flex h-full flex-col border-t-4 border-accent bg-section px-6 py-8 shadow-card">
                   <span className="mb-5 inline-flex h-11 w-11 items-center justify-center bg-accent text-white">
                     <Icon className="h-5 w-5" aria-hidden />
                   </span>

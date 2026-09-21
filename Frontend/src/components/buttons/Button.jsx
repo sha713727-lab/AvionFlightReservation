@@ -41,8 +41,7 @@ export default function Button({
   ...props
 }) {
   const classes = cn(
-    'group/btn inline-flex items-center justify-center gap-2.5 font-medium transition-all duration-300 cursor-pointer',
-    'hover:-translate-y-0.5 hover:scale-[1.02] active:scale-[0.98]',
+    'group/btn inline-flex items-center justify-center gap-2.5 font-medium transition-colors duration-200 cursor-pointer',
     'motion-reduce:transform-none',
     'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent',
     'disabled:opacity-50 disabled:cursor-not-allowed',
@@ -60,14 +59,14 @@ export default function Button({
     <>
       {Icon && iconPosition === 'left' && (
         <Icon
-          className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover/btn:-translate-x-0.5 group-hover/btn:scale-110"
+          className="h-4 w-4 shrink-0"
           aria-hidden
         />
       )}
       {children}
       {Icon && iconPosition === 'right' && (
         <Icon
-          className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:scale-110"
+          className="h-4 w-4 shrink-0"
           aria-hidden
         />
       )}

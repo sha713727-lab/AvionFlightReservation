@@ -102,16 +102,15 @@ export default function ServiceCatalogItem({
         </FadeIn>
 
         <FadeIn direction={reversed ? 'left' : 'right'} delay={0.08}>
-          <div className="group relative overflow-hidden rounded-3xl border border-border bg-section-alt shadow-card transition-transform duration-300 hover:-translate-y-1">
+          <div className="group relative overflow-hidden rounded-3xl border border-border bg-section-alt shadow-card">
             <ServiceMediaFrame
               mediaType={mediaType}
               image={image}
               mediaUrl={mediaUrl}
               imageAlt={imageAlt}
               title={title}
-              imageClassName="transition-transform duration-700 ease-out group-hover:scale-[1.04]"
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/35 via-transparent to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-90" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/35 via-transparent to-transparent opacity-80" />
             <div className="absolute bottom-5 left-5 right-5">
               <p className="truncate text-sm font-medium text-white">{title}</p>
             </div>

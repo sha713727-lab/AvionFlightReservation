@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from 'react'
 import { cn } from '@/utils/cn'
 
 const DIRECTION_CLASS = {
-  up: 'translate-y-8',
-  down: '-translate-y-8',
-  left: '-translate-x-8',
-  right: 'translate-x-8',
-  scale: 'scale-[0.96]',
+  up: 'translate-y-2',
+  down: '-translate-y-2',
+  left: '-translate-x-2',
+  right: 'translate-x-2',
+  scale: 'scale-[0.98]',
   fade: '',
 }
 
@@ -19,7 +19,7 @@ function prefersReducedMotion() {
 
 export function FadeIn({
   children,
-  direction = 'up',
+  direction = 'fade',
   delay = 0,
   className = '',
   once = true,
@@ -37,7 +37,7 @@ export function FadeIn({
         setVisible(true)
         if (once) observer.disconnect()
       },
-      { threshold: 0.15, rootMargin: '0px 0px -60px 0px' },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
     )
 
     observer.observe(node)
@@ -48,12 +48,12 @@ export function FadeIn({
     <div
       ref={ref}
       className={cn(
-        'transition-[opacity,transform] duration-700 ease-out motion-reduce:transform-none motion-reduce:opacity-100',
+        'transition-[opacity,transform] duration-[400ms] ease-out motion-reduce:transform-none motion-reduce:opacity-100',
         visible
           ? 'translate-x-0 translate-y-0 scale-100 opacity-100'
           : cn(
               'opacity-0 motion-reduce:opacity-100 motion-reduce:translate-x-0 motion-reduce:translate-y-0 motion-reduce:scale-100',
-              DIRECTION_CLASS[direction] || DIRECTION_CLASS.up,
+              DIRECTION_CLASS[direction] || DIRECTION_CLASS.fade,
             ),
         className,
       )}
@@ -70,7 +70,7 @@ export function StaggerContainer({ children, className = '' }) {
 
 export function StaggerItem({ children, className = '' }) {
   return (
-    <FadeIn direction="up" className={className}>
+    <FadeIn direction="fade" className={className}>
       {children}
     </FadeIn>
   )

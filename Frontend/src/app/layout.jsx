@@ -7,7 +7,6 @@ import {
   GoogleTagManager,
   GoogleTagManagerNoscript,
 } from '@/components/analytics/GoogleTagManager'
-import ConditionalFlightPathEffect from '@/components/effects/ConditionalFlightPathEffect'
 import ConditionalFloatingActions from '@/components/layout/ConditionalFloatingActions'
 import ResourceHints from '@/components/performance/ResourceHints'
 import { SKIP_TO_CONTENT } from '@/constants/a11y'
@@ -98,7 +97,6 @@ export default function RootLayout({ children }) {
         <a href="#main-content" className="skip-link">
           {SKIP_TO_CONTENT}
         </a>
-        <ConditionalFlightPathEffect />
         <ContactSettingsProvider>
           <CallbackRequestProvider>{children}</CallbackRequestProvider>
         </ContactSettingsProvider>

@@ -46,13 +46,13 @@ export default function HeroSection() {
           </p>
 
           <p
-            className="hero-copy-in relative z-[1] mx-auto mb-8 max-w-xl px-1 text-center text-sm leading-relaxed text-text-secondary sm:mb-10"
+            className="relative z-[1] mx-auto mb-8 max-w-xl px-1 text-center text-sm leading-relaxed text-text-secondary sm:mb-10"
             role="note"
           >
             {COPY.hero.disclosure || INDEPENDENT_SERVICE_DISCLOSURE_SHORT}
           </p>
 
-          <div className="hero-copy-in relative z-[1] flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
+          <div className="relative z-[1] flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
             <Button
               variant="primary"
               size="lg"
@@ -72,7 +72,7 @@ export default function HeroSection() {
             </Button>
           </div>
 
-          <p className="hero-copy-in relative z-[1] mx-auto mt-6 max-w-xl text-center text-sm text-text-secondary">
+          <p className="relative z-[1] mx-auto mt-6 max-w-xl text-center text-sm text-text-secondary">
             <a
               href={OFFICIAL_AVION_TRAVEL_URL}
               target="_blank"

@@ -38,12 +38,12 @@ export default function ServicesCategoryGrid() {
                   href={category.href}
                   className={cn(
                     'group flex h-full flex-col rounded-2xl border border-border bg-card p-7',
-                    'shadow-card transition-all duration-300',
-                    'hover:-translate-y-1 hover:border-accent/30 hover:shadow-card-hover',
+                    'shadow-card transition-colors duration-200',
+                    'hover:border-accent/30 hover:shadow-card-hover',
                     'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent',
                   )}
                 >
-                  <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
+                  <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent transition-colors duration-200 group-hover:bg-accent group-hover:text-white">
                     <Icon className="h-5 w-5" aria-hidden />
                   </span>
                   <h3 className="mb-2 text-xl font-semibold tracking-tight text-primary">

@@ -40,7 +40,7 @@ export default function DestinationsTierStrip({ destinations = [] }) {
               <StaggerItem key={tier.id}>
                 <Link
                   href={GUIDE_AVION_REDEMPTION_CHART_PATH}
-                  className="flex h-full w-full flex-col items-center rounded-2xl border border-border bg-card px-3 py-5 text-center shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:scale-[1.03] hover:border-accent/30 hover:shadow-card-hover active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  className="flex h-full w-full flex-col items-center rounded-2xl border border-border bg-card px-3 py-5 text-center shadow-card transition-colors duration-200 hover:border-accent/30 hover:shadow-card-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
                   <span className="text-lg font-semibold tracking-tight text-accent sm:text-xl">
                     {tier.points.toLocaleString()}

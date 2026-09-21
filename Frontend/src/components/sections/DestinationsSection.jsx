@@ -1,48 +1,29 @@
-import { useState, useEffect, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useCallback } from 'react'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 import Container from '@/components/ui/Container'
 import LayeredSectionHeading from '@/components/ui/LayeredSectionHeading'
 import DestinationTierCard from '@/components/cards/DestinationTierCard'
 import CatalogStatus from '@/components/ui/CatalogStatus'
 import { COPY } from '@/constants/copy'
-import { EASE } from '@/components/animations/motionPresets'
 import { cn } from '@/utils/cn'
-
-const AUTO_INTERVAL_MS = 3500
-const TRANSITION = { duration: 0.28, ease: EASE }
 
 export default function DestinationsSection({ destinations = [] }) {
   const [active, setActive] = useState(0)
-  const [direction, setDirection] = useState(1)
-  const [paused, setPaused] = useState(false)
   const tierCount = destinations.length
 
-  const goTo = useCallback(
-    (index) => {
-      setDirection(index > active ? 1 : -1)
-      setActive(index)
-    },
-    [active],
-  )
+  const goTo = useCallback((index) => {
+    setActive(index)
+  }, [])
 
   const next = useCallback(() => {
     if (tierCount === 0) return
-    setDirection(1)
     setActive((current) => (current + 1) % tierCount)
   }, [tierCount])
 
   const prev = useCallback(() => {
     if (tierCount === 0) return
-    setDirection(-1)
     setActive((current) => (current - 1 + tierCount) % tierCount)
   }, [tierCount])
-
-  useEffect(() => {
-    if (paused || tierCount === 0) return undefined
-    const timer = setInterval(next, AUTO_INTERVAL_MS)
-    return () => clearInterval(timer)
-  }, [next, paused, tierCount])
 
   if (tierCount === 0) {
     return (
@@ -67,7 +48,6 @@ export default function DestinationsSection({ destinations = [] }) {
 
   const safeActive = active % tierCount
   const tier = destinations[safeActive]
-  const slideOffset = direction * 80
 
   return (
     <section
@@ -84,11 +64,7 @@ export default function DestinationsSection({ destinations = [] }) {
           description={COPY.destinations.description}
         />
 
-        <div
-          className="relative mx-auto max-w-4xl px-2 sm:px-0"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
+        <div className="relative mx-auto max-w-4xl px-2 sm:px-0">
           <button
             type="button"
             onClick={prev}
@@ -99,18 +75,7 @@ export default function DestinationsSection({ destinations = [] }) {
           </button>
 
           <div className="overflow-hidden">
-            <AnimatePresence mode="wait" initial={false} custom={direction}>
-              <motion.div
-                key={tier.id}
-                custom={direction}
-                initial={{ opacity: 0, x: slideOffset }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -slideOffset }}
-                transition={TRANSITION}
-              >
-                <DestinationTierCard {...tier} />
-              </motion.div>
-            </AnimatePresence>
+            <DestinationTierCard {...tier} />
           </div>
 
           <button
@@ -134,10 +99,10 @@ export default function DestinationsSection({ destinations = [] }) {
               >
                 <span
                   className={cn(
-                    'h-2.5 w-8 origin-center rounded-full transition-transform duration-200',
+                    'h-2.5 w-8 origin-center rounded-full',
                     index === safeActive
-                      ? 'scale-x-100 bg-accent'
-                      : 'scale-x-[0.31] bg-border hover:bg-accent/40',
+                      ? 'bg-accent'
+                      : 'w-2.5 bg-border hover:bg-accent/40',
                   )}
                 />
               </button>

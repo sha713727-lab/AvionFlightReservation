@@ -1,24 +1,19 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { useCallback, useState } from 'react'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 import Container from '@/components/ui/Container'
 import LayeredSectionHeading from '@/components/ui/LayeredSectionHeading'
 import WhyUsCard from '@/components/cards/WhyUsCard'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animations/FadeIn'
-import { EASE } from '@/components/animations/motionPresets'
 import { COPY } from '@/constants/copy'
 import { WHY_US, VALUE_PROPS } from '@/data/services'
 import { cn } from '@/utils/cn'
 
-const AUTO_INTERVAL_MS = 3500
-const TRANSITION = { duration: 0.28, ease: EASE }
-
 function ValueProp({ label }) {
   return (
-    <div className="group cursor-default text-center transition-transform duration-300 hover:-translate-y-0.5">
-      <p className="text-base font-semibold tracking-tight text-primary transition-colors duration-300 group-hover:text-accent lg:text-lg">
+    <div className="group cursor-default text-center">
+      <p className="text-base font-semibold tracking-tight text-primary transition-colors duration-200 group-hover:text-accent lg:text-lg">
         {label}
       </p>
     </div>
@@ -27,44 +22,25 @@ function ValueProp({ label }) {
 
 function WhyUsMobileCarousel() {
   const [active, setActive] = useState(0)
-  const [direction, setDirection] = useState(1)
-  const [paused, setPaused] = useState(false)
   const cardCount = WHY_US.length
 
-  const goTo = useCallback(
-    (index) => {
-      setDirection(index > active ? 1 : -1)
-      setActive(index)
-    },
-    [active],
-  )
+  const goTo = useCallback((index) => {
+    setActive(index)
+  }, [])
 
   const next = useCallback(() => {
-    setDirection(1)
     setActive((current) => (current + 1) % cardCount)
   }, [cardCount])
 
   const prev = useCallback(() => {
-    setDirection(-1)
     setActive((current) => (current - 1 + cardCount) % cardCount)
   }, [cardCount])
 
-  useEffect(() => {
-    if (paused) return undefined
-    const timer = setInterval(next, AUTO_INTERVAL_MS)
-    return () => clearInterval(timer)
-  }, [next, paused])
-
   const safeActive = active % cardCount
   const item = WHY_US[safeActive]
-  const slideOffset = direction * 80
 
   return (
-    <div
-      className="relative mb-14 sm:hidden"
-      onTouchStart={() => setPaused(true)}
-      onTouchEnd={() => setPaused(false)}
-    >
+    <div className="relative mb-14 sm:hidden">
       <button
         type="button"
         onClick={prev}
@@ -75,18 +51,7 @@ function WhyUsMobileCarousel() {
       </button>
 
       <div className="overflow-hidden px-8">
-        <AnimatePresence mode="wait" initial={false} custom={direction}>
-          <motion.div
-            key={item.id}
-            custom={direction}
-            initial={{ opacity: 0, x: slideOffset }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -slideOffset }}
-            transition={TRANSITION}
-          >
-            <WhyUsCard item={item} index={safeActive} />
-          </motion.div>
-        </AnimatePresence>
+        <WhyUsCard item={item} index={safeActive} />
       </div>
 
       <button
@@ -110,10 +75,10 @@ function WhyUsMobileCarousel() {
           >
             <span
               className={cn(
-                'h-2.5 w-8 origin-center rounded-full transition-transform duration-200',
+                'h-2.5 w-8 origin-center rounded-full',
                 index === safeActive
-                  ? 'scale-x-100 bg-accent'
-                  : 'scale-x-[0.31] bg-border hover:bg-accent/40',
+                  ? 'bg-accent'
+                  : 'w-2.5 bg-border hover:bg-accent/40',
               )}
             />
           </button>

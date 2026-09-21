@@ -25,7 +25,6 @@ export default function DestinationPlaceCard({
     <article
       className={cn(
         'group relative overflow-hidden rounded-3xl border border-border bg-card shadow-card',
-        'transition-transform duration-300 hover:-translate-y-2',
         featured ? 'min-h-[320px] sm:min-h-[380px] lg:min-h-[440px]' : 'min-h-[240px] sm:min-h-[280px]',
       )}
     >
@@ -33,7 +32,6 @@ export default function DestinationPlaceCard({
         <LazyVideo
           src={mediaUrl}
           label={resolvedAlt}
-          className="transition-transform duration-700 ease-out group-hover:scale-105"
         />
       ) : !hasError && imageSrc ? (
         <OptimizedImage
@@ -47,13 +45,13 @@ export default function DestinationPlaceCard({
               : '(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw'
           }
           onError={() => setHasError(true)}
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          className="object-cover"
         />
       ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent" />
       )}
 
-      <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/35 to-transparent transition-opacity duration-500 group-hover:from-primary/95" />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/35 to-transparent" />
 
       <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
         <FadeIn direction="up">

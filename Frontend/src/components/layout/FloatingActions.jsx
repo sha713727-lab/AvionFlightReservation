@@ -25,9 +25,8 @@ export default function FloatingActions() {
       <TrackedTelLink
         href={phoneHref}
         aria-label={`${COPY.cta.callNow}: ${phoneNumber}`}
-        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white shadow-lg shadow-accent/30 transition-transform duration-300 hover:scale-110 hover:-translate-y-1 active:scale-95"
+        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white shadow-lg shadow-accent/30 transition-colors duration-200 hover:bg-accent-hover"
       >
-        <span className="absolute inset-0 rounded-full bg-accent animate-ping-soft opacity-30" aria-hidden />
         <FaPhone className="relative z-10 h-5 w-5" aria-hidden />
       </TrackedTelLink>
     </div>

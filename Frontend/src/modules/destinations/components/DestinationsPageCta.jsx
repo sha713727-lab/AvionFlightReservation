@@ -28,7 +28,7 @@ export default function DestinationsPageCta() {
             <button
               type="button"
               onClick={() => callModal.open(CTA_PLACEMENT.pageCta)}
-              className="mt-8 inline-flex w-full max-w-md items-center justify-center gap-3 rounded-full bg-white px-8 py-4 text-base font-semibold text-primary shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-[1.03] hover:-translate-y-0.5 hover:bg-white/95 active:scale-[0.98] sm:w-auto lg:text-lg"
+              className="mt-8 inline-flex w-full max-w-md items-center justify-center gap-3 rounded-full bg-white px-8 py-4 text-base font-semibold text-primary shadow-lg shadow-primary/30 transition-colors duration-200 hover:bg-white/95 sm:w-auto lg:text-lg"
             >
               <FaPhone className="h-4 w-4 shrink-0" aria-hidden />
               {COPY.cta.talkWithExpert}

@@ -9,7 +9,7 @@ export default function WhyUsCard({ item, index }) {
     <article
       className={cn(
         'group h-full rounded-xl border border-border border-l-4 bg-card p-7 lg:p-8',
-        'shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover',
+        'shadow-sm transition-shadow duration-200 hover:shadow-card-hover',
         accent.stripe,
       )}
     >
