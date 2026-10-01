@@ -5,7 +5,9 @@
 # Usage (on the VPS):
 #   cd /var/www/aviosupportdesk
 #   bash deploy/safe-update.sh              # pull + nginx reload (sitemap/config)
-#   bash deploy/safe-update.sh --frontend   # also rebuild frontend (meta/robots/JS)
+#   bash deploy/safe-update.sh --frontend   # also rebuild frontend
+#   bash deploy/safe-update.sh --api        # also rebuild API (runs prisma migrate on start)
+#   bash deploy/safe-update.sh --frontend --api
 #   bash deploy/safe-update.sh --recreate-nginx  # remount nginx volumes (brief 80/443 blip for THIS edge only)
 
 set -euo pipefail
@@ -17,14 +19,16 @@ ENV_FILE="${ENV_FILE:-deploy/.env.production}"
 COMPOSE=(docker compose -f docker-compose.prod.yml --env-file "$ENV_FILE")
 DOMAIN="${DOMAIN:-aviosupportdesk.com}"
 REBUILD_FRONTEND=0
+REBUILD_API=0
 RECREATE_NGINX=0
 
 for arg in "$@"; do
   case "$arg" in
     --frontend) REBUILD_FRONTEND=1 ;;
+    --api) REBUILD_API=1 ;;
     --recreate-nginx) RECREATE_NGINX=1 ;;
     -h|--help)
-      echo "Usage: bash deploy/safe-update.sh [--frontend] [--recreate-nginx]"
+      echo "Usage: bash deploy/safe-update.sh [--frontend] [--api] [--recreate-nginx]"
       exit 0
       ;;
     *)
@@ -91,6 +95,28 @@ fi
 echo "==> Containers in THIS project:"
 "${COMPOSE[@]}" ps --format 'table {{.Name}}\t{{.Status}}\t{{.Ports}}' || "${COMPOSE[@]}" ps
 
+if [[ "$REBUILD_API" -eq 1 ]]; then
+  echo "==> Rebuilding ONLY api image (not frontend/postgres/redis)"
+  "${COMPOSE[@]}" build --no-cache api
+  echo "==> Recreating ONLY api container (prisma migrate deploy runs on start)"
+  "${COMPOSE[@]}" up -d --no-deps --force-recreate api
+  echo "==> Waiting for API health"
+  api_ready=0
+  for _ in $(seq 1 36); do
+    if "${COMPOSE[@]}" exec -T api node -e "fetch('http://127.0.0.1:4000/api/v1/health').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))" >/dev/null 2>&1; then
+      api_ready=1
+      break
+    fi
+    sleep 5
+  done
+  if [[ "$api_ready" -ne 1 ]]; then
+    echo "WARNING: API health check did not succeed yet. Recent logs:"
+    "${COMPOSE[@]}" logs --tail=80 api || true
+  else
+    echo "==> API healthy"
+  fi
+fi
+
 if [[ "$REBUILD_FRONTEND" -eq 1 ]]; then
   echo "==> Rebuilding ONLY frontend image (not api/postgres/redis)"
   "${COMPOSE[@]}" build --no-cache frontend
@@ -116,6 +142,8 @@ echo "==> Confirm loaded sitemap locations"
 echo "==> Health checks for $DOMAIN only"
 sleep 3
 curl -fsS -o /dev/null -w "homepage:%{http_code}\n" "https://${DOMAIN}/" || true
+curl -fsS -o /dev/null -w "api_health:%{http_code}\n" "https://${DOMAIN}/api/v1/health" || true
+curl -s -o /dev/null -w "admin_inquiries_unauth:%{http_code}\n" "https://${DOMAIN}/api/v1/admin/inquiries" || true
 curl -fsS -o /dev/null -w "sitemap:%{http_code} ctype:%{content_type}\n" "https://${DOMAIN}/sitemap.xml" || true
 echo -n "sitemap_redirect:"
 curl -sI "https://${DOMAIN}/sitemap" | tr -d '\r' | awk '/^HTTP/{c=$2} tolower($1)=="location:"{l=$2} END{print c " location:" l}'

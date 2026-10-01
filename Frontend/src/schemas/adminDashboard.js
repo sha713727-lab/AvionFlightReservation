@@ -33,10 +33,10 @@ export const adminDashboardSummarySchema = z.object({
     destinationTiersActive: z.coerce.number().int().nonnegative(),
     destinationPlacesActive: z.coerce.number().int().nonnegative(),
     faqsActive: z.coerce.number().int().nonnegative(),
-    callbacksNew: z.coerce.number().int().nonnegative(),
-    callbacksTotal: z.coerce.number().int().nonnegative(),
-    inquiriesNew: z.coerce.number().int().nonnegative(),
-    inquiriesTotal: z.coerce.number().int().nonnegative(),
+    callbacksNew: z.coerce.number().int().nonnegative().catch(0),
+    callbacksTotal: z.coerce.number().int().nonnegative().catch(0),
+    inquiriesNew: z.coerce.number().int().nonnegative().catch(0),
+    inquiriesTotal: z.coerce.number().int().nonnegative().catch(0),
   }),
   system: z.object({
     database: z.enum(['up', 'down']),
@@ -45,5 +45,5 @@ export const adminDashboardSummarySchema = z.object({
   recentServices: z.array(adminCatalogItemSchema),
   recentFaqs: z.array(adminCatalogItemSchema),
   recentCallbacks: z.array(adminRecentCallbackSchema),
-  recentInquiries: z.array(adminRecentInquirySchema),
+  recentInquiries: z.array(adminRecentInquirySchema).catch([]),
 })
