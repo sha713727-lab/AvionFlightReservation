@@ -7,6 +7,8 @@ export const INTERNATIONAL_FLIGHT_PATH = '/international-flights'
 export const LEGACY_INTERNATIONAL_FLIGHT_PATH = '/internationalFlight'
 export const FLIGHT_BOOKING_PATH = '/flight-booking'
 export const HOTEL_BOOKING_PATH = '/hotel-booking'
+export const WYNDHAM_HOTELS_PATH = '/wyndham-hotels'
+export const HILTON_HOTELS_PATH = '/hilton-hotels'
 export const POINTS_REDEMPTION_PATH = '/points-redemption'
 export const FLIGHT_CHANGES_PATH = '/flight-changes'
 export const FLIGHT_CANCELLATION_PATH = '/flight-cancellation'
@@ -47,6 +49,8 @@ export const ADMIN_CALLBACKS_PATH = '/admin/callbacks'
 export const ADMIN_INQUIRIES_PATH = '/admin/inquiries'
 export const ADMIN_FAQS_PATH = '/admin/faqs'
 export const ADMIN_CONTACT_PATH = '/admin/contact'
+export const ADMIN_WYNDHAM_PAGE_PATH = '/admin/wyndham-page'
+export const ADMIN_HILTON_PAGE_PATH = '/admin/hilton-page'
 export const ADMIN_SECURITY_PATH = '/admin/security'
 
 export const SITE_PATHS = [
@@ -56,6 +60,8 @@ export const SITE_PATHS = [
   INTERNATIONAL_FLIGHT_PATH,
   FLIGHT_BOOKING_PATH,
   HOTEL_BOOKING_PATH,
+  WYNDHAM_HOTELS_PATH,
+  HILTON_HOTELS_PATH,
   POINTS_REDEMPTION_PATH,
   FLIGHT_CHANGES_PATH,
   FLIGHT_CANCELLATION_PATH,
@@ -98,6 +104,8 @@ export const SITEMAP_SERVICE_PATHS = [
   INTERNATIONAL_FLIGHT_PATH,
   FLIGHT_BOOKING_PATH,
   HOTEL_BOOKING_PATH,
+  WYNDHAM_HOTELS_PATH,
+  HILTON_HOTELS_PATH,
   POINTS_REDEMPTION_PATH,
   FLIGHT_CHANGES_PATH,
   FLIGHT_CANCELLATION_PATH,

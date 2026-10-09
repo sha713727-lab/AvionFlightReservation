@@ -8,6 +8,8 @@
   ADMIN_PLACES_PATH,
   ADMIN_SECURITY_PATH,
   ADMIN_SERVICES_PATH,
+  ADMIN_WYNDHAM_PAGE_PATH,
+  ADMIN_HILTON_PAGE_PATH,
 } from '@/constants/routes'
 
 export const ADMIN_FIELD_NAMES = {
@@ -67,6 +69,18 @@ export const ADMIN_NAV_ITEMS = [
     icon: 'contact',
   },
   {
+    id: 'wyndham',
+    label: 'Wyndham page',
+    href: ADMIN_WYNDHAM_PAGE_PATH,
+    icon: 'wyndham',
+  },
+  {
+    id: 'hilton',
+    label: 'Hilton page',
+    href: ADMIN_HILTON_PAGE_PATH,
+    icon: 'hilton',
+  },
+  {
     id: 'security',
     label: 'Security',
     href: ADMIN_SECURITY_PATH,
@@ -106,4 +120,6 @@ export const ADMIN_ERROR_MESSAGES = {
   faqsGeneric: 'Unable to complete the FAQs request. Please try again.',
   faqsConflict: 'An FAQ with this slug already exists.',
   settingsGeneric: 'Unable to complete the contact settings request. Please try again.',
+  wyndhamGeneric: 'Unable to complete the Wyndham page request. Please try again.',
+  hiltonGeneric: 'Unable to complete the Hilton page request. Please try again.',
 }

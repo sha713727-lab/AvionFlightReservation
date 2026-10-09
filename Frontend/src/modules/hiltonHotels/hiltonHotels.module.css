@@ -1,0 +1,306 @@
+.page {
+  --wh-ground: #0f2430;
+  --wh-surface: #1a3a4c;
+  --wh-accent: #4de8f4;
+  --wh-accent-soft: #a8f4f8;
+  --wh-text: #f4fbfc;
+  --wh-muted: #b7c9d1;
+  --wh-gutter: clamp(20px, 3vw, 64px);
+  --wh-wide: min(1600px, 100%);
+  --wh-editorial: min(1100px, 100%);
+  background: var(--wh-ground);
+  color: var(--wh-text);
+}
+
+.section {
+  padding-block: clamp(72px, 10vw, 180px);
+  padding-inline: var(--wh-gutter);
+}
+
+.wide {
+  width: var(--wh-wide);
+  margin-inline: auto;
+}
+
+.editorial {
+  width: var(--wh-editorial);
+  margin-inline: auto;
+}
+
+.hero {
+  padding-top: clamp(108px, 12vw, 140px);
+  padding-bottom: clamp(48px, 8vw, 140px);
+  text-align: center;
+}
+
+.heroTitle {
+  max-width: 1160px;
+  margin-inline: auto;
+  font-size: clamp(40px, 7.6vw, 120px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+}
+
+.heroIntro {
+  max-width: 650px;
+  margin: 28px auto 0;
+  font-size: clamp(16px, 1.4vw, 20px);
+  line-height: 1.5;
+  color: var(--wh-muted);
+}
+
+.leadFrame {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.leadInner {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  width: 100%;
+}
+
+.storyGrid {
+  display: grid;
+  grid-template-columns: 45% 49%;
+  gap: 6%;
+  align-items: start;
+}
+
+.storyLabel {
+  font-size: clamp(14px, 1.2vw, 18px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.storyCopy {
+  font-size: clamp(17px, 1.5vw, 24px);
+  line-height: 1.45;
+  color: var(--wh-muted);
+}
+
+.storyCopy p + p {
+  margin-top: 28px;
+}
+
+.storyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 36px;
+  color: var(--wh-accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-size: 18px;
+}
+
+.photoPair {
+  display: grid;
+  grid-template-columns: 50% 40%;
+  gap: 10%;
+  align-items: start;
+}
+
+.photoPairB {
+  grid-template-columns: 54% 36%;
+}
+
+.photoFrame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  aspect-ratio: 2 / 3;
+}
+
+.photoOffset {
+  margin-top: clamp(80px, 12vw, 220px);
+}
+
+.principlesHeading {
+  font-size: clamp(30px, 4vw, 56px);
+  margin-bottom: clamp(32px, 5vw, 72px);
+}
+
+.principlesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(48px, 5vw, 96px) clamp(32px, 4vw, 80px);
+}
+
+.principleNumber {
+  font-size: clamp(56px, 6vw, 104px);
+  line-height: 1;
+  color: var(--wh-accent);
+  font-weight: 700;
+}
+
+.principleTitle {
+  margin-top: 12px;
+  font-size: clamp(20px, 1.6vw, 26px);
+  font-weight: 700;
+}
+
+.principleBody {
+  margin-top: 12px;
+  font-size: clamp(16px, 1.2vw, 20px);
+  line-height: 1.5;
+  color: var(--wh-muted);
+}
+
+.clientsIntro {
+  max-width: 740px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.clientsHeading {
+  font-size: clamp(30px, 4vw, 56px);
+  margin-bottom: 20px;
+}
+
+.propertiesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.propertyCard {
+  background: var(--wh-surface);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.propertyTitle {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.propertyBlurb {
+  margin-top: 10px;
+  color: var(--wh-muted);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.railHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.railControls {
+  display: flex;
+  gap: 8px;
+}
+
+.railButton {
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--wh-accent) 40%, transparent);
+  color: var(--wh-text);
+  background: transparent;
+}
+
+.railViewport {
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.railTrack {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+}
+
+.railCard {
+  width: min(430px, 84vw);
+  border-radius: 12px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.railCardTall {
+  min-height: 520px;
+}
+
+.railCardMedium {
+  min-height: 370px;
+}
+
+.railCardShort {
+  min-height: 280px;
+}
+
+.railCardSurface {
+  background: var(--wh-surface);
+  padding: 28px;
+  height: 100%;
+}
+
+.railCardAccent {
+  background: var(--wh-accent);
+  color: #082028;
+  padding: 28px;
+  height: 100%;
+}
+
+.disclosure {
+  margin-top: 48px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--wh-muted);
+  max-width: 760px;
+}
+
+@media (max-width: 899px) {
+  .storyGrid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .photoPair,
+  .photoPairB {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .photoOffset {
+    margin-top: 0;
+    width: 88%;
+    margin-left: auto;
+  }
+
+  .principlesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .propertiesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .railHeader {
+    flex-direction: column;
+    align-items: start;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .principlesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page * {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}

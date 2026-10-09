@@ -120,3 +120,235 @@ model SiteSettings {
 
   @@map("site_settings")
 }
+
+/// Singleton CMS document for the public /wyndham-hotels landing page.
+model WyndhamPage {
+  id                   String                    @id @default("default")
+  status               String                    @default("published")
+  metaTitle            String
+  metaDescription      String
+  ogTitle              String?
+  ogDescription        String?
+  heroHeading          String
+  heroIntroduction     String
+  storyLabel           String
+  storyParagraphs      String[]
+  storyCtaLabel        String
+  storyCtaHref         String
+  principlesHeading    String
+  clientsEnabled       Boolean                   @default(false)
+  clientsHeading       String                    @default("")
+  clientsIntroduction  String                    @default("")
+  railLabel            String
+  contactEmailOverride String?
+  mediaSlots           WyndhamMediaSlot[]
+  principles           WyndhamPrinciple[]
+  railCards            WyndhamRailCard[]
+  properties           WyndhamPropertyHighlight[]
+  clientLogos          WyndhamClientLogo[]
+  createdAt            DateTime                  @default(now())
+  updatedAt            DateTime                  @updatedAt
+
+  @@map("wyndham_pages")
+}
+
+model WyndhamMediaSlot {
+  id        String      @id @default(cuid())
+  pageId    String      @default("default")
+  page      WyndhamPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  slotKey   String
+  mediaUrl  String      @default("")
+  alt       String      @default("")
+  focalX    Float       @default(0.5)
+  focalY    Float       @default(0.5)
+  updatedAt DateTime    @updatedAt
+
+  @@unique([pageId, slotKey])
+  @@map("wyndham_media_slots")
+}
+
+model WyndhamPrinciple {
+  id          String      @id @default(cuid())
+  pageId      String      @default("default")
+  page        WyndhamPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  numberLabel String
+  title       String
+  description String
+  sortOrder   Int         @default(0)
+  isEnabled   Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([pageId, sortOrder])
+  @@map("wyndham_principles")
+}
+
+model WyndhamRailCard {
+  id        String      @id @default(cuid())
+  pageId    String      @default("default")
+  page      WyndhamPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  cardType  String
+  title     String      @default("")
+  body      String      @default("")
+  linkLabel String?
+  linkHref  String?
+  factValue String?
+  mediaUrl  String?
+  mediaAlt  String      @default("")
+  sortOrder Int         @default(0)
+  isEnabled Boolean     @default(true)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  @@index([pageId, sortOrder])
+  @@map("wyndham_rail_cards")
+}
+
+model WyndhamPropertyHighlight {
+  id        String      @id @default(cuid())
+  pageId    String      @default("default")
+  page      WyndhamPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  title     String
+  blurb     String
+  mediaUrl  String?
+  mediaAlt  String      @default("")
+  sortOrder Int         @default(0)
+  isEnabled Boolean     @default(true)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  @@index([pageId, sortOrder])
+  @@map("wyndham_property_highlights")
+}
+
+model WyndhamClientLogo {
+  id        String      @id @default(cuid())
+  pageId    String      @default("default")
+  page      WyndhamPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  name      String
+  mediaUrl  String
+  href      String?
+  sortOrder Int         @default(0)
+  isEnabled Boolean     @default(true)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  @@index([pageId, sortOrder])
+  @@map("wyndham_client_logos")
+}
+
+/// Singleton CMS document for the public /hilton-hotels landing page.
+model HiltonPage {
+  id                   String                   @id @default("default")
+  status               String                   @default("published")
+  metaTitle            String
+  metaDescription      String
+  ogTitle              String?
+  ogDescription        String?
+  heroHeading          String
+  heroIntroduction     String
+  storyLabel           String
+  storyParagraphs      String[]
+  storyCtaLabel        String
+  storyCtaHref         String
+  principlesHeading    String
+  clientsEnabled       Boolean                  @default(false)
+  clientsHeading       String                   @default("")
+  clientsIntroduction  String                   @default("")
+  railLabel            String
+  contactEmailOverride String?
+  mediaSlots           HiltonMediaSlot[]
+  principles           HiltonPrinciple[]
+  railCards            HiltonRailCard[]
+  properties           HiltonPropertyHighlight[]
+  clientLogos          HiltonClientLogo[]
+  createdAt            DateTime                 @default(now())
+  updatedAt            DateTime                 @updatedAt
+
+  @@map("hilton_pages")
+}
+
+model HiltonMediaSlot {
+  id        String     @id @default(cuid())
+  pageId    String     @default("default")
+  page      HiltonPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  slotKey   String
+  mediaUrl  String     @default("")
+  alt       String     @default("")
+  focalX    Float      @default(0.5)
+  focalY    Float      @default(0.5)
+  updatedAt DateTime   @updatedAt
+
+  @@unique([pageId, slotKey])
+  @@map("hilton_media_slots")
+}
+
+model HiltonPrinciple {
+  id          String     @id @default(cuid())
+  pageId      String     @default("default")
+  page        HiltonPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  numberLabel String
+  title       String
+  description String
+  sortOrder   Int        @default(0)
+  isEnabled   Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@index([pageId, sortOrder])
+  @@map("hilton_principles")
+}
+
+model HiltonRailCard {
+  id        String     @id @default(cuid())
+  pageId    String     @default("default")
+  page      HiltonPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  cardType  String
+  title     String     @default("")
+  body      String     @default("")
+  linkLabel String?
+  linkHref  String?
+  factValue String?
+  mediaUrl  String?
+  mediaAlt  String     @default("")
+  sortOrder Int        @default(0)
+  isEnabled Boolean    @default(true)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@index([pageId, sortOrder])
+  @@map("hilton_rail_cards")
+}
+
+model HiltonPropertyHighlight {
+  id        String     @id @default(cuid())
+  pageId    String     @default("default")
+  page      HiltonPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  title     String
+  blurb     String
+  mediaUrl  String?
+  mediaAlt  String     @default("")
+  sortOrder Int        @default(0)
+  isEnabled Boolean    @default(true)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@index([pageId, sortOrder])
+  @@map("hilton_property_highlights")
+}
+
+model HiltonClientLogo {
+  id        String     @id @default(cuid())
+  pageId    String     @default("default")
+  page      HiltonPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  name      String
+  mediaUrl  String
+  href      String?
+  sortOrder Int        @default(0)
+  isEnabled Boolean    @default(true)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@index([pageId, sortOrder])
+  @@map("hilton_client_logos")
+}

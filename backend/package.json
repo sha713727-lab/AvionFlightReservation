@@ -21,6 +21,8 @@
     "db:migrate": "prisma migrate dev",
     "db:migrate:deploy": "prisma migrate deploy",
     "db:seed": "tsx prisma/seed.ts",
+    "db:seed-wyndham": "tsx prisma/seed-wyndham.ts",
+    "db:seed-hilton": "tsx prisma/seed-hilton.ts",
     "db:studio": "prisma studio",
     "test": "vitest run",
     "test:watch": "vitest",

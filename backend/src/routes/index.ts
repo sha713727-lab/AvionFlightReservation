@@ -61,6 +61,22 @@ import { SettingsController } from '../modules/settings/controller.js'
 import { SettingsRepository } from '../modules/settings/repository.js'
 import { SettingsService } from '../modules/settings/service.js'
 import { registerSettingsRoutes } from '../modules/settings/routes.js'
+import { WyndhamPageController } from '../modules/wyndham-page/controller.js'
+import { WyndhamPageRepository } from '../modules/wyndham-page/repository.js'
+import { WyndhamPageService } from '../modules/wyndham-page/service.js'
+import { registerWyndhamPageRoutes } from '../modules/wyndham-page/routes.js'
+import { AdminWyndhamPageController } from '../modules/admin-wyndham-page/controller.js'
+import { AdminWyndhamPageRepository } from '../modules/admin-wyndham-page/repository.js'
+import { AdminWyndhamPageService } from '../modules/admin-wyndham-page/service.js'
+import { registerAdminWyndhamPageRoutes } from '../modules/admin-wyndham-page/routes.js'
+import { HiltonPageController } from '../modules/hilton-page/controller.js'
+import { HiltonPageRepository } from '../modules/hilton-page/repository.js'
+import { HiltonPageService } from '../modules/hilton-page/service.js'
+import { registerHiltonPageRoutes } from '../modules/hilton-page/routes.js'
+import { AdminHiltonPageController } from '../modules/admin-hilton-page/controller.js'
+import { AdminHiltonPageRepository } from '../modules/admin-hilton-page/repository.js'
+import { AdminHiltonPageService } from '../modules/admin-hilton-page/service.js'
+import { registerAdminHiltonPageRoutes } from '../modules/admin-hilton-page/routes.js'
 
 export async function registerRoutes(
   app: FastifyInstance,
@@ -125,6 +141,18 @@ export async function registerRoutes(
     new AdminFaqsService(new AdminFaqRepository(context.db), catalogCache),
   )
   const settingsController = new SettingsController(settingsService)
+  const wyndhamPageController = new WyndhamPageController(
+    new WyndhamPageService(new WyndhamPageRepository(context.db), catalogCache),
+  )
+  const adminWyndhamPageController = new AdminWyndhamPageController(
+    new AdminWyndhamPageService(new AdminWyndhamPageRepository(context.db), catalogCache),
+  )
+  const hiltonPageController = new HiltonPageController(
+    new HiltonPageService(new HiltonPageRepository(context.db), catalogCache),
+  )
+  const adminHiltonPageController = new AdminHiltonPageController(
+    new AdminHiltonPageService(new AdminHiltonPageRepository(context.db), catalogCache),
+  )
 
   await app.register(
     async (api) => {
@@ -132,6 +160,8 @@ export async function registerRoutes(
       await registerServiceRoutes(api, serviceController, catalogOptions)
       await registerDestinationRoutes(api, destinationController, catalogOptions)
       await registerFaqRoutes(api, faqController, catalogOptions)
+      await registerWyndhamPageRoutes(api, wyndhamPageController)
+      await registerHiltonPageRoutes(api, hiltonPageController)
       await registerCallbackRoutes(api, callbackRequestController)
       await registerInquiryRoutes(api, inquiryRequestController)
       await registerSettingsRoutes(api, settingsController, adminAuthService)
@@ -143,6 +173,8 @@ export async function registerRoutes(
       await registerAdminCallbackRoutes(api, adminCallbacksController, adminAuthService)
       await registerAdminInquiryRoutes(api, adminInquiriesController, adminAuthService)
       await registerAdminFaqRoutes(api, adminFaqsController, adminAuthService)
+      await registerAdminWyndhamPageRoutes(api, adminWyndhamPageController, adminAuthService)
+      await registerAdminHiltonPageRoutes(api, adminHiltonPageController, adminAuthService)
     },
     { prefix: API_PREFIX },
   )

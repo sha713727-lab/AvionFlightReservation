@@ -6,4 +6,5 @@ node_modules
 coverage
 *.log
 .local-pg
+.local-pg-admin-test
 uploads

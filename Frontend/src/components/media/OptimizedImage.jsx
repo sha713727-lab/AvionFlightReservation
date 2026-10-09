@@ -20,6 +20,7 @@ export default function OptimizedImage({
   placeholder,
   blurDataURL,
   onError,
+  style,
 }) {
   if (!src) return null
 
@@ -47,6 +48,7 @@ export default function OptimizedImage({
       placeholder={placeholder}
       blurDataURL={blurDataURL}
       onError={onError}
+      style={style}
       className={cn('max-w-full', className)}
     />
   )

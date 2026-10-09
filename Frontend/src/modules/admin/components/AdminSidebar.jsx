@@ -10,6 +10,7 @@ import {
   HiOutlineLocationMarker,
   HiOutlineLockClosed,
   HiOutlineMail,
+  HiOutlineOfficeBuilding,
   HiOutlinePhone,
   HiOutlineQuestionMarkCircle,
 } from 'react-icons/hi'
@@ -24,6 +25,8 @@ import {
   ADMIN_PLACES_PATH,
   ADMIN_SECURITY_PATH,
   ADMIN_SERVICES_PATH,
+  ADMIN_WYNDHAM_PAGE_PATH,
+  ADMIN_HILTON_PAGE_PATH,
 } from '@/constants/routes'
 import { cn } from '@/utils/cn'
 
@@ -68,6 +71,16 @@ const NAV_ITEMS = [
     href: ADMIN_CONTACT_PATH,
     label: 'Contact',
     icon: HiOutlineMail,
+  },
+  {
+    href: ADMIN_WYNDHAM_PAGE_PATH,
+    label: 'Wyndham page',
+    icon: HiOutlineOfficeBuilding,
+  },
+  {
+    href: ADMIN_HILTON_PAGE_PATH,
+    label: 'Hilton page',
+    icon: HiOutlineOfficeBuilding,
   },
   {
     href: ADMIN_SECURITY_PATH,

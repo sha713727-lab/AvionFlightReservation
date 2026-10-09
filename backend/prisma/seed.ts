@@ -3,6 +3,7 @@ import { Redis } from 'ioredis'
 import { DESTINATION_SEED } from './data/destinations.js'
 import { FAQ_SEED } from './data/faqs.js'
 import { SERVICE_SEED } from './data/services.js'
+import { WYNDHAM_PAGE_SEED } from './data/wyndham-page.js'
 
 const prisma = new PrismaClient()
 const CATALOG_CACHE_PREFIX = 'avion-catalog:'
@@ -68,6 +69,38 @@ async function seed(): Promise<void> {
   for (const faq of FAQ_SEED) {
     await prisma.faq.create({ data: { ...faq, isActive: true } })
   }
+
+  await prisma.wyndhamClientLogo.deleteMany()
+  await prisma.wyndhamPropertyHighlight.deleteMany()
+  await prisma.wyndhamRailCard.deleteMany()
+  await prisma.wyndhamPrinciple.deleteMany()
+  await prisma.wyndhamMediaSlot.deleteMany()
+  await prisma.wyndhamPage.deleteMany()
+
+  const {
+    mediaSlots,
+    principles,
+    railCards,
+    properties,
+    ...pageFields
+  } = WYNDHAM_PAGE_SEED
+
+  await prisma.wyndhamPage.create({
+    data: {
+      id: 'default',
+      ...pageFields,
+      mediaSlots: { create: mediaSlots },
+      principles: {
+        create: principles.map((item) => ({ ...item, isEnabled: true })),
+      },
+      railCards: {
+        create: railCards.map((item) => ({ ...item, isEnabled: true })),
+      },
+      properties: {
+        create: properties.map((item) => ({ ...item, isEnabled: true })),
+      },
+    },
+  })
 
   await flushCatalogCache()
 }
