@@ -69,6 +69,14 @@ export interface WyndhamClientLogoDto {
   isEnabled: boolean
 }
 
+export interface WyndhamFaqDto {
+  id: string
+  question: string
+  answer: string
+  sortOrder: number
+  isEnabled: boolean
+}
+
 export interface WyndhamPageDto {
   id: string
   status: string
@@ -93,5 +101,6 @@ export interface WyndhamPageDto {
   railCards: WyndhamRailCardDto[]
   properties: WyndhamPropertyDto[]
   clientLogos: WyndhamClientLogoDto[]
+  faqs: WyndhamFaqDto[]
   updatedAt: string
 }

@@ -5,7 +5,6 @@ import {
   FLIGHT_CANCELLATION_PATH,
   FLIGHT_CHANGES_PATH,
   GUIDE_AVION_FLIGHT_BOOKING_PATH,
-  GUIDE_AVION_POINTS_VALUE_PATH,
   GUIDE_AVION_REDEMPTION_CHART_PATH,
   GUIDE_BAGGAGE_PATH,
   GUIDE_FLIGHT_BOOKING_PATH,
@@ -26,6 +25,7 @@ import {
   TRIP_PLANNING_PATH,
 } from '@/constants/routes'
 
+export { AVION_RESOURCE_LINKS } from '@/constants/avionResourceLinks'
 export { getPageRelatedLinks } from '@/constants/pageRelatedLinks'
 
 /** All main service/product pages — homepage must link to each. */
@@ -84,34 +84,6 @@ export const MAIN_SERVICE_LINKS = [
     title: 'International Flights',
     anchor: 'international flights by phone',
     description: 'Long-haul and transborder booking help with connection buffers explained.',
-  },
-]
-
-/** Avion education + tool destinations surfaced before conversion. */
-export const AVION_RESOURCE_LINKS = [
-  {
-    href: GUIDE_AVION_FLIGHT_BOOKING_PATH,
-    title: 'How to book flights with Avion points',
-    description:
-      'Portal redemptions, eligible fixed-chart awards, and partner transfers explained with official sources.',
-  },
-  {
-    href: GUIDE_AVION_REDEMPTION_CHART_PATH,
-    title: 'Avion redemption chart explained',
-    description:
-      'When chart levels apply, observed point levels and CAD caps, and the cash you may still owe.',
-  },
-  {
-    href: GUIDE_AVION_POINTS_VALUE_PATH,
-    title: 'What Avion points are worth',
-    description:
-      'Worked comparisons for different balances instead of one universal cents-per-point claim.',
-  },
-  {
-    href: TOOL_AVION_POINTS_CALCULATOR_PATH,
-    title: 'Avion points value calculator',
-    description:
-      'Compare a cash fare with a redemption using your own quotes, before and after assistance fees.',
   },
 ]
 
@@ -181,8 +153,8 @@ export const SERVICE_INTERNAL_LINKS = {
       serviceCard(FLIGHT_BOOKING_PATH),
     ],
     relatedGuides: [
-      { href: GUIDE_FLIGHT_CHANGES_PATH, label: 'how airline flight changes work' },
-      { href: GUIDE_FLIGHT_CANCELLATIONS_PATH, label: 'flight cancellation and refunds guide' },
+      { href: GUIDE_FLIGHT_CHANGES_PATH, label: 'guide to airline change fees and rules' },
+      { href: GUIDE_FLIGHT_CANCELLATIONS_PATH, label: 'refund vs credit rules if you cancel instead' },
     ],
   },
   [FLIGHT_CANCELLATION_PATH]: {
@@ -194,8 +166,8 @@ export const SERVICE_INTERNAL_LINKS = {
       serviceCard(POINTS_REDEMPTION_PATH),
     ],
     relatedGuides: [
-      { href: GUIDE_FLIGHT_CANCELLATIONS_PATH, label: 'flight cancellation and refunds guide' },
-      { href: GUIDE_FLIGHT_CHANGES_PATH, label: 'airline flight change guide' },
+      { href: GUIDE_FLIGHT_CANCELLATIONS_PATH, label: 'guide to airline refund vs credit rules' },
+      { href: GUIDE_FLIGHT_CHANGES_PATH, label: 'change fees compared with canceling' },
     ],
   },
   [SEAT_SELECTION_PATH]: {

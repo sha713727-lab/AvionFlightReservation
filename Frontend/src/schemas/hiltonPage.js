@@ -51,6 +51,14 @@ const logoSchema = z.object({
   isEnabled: z.boolean(),
 })
 
+const faqSchema = z.object({
+  id: z.string(),
+  question: z.string(),
+  answer: z.string(),
+  sortOrder: z.number(),
+  isEnabled: z.boolean(),
+})
+
 export const hiltonPageSchema = z.object({
   id: z.string(),
   status: z.string(),
@@ -75,13 +83,14 @@ export const hiltonPageSchema = z.object({
   railCards: z.array(railCardSchema),
   properties: z.array(propertySchema),
   clientLogos: z.array(logoSchema),
+  faqs: z.array(faqSchema),
   updatedAt: z.string(),
 })
 
 export const adminHiltonPageFormSchema = z.object({
   status: z.enum(['draft', 'published']),
-  metaTitle: z.string().trim().min(10).max(120),
-  metaDescription: z.string().trim().min(40).max(320),
+  metaTitle: z.string().trim().min(30).max(65),
+  metaDescription: z.string().trim().min(120).max(165),
   ogTitle: z.string().trim().max(120).optional(),
   ogDescription: z.string().trim().max(320).optional(),
   heroHeading: z.string().trim().min(5).max(160),
@@ -96,4 +105,10 @@ export const adminHiltonPageFormSchema = z.object({
   clientsIntroduction: z.string().trim().max(500),
   railLabel: z.string().trim().min(2).max(120),
   contactEmailOverride: z.string().trim().max(160),
+})
+
+export const adminHiltonFaqFormSchema = z.object({
+  question: z.string().trim().min(10).max(160),
+  answer: z.string().trim().min(40).max(600),
+  isEnabled: z.boolean(),
 })

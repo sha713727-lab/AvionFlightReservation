@@ -1,12 +1,8 @@
 import {
-  ABOUT_PATH,
-  CONTACT_PATH,
   HOW_IT_WORKS_PATH,
   INDEPENDENT_SERVICE_DISCLOSURE_PATH,
-  POINTS_REDEMPTION_PATH,
   REFUND_POLICY_PATH,
   SERVICE_FEES_PATH,
-  TERMS_PATH,
 } from '@/constants/routes'
 import {
   OFFICIAL_AVION_TRAVEL_PHONE,
@@ -53,12 +49,6 @@ export const TRUST_PAGES = {
         links: [{ label: 'Refund policy', href: REFUND_POLICY_PATH }],
       },
     ],
-    related: [
-      { label: 'How it works', href: HOW_IT_WORKS_PATH },
-      { label: 'Independent service disclosure', href: INDEPENDENT_SERVICE_DISCLOSURE_PATH },
-      { label: 'Points booking assistance', href: POINTS_REDEMPTION_PATH },
-      { label: 'Contact', href: CONTACT_PATH },
-    ],
   },
   [HOW_IT_WORKS_PATH]: {
     path: HOW_IT_WORKS_PATH,
@@ -103,11 +93,6 @@ export const TRUST_PAGES = {
           'After you confirm an option with the relevant supplier or program, we can help you document next steps for changes, receipts, or questions that remain within our assistance scope.',
         ],
       },
-    ],
-    related: [
-      { label: 'Service fees', href: SERVICE_FEES_PATH },
-      { label: 'Points booking assistance', href: POINTS_REDEMPTION_PATH },
-      { label: 'Contact', href: CONTACT_PATH },
     ],
   },
   [INDEPENDENT_SERVICE_DISCLOSURE_PATH]: {
@@ -155,11 +140,6 @@ export const TRUST_PAGES = {
           { label: 'How it works', href: HOW_IT_WORKS_PATH },
         ],
       },
-    ],
-    related: [
-      { label: 'About', href: ABOUT_PATH },
-      { label: 'Contact', href: CONTACT_PATH },
-      { label: 'Terms', href: TERMS_PATH },
     ],
   },
 }

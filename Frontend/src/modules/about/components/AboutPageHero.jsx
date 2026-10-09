@@ -34,7 +34,7 @@ export default function AboutPageHero() {
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.08}>
+          <FadeIn eager>
             <h1
               id="about-page-heading"
               className="font-heading text-[clamp(2.25rem,5.5vw,4rem)] font-semibold leading-[1.08] tracking-tight text-primary"
@@ -43,7 +43,7 @@ export default function AboutPageHero() {
             </h1>
           </FadeIn>
 
-          <FadeIn delay={0.16}>
+          <FadeIn eager>
             <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg">
               {COPY.about.pageDescription}
             </p>

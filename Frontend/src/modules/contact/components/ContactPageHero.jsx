@@ -37,7 +37,7 @@ export default function ContactPageHero() {
 
       <Container className="relative z-10">
         <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
-          <FadeIn className="flex flex-col justify-center py-4 lg:py-8">
+          <FadeIn eager className="flex flex-col justify-center py-4 lg:py-8">
             <p className="mb-5 text-xs font-medium uppercase tracking-[0.22em] text-text-muted">
               {COPY.contactPage.pageEyebrow}
             </p>

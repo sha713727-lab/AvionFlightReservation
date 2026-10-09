@@ -21,7 +21,7 @@ function GuidesHubContent() {
       <SiteBreadcrumbBar path={GUIDE_HUB.path} />
       <main id="main-content" className="overflow-x-clip bg-background pb-20 pt-8 lg:pt-10">
         <Container className="max-w-3xl">
-          <FadeIn>
+          <FadeIn eager>
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-text-muted">
               {SEO_LANDING_COPY.guidesHubEyebrow}
             </p>

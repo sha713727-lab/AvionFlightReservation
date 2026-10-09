@@ -1,13 +1,12 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { validateCrawlFiles } from './seo-validate-sitemap.mjs'
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url))
 const frontendRoot = path.resolve(scriptDir, '..')
 const routesPath = path.join(frontendRoot, 'src/constants/routes.js')
 const seoPath = path.join(frontendRoot, 'src/utils/seo.js')
-const robotsTxtPath = path.join(frontendRoot, 'public/robots.txt')
-const sitemapXmlPath = path.join(frontendRoot, 'public/sitemap.xml')
 const analyticsPath = path.join(frontendRoot, 'src/constants/analytics.js')
 const seoPageMetaPath = path.join(frontendRoot, 'src/constants/seoPageMeta.js')
 const contactPath = path.join(frontendRoot, 'src/constants/contact.js')
@@ -184,58 +183,6 @@ function validateCanonicalHelpers(contactSource) {
   }
 }
 
-function validateRobotsAndSitemap(robotsTxtSource, sitemapXmlSource, sitePaths) {
-  const requiredDisallows = ['/api/', '/admin/', '/private/']
-  // Utility pages must stay crawlable so their noindex instruction can be read.
-  const mustNotDisallow = ['/thank-you', '/_next/', '/fonts/', '/images/']
-  if (!robotsTxtSource.includes('User-agent: *')) {
-    fail('public/robots.txt must include User-agent: *')
-  }
-  if (!robotsTxtSource.includes('Allow: /')) {
-    fail("public/robots.txt must include Allow: /")
-  }
-  for (const pathRule of requiredDisallows) {
-    if (!robotsTxtSource.includes(`Disallow: ${pathRule}`)) {
-      fail(`public/robots.txt must disallow ${pathRule}`)
-    }
-  }
-  for (const pathRule of mustNotDisallow) {
-    if (new RegExp(`Disallow:\\s*${pathRule}`, 'i').test(robotsTxtSource)) {
-      fail(`public/robots.txt must not block ${pathRule}`)
-    }
-  }
-  if (/(^|\n)Disallow: \/\s*(\n|$)/.test(robotsTxtSource)) {
-    fail('robots must not block all public pages with Disallow: /')
-  }
-  if (!robotsTxtSource.includes('Sitemap: https://aviosupportdesk.com/sitemap.xml')) {
-    fail('public/robots.txt must use absolute Sitemap URL https://aviosupportdesk.com/sitemap.xml')
-  }
-  if (/Sitemap:\s*https:\/\/aviosupportdesk\.com\/sitemap\s*$/m.test(robotsTxtSource)) {
-    fail('public/robots.txt must not list extensionless /sitemap as Sitemap')
-  }
-  if (!sitemapXmlSource.includes('<?xml version="1.0" encoding="UTF-8"?>')) {
-    fail('public/sitemap.xml must include XML declaration')
-  }
-  if (!sitemapXmlSource.includes('xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"')) {
-    fail('public/sitemap.xml must use sitemap 0.9 namespace')
-  }
-  if (!sitemapXmlSource.includes('<urlset')) {
-    fail('public/sitemap.xml must contain urlset')
-  }
-  if (/<changefreq>|<priority>/.test(sitemapXmlSource)) {
-    fail('public/sitemap.xml must not include changefreq or priority')
-  }
-  for (const urlPath of sitePaths) {
-    const loc =
-      urlPath === '/'
-        ? 'https://aviosupportdesk.com/'
-        : `https://aviosupportdesk.com${urlPath}`
-    if (!sitemapXmlSource.includes(`<loc>${loc}</loc>`)) {
-      fail(`public/sitemap.xml missing loc for ${urlPath}`)
-    }
-  }
-}
-
 function validateAnalytics(analyticsSource) {
   for (const eventName of REQUIRED_GTM_EVENTS) {
     if (!analyticsSource.includes(`'${eventName}'`)) {
@@ -358,7 +305,7 @@ function validateMetadataCoverage(sitePaths) {
   for (const urlPath of sitePaths) {
     const pageFile = pathToPageFile(urlPath)
     const source = fs.readFileSync(pageFile, 'utf8')
-    if (!/export const metadata\b/.test(source)) {
+    if (!/export (?:const metadata\b|(?:async )?function generateMetadata\b)/.test(source)) {
       missing.push(urlPath)
     }
   }
@@ -413,8 +360,6 @@ function validateStructuredData(seoSource) {
 
 const routesSource = fs.readFileSync(routesPath, 'utf8')
 const seoSource = fs.readFileSync(seoPath, 'utf8')
-const robotsTxtSource = fs.readFileSync(robotsTxtPath, 'utf8')
-const sitemapXmlSource = fs.readFileSync(sitemapXmlPath, 'utf8')
 const analyticsSource = fs.readFileSync(analyticsPath, 'utf8')
 const contactSource = fs.readFileSync(contactPath, 'utf8')
 
@@ -424,7 +369,7 @@ validatePagesExist(sitePaths)
 validateSeoExports(seoSource)
 validateCanonicalHelpers(contactSource)
 validateNoPublicNoindex()
-validateRobotsAndSitemap(robotsTxtSource, sitemapXmlSource, sitePaths)
+validateCrawlFiles({ frontendRoot, sitePaths, fail })
 validateAnalytics(analyticsSource)
 validateContactNap(contactSource)
 validateBannedClaims()

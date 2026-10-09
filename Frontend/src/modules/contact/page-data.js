@@ -1,8 +1,10 @@
+import { BRAND_NAME } from '@/constants/brand'
 import { withBreadcrumbJsonLd } from '@/constants/breadcrumbs'
 import { CONTACT_PATH } from '@/constants/routes'
 import { getSeoPageMeta } from '@/constants/seoPageMeta'
 import {
   ORGANIZATION_ID,
+  ORGANIZATION_URL,
   WEBSITE_ID,
   buildPathMetadata,
   buildWebPageId,
@@ -10,7 +12,7 @@ import {
 import {
   CONTACT_EMAILS,
   MAILING_ADDRESS,
-  PHONE_NUMBER,
+  PHONE_SCHEMA_TELEPHONE,
   buildCanonicalUrl,
 } from '@/constants/contact'
 
@@ -32,8 +34,11 @@ function buildContactPageJsonLd(description) {
     url: buildCanonicalUrl(CONTACT_PATH),
     isPartOf: { '@id': WEBSITE_ID },
     mainEntity: {
+      '@type': 'Organization',
       '@id': ORGANIZATION_ID,
-      telephone: PHONE_NUMBER,
+      name: BRAND_NAME,
+      url: ORGANIZATION_URL,
+      telephone: PHONE_SCHEMA_TELEPHONE,
       email: CONTACT_EMAILS,
       address: {
         '@type': 'PostalAddress',
@@ -46,7 +51,7 @@ function buildContactPageJsonLd(description) {
       contactPoint: [
         {
           '@type': 'ContactPoint',
-          telephone: PHONE_NUMBER.replace(/\s+/g, '-'),
+          telephone: PHONE_SCHEMA_TELEPHONE,
           contactType: 'customer service',
           areaServed: ['US', 'CA'],
           availableLanguage: ['English'],

@@ -1,8 +1,10 @@
+import { GEO_BYLINES } from '@/constants/geo'
 import { AVION_GUIDE_PAGES } from '@/modules/seoLanding/constants/avionGuidePagesEntries'
 import {
   BAGGAGE_ASSISTANCE_PATH,
+  BLOG_CANCEL_FLIGHT_REFUND_PATH,
+  BLOG_CHANGE_FLIGHT_PATH,
   FLIGHT_BOOKING_PATH,
-  CANCELLATION_POLICY_PATH,
   FLIGHT_CANCELLATION_PATH,
   FLIGHT_CHANGES_PATH,
   GUIDE_AVION_FLIGHT_BOOKING_PATH,
@@ -33,6 +35,7 @@ export const GUIDE_PAGES = [
   {
     slug: 'flight-booking',
     path: GUIDE_FLIGHT_BOOKING_PATH,
+    publishedIso: GEO_BYLINES.publishedIso,
     title: 'How to Book a Flight by Phone | Avion Guide',
     metaDescription:
       'Step-by-step overview of booking flights by phone: what to prepare, how fares work, and when specialist help saves time. AvioSupportDesk.',
@@ -61,6 +64,7 @@ export const GUIDE_PAGES = [
   {
     slug: 'flight-changes',
     path: GUIDE_FLIGHT_CHANGES_PATH,
+    publishedIso: GEO_BYLINES.publishedIso,
     title: 'How Do Airline Flight Changes Work? | Avion Guide',
     metaDescription:
       'Educational guide to airline change fees, fare differences, and same-day options. Distinct from paid change assistance. AvioSupportDesk.',
@@ -80,14 +84,15 @@ export const GUIDE_PAGES = [
       'Before accepting an automatic rebooking email, compare arrival times and connection lengths. Use the paid flight-change service when you want a specialist to quote fees against your confirmation code; use this guide when you only need the policy concepts.',
     relatedQuestions: [
       { label: 'paid flight change assistance', href: FLIGHT_CHANGES_PATH },
-      { label: 'flight cancellation and refunds guide', href: GUIDE_FLIGHT_CANCELLATIONS_PATH },
-      { label: 'travel guides hub', href: GUIDES_PATH },
+      { label: 'step-by-step flight change walkthrough for 2026', href: BLOG_CHANGE_FLIGHT_PATH },
+      { label: 'refund vs credit rules if you cancel instead', href: GUIDE_FLIGHT_CANCELLATIONS_PATH },
     ],
     keywords: ['airline change fee', 'change flight ticket'],
   },
   {
     slug: 'flight-cancellations',
     path: GUIDE_FLIGHT_CANCELLATIONS_PATH,
+    publishedIso: GEO_BYLINES.publishedIso,
     title: 'How Do Flight Cancellations and Refunds Work? | Avion Guide',
     metaDescription:
       'Educational guide to refunds vs credits when you cancel. Distinct from paid cancellation assistance and from change guides. AvioSupportDesk.',
@@ -107,14 +112,15 @@ export const GUIDE_PAGES = [
       'If you might rebook within a year, ask whether a credit or refund is more flexible before canceling. Call with your confirmation code so we can read the exact rule tied to your ticket when you want paid help.',
     relatedQuestions: [
       { label: 'paid flight cancellation assistance', href: FLIGHT_CANCELLATION_PATH },
-      { label: 'cancellation policy', href: CANCELLATION_POLICY_PATH },
-      { label: 'airline flight change guide', href: GUIDE_FLIGHT_CHANGES_PATH },
+      { label: 'how to cancel and request a refund in 2026', href: BLOG_CANCEL_FLIGHT_REFUND_PATH },
+      { label: 'airline change fees and rules explained', href: GUIDE_FLIGHT_CHANGES_PATH },
     ],
     keywords: ['flight refund rules', 'cancel airline ticket'],
   },
   {
     slug: 'baggage',
     path: GUIDE_BAGGAGE_PATH,
+    publishedIso: GEO_BYLINES.publishedIso,
     title: 'Airline Baggage Rules Explained | Avion Guide',
     metaDescription:
       'Carry-on, checked bag, and fee basics for North American flights. When to call for baggage help. AvioSupportDesk independent guide.',
@@ -141,6 +147,7 @@ export const GUIDE_PAGES = [
   {
     slug: 'points-and-miles',
     path: GUIDE_POINTS_PATH,
+    publishedIso: GEO_BYLINES.publishedIso,
     title: 'Points and Miles Basics for Flights | Avion Guide',
     metaDescription:
       'Understand transferring bank points, award space, taxes, and when cash fares beat redemptions. Independent AvioSupportDesk guide.',

@@ -15,9 +15,6 @@ export function getInternationalFlightPageJsonLd() {
       description,
       path: INTERNATIONAL_FLIGHT_PATH,
     }),
-    buildTravelAssistanceJsonLd({
-      description,
-      path: INTERNATIONAL_FLIGHT_PATH,
-    }),
+    buildTravelAssistanceJsonLd({ description }),
   ])
 }

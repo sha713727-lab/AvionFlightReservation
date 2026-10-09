@@ -19,7 +19,7 @@ export default function RefundPageHero() {
 
       <Container className="relative z-10">
         <div className="grid grid-cols-1 items-end gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
-          <FadeIn>
+          <FadeIn eager>
             <p className="mb-4 text-xs font-medium uppercase tracking-[0.22em] text-white/75">
               {COPY.refund.pageEyebrow}
             </p>

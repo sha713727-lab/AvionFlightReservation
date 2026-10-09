@@ -8,6 +8,7 @@ import { FadeIn } from '@/components/animations/FadeIn'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import SiteBreadcrumbBar from '@/components/layout/SiteBreadcrumbBar'
+import PageRelatedLinks from '@/components/links/PageRelatedLinks'
 import Container from '@/components/ui/Container'
 import { GUIDE_SOURCES_BY_SLUG } from '@/constants/geoPageSources'
 import { PHONE_HREF, PHONE_NUMBER } from '@/constants/contact'
@@ -36,7 +37,7 @@ function GuideArticleContent({ slug }) {
       <main id="main-content" className="overflow-x-clip bg-background pb-20 pt-8 lg:pt-10">
         <Container className="max-w-3xl">
           <article>
-            <FadeIn>
+            <FadeIn eager>
               <h1 className="font-heading text-[clamp(1.75rem,4vw,2.75rem)] font-semibold leading-tight text-primary">
                 {getSeoPageH1(guide.path)}
               </h1>
@@ -128,6 +129,7 @@ function GuideArticleContent({ slug }) {
             </FadeIn>
           ) : null}
         </Container>
+        <PageRelatedLinks path={guide.path} />
       </main>
       <Footer />
     </>

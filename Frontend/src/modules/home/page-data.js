@@ -1,10 +1,19 @@
 import { AVION_LOGO_SRC, BRAND_NAME } from '@/constants/brand'
-import { getVerifiedSameAs } from '@/constants/businessFacts'
-import { CANONICAL_ORIGIN, MAILING_ADDRESS, PHONE_NUMBER } from '@/constants/contact'
+import {
+  ORGANIZATION_DISAMBIGUATING_DESCRIPTION,
+  getVerifiedSameAs,
+} from '@/constants/businessFacts'
+import { CANONICAL_ORIGIN, MAILING_ADDRESS, PHONE_SCHEMA_TELEPHONE } from '@/constants/contact'
 import { COPY } from '@/constants/copy'
 import { HOME_PATH } from '@/constants/routes'
 import { getSeoPageMeta } from '@/constants/seoPageMeta'
-import { ORGANIZATION_ID, buildWebPageJsonLd, buildWebSiteJsonLd } from '@/utils/seo'
+import {
+  ORGANIZATION_ID,
+  ORGANIZATION_URL,
+  buildFaqPageJsonLd,
+  buildWebPageJsonLd,
+  buildWebSiteJsonLd,
+} from '@/utils/seo'
 
 const ORGANIZATION_DESCRIPTION =
   'Independent travel assistance helping customers compare Avion points flight options and complete permitted booking steps for a separately quoted assistance fee.'
@@ -46,13 +55,15 @@ export function getHomeOrganizationJsonLd() {
     '@type': 'Organization',
     '@id': ORGANIZATION_ID,
     name: BRAND_NAME,
-    url: CANONICAL_ORIGIN,
+    url: ORGANIZATION_URL,
+    telephone: PHONE_SCHEMA_TELEPHONE,
     logo: `${CANONICAL_ORIGIN}${logoPath.replace(/\.webp$/i, '.png')}`,
     description: ORGANIZATION_DESCRIPTION,
+    disambiguatingDescription: ORGANIZATION_DISAMBIGUATING_DESCRIPTION,
     contactPoint: [
       {
         '@type': 'ContactPoint',
-        telephone: PHONE_NUMBER.replace(/\s+/g, '-'),
+        telephone: PHONE_SCHEMA_TELEPHONE,
         contactType: 'customer service',
         areaServed: ['CA', 'US'],
         availableLanguage: ['English'],
@@ -68,4 +79,9 @@ export function getHomeOrganizationJsonLd() {
     },
     ...(sameAs.length > 0 ? { sameAs } : {}),
   }
+}
+
+/** FAQPage for the CMS FAQs rendered in the home FAQ section; null when the list is empty. */
+export function getHomeFaqPageJsonLd(faqs) {
+  return buildFaqPageJsonLd(faqs)
 }

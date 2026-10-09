@@ -45,16 +45,21 @@ else
   DOMAIN="$DOMAIN_FROM_ENV"
 fi
 
+SITEMAP_HOLD_DIR="$(mktemp -d)"
+trap 'rm -rf "$SITEMAP_HOLD_DIR"' EXIT
+if [[ -f deploy/publish-sitemap.sh ]]; then
+  echo "==> Holding the live sitemap until the new one passes the publish gate"
+  bash deploy/publish-sitemap.sh hold "$SITEMAP_HOLD_DIR"
+fi
+
 echo "==> Pull latest (this repo only)"
 git fetch origin main
 git reset --hard origin/main
+bash deploy/publish-sitemap.sh restore "$SITEMAP_HOLD_DIR"
 
 echo "==> Sync nginx config in-place"
 cat deploy/nginx/aviosupportdesk.conf > deploy/nginx/active.conf
 cp -f Frontend/public/googlebc6e5bbda029aa82.html deploy/nginx/static/googlebc6e5bbda029aa82.html
-cp -f Frontend/public/sitemap.xml deploy/nginx/static/sitemap.xml
-cp -f Frontend/public/sitemap_index.xml deploy/nginx/static/sitemap_index.xml
-cp -f Frontend/public/robots.txt deploy/nginx/static/robots.txt
 
 if [[ "$RSA_CERT" -eq 1 ]]; then
   if [[ -z "$CERTBOT_EMAIL" ]]; then
@@ -85,6 +90,10 @@ echo "==> Recreate ONLY this project's nginx"
 "${COMPOSE[@]}" up -d --no-deps --force-recreate nginx
 
 sleep 4
+echo "==> Publishing the sitemap only if every listed URL is live"
+SITEMAP_PUBLISHED=1
+bash deploy/publish-sitemap.sh || SITEMAP_PUBLISHED=0
+
 echo "==> Verify"
 for path in /sitemap /sitemap.xml /googlebc6e5bbda029aa82.html /robots.txt; do
   echo -n "$path => "
@@ -92,5 +101,10 @@ for path in /sitemap /sitemap.xml /googlebc6e5bbda029aa82.html /robots.txt; do
 done
 echo "==> Body /sitemap.xml (first lines)"
 curl -fsSL "https://${DOMAIN}/sitemap.xml" | head -n 8
+if [[ "$SITEMAP_PUBLISHED" -ne 1 ]]; then
+  echo "ERROR: the new sitemap was NOT published; Google still reads the previous one." >&2
+  echo "       Fix the failing URLs listed above, then run: bash deploy/publish-sitemap.sh" >&2
+  exit 1
+fi
 echo "==> Done. In GSC: remove /sitemap if present, then submit: sitemap.xml"
 echo "    Do not claim GSC Success until the Sitemaps UI shows it."

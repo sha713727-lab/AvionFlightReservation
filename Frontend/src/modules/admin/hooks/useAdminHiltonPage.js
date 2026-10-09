@@ -151,6 +151,7 @@ export default function useAdminHiltonPage(token) {
     fieldErrors,
     updateField,
     savePage,
+    applyPage: setPage,
     reload: load,
     uploadSlot: (slotKey, file) => runMutation(() => uploadHiltonSlotMedia(token, slotKey, file)),
     removeSlot: (slotKey) => runMutation(() => removeHiltonSlotMedia(token, slotKey)),

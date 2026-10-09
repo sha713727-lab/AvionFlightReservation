@@ -4,10 +4,10 @@ import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import SiteBreadcrumbBar from '@/components/layout/SiteBreadcrumbBar'
+import PageRelatedLinks from '@/components/links/PageRelatedLinks'
 import Container from '@/components/ui/Container'
 import CallExpertProvider from '@/modules/call/components/CallExpertProvider'
 import { INDEPENDENT_SERVICE_DISCLOSURE } from '@/constants/disclosures'
-import { CONTACT_PATH } from '@/constants/routes'
 
 export default function TrustPageView({ content }) {
   if (!content) return null
@@ -86,32 +86,9 @@ export default function TrustPageView({ content }) {
                 ) : null}
               </article>
             ))}
-
-            <div className="border-t border-border pt-8">
-              <h2 className="font-heading text-lg font-semibold text-primary">Related</h2>
-              <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm">
-                {content.related.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="font-medium text-accent underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-                <li>
-                  <Link
-                    href={CONTACT_PATH}
-                    className="font-medium text-accent underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                  >
-                    Request assistance
-                  </Link>
-                </li>
-              </ul>
-            </div>
           </Container>
         </section>
+        <PageRelatedLinks path={content.path} />
       </main>
       <Footer />
     </CallExpertProvider>

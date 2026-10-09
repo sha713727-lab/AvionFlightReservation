@@ -87,4 +87,5 @@ export const API_MESSAGES = {
   ADMIN_HILTON_ITEM_CREATED: 'Hilton page item created successfully',
   ADMIN_HILTON_ITEM_UPDATED: 'Hilton page item updated successfully',
   ADMIN_HILTON_ITEM_DELETED: 'Hilton page item deleted successfully',
+  HOTEL_FAQ_LIMIT: 'A hotel page can include at most 8 FAQs',
 } as const

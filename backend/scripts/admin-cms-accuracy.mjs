@@ -12,7 +12,7 @@ import { PrismaClient } from '@prisma/client'
 const ROOT = path.dirname(fileURLToPath(import.meta.url))
 const BACKEND = path.resolve(ROOT, '..')
 const DATA_DIR = path.resolve(BACKEND, '.local-pg-admin-test')
-const PORT = 5434
+const PORT = 5435
 const USER = 'avion'
 const PASSWORD = 'avion'
 const DATABASE = 'avion_flight'
@@ -54,7 +54,7 @@ async function run(cmd, args, env = {}) {
   })
 }
 
-async function jsonFetch(base, method, urlPath, { token, body, formData } = {}) {
+async function jsonFetchOnce(base, method, urlPath, { token, body, formData } = {}) {
   const headers = {}
   if (token) headers.Authorization = `Bearer ${token}`
   let payload
@@ -73,6 +73,22 @@ async function jsonFetch(base, method, urlPath, { token, body, formData } = {}) 
     data = { raw: text }
   }
   return { status: res.status, data }
+}
+
+async function jsonFetch(base, method, urlPath, opts = {}) {
+  let last = { status: 0, data: { raw: '' } }
+  for (let i = 0; i < 12; i += 1) {
+    try {
+      last = await jsonFetchOnce(base, method, urlPath, opts)
+      if (last.data && last.data.raw !== '') {
+        return last
+      }
+    } catch {
+      // Embedded Postgres on Windows can restart the checkpointer mid-suite.
+    }
+    await new Promise((resolve) => setTimeout(resolve, 500))
+  }
+  return last
 }
 
 function tinyPngBuffer() {
@@ -95,7 +111,8 @@ async function exerciseBrand(base, token, brand) {
   assert(Array.isArray(page.principles), `${brand} missing principles`)
   assert(Array.isArray(page.properties), `${brand} missing properties`)
   assert(Array.isArray(page.railCards), `${brand} missing rail cards`)
-  log(`GET admin OK (slots=${page.mediaSlots.length}, principles=${page.principles.length})`)
+  assert(Array.isArray(page.faqs), `${brand} missing faqs`)
+  log(`GET admin OK (slots=${page.mediaSlots.length}, principles=${page.principles.length}, faqs=${page.faqs.length})`)
 
   const heroHeading = `Admin accuracy ${brand} ${Date.now()}`
   const putBody = {
@@ -121,6 +138,8 @@ async function exerciseBrand(base, token, brand) {
   assert(put.status === 200 && put.data?.success, `${brand} PUT failed: ${JSON.stringify(put.data)}`)
   assert(put.data.data.heroHeading === heroHeading, `${brand} PUT hero not persisted`)
   log('PUT scalars OK')
+
+  await exerciseHotelFaqs(base, token, brand, admin, pub, putBody)
 
   const form = new FormData()
   form.append('file', new Blob([tinyPngBuffer()], { type: 'image/png' }), 'lead.png')
@@ -249,6 +268,125 @@ async function exerciseBrand(base, token, brand) {
   log(`${brand.toUpperCase()} PASSED`)
 }
 
+async function exerciseHotelFaqs(base, token, brand, admin, pub, putBody) {
+  const faqBody = {
+    question: 'Is this an accuracy FAQ for hotel booking help?',
+    answer:
+      'This temporary answer states that AvioSupportDesk is independent and quotes an assistance fee before you agree. Hotel charges stay separate.',
+    isEnabled: true,
+  }
+  const created = await jsonFetch(base, 'POST', `${admin}/faqs`, { token, body: faqBody })
+  let createdPage = created.data?.data
+  if (!created.data?.success) {
+    const fallback = await jsonFetch(base, 'GET', admin, { token })
+    createdPage = fallback.data?.data
+  }
+  assert(
+    (created.status === 201 || created.status === 200) && Array.isArray(createdPage?.faqs),
+    `${brand} FAQ create failed: ${created.status} ${JSON.stringify(created.data)}`,
+  )
+  const faqId = createdPage.faqs.find((item) => item.question === faqBody.question)?.id
+  assert(faqId, `${brand} FAQ id missing`)
+
+  const updatedQuestion = 'Was this accuracy FAQ updated on the hotel page?'
+  const updated = await jsonFetch(base, 'PUT', `${admin}/faqs/${faqId}`, {
+    token,
+    body: { ...faqBody, question: updatedQuestion },
+  })
+  assert(updated.status === 200, `${brand} FAQ update failed`)
+  await jsonFetch(base, 'POST', `${admin}/faqs/${faqId}/move`, {
+    token,
+    body: { direction: 'up' },
+  })
+
+  const disabled = await jsonFetch(base, 'POST', `${admin}/faqs`, {
+    token,
+    body: {
+      question: 'Should a disabled hotel FAQ appear on the public page?',
+      answer:
+        'No. Disabled FAQs stay in the admin editor only. Public payloads include enabled answers so travelers see current guidance.',
+      isEnabled: false,
+    },
+  })
+  assert(disabled.status === 201, `${brand} disabled FAQ create failed`)
+  const disabledId = disabled.data.data.faqs.find((item) => item.isEnabled === false)?.id
+  assert(disabledId, `${brand} disabled FAQ id missing`)
+
+  const pubFaqs = await jsonFetch(base, 'GET', pub)
+  assert(
+    pubFaqs.status === 200 && pubFaqs.data?.success,
+    `${brand} public FAQ GET failed: ${pubFaqs.status} ${JSON.stringify(pubFaqs.data)}`,
+  )
+  const publicFaqs = pubFaqs.data.data.faqs
+  assert(Array.isArray(publicFaqs), `${brand} public faqs missing`)
+  assert(
+    publicFaqs.every((item) => item.isEnabled),
+    `${brand} public payload included a disabled FAQ`,
+  )
+  assert(
+    !publicFaqs.some((item) => item.id === disabledId),
+    `${brand} disabled FAQ leaked to public payload`,
+  )
+  assert(
+    publicFaqs.some((item) => item.id === faqId),
+    `${brand} enabled FAQ missing from public payload`,
+  )
+  log('FAQ public payload OK')
+
+  const delDisabled = await jsonFetch(base, 'DELETE', `${admin}/faqs/${disabledId}`, { token })
+  assert(delDisabled.status === 200, `${brand} disabled FAQ delete failed`)
+
+  const afterDelete = delDisabled.data.data.faqs
+  const fillerIds = []
+  for (let i = afterDelete.length; i < 8; i += 1) {
+    const filler = await jsonFetch(base, 'POST', `${admin}/faqs`, {
+      token,
+      body: {
+        question: `Accuracy filler FAQ number ${i + 1} for the limit test?`,
+        answer:
+          'Temporary filler used only to reach the eight-FAQ limit. Assistance fees are quoted before you agree and stay separate from hotel charges.',
+        isEnabled: true,
+      },
+    })
+    assert(filler.status === 201, `${brand} FAQ filler create failed: ${filler.status}`)
+    const fillerId = filler.data.data.faqs.find(
+      (item) => item.question === `Accuracy filler FAQ number ${i + 1} for the limit test?`,
+    )?.id
+    assert(fillerId, `${brand} FAQ filler id missing`)
+    fillerIds.push(fillerId)
+  }
+
+  const over = await jsonFetch(base, 'POST', `${admin}/faqs`, { token, body: faqBody })
+  assert(over.status === 422, `${brand} FAQ limit should 422, got ${over.status}`)
+  assert(
+    over.data?.errorCode === 'HOTEL_FAQ_LIMIT_422',
+    `${brand} FAQ limit errorCode mismatch: ${JSON.stringify(over.data)}`,
+  )
+  log('FAQ 8-item limit 422 OK')
+
+  for (const id of [...fillerIds, faqId]) {
+    const del = await jsonFetch(base, 'DELETE', `${admin}/faqs/${id}`, { token })
+    assert(del.status === 200, `${brand} FAQ cleanup delete failed`)
+  }
+  log('FAQ CRUD OK')
+
+  const shortTitle = await jsonFetch(base, 'PUT', admin, {
+    token,
+    body: { ...putBody, metaTitle: 'Too short' },
+  })
+  assert(shortTitle.status === 422, `${brand} short metaTitle should 422, got ${shortTitle.status}`)
+  const longDesc = await jsonFetch(base, 'PUT', admin, {
+    token,
+    body: {
+      ...putBody,
+      metaDescription:
+        'This description is intentionally longer than the hotel CMS maximum so Google snippets are not truncated. Extra filler words keep the character count over one hundred sixty five.',
+    },
+  })
+  assert(longDesc.status === 422, `${brand} long metaDescription should 422, got ${longDesc.status}`)
+  log('Meta length 422 OK')
+}
+
 async function main() {
   log('Starting embedded Postgres for admin accuracy tests…')
   if (fs.existsSync(DATA_DIR)) {
@@ -302,6 +440,8 @@ async function main() {
       PORT: '4010',
       NODE_ENV: 'development',
       CORS_ORIGINS: 'http://localhost:3000',
+      ENABLE_COMPRESSION: 'false',
+      ENABLE_SWAGGER: 'false',
     },
     shell: true,
     stdio: ['ignore', 'pipe', 'pipe'],
@@ -351,10 +491,18 @@ async function main() {
     await exerciseBrand(base, token, 'wyndham')
     await exerciseBrand(base, token, 'hilton')
     log('\nALL ADMIN ACCURACY CHECKS PASSED')
+  } catch (error) {
+    log(`API log:\n${apiLog.slice(-4000)}`)
+    throw error
   } finally {
     api.kill()
     try {
-      await pg.stop()
+      await Promise.race([
+        pg.stop(),
+        new Promise((_, reject) => {
+          setTimeout(() => reject(new Error('pg.stop timed out')), 8000)
+        }),
+      ])
     } catch {
       // Windows may still hold locks briefly after stop.
     }

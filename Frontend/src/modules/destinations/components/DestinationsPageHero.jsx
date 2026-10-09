@@ -37,7 +37,7 @@ export default function DestinationsPageHero({ cityNames = [] }) {
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.08}>
+          <FadeIn eager>
             <h1
               id="destinations-page-heading"
               className="font-heading text-[clamp(1.75rem,7vw,4.25rem)] font-semibold leading-[1.05] tracking-tight text-white"
@@ -46,7 +46,7 @@ export default function DestinationsPageHero({ cityNames = [] }) {
             </h1>
           </FadeIn>
 
-          <FadeIn delay={0.16}>
+          <FadeIn eager>
             <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">
               {COPY.destinations.pageDescription}
             </p>

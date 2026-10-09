@@ -49,7 +49,7 @@ export default function InternationalFlightHero() {
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.08}>
+          <FadeIn eager>
             <h1
               id="international-flight-heading"
               className="font-heading text-[clamp(1.75rem,7vw,4rem)] font-semibold leading-[1.08] tracking-tight text-white"
@@ -58,7 +58,7 @@ export default function InternationalFlightHero() {
             </h1>
           </FadeIn>
 
-          <FadeIn delay={0.16}>
+          <FadeIn eager>
             <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
               {COPY.internationalFlight.description}
             </p>

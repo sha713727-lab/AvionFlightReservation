@@ -70,6 +70,7 @@ async function seed(): Promise<void> {
     await prisma.faq.create({ data: { ...faq, isActive: true } })
   }
 
+  await prisma.wyndhamFaq.deleteMany()
   await prisma.wyndhamClientLogo.deleteMany()
   await prisma.wyndhamPropertyHighlight.deleteMany()
   await prisma.wyndhamRailCard.deleteMany()
@@ -82,6 +83,7 @@ async function seed(): Promise<void> {
     principles,
     railCards,
     properties,
+    faqs,
     ...pageFields
   } = WYNDHAM_PAGE_SEED
 
@@ -99,6 +101,7 @@ async function seed(): Promise<void> {
       properties: {
         create: properties.map((item) => ({ ...item, isEnabled: true })),
       },
+      faqs: { create: faqs },
     },
   })
 

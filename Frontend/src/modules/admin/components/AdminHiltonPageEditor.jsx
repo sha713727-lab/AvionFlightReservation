@@ -7,6 +7,7 @@ import useAdminHiltonPage from '@/modules/admin/hooks/useAdminHiltonPage'
 import AdminHiltonPageFields from '@/modules/admin/components/AdminHiltonPageFields'
 import AdminHiltonMediaPanel from '@/modules/admin/components/AdminHiltonMediaPanel'
 import AdminHiltonListsPanel from '@/modules/admin/components/AdminHiltonListsPanel'
+import AdminHiltonFaqPanel from '@/modules/admin/components/AdminHiltonFaqPanel'
 
 export default function AdminHiltonPageEditor({ token }) {
   const editor = useAdminHiltonPage(token)
@@ -54,6 +55,12 @@ export default function AdminHiltonPageEditor({ token }) {
         mediaSlots={editor.page.mediaSlots}
         onUpload={editor.uploadSlot}
         onRemove={editor.removeSlot}
+      />
+
+      <AdminHiltonFaqPanel
+        token={token}
+        faqs={editor.page.faqs}
+        applyPage={editor.applyPage}
       />
 
       <AdminHiltonListsPanel

@@ -23,11 +23,13 @@ export function FadeIn({
   delay = 0,
   className = '',
   once = true,
+  eager = false,
 }) {
   const ref = useRef(null)
   const [visible, setVisible] = useState(prefersReducedMotion)
 
   useEffect(() => {
+    if (eager) return undefined
     const node = ref.current
     if (!node || visible) return undefined
 
@@ -42,7 +44,11 @@ export function FadeIn({
 
     observer.observe(node)
     return () => observer.disconnect()
-  }, [once, visible])
+  }, [eager, once, visible])
+
+  if (eager) {
+    return <div className={className}>{children}</div>
+  }
 
   return (
     <div

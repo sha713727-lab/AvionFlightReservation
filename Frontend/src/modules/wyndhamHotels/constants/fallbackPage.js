@@ -18,10 +18,10 @@ export function getFallbackWyndhamPage() {
   return {
     id: 'default',
     status: 'published',
-    metaTitle: 'Wyndham Hotels Booking Help | AvioSupportDesk',
+    metaTitle: 'Wyndham Hotels Booking Help by Phone | AvioSupportDesk',
     metaDescription:
-      'Get independent phone help booking Wyndham hotels and resorts—Atlanta Buckhead, New Orleans French Quarter, San Diego Bayside, Deerfield Beach, and more. Not affiliated with Wyndham Hotels & Resorts.',
-    ogTitle: 'Wyndham Hotels Booking Help | AvioSupportDesk',
+      'Independent phone help booking Wyndham hotels in Atlanta, New Orleans, San Diego, Philadelphia, and more. Not affiliated with Wyndham Hotels & Resorts.',
+    ogTitle: 'Wyndham Hotels Booking Help by Phone | AvioSupportDesk',
     ogDescription:
       'Independent specialists help you compare and book Wyndham hotel stays by phone. Clear fees before you agree.',
     heroHeading: 'Book Wyndham stays with clearer phone help.',
@@ -72,6 +72,48 @@ export function getFallbackWyndhamPage() {
       { id: 'pr6', title: 'Wyndham Philadelphia Historic District', blurb: 'Arch Street / historic district hotel help for center-city Philadelphia visits and weekend stays.', mediaUrl: null, mediaAlt: '', sortOrder: 6, isEnabled: true },
       { id: 'pr7', title: 'Wyndham Virginia Beach Oceanfront', blurb: 'Virginia Beach oceanfront hotel booking help for beach weekends and longer leisure stays.', mediaUrl: null, mediaAlt: '', sortOrder: 7, isEnabled: true },
       { id: 'pr8', title: 'Wyndham Houston Near NRG Park / Medical Center', blurb: 'Houston medical center and NRG Park area hotel assistance for events, appointments, and overnight stays.', mediaUrl: null, mediaAlt: '', sortOrder: 8, isEnabled: true },
+    ],
+    faqs: [
+      {
+        id: 'wf1',
+        question: 'Is AvioSupportDesk part of Wyndham Hotels & Resorts?',
+        answer:
+          'No. AvioSupportDesk is an independent travel assistance service. We are not affiliated with, authorized by, or endorsed by Wyndham Hotels & Resorts or Wyndham Rewards. Hotel names identify booking requests only. Our assistance fee is quoted before you agree and is separate from hotel charges.',
+        sortOrder: 1,
+        isEnabled: true,
+      },
+      {
+        id: 'wf2',
+        question: 'Do you need my Wyndham Rewards login?',
+        answer:
+          'No. We never ask for loyalty passwords or account access. You keep control of your rewards login. We help compare publicly available rates and complete permitted booking steps after you accept a written assistance-fee quote.',
+        sortOrder: 2,
+        isEnabled: true,
+      },
+      {
+        id: 'wf3',
+        question: 'Which Wyndham sub-brands can you help with?',
+        answer:
+          'We can help you review stays at Wyndham hotels and related properties travelers commonly request, including city, airport, and resort locations listed on this page. Brand names identify the hotel you want. We are not the hotel’s reservations desk.',
+        sortOrder: 3,
+        isEnabled: true,
+      },
+      {
+        id: 'wf4',
+        question: 'Are your rates lower than booking direct with Wyndham?',
+        answer:
+          'We do not claim lower rates than booking on the hotel website. We help you compare available options and complete a reservation by phone. Hotel charges remain the hotel’s. Our assistance fee is separate and is quoted before you agree.',
+        sortOrder: 4,
+        isEnabled: true,
+      },
+      {
+        id: 'wf5',
+        question: 'How do Wyndham hotel changes and cancellations work?',
+        answer:
+          'Hotel change and cancellation rules belong to the property and the rate you booked. We can explain those rules in plain language and help you request a permitted change. Our assistance fee is quoted before paid work begins and stays separate from hotel charges.',
+        sortOrder: 5,
+        isEnabled: true,
+      },
     ],
     clientLogos: [],
     updatedAt: '2026-10-09T00:00:00.000Z',

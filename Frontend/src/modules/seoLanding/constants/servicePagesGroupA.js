@@ -27,7 +27,7 @@ export const SERVICE_PAGES_GROUP_A = [
   {
     slug: 'flight-booking',
     path: FLIGHT_BOOKING_PATH,
-    h1: 'Flight Booking Assistance — Book Any Airline by Phone',
+    h1: 'Flight Booking Assistance by Phone',
     ...FLIGHT_BOOKING_BODY,
     ...FLIGHT_BOOKING_GEO,
     faqs: FLIGHT_BOOKING_FAQS,
@@ -51,7 +51,7 @@ export const SERVICE_PAGES_GROUP_A = [
   {
     slug: 'flight-changes',
     path: FLIGHT_CHANGES_PATH,
-    h1: 'Flight Change Assistance — Rebook Any Airline Flight',
+    h1: 'Flight Change Assistance by Phone',
     ...FLIGHT_CHANGES_BODY,
     ...FLIGHT_CHANGES_GEO,
     faqs: FLIGHT_CHANGES_FAQS,

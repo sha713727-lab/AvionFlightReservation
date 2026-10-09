@@ -112,10 +112,6 @@ const nextConfig = {
         source: '/:path*',
         headers: SECURITY_HEADERS,
       },
-      {
-        source: '/_next/static/:path*',
-        headers: [{ key: 'Cache-Control', value: STATIC_CACHE }],
-      },
   {
     source: '/:path*.webp',
     headers: [{ key: 'Cache-Control', value: ASSET_CACHE }],
@@ -167,12 +163,12 @@ const nextConfig = {
       {
         source: '/en',
         destination: '/',
-        permanent: false,
+        permanent: true,
       },
       {
         source: '/en/:path*',
         destination: '/:path*',
-        permanent: false,
+        permanent: true,
       },
       {
         source: '/internationalFlight',

@@ -2,6 +2,7 @@ import { withBreadcrumbJsonLd } from '@/constants/breadcrumbs'
 import { HILTON_HOTELS_PATH } from '@/constants/routes'
 import { getSeoPageMeta } from '@/constants/seoPageMeta'
 import {
+  buildFaqPageJsonLd,
   buildPageMetadata,
   buildTravelAssistanceJsonLd,
   buildWebPageJsonLd,
@@ -27,16 +28,14 @@ export async function getHiltonPageJsonLd() {
   const page = await loadHiltonPage()
   const fallback = getSeoPageMeta(HILTON_HOTELS_PATH)
   const description = page.metaDescription || fallback.description
+  const faqs = page.faqs.filter((item) => item.isEnabled)
   return withBreadcrumbJsonLd(HILTON_HOTELS_PATH, [
     buildWebPageJsonLd({
       name: page.metaTitle || fallback.title,
       description,
       path: HILTON_HOTELS_PATH,
     }),
-    buildTravelAssistanceJsonLd({
-      description,
-      path: HILTON_HOTELS_PATH,
-      includeAddress: false,
-    }),
+    buildTravelAssistanceJsonLd({ description }),
+    ...(faqs.length ? [buildFaqPageJsonLd(faqs)] : []),
   ])
 }

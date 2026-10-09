@@ -16,8 +16,8 @@ const optionalHref = z
 
 export const adminWyndhamPageBodySchema = z.object({
   status: z.enum(['draft', 'published']),
-  metaTitle: z.string().trim().min(10).max(120),
-  metaDescription: z.string().trim().min(40).max(320),
+  metaTitle: z.string().trim().min(30).max(65),
+  metaDescription: z.string().trim().min(120).max(165),
   ogTitle: z.string().trim().max(120).nullable().optional(),
   ogDescription: z.string().trim().max(320).nullable().optional(),
   heroHeading: z.string().trim().min(5).max(160),
@@ -86,6 +86,12 @@ export const adminWyndhamMoveBodySchema = z.object({
   direction: z.enum(['up', 'down']),
 })
 
+export const adminWyndhamFaqBodySchema = z.object({
+  question: z.string().trim().min(10).max(160),
+  answer: z.string().trim().min(40).max(600),
+  isEnabled: z.boolean(),
+})
+
 export type AdminWyndhamPageBody = z.infer<typeof adminWyndhamPageBodySchema>
 export type AdminWyndhamSlotParams = z.infer<typeof adminWyndhamSlotParamsSchema>
 export type AdminWyndhamItemIdParams = z.infer<typeof adminWyndhamItemIdParamsSchema>
@@ -94,3 +100,4 @@ export type AdminWyndhamRailCardBody = z.infer<typeof adminWyndhamRailCardBodySc
 export type AdminWyndhamPropertyBody = z.infer<typeof adminWyndhamPropertyBodySchema>
 export type AdminWyndhamLogoBody = z.infer<typeof adminWyndhamLogoBodySchema>
 export type AdminWyndhamMoveBody = z.infer<typeof adminWyndhamMoveBodySchema>
+export type AdminWyndhamFaqBody = z.infer<typeof adminWyndhamFaqBodySchema>

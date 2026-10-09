@@ -16,8 +16,8 @@ const optionalHref = z
 
 export const adminHiltonPageBodySchema = z.object({
   status: z.enum(['draft', 'published']),
-  metaTitle: z.string().trim().min(10).max(120),
-  metaDescription: z.string().trim().min(40).max(320),
+  metaTitle: z.string().trim().min(30).max(65),
+  metaDescription: z.string().trim().min(120).max(165),
   ogTitle: z.string().trim().max(120).nullable().optional(),
   ogDescription: z.string().trim().max(320).nullable().optional(),
   heroHeading: z.string().trim().min(5).max(160),
@@ -86,6 +86,12 @@ export const adminHiltonMoveBodySchema = z.object({
   direction: z.enum(['up', 'down']),
 })
 
+export const adminHiltonFaqBodySchema = z.object({
+  question: z.string().trim().min(10).max(160),
+  answer: z.string().trim().min(40).max(600),
+  isEnabled: z.boolean(),
+})
+
 export type AdminHiltonPageBody = z.infer<typeof adminHiltonPageBodySchema>
 export type AdminHiltonSlotParams = z.infer<typeof adminHiltonSlotParamsSchema>
 export type AdminHiltonItemIdParams = z.infer<typeof adminHiltonItemIdParamsSchema>
@@ -94,3 +100,4 @@ export type AdminHiltonRailCardBody = z.infer<typeof adminHiltonRailCardBodySche
 export type AdminHiltonPropertyBody = z.infer<typeof adminHiltonPropertyBodySchema>
 export type AdminHiltonLogoBody = z.infer<typeof adminHiltonLogoBodySchema>
 export type AdminHiltonMoveBody = z.infer<typeof adminHiltonMoveBodySchema>
+export type AdminHiltonFaqBody = z.infer<typeof adminHiltonFaqBodySchema>

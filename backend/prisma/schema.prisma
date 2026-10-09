@@ -146,6 +146,7 @@ model WyndhamPage {
   railCards            WyndhamRailCard[]
   properties           WyndhamPropertyHighlight[]
   clientLogos          WyndhamClientLogo[]
+  faqs                 WyndhamFaq[]
   createdAt            DateTime                  @default(now())
   updatedAt            DateTime                  @updatedAt
 
@@ -237,6 +238,21 @@ model WyndhamClientLogo {
   @@map("wyndham_client_logos")
 }
 
+model WyndhamFaq {
+  id        String      @id @default(cuid())
+  pageId    String      @default("default")
+  page      WyndhamPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  question  String
+  answer    String
+  sortOrder Int
+  isEnabled Boolean     @default(true)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  @@index([pageId, sortOrder])
+  @@map("wyndham_faqs")
+}
+
 /// Singleton CMS document for the public /hilton-hotels landing page.
 model HiltonPage {
   id                   String                   @id @default("default")
@@ -262,6 +278,7 @@ model HiltonPage {
   railCards            HiltonRailCard[]
   properties           HiltonPropertyHighlight[]
   clientLogos          HiltonClientLogo[]
+  faqs                 HiltonFaq[]
   createdAt            DateTime                 @default(now())
   updatedAt            DateTime                 @updatedAt
 
@@ -351,4 +368,19 @@ model HiltonClientLogo {
 
   @@index([pageId, sortOrder])
   @@map("hilton_client_logos")
+}
+
+model HiltonFaq {
+  id        String     @id @default(cuid())
+  pageId    String     @default("default")
+  page      HiltonPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  question  String
+  answer    String
+  sortOrder Int
+  isEnabled Boolean    @default(true)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@index([pageId, sortOrder])
+  @@map("hilton_faqs")
 }

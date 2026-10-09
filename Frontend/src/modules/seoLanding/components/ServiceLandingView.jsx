@@ -5,6 +5,7 @@ import { FadeIn } from '@/components/animations/FadeIn'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import SiteBreadcrumbBar from '@/components/layout/SiteBreadcrumbBar'
+import PageRelatedLinks from '@/components/links/PageRelatedLinks'
 import Container from '@/components/ui/Container'
 import { PHONE_HREF, PHONE_NUMBER } from '@/constants/contact'
 import { getSeoPageH1 } from '@/constants/seoPageMeta'
@@ -28,7 +29,7 @@ function ServiceLandingContent({ slug }) {
       <SiteBreadcrumbBar path={page.path} />
       <main id="main-content" className="overflow-x-clip bg-background pb-20 pt-8 lg:pt-10">
         <Container className="max-w-3xl">
-          <FadeIn>
+          <FadeIn eager>
             <h1 className="font-heading text-[clamp(2rem,4.5vw,3rem)] font-semibold leading-tight text-primary">
               {getSeoPageH1(page.path)}
             </h1>
@@ -53,6 +54,7 @@ function ServiceLandingContent({ slug }) {
             </div>
           </FadeIn>
         </Container>
+        <PageRelatedLinks path={page.path} />
       </main>
       <Footer />
     </>

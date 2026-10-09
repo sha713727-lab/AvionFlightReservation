@@ -18,10 +18,10 @@ export function getFallbackHiltonPage() {
   return {
     id: 'default',
     status: 'published',
-    metaTitle: 'Hilton Hotels Booking Help | AvioSupportDesk',
+    metaTitle: 'Hilton Hotels Booking Help by Phone | AvioSupportDesk',
     metaDescription:
-      'Get independent phone help booking Hilton hotels—Hilton Anatole, One UN Plaza, Union Square SF, Orlando, Hawaiian Village, and more. Not affiliated with Hilton Worldwide.',
-    ogTitle: 'Hilton Hotels Booking Help | AvioSupportDesk',
+      'Independent phone help booking Hilton hotels such as Hilton Anatole, Union Square San Francisco, and Hawaiian Village. Not affiliated with Hilton Worldwide.',
+    ogTitle: 'Hilton Hotels Booking Help by Phone | AvioSupportDesk',
     ogDescription:
       'Independent specialists help you compare and book Hilton hotel stays by phone. Clear fees before you agree. We do not provide Hilton Honors login.',
     heroHeading: 'Book Hilton stays with clearer phone help.',
@@ -72,6 +72,48 @@ export function getFallbackHiltonPage() {
       { id: 'pr6', title: 'Capital Hilton', blurb: 'Washington, D.C. hotel help for business and leisure visits.', mediaUrl: null, mediaAlt: '', sortOrder: 6, isEnabled: true },
       { id: 'pr7', title: 'Conrad New York Downtown', blurb: 'Downtown Manhattan Conrad booking help for upscale stays.', mediaUrl: null, mediaAlt: '', sortOrder: 7, isEnabled: true },
       { id: 'pr8', title: 'Hampton Inn & Embassy Suites', blurb: 'Brand-family booking help across Hampton and Embassy Suites.', mediaUrl: null, mediaAlt: '', sortOrder: 8, isEnabled: true },
+    ],
+    faqs: [
+      {
+        id: 'hf1',
+        question: 'Is AvioSupportDesk part of Hilton Worldwide?',
+        answer:
+          'No. AvioSupportDesk is an independent travel assistance service. We are not affiliated with, authorized by, or endorsed by Hilton Worldwide, Hilton Hotels & Resorts, or Hilton Honors. Hotel names identify booking requests only. Our assistance fee is quoted before you agree and is separate from hotel charges.',
+        sortOrder: 1,
+        isEnabled: true,
+      },
+      {
+        id: 'hf2',
+        question: 'Do you need my Hilton Honors login?',
+        answer:
+          'No. We never ask for Hilton Honors passwords or account access. You keep control of your loyalty login. We help compare publicly available rates and complete permitted booking steps after you accept a written assistance-fee quote.',
+        sortOrder: 2,
+        isEnabled: true,
+      },
+      {
+        id: 'hf3',
+        question: 'Which Hilton sub-brands can you help with?',
+        answer:
+          'We can help you review stays at Hilton hotels and related brands travelers commonly request, including Hampton Inn, DoubleTree, Embassy Suites, Conrad, and Waldorf Astoria. Brand names identify the hotel you want. We are not Hilton Customer Care.',
+        sortOrder: 3,
+        isEnabled: true,
+      },
+      {
+        id: 'hf4',
+        question: 'Are your rates lower than booking direct with Hilton?',
+        answer:
+          'We do not claim lower rates than booking on the hotel website. We help you compare available options and complete a reservation by phone. Hotel charges remain the hotel’s. Our assistance fee is separate and is quoted before you agree.',
+        sortOrder: 4,
+        isEnabled: true,
+      },
+      {
+        id: 'hf5',
+        question: 'How do Hilton hotel changes and cancellations work?',
+        answer:
+          'Hotel change and cancellation rules belong to the property and the rate you booked. We can explain those rules in plain language and help you request a permitted change. Our assistance fee is quoted before paid work begins and stays separate from hotel charges.',
+        sortOrder: 5,
+        isEnabled: true,
+      },
     ],
     clientLogos: [],
     updatedAt: new Date(0).toISOString(),

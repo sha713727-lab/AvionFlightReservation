@@ -3,7 +3,7 @@ import { BLOG_CHANGE_FLIGHT_PATH } from '@/constants/routes'
 export const POST_CHANGE_FLIGHT = {
   slug: 'how-to-change-your-flight-booking-step-by-step',
   path: BLOG_CHANGE_FLIGHT_PATH,
-  title: 'How to Change Your Flight Booking — Step-by-Step Guide',
+  title: 'How to Change a Flight Booking, Step by Step',
   h1: 'How to Change Your Flight Booking — Step-by-Step Guide',
   excerpt:
     'A clear walkthrough of airline change fees, fare differences, same-day options, and when rebooking beats canceling in 2026.',

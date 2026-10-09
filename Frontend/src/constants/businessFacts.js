@@ -56,6 +56,10 @@ export const BUSINESS_FACTS = {
   },
 }
 
+/** Restates the published disclosures so search and answer engines never merge us with these brands. */
+export const ORGANIZATION_DISAMBIGUATING_DESCRIPTION =
+  'Independent paid travel assistance service. Not RBC, Avion Rewards, an airline, Wyndham Hotels & Resorts, or Hilton, and not affiliated with any of them.'
+
 export function getVerifiedSameAs() {
   return Array.isArray(BUSINESS_FACTS.sameAs)
     ? BUSINESS_FACTS.sameAs.filter((url) => typeof url === 'string' && url.startsWith('https://'))

@@ -29,6 +29,10 @@ export const GEO_BYLINES = {
   factCheckerName: '',
   lastUpdatedLabel: 'September 21, 2026',
   lastUpdatedIso: '2026-09-21',
+  /** First git commit of the core guide entries (2026-09-11). */
+  publishedIso: '2026-09-11',
+  /** First git commit of the Avion guide entries (2026-09-22). */
+  avionGuidesPublishedIso: '2026-09-22',
   aboutPath: '/about',
 }
 

@@ -1,9 +1,10 @@
 import { BRAND_FULL_NAME } from '@/constants/brand'
+import { ORGANIZATION_DISAMBIGUATING_DESCRIPTION } from '@/constants/businessFacts'
 import {
   CANONICAL_ORIGIN,
   CONTACT_EMAILS,
   MAILING_ADDRESS,
-  PHONE_NUMBER,
+  PHONE_SCHEMA_TELEPHONE,
   buildCanonicalUrl,
 } from '@/constants/contact'
 import { SEO_OG_IMAGE_ABSOLUTE, SEO_SITE_NAME } from '@/constants/images'
@@ -31,8 +32,12 @@ export function buildPageMetadata({
   path,
   keywords,
   ogImage = SEO_OG_IMAGE_ABSOLUTE,
+  type = 'website',
+  publishedTime,
+  modifiedTime,
 }) {
   const canonical = buildCanonicalUrl(path)
+  const articleTimes = type === 'article' ? { publishedTime, modifiedTime } : {}
 
   return {
     title,
@@ -43,7 +48,8 @@ export function buildPageMetadata({
     },
     robots: SEO_ROBOTS_INDEX,
     openGraph: {
-      type: 'website',
+      type,
+      ...articleTimes,
       title,
       description,
       url: canonical,
@@ -65,14 +71,18 @@ export function buildPageMetadata({
   }
 }
 
-/** Build full Next.js metadata from the centralized SEO_PAGE_META map. */
-export function buildPathMetadata(path) {
+/**
+ * Build full Next.js metadata from the centralized SEO_PAGE_META map.
+ * Articles pass { type: 'article', publishedTime, modifiedTime } for Open Graph.
+ */
+export function buildPathMetadata(path, articleOptions = {}) {
   const meta = getSeoPageMeta(path)
   return buildPageMetadata({
     title: meta.title,
     description: meta.description,
     path,
     keywords: meta.keywords,
+    ...articleOptions,
   })
 }
 
@@ -81,6 +91,7 @@ export function buildPathMetadata(path) {
  * Page/service nodes are namespaced by their own canonical URL.
  */
 export const ORGANIZATION_ID = `${CANONICAL_ORIGIN}/#organization`
+export const ORGANIZATION_URL = `${CANONICAL_ORIGIN}/`
 export const WEBSITE_ID = `${CANONICAL_ORIGIN}/#website`
 
 export function buildWebPageId(path) {
@@ -93,17 +104,19 @@ export function buildServiceId(path) {
 
 /**
  * Organization record for a service/contact page.
+ * url is always the home page so every page describes the same entity.
  * No priceRange — assistance fees are quoted, never published as a range.
  */
-export function buildTravelAssistanceJsonLd({ description, path, includeAddress = false }) {
+export function buildTravelAssistanceJsonLd({ description, includeAddress = false }) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     '@id': ORGANIZATION_ID,
     name: BRAND_FULL_NAME,
     description,
-    url: buildCanonicalUrl(path),
-    telephone: PHONE_NUMBER,
+    disambiguatingDescription: ORGANIZATION_DISAMBIGUATING_DESCRIPTION,
+    url: ORGANIZATION_URL,
+    telephone: PHONE_SCHEMA_TELEPHONE,
     email: CONTACT_EMAILS,
     areaServed: ['Canada', 'United States', 'Europe', 'Mexico'],
   }

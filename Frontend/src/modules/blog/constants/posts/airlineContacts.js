@@ -3,10 +3,10 @@ import { BLOG_AIRLINE_CONTACT_GUIDE_PATH } from '@/constants/routes'
 export const POST_AIRLINE_CONTACTS = {
   slug: 'airlines-customer-service-numbers-complete-contact-guide',
   path: BLOG_AIRLINE_CONTACT_GUIDE_PATH,
-  title: 'Airlines Customer Service Numbers — Complete Contact Guide',
-  h1: 'Airlines Customer Service Numbers — Complete Contact Guide',
+  title: 'How to Reach Airline Customer Service Safely',
+  h1: 'How to Reach Airline Customer Service Through Official Channels',
   excerpt:
-    'Find practical ways to reach major airline customer service teams, what to prepare before you call, and when phone support beats the app.',
+    'How to find an airline’s verified contact page, what to prepare before you call, and how to avoid spoofed numbers from search ads and social posts.',
   publishedAt: '2026-09-03',
   publishedLabel: 'September 3, 2026',
   updatedAt: '2026-09-10',
@@ -31,11 +31,11 @@ export const POST_AIRLINE_CONTACTS = {
   blocks: [
     {
       type: 'p',
-      text: 'Airline customer service numbers change often, so treat directories as perishable. Verify phones on the airline’s own site, prepare booking details before you dial, and know when an app or independent specialist finishes the job faster than hold music.',
+      text: 'AvioSupportDesk is not an airline, and this guide does not list airline phone numbers. Airline numbers change often, so the only reliable source is the contact page on the airline’s own website, checked the day you call.',
     },
     {
       type: 'p',
-      text: 'This contact guide explains how to reach major carriers, what queues exist beyond the main reservations line, and how AvioSupportDesk {{services}} can help when you need structured phone assistance without pretending we are the airline itself.',
+      text: 'This guide explains how to find those official pages, which queues exist beyond the main reservations line, what to prepare before you dial, and when our independent {{services}} can help with a booking-related request alongside the airline.',
     },
     {
       type: 'h2',

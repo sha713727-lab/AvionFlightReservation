@@ -14,6 +14,7 @@ import HiltonPrinciples from '@/modules/hiltonHotels/components/HiltonPrinciples
 import HiltonProperties from '@/modules/hiltonHotels/components/HiltonProperties'
 import HiltonClients from '@/modules/hiltonHotels/components/HiltonClients'
 import HiltonCompanyRail from '@/modules/hiltonHotels/components/HiltonCompanyRail'
+import HiltonFaqs from '@/modules/hiltonHotels/components/HiltonFaqs'
 import styles from '@/modules/hiltonHotels/hiltonHotels.module.css'
 import { HILTON_DISCLOSURE } from '@/modules/hiltonHotels/constants/copy'
 
@@ -53,6 +54,7 @@ export default function HiltonHotelsPage({ page, contactEmail }) {
           contactEmail={email}
           cards={page.railCards}
         />
+        <HiltonFaqs faqs={page.faqs} />
         <div className={styles.section}>
           <div className={styles.wide}>
             <p className={styles.disclosure}>{HILTON_DISCLOSURE}</p>

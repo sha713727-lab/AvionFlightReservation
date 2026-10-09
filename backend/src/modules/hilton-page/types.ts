@@ -69,6 +69,14 @@ export interface HiltonClientLogoDto {
   isEnabled: boolean
 }
 
+export interface HiltonFaqDto {
+  id: string
+  question: string
+  answer: string
+  sortOrder: number
+  isEnabled: boolean
+}
+
 export interface HiltonPageDto {
   id: string
   status: string
@@ -93,5 +101,6 @@ export interface HiltonPageDto {
   railCards: HiltonRailCardDto[]
   properties: HiltonPropertyDto[]
   clientLogos: HiltonClientLogoDto[]
+  faqs: HiltonFaqDto[]
   updatedAt: string
 }

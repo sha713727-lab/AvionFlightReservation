@@ -12,6 +12,7 @@ import {
   TOOL_AVION_POINTS_CALCULATOR_PATH,
 } from '@/constants/routes'
 import { BUSINESS_FACTS } from '@/constants/businessFacts'
+import { GEO_BYLINES } from '@/constants/geo'
 import {
   OFFICIAL_AVION_TERMS_URL,
   OFFICIAL_AVION_TRAVEL_URL,
@@ -31,6 +32,7 @@ export const AVION_GUIDE_PAGES = [
   {
     slug: 'avion-points-flight-booking',
     path: GUIDE_AVION_FLIGHT_BOOKING_PATH,
+    publishedIso: GEO_BYLINES.avionGuidesPublishedIso,
     title: 'How to Book Flights with Avion Points | AvioSupportDesk',
     metaDescription:
       'Portal redemptions, chart-based awards, and partner transfers use different rules. Independent guide—not RBC or Avion Rewards.',
@@ -58,6 +60,7 @@ export const AVION_GUIDE_PAGES = [
   {
     slug: 'avion-points-redemption-chart',
     path: GUIDE_AVION_REDEMPTION_CHART_PATH,
+    publishedIso: GEO_BYLINES.avionGuidesPublishedIso,
     title: 'Avion Redemption Chart Explained | AvioSupportDesk',
     metaDescription:
       'When fixed chart levels apply, illustrative point levels and CAD caps, and what cash you may still owe. Observed data—not a fare guarantee.',
@@ -86,6 +89,7 @@ export const AVION_GUIDE_PAGES = [
   {
     slug: 'avion-points-value',
     path: GUIDE_AVION_POINTS_VALUE_PATH,
+    publishedIso: GEO_BYLINES.avionGuidesPublishedIso,
     title: 'Avion Points Value Explained | AvioSupportDesk',
     metaDescription:
       'Worked comparisons at 15k, 35k, and 55k levels using hypothetical cash equivalents—no universal cents-per-point promise.',
@@ -113,6 +117,7 @@ export const AVION_GUIDE_PAGES = [
   {
     slug: 'avion-transfer-partners',
     path: GUIDE_AVION_TRANSFER_PARTNERS_PATH,
+    publishedIso: GEO_BYLINES.avionGuidesPublishedIso,
     title: 'Avion Transfer Partners Explained | AvioSupportDesk',
     metaDescription:
       'Transfers vs portal redemptions, irreversibility, and eligibility. We do not claim transfer routes absent from official terms.',

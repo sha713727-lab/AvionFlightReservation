@@ -17,7 +17,6 @@ export function getAboutPageJsonLd() {
     }),
     buildTravelAssistanceJsonLd({
       description,
-      path: ABOUT_PATH,
       includeAddress: true,
     }),
   ])

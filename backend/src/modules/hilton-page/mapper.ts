@@ -7,6 +7,7 @@ export const hiltonPageInclude = {
   railCards: { orderBy: [{ sortOrder: 'asc' as const }, { createdAt: 'asc' as const }] },
   properties: { orderBy: [{ sortOrder: 'asc' as const }, { createdAt: 'asc' as const }] },
   clientLogos: { orderBy: [{ sortOrder: 'asc' as const }, { createdAt: 'asc' as const }] },
+  faqs: { orderBy: [{ sortOrder: 'asc' as const }, { createdAt: 'asc' as const }] },
 } satisfies Prisma.HiltonPageInclude
 
 export type HiltonPageRow = Prisma.HiltonPageGetPayload<{ include: typeof hiltonPageInclude }>
@@ -24,6 +25,7 @@ export function toHiltonPageDto(row: HiltonPageRow, publishedOnly = false): Hilt
   const clientLogos = publishedOnly
     ? row.clientLogos.filter((item) => item.isEnabled)
     : row.clientLogos
+  const faqs = publishedOnly ? row.faqs.filter((item) => item.isEnabled) : row.faqs
 
   return {
     id: row.id,
@@ -87,6 +89,13 @@ export function toHiltonPageDto(row: HiltonPageRow, publishedOnly = false): Hilt
       name: item.name,
       mediaUrl: item.mediaUrl,
       href: item.href,
+      sortOrder: item.sortOrder,
+      isEnabled: item.isEnabled,
+    })),
+    faqs: faqs.map((item) => ({
+      id: item.id,
+      question: item.question,
+      answer: item.answer,
       sortOrder: item.sortOrder,
       isEnabled: item.isEnabled,
     })),

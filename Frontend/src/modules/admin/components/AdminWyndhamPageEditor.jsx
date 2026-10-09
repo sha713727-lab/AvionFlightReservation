@@ -7,6 +7,7 @@ import useAdminWyndhamPage from '@/modules/admin/hooks/useAdminWyndhamPage'
 import AdminWyndhamPageFields from '@/modules/admin/components/AdminWyndhamPageFields'
 import AdminWyndhamMediaPanel from '@/modules/admin/components/AdminWyndhamMediaPanel'
 import AdminWyndhamListsPanel from '@/modules/admin/components/AdminWyndhamListsPanel'
+import AdminWyndhamFaqPanel from '@/modules/admin/components/AdminWyndhamFaqPanel'
 
 export default function AdminWyndhamPageEditor({ token }) {
   const editor = useAdminWyndhamPage(token)
@@ -54,6 +55,12 @@ export default function AdminWyndhamPageEditor({ token }) {
         mediaSlots={editor.page.mediaSlots}
         onUpload={editor.uploadSlot}
         onRemove={editor.removeSlot}
+      />
+
+      <AdminWyndhamFaqPanel
+        token={token}
+        faqs={editor.page.faqs}
+        applyPage={editor.applyPage}
       />
 
       <AdminWyndhamListsPanel

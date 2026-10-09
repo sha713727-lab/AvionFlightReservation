@@ -1,5 +1,6 @@
 import { FaComments, FaHeadset, FaShieldAlt, FaClock, FaUserCheck, FaLock } from 'react-icons/fa'
 import { HiOutlineChatAlt2, HiOutlineClipboardList, HiOutlineSwitchHorizontal } from 'react-icons/hi'
+import { RESERVATION_EMAIL } from '@/constants/contact'
 
 export const ABOUT_HIGHLIGHTS = [
   {
@@ -97,3 +98,36 @@ export const ABOUT_TRUST_BADGES = [
   { id: 'phone', label: 'Phone assistance available', icon: FaHeadset },
   { id: 'clear', label: 'Clear fee explanations', icon: FaComments },
 ]
+
+export const ABOUT_WHAT_IS = {
+  heading: 'What is AvioSupportDesk?',
+  body: 'AvioSupportDesk is an independent travel assistance service. We help travelers compare flight and hotel options and complete permitted booking steps by phone. We are not an airline, bank, or hotel brand. Assistance fees are quoted before you agree and stay separate from supplier charges.',
+}
+
+export const ABOUT_EDITORIAL_STANDARDS = {
+  heading: 'Editorial standards',
+  intro:
+    'Guides and policy pages are written as independent travel assistance, not as airline, bank, or hotel advice.',
+  items: [
+    {
+      id: 'sources',
+      title: 'Official sources cited',
+      body: 'Where a guide relies on a public rule, we list the official source so you can check the current wording yourself.',
+    },
+    {
+      id: 'review-dates',
+      title: 'Review dates on guides',
+      body: 'Guides show when the page was published or last reviewed so you can tell whether the explanation is current.',
+    },
+    {
+      id: 'independence',
+      title: 'Independence',
+      body: 'We are not affiliated with RBC, Avion Rewards, airlines, Wyndham Hotels & Resorts, or Hilton. Brand names identify the travel request only.',
+    },
+    {
+      id: 'corrections',
+      title: 'Corrections',
+      body: `If you find an error, email ${RESERVATION_EMAIL}. We correct factual mistakes on the page and note the review date.`,
+    },
+  ],
+}

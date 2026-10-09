@@ -151,6 +151,7 @@ export default function useAdminWyndhamPage(token) {
     fieldErrors,
     updateField,
     savePage,
+    applyPage: setPage,
     reload: load,
     uploadSlot: (slotKey, file) => runMutation(() => uploadWyndhamSlotMedia(token, slotKey, file)),
     removeSlot: (slotKey) => runMutation(() => removeWyndhamSlotMedia(token, slotKey)),

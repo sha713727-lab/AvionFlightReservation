@@ -3,7 +3,7 @@ import { BLOG_DELAY_COMPENSATION_PATH } from '@/constants/routes'
 export const POST_DELAY_COMPENSATION = {
   slug: 'flight-delay-compensation-passenger-rights',
   path: BLOG_DELAY_COMPENSATION_PATH,
-  title: 'Flight Delay Compensation — Know Your Passenger Rights',
+  title: 'Flight Delay Compensation & Your Rights',
   h1: 'Flight Delay Compensation — Know Your Passenger Rights',
   excerpt:
     'Understand delay compensation basics for U.S., Canadian, and EU itineraries, what airlines must provide, and how to document a claim.',

@@ -14,6 +14,7 @@ import WyndhamPrinciples from '@/modules/wyndhamHotels/components/WyndhamPrincip
 import WyndhamProperties from '@/modules/wyndhamHotels/components/WyndhamProperties'
 import WyndhamClients from '@/modules/wyndhamHotels/components/WyndhamClients'
 import WyndhamCompanyRail from '@/modules/wyndhamHotels/components/WyndhamCompanyRail'
+import WyndhamFaqs from '@/modules/wyndhamHotels/components/WyndhamFaqs'
 import styles from '@/modules/wyndhamHotels/wyndhamHotels.module.css'
 import { WYNDHAM_DISCLOSURE } from '@/modules/wyndhamHotels/constants/copy'
 
@@ -53,6 +54,7 @@ export default function WyndhamHotelsPage({ page, contactEmail }) {
           contactEmail={email}
           cards={page.railCards}
         />
+        <WyndhamFaqs faqs={page.faqs} />
         <div className={styles.section}>
           <div className={styles.wide}>
             <p className={styles.disclosure}>{WYNDHAM_DISCLOSURE}</p>

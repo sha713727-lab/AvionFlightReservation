@@ -12,6 +12,8 @@ import CallExpertProvider from '@/modules/call/components/CallExpertProvider'
 import AboutPageHero from '@/modules/about/components/AboutPageHero'
 import AboutHighlights from '@/modules/about/components/AboutHighlights'
 import AboutWhoWeAre from '@/modules/about/components/AboutWhoWeAre'
+import AboutWhatIs from '@/modules/about/components/AboutWhatIs'
+import AboutEditorialStandards from '@/modules/about/components/AboutEditorialStandards'
 import AboutWhyChoose from '@/modules/about/components/AboutWhyChoose'
 import AboutMission from '@/modules/about/components/AboutMission'
 import AboutValues from '@/modules/about/components/AboutValues'
@@ -26,6 +28,7 @@ export default function AboutPage() {
       <SiteBreadcrumbBar path={ABOUT_PATH} />
       <main id="main-content" className="overflow-x-clip">
         <AboutPageHero />
+        <AboutWhatIs />
         <AboutHighlights />
         <AboutWhoWeAre />
         <AboutWhyChoose />
@@ -33,6 +36,7 @@ export default function AboutPage() {
         <AboutValues />
         <AboutTrustBadges />
         <AboutContactReasons />
+        <AboutEditorialStandards />
         <Container className="max-w-3xl py-10">
           <SourcesSection sources={ABOUT_PAGE_SOURCES} />
         </Container>

@@ -3,8 +3,8 @@ import { BLOG_CANCEL_FLIGHT_REFUND_PATH } from '@/constants/routes'
 export const POST_CANCEL_FLIGHT_REFUND = {
   slug: 'how-to-cancel-a-flight-and-get-a-full-refund-in-2026',
   path: BLOG_CANCEL_FLIGHT_REFUND_PATH,
-  title: 'How to Cancel a Flight and Get a Full Refund in 2026',
-  h1: 'How to Cancel a Flight and Get a Full Refund in 2026',
+  title: 'How to Cancel a Flight & Get a Refund in 2026',
+  h1: 'How to Cancel a Flight and Get a Refund in 2026',
   excerpt:
     'Learn when airlines owe a cash refund versus credit, how 24-hour windows work, and the steps to cancel correctly in 2026.',
   publishedAt: '2026-09-01',

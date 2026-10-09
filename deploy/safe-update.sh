@@ -9,6 +9,9 @@
 #   bash deploy/safe-update.sh --api        # also rebuild API (runs prisma migrate on start)
 #   bash deploy/safe-update.sh --frontend --api
 #   bash deploy/safe-update.sh --recreate-nginx  # remount nginx volumes (brief 80/443 blip for THIS edge only)
+#
+# The live sitemap is replaced only after deploy/publish-sitemap.sh confirms every listed URL
+# returns 200 with a self-canonical; until then Google keeps reading the previous sitemap.
 
 set -euo pipefail
 
@@ -46,11 +49,19 @@ if [[ ! -f "$ENV_FILE" ]]; then
   exit 1
 fi
 
+SITEMAP_HOLD_DIR="$(mktemp -d)"
+trap 'rm -rf "$SITEMAP_HOLD_DIR"' EXIT
+if [[ -f deploy/publish-sitemap.sh ]]; then
+  echo "==> Holding the live sitemap until the new one passes the publish gate"
+  bash deploy/publish-sitemap.sh hold "$SITEMAP_HOLD_DIR"
+fi
+
 echo "==> Fetching origin/main (this repo only)"
 git fetch origin main
 
 echo "==> Updating working tree to origin/main"
 git reset --hard origin/main
+bash deploy/publish-sitemap.sh restore "$SITEMAP_HOLD_DIR"
 
 echo "==> Syncing nginx active.conf in-place (keeps Docker bind-mount inode)"
 # IMPORTANT: do not use `cp` here — replacing the inode leaves the container on stale config.
@@ -68,9 +79,6 @@ PY
 else
   cat deploy/nginx/aviosupportdesk.conf > deploy/nginx/active.conf
 fi
-cp -f Frontend/public/sitemap.xml deploy/nginx/static/sitemap.xml
-cp -f Frontend/public/sitemap_index.xml deploy/nginx/static/sitemap_index.xml
-cp -f Frontend/public/robots.txt deploy/nginx/static/robots.txt
 
 # Preserve multi-site HTTPS vhosts. git tracks HTTP-only enabled.conf for bootstrap;
 # without this, `git reset --hard` drops SSL blocks and browsers get aviosupportdesk.com
@@ -135,6 +143,10 @@ else
   "${COMPOSE[@]}" exec -T nginx nginx -s reload
 fi
 
+echo "==> Publishing the sitemap only if every listed URL is live"
+SITEMAP_PUBLISHED=1
+bash deploy/publish-sitemap.sh || SITEMAP_PUBLISHED=0
+
 echo "==> Confirm loaded sitemap locations"
 "${COMPOSE[@]}" exec -T nginx nginx -T 2>/dev/null | grep -E 'location = /sitemap|sitemap(_index)?\.xml' || true
 "${COMPOSE[@]}" exec -T nginx ls -la /var/www/static || true
@@ -152,6 +164,12 @@ echo "-- sitemap.xml cache-control --"
 curl -fsSI "https://${DOMAIN}/sitemap.xml" | grep -i cache-control || true
 echo "-- sitemap_index.xml cache-control --"
 curl -fsSI "https://${DOMAIN}/sitemap_index.xml" | grep -i cache-control || true
+
+if [[ "$SITEMAP_PUBLISHED" -ne 1 ]]; then
+  echo "ERROR: the new sitemap was NOT published; Google still reads the previous one." >&2
+  echo "       Fix the failing URLs listed above, then run: bash deploy/publish-sitemap.sh" >&2
+  exit 1
+fi
 
 echo "==> Done. Other compose projects were not restarted."
 echo "    GSC: remove old /sitemap if listed, submit sitemap.xml; confirm Success in GSC UI."

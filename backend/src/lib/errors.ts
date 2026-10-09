@@ -31,6 +31,10 @@ export function validationError(message: string, errors: ApiErrorDetail[]): AppE
   return new AppError(message, HTTP_STATUS.UNPROCESSABLE, ERROR_CODES.VALIDATION_ERROR, errors)
 }
 
+export function unprocessableEntityError(message: string, errorCode: ErrorCode): AppError {
+  return new AppError(message, HTTP_STATUS.UNPROCESSABLE, errorCode)
+}
+
 export function unauthorizedError(message: string, errorCode: ErrorCode): AppError {
   return new AppError(message, HTTP_STATUS.UNAUTHORIZED, errorCode)
 }

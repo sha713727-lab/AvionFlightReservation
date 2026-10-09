@@ -1,2 +1,4 @@
 export const HILTON_DISCLOSURE =
   'AvioSupportDesk is an independent travel assistance service. We are not affiliated with, authorized by, or endorsed by Hilton Worldwide, Hilton Hotels & Resorts, Hilton Honors, Hampton, DoubleTree, Embassy Suites, Conrad, Waldorf Astoria, or any hotel brand. Property names appear only to identify customer booking requests. We do not provide Hilton Honors login or account access. Our assistance fee is separate from hotel charges and is quoted before you agree.'
+
+export const HILTON_FAQ_HEADING = 'Hilton hotel booking questions'

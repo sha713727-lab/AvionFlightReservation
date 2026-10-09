@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import OptimizedImage from '@/components/media/OptimizedImage'
+import { useInViewport, useTabVisible } from '@/hooks/useInViewport'
 import styles from '@/modules/hiltonHotels/hiltonHotels.module.css'
 
 function cardHeightClass(cardType) {
@@ -53,7 +54,10 @@ function RailCard({ card }) {
 }
 
 export default function HiltonCompanyRail({ label, contactEmail, cards }) {
+  const sectionRef = useRef(null)
   const viewportRef = useRef(null)
+  const inView = useInViewport(sectionRef)
+  const tabVisible = useTabVisible()
   const [paused, setPaused] = useState(false)
   const [reducedMotion, setReducedMotion] = useState(false)
   const dragRef = useRef({ active: false, startX: 0, scrollLeft: 0, moved: false })
@@ -67,7 +71,7 @@ export default function HiltonCompanyRail({ label, contactEmail, cards }) {
   }, [])
 
   useEffect(() => {
-    if (paused || reducedMotion || cards.length < 2) return undefined
+    if (paused || reducedMotion || cards.length < 2 || !inView || !tabVisible) return undefined
     const viewport = viewportRef.current
     if (!viewport) return undefined
     const isTouch = window.matchMedia('(pointer: coarse)').matches
@@ -82,7 +86,7 @@ export default function HiltonCompanyRail({ label, contactEmail, cards }) {
     }, 40)
 
     return () => window.clearInterval(timer)
-  }, [paused, reducedMotion, cards.length])
+  }, [paused, reducedMotion, cards.length, inView, tabVisible])
 
   const scrollByCard = (direction) => {
     const viewport = viewportRef.current
@@ -119,7 +123,7 @@ export default function HiltonCompanyRail({ label, contactEmail, cards }) {
   if (!cards.length) return null
 
   return (
-    <section id="Hilton-rail" className={styles.section}>
+    <section id="Hilton-rail" ref={sectionRef} className={styles.section}>
       <div className={styles.wide}>
         <div className={styles.railHeader}>
           <h2 className={styles.principlesHeading}>{label}</h2>

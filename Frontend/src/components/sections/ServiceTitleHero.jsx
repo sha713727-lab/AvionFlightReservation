@@ -5,7 +5,7 @@ export default function ServiceTitleHero({ number, title, tagline, icon: Icon, a
   const isRight = align === 'right'
 
   return (
-    <FadeIn direction={isRight ? 'right' : 'left'}>
+    <FadeIn eager direction={isRight ? 'right' : 'left'}>
       <div
         className={cn(
           'relative flex flex-col justify-center py-2 lg:min-h-[240px] lg:py-6',

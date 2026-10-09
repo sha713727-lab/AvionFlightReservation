@@ -50,7 +50,7 @@ export const SEO_PAGE_META = {
   [HOME_PATH]: {
     title: 'Independent Points & Flight Help | AvioSupportDesk',
     description:
-      'Independent help comparing Avion points and flight options. See our process, service fees, and booking guidance before you request assistance today.',
+      'Independent help comparing Avion points and flight options. See our process, assistance fees, and booking guidance before you request help by phone or form.',
     h1: 'Independent help using Avion points for flights',
     keywords: [
       'Avion points help',
@@ -62,42 +62,42 @@ export const SEO_PAGE_META = {
   [SERVICES_PATH]: {
     title: 'Travel Services: Flights, Hotels & More | AvioSupportDesk',
     description:
-      'Explore phone booking for flights, hotels, points, changes & trip planning. Get clear help from specialists—call now for personalized travel support today!',
+      'Phone help for flight bookings, hotel stays, Avion points, changes, cancellations, and trip planning. Compare services and fees, then talk with a specialist.',
     h1: 'Flight & Travel Services — Book Support by Phone',
     keywords: ['travel services', 'flight booking help', 'hotel booking by phone'],
   },
   [DESTINATIONS_PATH]: {
     title: 'Popular Flight Destinations by Phone | AvioSupportDesk',
     description:
-      'Browse Canada, USA, Europe & Mexico flight destinations and book by phone. Get route options fast—call now for destination booking help from our team!',
+      'Browse flight destinations across Canada, the USA, Europe, and Mexico, with route ideas and typical connections. Speak with a specialist to book by phone.',
     h1: 'Popular Flight Destinations Across Canada, USA & Beyond',
     keywords: ['flight destinations', 'Canada flights', 'USA flights', 'Europe flights'],
   },
   [INTERNATIONAL_FLIGHT_PATH]: {
     title: 'International Flights Booked by Phone | AvioSupportDesk',
     description:
-      'Book international flights by phone to Europe, Canada, Mexico & the USA. Compare itineraries with a specialist—call now for overseas booking help today!',
+      'Book international flights by phone to Europe, Canada, Mexico, and the USA. Compare routings, connections, and fare rules with an independent specialist.',
     h1: 'International Flights Booked by Phone',
     keywords: ['international flights', 'book flights by phone', 'transatlantic flights'],
   },
   [FLIGHT_BOOKING_PATH]: {
-    title: 'Book Flights Fast — Phone Booking Help | AvioSupportDesk',
+    title: 'Flight Booking Assistance by Phone | AvioSupportDesk',
     description:
-      'Book domestic & international flights by phone with clear fare guidance. Get itinerary options in minutes—call now for instant flight booking help today!',
-    h1: 'Flight Booking Assistance — Book Any Airline by Phone',
+      'Book domestic and international flights by phone with fare rules, baggage terms, and change conditions explained before you pay. Independent travel service.',
+    h1: 'Flight Booking Assistance by Phone',
     keywords: ['book flights', 'flight reservation by phone', 'airline booking help'],
   },
   [HOTEL_BOOKING_PATH]: {
-    title: 'Hotel Booking Help by Phone — Reserve Now | AvioSupportDesk',
+    title: 'Hotel Booking Help by Phone — Rates & Rules | AvioSupportDesk',
     description:
-      'Reserve hotels by phone for business or leisure with room & cancel-rule guidance. Get the right stay faster—call now for hotel booking help from our team!',
+      'Reserve hotels by phone for business or leisure trips. We explain room types, deposit and cancellation rules, and total taxes before you confirm your stay.',
     h1: 'Hotel Booking Help by Phone — Reserve Your Stay',
     keywords: ['hotel booking', 'book hotel by phone', 'hotel reservation help'],
   },
   [WYNDHAM_HOTELS_PATH]: {
-    title: 'Wyndham Hotels Booking Help | AvioSupportDesk',
+    title: 'Wyndham Hotels Booking Help by Phone | AvioSupportDesk',
     description:
-      'Independent phone help booking Wyndham hotels—Atlanta Buckhead, New Orleans French Quarter, San Diego Bayside, Deerfield Beach, Philadelphia Historic District, and more. Not affiliated with Wyndham Hotels & Resorts.',
+      'Independent phone help booking Wyndham hotels in Atlanta, New Orleans, San Diego, Philadelphia, and more. Not affiliated with Wyndham Hotels & Resorts.',
     h1: 'Book Wyndham stays with clearer phone help.',
     keywords: [
       'wyndham hotels',
@@ -114,15 +114,13 @@ export const SEO_PAGE_META = {
     ],
   },
   [HILTON_HOTELS_PATH]: {
-    title: 'Hilton Hotels Booking Help | AvioSupportDesk',
+    title: 'Hilton Hotels Booking Help by Phone | AvioSupportDesk',
     description:
-      'Independent phone help booking Hilton hotels—Hilton Anatole, One UN Plaza, Union Square SF, Orlando, Hawaiian Village, Capital Hilton, Conrad, Hampton, and more. Not affiliated with Hilton Worldwide.',
+      'Independent phone help booking Hilton hotels such as Hilton Anatole, Union Square San Francisco, and Hawaiian Village. Not affiliated with Hilton Worldwide.',
     h1: 'Book Hilton stays with clearer phone help.',
     keywords: [
       'hilton hotels',
       'hilton hotel booking',
-      'hilton.com',
-      'hilton honors',
       'hilton anatole',
       'hilton san francisco union square',
       'hilton orlando',
@@ -144,37 +142,37 @@ export const SEO_PAGE_META = {
     ],
   },
   [FLIGHT_CHANGES_PATH]: {
-    title: 'Flight Change Assistance — Rebook Fast | AvioSupportDesk',
+    title: 'Flight Change Assistance by Phone | AvioSupportDesk',
     description:
-      'Need to change dates, times or routes? We explain airline fees & rebooking options by phone. Call now for flight change help and update your trip today!',
-    h1: 'Flight Change Assistance — Rebook Any Airline Flight',
+      'Need to change flight dates, times, or routes? We explain airline change fees, fare differences, and rebooking options by phone before anything is changed.',
+    h1: 'Flight Change Assistance by Phone',
     keywords: ['flight change', 'rebook flight', 'airline change fee help'],
   },
   [FLIGHT_CANCELLATION_PATH]: {
     title: 'Flight Cancellation & Refund Help | AvioSupportDesk',
     description:
-      'Cancel flights with phone guidance on refunds, credits, and airline rules. Independent help—call for cancellation options and clear next steps today.',
-    h1: 'Flight Cancellation Assistance — Cancel Any Airline Flight',
+      'Cancel a flight with phone guidance on refunds, travel credits, and airline fare rules. Get independent help weighing your options before you cancel it.',
+    h1: 'Flight Cancellation & Refund Assistance by Phone',
     keywords: ['flight cancellation', 'flight refund help', 'cancel airline ticket'],
   },
   [SEAT_SELECTION_PATH]: {
     title: 'Airline Seat Selection Help by Phone | AvioSupportDesk',
     description:
-      'Choose seats, seat families together & understand paid seat fees before you fly. Get clear seat-map help—call now for seat selection assistance today!',
+      'Choose seats, sit families together, and understand paid seat fees before you fly. Get seat-map guidance by phone from an independent travel specialist.',
     h1: 'Airline Seat Selection Help by Phone',
     keywords: ['seat selection', 'airline seats', 'choose flight seats'],
   },
   [BAGGAGE_ASSISTANCE_PATH]: {
     title: 'Baggage Fees & Bag Allowance Help | AvioSupportDesk',
     description:
-      'Understand carry-on limits, checked bag fees & special-item rules before airport day. Avoid surprise fees—call now for baggage policy help from experts!',
+      'Understand carry-on limits, checked bag fees, and special-item rules before airport day. Get baggage policy guidance by phone from an independent specialist.',
     h1: 'Baggage Fees & Allowance Assistance by Phone',
     keywords: ['baggage allowance', 'checked bag fees', 'carry-on rules'],
   },
   [TRIP_PLANNING_PATH]: {
-    title: 'Trip Planning by Phone — Custom Itineraries | AvioSupportDesk',
+    title: 'Trip Planning Help by Phone — Multi-City | AvioSupportDesk',
     description:
-      'Plan multi-city trips and connections with specialist phone support. Build a clearer itinerary—call AvioSupportDesk for independent trip planning help today.',
+      'Plan multi-city trips, open-jaw routes, and tight connections with phone support. Build a workable itinerary with an independent trip planning specialist.',
     h1: 'Trip Planning by Phone — Custom Travel Itineraries',
     keywords: ['trip planning', 'custom itinerary', 'multi-city travel'],
   },
@@ -188,35 +186,35 @@ export const SEO_PAGE_META = {
   [GUIDE_FLIGHT_BOOKING_PATH]: {
     title: 'How to Book a Flight by Phone Guide | AvioSupportDesk',
     description:
-      'Step-by-step guide to booking flights by phone: what to prepare, fares & timing. Ready to book? Call now for live specialist help and confirm your trip today!',
+      'Step-by-step guide to booking flights by phone: what to prepare, how fares and timing work, and what to confirm before you pay. Written in plain language.',
     h1: 'How to Book a Flight by Phone — Complete Guide',
     keywords: ['how to book a flight', 'phone booking guide', 'flight reservation steps'],
   },
   [GUIDE_FLIGHT_CHANGES_PATH]: {
-    title: 'How Airline Flight Changes Work | AvioSupportDesk',
+    title: 'Airline Change Fees & Rules Explained | AvioSupportDesk',
     description:
-      'Learn how flight changes, fees & fare differences work before you rebook. Need your trip updated? Call now for change assistance from our phone specialists!',
-    h1: 'How Airline Flight Changes Work — Traveler Guide',
+      'How airline change fees, fare differences, and same-day change rules work, with examples of what to check before you rebook a flight yourself or with help.',
+    h1: 'Airline Change Fees and Rules, Explained',
     keywords: ['flight change guide', 'airline change rules', 'rebooking explained'],
   },
   [GUIDE_FLIGHT_CANCELLATIONS_PATH]: {
-    title: 'Flight Cancellation & Refunds Guide | AvioSupportDesk',
+    title: 'Airline Refund vs Credit Rules Explained | AvioSupportDesk',
     description:
-      'Understand cancellations, refunds vs credits & what airlines usually allow. Need to cancel now? Call for expert cancellation help and protect your options!',
-    h1: 'Flight Cancellation & Refunds Guide for Travelers',
+      'When airlines owe a cash refund, when they offer a travel credit, and how fare rules, schedule changes, and 24-hour windows affect what you can get back.',
+    h1: 'Airline Refund vs Credit Rules, Explained',
     keywords: ['cancellation guide', 'flight refund guide', 'airline credit vs refund'],
   },
   [GUIDE_BAGGAGE_PATH]: {
     title: 'Airline Baggage Rules Explained | AvioSupportDesk',
     description:
-      'Carry-on, checked bags & fee basics explained for North American trips. Unsure about your allowance? Call now for baggage help before you pay airport fees!',
+      'Carry-on, checked bag, and fee basics explained for North American trips, including weight limits and special items, so you can check your allowance early.',
     h1: 'Airline Baggage Rules Explained — Fees & Limits',
     keywords: ['baggage rules', 'carry-on guide', 'checked luggage fees'],
   },
   [GUIDE_POINTS_PATH]: {
     title: 'Points & Miles Basics for Flights | AvioSupportDesk',
     description:
-      'Learn transfers, award space, taxes & when cash beats points on flights. Ready to redeem smarter? Call now for points guidance and book the better option!',
+      'Learn how transfers, award space, taxes, and fees work, and when paying cash beats using points on flights. A plain-language primer before you redeem points.',
     h1: 'Points & Miles Basics for Flight Travel',
     keywords: ['points and miles guide', 'award travel basics', 'transfer partners'],
   },
@@ -235,10 +233,10 @@ export const SEO_PAGE_META = {
     keywords: ['Avion redemption chart', 'Avion fare caps', 'fixed chart levels'],
   },
   [GUIDE_AVION_POINTS_VALUE_PATH]: {
-    title: 'Avion Points Value Explained Clearly | AvioSupportDesk',
+    title: 'What Are Avion Points Worth? Worked Examples | AvioSupportDesk',
     description:
       'Compare cash fare, points required, and remaining charges with worked examples at 15k, 35k, and 55k levels. No universal cents-per-point claim—see your own math.',
-    h1: 'Avion points value explained',
+    h1: 'What Avion Points Are Worth: Worked Examples',
     keywords: ['Avion points value', 'cents per point', 'points vs cash'],
   },
   [GUIDE_AVION_TRANSFER_PARTNERS_PATH]: {
@@ -249,7 +247,7 @@ export const SEO_PAGE_META = {
     keywords: ['Avion transfer partners', 'partner transfer rules', 'Avion vs Avios'],
   },
   [TOOL_AVION_POINTS_CALCULATOR_PATH]: {
-    title: 'Avion Points Value Calculator Tool | AvioSupportDesk',
+    title: 'Avion Points Calculator: Cents per Point | AvioSupportDesk',
     description:
       'Estimate gross and net cents per point by comparing equivalent cash and redemption totals in CAD, including optional independent assistance fees you enter.',
     h1: 'Avion points value calculator',
@@ -277,93 +275,97 @@ export const SEO_PAGE_META = {
     keywords: ['independent travel service', 'AvioSupportDesk disclosure', 'not affiliated RBC'],
   },
   [BLOG_PATH]: {
-    title: 'Travel Tips, Airline Guides & Flight Help | AvioSupportDesk Blog',
+    title: 'Travel Tips & Airline Guides Blog | AvioSupportDesk',
     description:
-      'Read AvioSupportDesk blog posts on flight refunds, airline contacts, delay rights, changes & booking savings. Call now when you need specialist phone support!',
+      'Practical posts on flight refunds, reaching airlines through official channels, delay rights, changing bookings, and saving on airfare, reviewed for 2026.',
     h1: 'AvioSupportDesk Blog — Travel Tips & Airline Guides',
     keywords: ['travel blog', 'airline guides', 'flight help tips', 'AvioSupportDesk blog'],
   },
   [BLOG_CANCEL_FLIGHT_REFUND_PATH]: {
-    title: 'Cancel a Flight & Get a Full Refund in 2026 | AvioSupportDesk',
+    title: 'How to Cancel a Flight & Get a Refund in 2026 | AvioSupportDesk',
     description:
-      'Learn when airlines owe cash refunds vs credits, how 24-hour windows work, and cancel steps for 2026. Need help now? Call AvioSupportDesk for cancel support!',
-    h1: 'How to Cancel a Flight and Get a Full Refund in 2026',
+      'Step by step: how to cancel a flight in 2026, when the 24-hour rule applies, and how to request a cash refund instead of a credit when the airline owes one.',
+    h1: 'How to Cancel a Flight and Get a Refund in 2026',
     keywords: ['cancel flight refund', 'flight refund 2026', '24-hour cancellation'],
   },
   [BLOG_AIRLINE_CONTACT_GUIDE_PATH]: {
-    title: 'Airline Customer Service Numbers Guide | AvioSupportDesk',
+    title: 'How to Reach Airline Customer Service Safely | AvioSupportDesk',
     description:
-      'Reach airline customer service safely: what to prepare, official contact pages, and when phone beats the app. Call AvioSupportDesk for independent booking help!',
-    h1: 'Airlines Customer Service Numbers — Complete Contact Guide',
-    keywords: ['airline customer service numbers', 'airline phone contact', 'call airline help'],
+      'How to reach airline customer service through official channels: what to prepare, where to find verified contact pages, and how to avoid lookalike numbers.',
+    h1: 'How to Reach Airline Customer Service Through Official Channels',
+    keywords: [
+      'reach airline customer service',
+      'official airline contact page',
+      'avoid fake airline phone numbers',
+    ],
   },
   [BLOG_DELAY_COMPENSATION_PATH]: {
-    title: 'Flight Delay Compensation & Passenger Rights | AvioSupportDesk',
+    title: 'Flight Delay Compensation & Your Rights | AvioSupportDesk',
     description:
-      'Understand U.S., Canadian & EU delay rights, care vs compensation, and how to document claims. Need rebooking help after a delay? Call AvioSupportDesk now!',
+      'Understand U.S., Canadian, and EU delay rules, the difference between care and compensation, and how to document a claim with the airline after a delay.',
     h1: 'Flight Delay Compensation — Know Your Passenger Rights',
     keywords: ['flight delay compensation', 'passenger rights', 'EU261', 'APPR'],
   },
   [BLOG_CHANGE_FLIGHT_PATH]: {
-    title: 'Change Your Flight Booking — Step-by-Step | AvioSupportDesk',
+    title: 'How to Change a Flight Booking, Step by Step | AvioSupportDesk',
     description:
-      'Change flight bookings with clear steps on fees, fare differences, and same-day options. Ready to rebook? Call AvioSupportDesk for independent help today.',
+      'Change a flight booking step by step: check fare rules, compare fees and fare differences, and know when same-day changes or free changes apply in 2026.',
     h1: 'How to Change Your Flight Booking — Step-by-Step Guide',
     keywords: ['change flight booking', 'flight change fees', 'rebook flight guide'],
   },
   [BLOG_SAVE_MONEY_FLIGHTS_PATH]: {
     title: 'Top 10 Tips to Save Money on Flights | AvioSupportDesk',
     description:
-      'Ten practical ways to lower airfare in 2026—dates, airports, fare brands, and bags—without fake deal traps. Call AvioSupportDesk to compare options today.',
+      'Ten practical ways to lower airfare in 2026, from flexible dates and nearby airports to fare brands and bag fees, without falling for fake deal traps.',
     h1: 'Top 10 Tips to Save Money on Flight Bookings',
     keywords: ['save money on flights', 'cheap flight tips', 'airfare savings'],
   },
   [ABOUT_PATH]: {
-    title: 'About AvioSupportDesk — Trusted Travel Support Since 2026',
+    title: 'About AvioSupportDesk — Independent Travel Assistance',
     description:
-      'Learn how AvioSupportDesk provides independent phone help for flights, hotels & trip questions. Not a bank or airline—call now to talk with a specialist today!',
-    h1: 'About AvioSupportDesk — Your Trusted Travel Support Partner',
+      'Learn how AvioSupportDesk provides independent phone help for flights, hotels, and Avion points questions. We are not a bank, an airline, or a hotel brand.',
+    h1: 'About AvioSupportDesk, an Independent Travel Assistance Service',
     keywords: ['about AvioSupportDesk', 'independent travel assistance', 'travel support company'],
   },
   [CONTACT_PATH]: {
     title: 'Contact AvioSupportDesk — Independent Travel Help',
     description:
-      'Contact AvioSupportDesk for independent flight booking and points assistance by phone or inquiry form. Not affiliated with RBC or Avion Rewards—call today.',
+      'Contact AvioSupportDesk for independent flight, hotel, and Avion points assistance by phone, email, or inquiry form. Not affiliated with RBC or Avion Rewards.',
     h1: 'Contact AvioSupportDesk for independent travel help',
     keywords: ['contact flight support', 'travel helpline', 'call to book flights'],
   },
   [PRIVACY_POLICY_PATH]: {
-    title: 'Privacy Policy — Your Data Protection | AvioSupportDesk',
+    title: 'Privacy Policy — How We Use Your Data | AvioSupportDesk',
     description:
-      'Read how AvioSupportDesk collects and uses contact details for travel help, cookies, and privacy requests. Questions? Call our independent team today.',
+      'How AvioSupportDesk collects, uses, and protects contact details shared for travel help, how cookies work on this site, and how to make a privacy request.',
     h1: 'Privacy Policy — How AvioSupportDesk Protects Your Data',
     keywords: ['privacy policy', 'data protection', 'GDPR', 'CCPA', 'travel support privacy'],
   },
   [CANCELLATION_POLICY_PATH]: {
     title: 'Cancellation Policy — Booking Rules | AvioSupportDesk',
     description:
-      'See how cancellations work for bookings we assist with, including supplier rules and assistance limits. Need to cancel? Call for clear guidance today.',
+      'How cancellations work for bookings we assist with, including airline and hotel supplier rules, assistance fee terms, and what we can and cannot reverse.',
     h1: 'Cancellation Policy — Booking & Supplier Rules',
     keywords: ['cancellation policy', 'booking cancellation rules', 'travel cancel terms'],
   },
   [TERMS_PATH]: {
     title: 'Terms of Service — Travel Support Rules | AvioSupportDesk',
     description:
-      'Review AvioSupportDesk terms: independence from airlines, assistance fees, refunds, and liability limits. Need clarity? Call and ask a travel specialist.',
+      'Review the AvioSupportDesk terms of service: independence from airlines and loyalty programs, assistance fees, refunds, and the limits of our liability.',
     h1: 'Terms of Service — AvioSupportDesk Service Rules',
     keywords: ['terms of service', 'travel assistance terms', 'independent travel support'],
   },
   [REFUND_POLICY_PATH]: {
     title: 'Refund Policy — Eligibility & Process | AvioSupportDesk',
     description:
-      'Learn refund eligibility, supplier timelines & how refund requests are reviewed. Need a refund check? Call now for refund help and clear next steps today!',
+      'Refund eligibility for AvioSupportDesk assistance fees, how supplier refund timelines work, and how we review refund requests and confirm the outcome.',
     h1: 'Refund Policy — Eligibility & Request Process',
     keywords: ['refund policy', 'travel refund process', 'booking refund help'],
   },
   [COOKIE_POLICY_PATH]: {
     title: 'Cookie Policy — Website Tracking Info | AvioSupportDesk',
     description:
-      'See how cookies support browsing & site performance on AvioSupportDesk. Prefer human help instead? Call now for phone support with your travel request today!',
+      'How AvioSupportDesk uses cookies and similar technologies for site performance and analytics, which ones are optional, and how to manage your choices.',
     h1: 'Cookie Policy — How This Website Uses Cookies',
     keywords: ['cookie policy', 'website cookies', 'tracking disclosure'],
   },

@@ -87,6 +87,9 @@ export const API_ENDPOINTS = {
   adminWyndhamLogoById: (id) => `${API_V1_PREFIX}/admin/wyndham-page/logos/${id}`,
   adminWyndhamLogoMove: (id) => `${API_V1_PREFIX}/admin/wyndham-page/logos/${id}/move`,
   adminWyndhamLogoMedia: (id) => `${API_V1_PREFIX}/admin/wyndham-page/logos/${id}/media`,
+  adminWyndhamFaqs: `${API_V1_PREFIX}/admin/wyndham-page/faqs`,
+  adminWyndhamFaqById: (id) => `${API_V1_PREFIX}/admin/wyndham-page/faqs/${id}`,
+  adminWyndhamFaqMove: (id) => `${API_V1_PREFIX}/admin/wyndham-page/faqs/${id}/move`,
   hiltonPage: `${API_V1_PREFIX}/hilton-page`,
   adminHiltonPage: `${API_V1_PREFIX}/admin/hilton-page`,
   adminHiltonSlotMedia: (slotKey) => `${API_V1_PREFIX}/admin/hilton-page/media/${slotKey}`,
@@ -105,6 +108,9 @@ export const API_ENDPOINTS = {
   adminHiltonLogoById: (id) => `${API_V1_PREFIX}/admin/hilton-page/logos/${id}`,
   adminHiltonLogoMove: (id) => `${API_V1_PREFIX}/admin/hilton-page/logos/${id}/move`,
   adminHiltonLogoMedia: (id) => `${API_V1_PREFIX}/admin/hilton-page/logos/${id}/media`,
+  adminHiltonFaqs: `${API_V1_PREFIX}/admin/hilton-page/faqs`,
+  adminHiltonFaqById: (id) => `${API_V1_PREFIX}/admin/hilton-page/faqs/${id}`,
+  adminHiltonFaqMove: (id) => `${API_V1_PREFIX}/admin/hilton-page/faqs/${id}/move`,
 }
 
 export const API_DEFAULT_PAGE_SIZE = 100

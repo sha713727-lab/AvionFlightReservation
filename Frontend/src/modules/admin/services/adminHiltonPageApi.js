@@ -163,3 +163,21 @@ export async function moveHiltonLogo(token, id, direction) {
 export async function uploadHiltonLogoMedia(token, id, file) {
   return uploadMedia(token, API_ENDPOINTS.adminHiltonLogoMedia(id), file)
 }
+
+export async function createHiltonFaq(token, body) {
+  return apiPost(API_ENDPOINTS.adminHiltonFaqs, body, hiltonPageSchema, { token })
+}
+
+export async function updateHiltonFaq(token, id, body) {
+  return apiPut(API_ENDPOINTS.adminHiltonFaqById(id), body, hiltonPageSchema, { token })
+}
+
+export async function deleteHiltonFaq(token, id) {
+  return apiDelete(API_ENDPOINTS.adminHiltonFaqById(id), hiltonPageSchema, { token })
+}
+
+export async function moveHiltonFaq(token, id, direction) {
+  return apiPost(API_ENDPOINTS.adminHiltonFaqMove(id), { direction }, hiltonPageSchema, {
+    token,
+  })
+}

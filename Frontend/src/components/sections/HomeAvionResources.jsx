@@ -22,7 +22,7 @@ export default function HomeAvionResources() {
 
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {AVION_RESOURCE_LINKS.map((item) => (
-            <li key={item.href}>
+            <li key={item.href} className="sm:last:odd:col-span-2">
               <Link
                 href={item.href}
                 className="flex h-full flex-col rounded-2xl border border-border bg-card p-5 transition-colors hover:border-accent/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"

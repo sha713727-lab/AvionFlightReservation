@@ -163,3 +163,21 @@ export async function moveWyndhamLogo(token, id, direction) {
 export async function uploadWyndhamLogoMedia(token, id, file) {
   return uploadMedia(token, API_ENDPOINTS.adminWyndhamLogoMedia(id), file)
 }
+
+export async function createWyndhamFaq(token, body) {
+  return apiPost(API_ENDPOINTS.adminWyndhamFaqs, body, wyndhamPageSchema, { token })
+}
+
+export async function updateWyndhamFaq(token, id, body) {
+  return apiPut(API_ENDPOINTS.adminWyndhamFaqById(id), body, wyndhamPageSchema, { token })
+}
+
+export async function deleteWyndhamFaq(token, id) {
+  return apiDelete(API_ENDPOINTS.adminWyndhamFaqById(id), wyndhamPageSchema, { token })
+}
+
+export async function moveWyndhamFaq(token, id, direction) {
+  return apiPost(API_ENDPOINTS.adminWyndhamFaqMove(id), { direction }, wyndhamPageSchema, {
+    token,
+  })
+}

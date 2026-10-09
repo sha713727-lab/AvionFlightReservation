@@ -21,7 +21,7 @@ function BlogHubContent() {
       <SiteBreadcrumbBar path={BLOG_HUB.path} />
       <main id="main-content" className="overflow-x-clip bg-background pb-20 pt-8 lg:pt-10">
         <Container>
-          <FadeIn className="mx-auto max-w-3xl text-center sm:text-left">
+          <FadeIn eager className="mx-auto max-w-3xl text-center sm:text-left">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-text-muted">
               {BLOG_COPY.hubEyebrow}
             </p>

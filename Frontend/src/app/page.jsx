@@ -1,6 +1,7 @@
 import HomePage from '@/modules/home/components/HomePage'
 import { HOME_PATH } from '@/constants/routes'
 import {
+  getHomeFaqPageJsonLd,
   getHomeOrganizationJsonLd,
   getHomeWebPageJsonLd,
   getHomeWebSiteJsonLd,
@@ -19,6 +20,7 @@ export default async function Page() {
   const websiteJsonLd = getHomeWebSiteJsonLd()
   const webPageJsonLd = getHomeWebPageJsonLd()
   const organizationJsonLd = getHomeOrganizationJsonLd()
+  const faqPageJsonLd = getHomeFaqPageJsonLd(catalog.faqs)
 
   return (
     <>
@@ -34,6 +36,12 @@ export default async function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
       />
+      {faqPageJsonLd ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageJsonLd) }}
+        />
+      ) : null}
       <HomePage
         services={catalog.services}
         destinations={catalog.destinations}

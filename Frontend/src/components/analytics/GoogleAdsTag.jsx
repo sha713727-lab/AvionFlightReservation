@@ -17,7 +17,7 @@ export function GoogleAdsTag() {
   return (
     <Script
       id={GOOGLE_ADS_GTAG_CONFIG_SCRIPT_ID}
-      strategy="lazyOnload"
+      strategy="afterInteractive"
       dangerouslySetInnerHTML={{
         __html: googleAdsConfig(),
       }}

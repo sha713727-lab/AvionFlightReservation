@@ -1,0 +1,7 @@
+# Crawl files and deploy scripts are served or executed on Linux byte-for-byte.
+Frontend/public/robots.txt text eol=lf
+Frontend/public/llms.txt text eol=lf
+Frontend/public/sitemap*.xml text eol=lf
+deploy/nginx/static/* text eol=lf
+deploy/nginx/*.conf text eol=lf
+deploy/**/*.sh text eol=lf

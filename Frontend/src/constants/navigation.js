@@ -10,6 +10,7 @@ import {
   FLIGHT_CANCELLATION_PATH,
   FLIGHT_CHANGES_PATH,
   GUIDES_PATH,
+  HILTON_HOTELS_PATH,
   HOME_PATH,
   HOW_IT_WORKS_PATH,
   HOTEL_BOOKING_PATH,
@@ -22,7 +23,9 @@ import {
   SERVICE_FEES_PATH,
   SERVICES_PATH,
   TERMS_PATH,
+  TOOL_AVION_POINTS_CALCULATOR_PATH,
   TRIP_PLANNING_PATH,
+  WYNDHAM_HOTELS_PATH,
 } from '@/constants/routes'
 
 export const FOOTER_DISCLAIMER_HASH = '#disclaimer'
@@ -71,12 +74,15 @@ export const FOOTER_LINKS = {
     { label: 'flight destinations', href: DESTINATIONS_PATH },
     { label: 'international flights by phone', href: INTERNATIONAL_FLIGHT_PATH },
     { label: 'travel guides hub', href: GUIDES_PATH },
+    { label: 'Avion points value calculator', href: TOOL_AVION_POINTS_CALCULATOR_PATH },
     { label: 'AvioSupportDesk blog', href: BLOG_PATH },
     { label: 'all travel services', href: SERVICES_PATH },
   ],
   services: [
     { label: 'flight booking assistance', href: FLIGHT_BOOKING_PATH },
     { label: 'hotel booking by phone', href: HOTEL_BOOKING_PATH },
+    { label: 'Wyndham hotels booking help', href: WYNDHAM_HOTELS_PATH },
+    { label: 'Hilton hotels booking help', href: HILTON_HOTELS_PATH },
     { label: 'points and miles redemption help', href: POINTS_REDEMPTION_PATH },
     { label: 'flight change assistance', href: FLIGHT_CHANGES_PATH },
     { label: 'flight cancellation assistance', href: FLIGHT_CANCELLATION_PATH },

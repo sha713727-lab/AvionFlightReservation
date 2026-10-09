@@ -27,7 +27,7 @@ export const SERVICE_PAGES_GROUP_B = [
   {
     slug: 'flight-cancellation',
     path: FLIGHT_CANCELLATION_PATH,
-    h1: 'Flight Cancellation Assistance — Cancel Any Airline Flight',
+    h1: 'Flight Cancellation & Refund Assistance by Phone',
     ...FLIGHT_CANCELLATION_BODY,
     ...FLIGHT_CANCELLATION_GEO,
     faqs: FLIGHT_CANCELLATION_FAQS,

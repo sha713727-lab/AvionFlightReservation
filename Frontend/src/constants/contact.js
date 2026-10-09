@@ -2,6 +2,7 @@ import { BUSINESS_FACTS } from '@/constants/businessFacts'
 
 export const PHONE_NUMBER = '+1 877 702 9887'
 export const PHONE_HREF = 'tel:+18777029887'
+export const PHONE_SCHEMA_TELEPHONE = PHONE_NUMBER.replace(/\s+/g, '-')
 
 export const RESERVATION_EMAIL = 'reservation@aviosupportdesk.com'
 export const RESERVATION_EMAIL_HREF = `mailto:${RESERVATION_EMAIL}`

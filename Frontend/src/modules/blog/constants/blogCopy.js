@@ -20,9 +20,3 @@ export const BLOG_COPY = {
   listingDatePrefix: 'Published',
   readArticleLabel: 'Read article',
 }
-
-export const BLOG_AUTHOR = {
-  name: 'AvioSupportDesk',
-  role: 'independent travel assistance editorial',
-  path: '/about',
-}

@@ -2,10 +2,14 @@
 
 import { useEffect, useRef, useState } from 'react'
 import OptimizedImage from '@/components/media/OptimizedImage'
+import { useInViewport, useTabVisible } from '@/hooks/useInViewport'
 import styles from '@/modules/wyndhamHotels/wyndhamHotels.module.css'
 
 export default function WyndhamClients({ enabled, heading, introduction, logos }) {
+  const sectionRef = useRef(null)
   const trackRef = useRef(null)
+  const inView = useInViewport(sectionRef)
+  const tabVisible = useTabVisible()
   const [paused, setPaused] = useState(false)
   const [reducedMotion, setReducedMotion] = useState(false)
 
@@ -18,7 +22,9 @@ export default function WyndhamClients({ enabled, heading, introduction, logos }
   }, [])
 
   useEffect(() => {
-    if (!enabled || logos.length < 5 || paused || reducedMotion) return undefined
+    if (!enabled || logos.length < 5 || paused || reducedMotion || !inView || !tabVisible) {
+      return undefined
+    }
     const track = trackRef.current
     if (!track) return undefined
     let offset = 0
@@ -31,14 +37,14 @@ export default function WyndhamClients({ enabled, heading, introduction, logos }
     }
     frame = window.requestAnimationFrame(tick)
     return () => window.cancelAnimationFrame(frame)
-  }, [enabled, logos.length, paused, reducedMotion])
+  }, [enabled, logos.length, paused, reducedMotion, inView, tabVisible])
 
   if (!enabled || logos.length === 0) return null
 
   const loop = logos.length >= 5 ? [...logos, ...logos] : logos
 
   return (
-    <section id="wyndham-clients" className={styles.section}>
+    <section id="wyndham-clients" ref={sectionRef} className={styles.section}>
       <div className={styles.wide}>
         <div className={styles.clientsIntro}>
           <h2 className={styles.clientsHeading}>{heading}</h2>

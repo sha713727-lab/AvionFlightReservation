@@ -3,6 +3,7 @@
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import SiteBreadcrumbBar from '@/components/layout/SiteBreadcrumbBar'
+import PageRelatedLinks from '@/components/links/PageRelatedLinks'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { getSeoPageH1 } from '@/constants/seoPageMeta'
@@ -20,7 +21,7 @@ export default function CalculatorPage() {
       <SiteBreadcrumbBar path={TOOL_AVION_POINTS_CALCULATOR_PATH} />
       <main id="main-content" className="overflow-x-clip pb-16 pt-8">
         <Container>
-          <FadeIn>
+          <FadeIn eager>
             <p className="text-sm font-medium uppercase tracking-wide text-accent">
               {CALCULATOR_PAGE_COPY.eyebrow}
             </p>
@@ -33,6 +34,7 @@ export default function CalculatorPage() {
             <AvionPointsCalculator />
           </FadeIn>
         </Container>
+        <PageRelatedLinks path={TOOL_AVION_POINTS_CALCULATOR_PATH} />
       </main>
       <Footer />
     </CallExpertProvider>

@@ -25,7 +25,7 @@ export default function TermsPageHero() {
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.08}>
+          <FadeIn eager>
             <h1
               id="terms-page-heading"
               className="font-heading text-[clamp(2.25rem,5vw,3.75rem)] font-semibold leading-[1.08] tracking-tight text-primary"
@@ -34,7 +34,7 @@ export default function TermsPageHero() {
             </h1>
           </FadeIn>
 
-          <FadeIn delay={0.14}>
+          <FadeIn eager>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-text-secondary sm:mx-auto sm:text-lg">
               {COPY.terms.pageDescription}
             </p>

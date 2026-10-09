@@ -7,8 +7,10 @@ import {
 } from '@/utils/seo'
 import { buildBreadcrumbJsonLd } from '@/constants/breadcrumbs'
 import { buildCanonicalUrl } from '@/constants/contact'
+import { SEO_OG_IMAGE_ABSOLUTE } from '@/constants/images'
 import { getSeoPageMeta } from '@/constants/seoPageMeta'
-import { BLOG_AUTHOR } from '@/modules/blog/constants/blogCopy'
+import { resolveFaqLinkTokens } from '@/utils/linkTokens'
+import { BLOG_LINK_MAP } from '@/modules/blog/constants/blogHelpers'
 import {
   BLOG_HUB,
   BLOG_POSTS,
@@ -22,13 +24,10 @@ function buildArticleJsonLd(post, seo) {
     '@id': `${buildCanonicalUrl(post.path)}#article`,
     headline: post.title,
     description: seo.description,
+    image: [SEO_OG_IMAGE_ABSOLUTE],
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
-    author: {
-      '@id': ORGANIZATION_ID,
-      name: BLOG_AUTHOR.name,
-      url: buildCanonicalUrl(BLOG_AUTHOR.path),
-    },
+    author: { '@id': ORGANIZATION_ID },
     publisher: { '@id': ORGANIZATION_ID },
     mainEntityOfPage: { '@id': buildWebPageId(post.path) },
     wordCount: post.wordCount,
@@ -57,7 +56,11 @@ export function getBlogPostMetadata(slug) {
   if (!post) {
     return {}
   }
-  return buildPathMetadata(post.path)
+  return buildPathMetadata(post.path, {
+    type: 'article',
+    publishedTime: post.publishedAt,
+    modifiedTime: post.updatedAt,
+  })
 }
 
 export function getBlogPostJsonLd(slug) {
@@ -78,7 +81,7 @@ export function getBlogPostJsonLd(slug) {
   ]
 
   if (post.faqs?.length) {
-    schemas.push(buildFaqPageJsonLd(post.faqs))
+    schemas.push(buildFaqPageJsonLd(resolveFaqLinkTokens(post.faqs, BLOG_LINK_MAP)))
   }
 
   return schemas

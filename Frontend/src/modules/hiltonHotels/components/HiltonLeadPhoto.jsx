@@ -7,7 +7,6 @@ import { objectPosition } from '@/modules/hiltonHotels/utils/mediaSlots'
 
 export default function HiltonLeadPhoto({ slot }) {
   const frameRef = useRef(null)
-  const [scale, setScale] = useState(1)
   const [reducedMotion, setReducedMotion] = useState(false)
 
   useEffect(() => {
@@ -19,19 +18,23 @@ export default function HiltonLeadPhoto({ slot }) {
   }, [])
 
   useEffect(() => {
+    const frame = frameRef.current
+    if (!frame) return undefined
     if (reducedMotion || window.innerWidth < 768) {
-      setScale(1)
+      frame.style.width = '100%'
       return undefined
     }
 
-    const frame = frameRef.current
-    if (!frame) return undefined
-
+    let raf = 0
     const onScroll = () => {
-      const rect = frame.getBoundingClientRect()
-      const viewport = window.innerHeight || 1
-      const progress = 1 - Math.min(1, Math.max(0, (rect.top - viewport * 0.25) / (viewport * 0.7)))
-      setScale(0.82 + progress * 0.18)
+      if (raf) return
+      raf = window.requestAnimationFrame(() => {
+        raf = 0
+        const rect = frame.getBoundingClientRect()
+        const viewport = window.innerHeight || 1
+        const progress = 1 - Math.min(1, Math.max(0, (rect.top - viewport * 0.25) / (viewport * 0.7)))
+        frame.style.width = `${(0.82 + progress * 0.18) * 100}%`
+      })
     }
 
     onScroll()
@@ -40,6 +43,7 @@ export default function HiltonLeadPhoto({ slot }) {
     return () => {
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
+      if (raf) window.cancelAnimationFrame(raf)
     }
   }, [reducedMotion])
 
@@ -51,7 +55,7 @@ export default function HiltonLeadPhoto({ slot }) {
         <div
           ref={frameRef}
           className={styles.leadFrame}
-          style={{ width: `${scale * 100}%`, marginInline: 'auto' }}
+          style={{ width: '100%', marginInline: 'auto' }}
         >
           <div className={styles.leadInner}>
             <OptimizedImage

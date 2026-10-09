@@ -9,8 +9,10 @@ import {
 import { buildBreadcrumbJsonLd } from '@/constants/breadcrumbs'
 import { buildCanonicalUrl } from '@/constants/contact'
 import { GEO_BYLINES } from '@/constants/geo'
-import { getOpeningPlainText } from '@/constants/internalLinks'
+import { SEO_OG_IMAGE_ABSOLUTE } from '@/constants/images'
+import { buildServiceLinkMap, getOpeningPlainText } from '@/constants/internalLinks'
 import { getSeoPageMeta } from '@/constants/seoPageMeta'
+import { resolveFaqLinkTokens } from '@/utils/linkTokens'
 import { getGuideFaqsBySlug } from '@/modules/seoLanding/constants/guideFaqs'
 import { GUIDE_HUB, GUIDE_PAGES, getGuidePageBySlug } from '@/modules/seoLanding/constants/guidePages'
 import { getServicePageBySlug } from '@/modules/seoLanding/constants/servicePages'
@@ -45,7 +47,7 @@ export function getServicePageJsonLd(slug) {
       serviceType: page.h1,
     }),
     buildBreadcrumbJsonLd(page.path),
-    buildFaqPageJsonLd(page.faqs),
+    buildFaqPageJsonLd(resolveFaqLinkTokens(page.faqs, buildServiceLinkMap(page.path))),
   ]
 }
 
@@ -60,7 +62,9 @@ function buildGuideArticleJsonLd(guide, description) {
     '@id': `${buildCanonicalUrl(guide.path)}#article`,
     headline: guide.question,
     description,
+    image: [SEO_OG_IMAGE_ABSOLUTE],
     url: buildCanonicalUrl(guide.path),
+    datePublished: guide.publishedIso,
     dateModified: GEO_BYLINES.lastUpdatedIso,
     author: { '@id': ORGANIZATION_ID },
     publisher: { '@id': ORGANIZATION_ID },
@@ -73,7 +77,11 @@ export function getGuidePageMetadata(slug) {
   if (!guide) {
     return {}
   }
-  return buildPathMetadata(guide.path)
+  return buildPathMetadata(guide.path, {
+    type: 'article',
+    publishedTime: guide.publishedIso,
+    modifiedTime: GEO_BYLINES.lastUpdatedIso,
+  })
 }
 
 export function getGuidePageJsonLd(slug) {
