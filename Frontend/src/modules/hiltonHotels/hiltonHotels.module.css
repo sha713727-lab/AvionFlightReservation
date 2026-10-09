@@ -1,10 +1,10 @@
 .page {
-  --wh-ground: #0f2430;
-  --wh-surface: #1a3a4c;
-  --wh-accent: #4de8f4;
-  --wh-accent-soft: #a8f4f8;
-  --wh-text: #f4fbfc;
-  --wh-muted: #b7c9d1;
+  --wh-ground: var(--color-background);
+  --wh-surface: var(--color-section);
+  --wh-accent: var(--color-accent);
+  --wh-accent-soft: var(--color-secondary);
+  --wh-text: var(--color-primary);
+  --wh-muted: var(--color-text-secondary);
   --wh-gutter: clamp(20px, 3vw, 64px);
   --wh-wide: min(1600px, 100%);
   --wh-editorial: min(1100px, 100%);
@@ -169,8 +169,10 @@
 
 .propertyCard {
   background: var(--wh-surface);
+  border: 1px solid var(--color-border);
   border-radius: 12px;
   padding: 24px;
+  box-shadow: var(--shadow-card);
 }
 
 .propertyTitle {
@@ -202,9 +204,9 @@
   min-width: 44px;
   min-height: 44px;
   border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--wh-accent) 40%, transparent);
+  border: 1px solid var(--color-border);
   color: var(--wh-text);
-  background: transparent;
+  background: var(--wh-surface);
 }
 
 .railViewport {
@@ -240,13 +242,15 @@
 
 .railCardSurface {
   background: var(--wh-surface);
+  border: 1px solid var(--color-border);
   padding: 28px;
   height: 100%;
+  box-shadow: var(--shadow-card);
 }
 
 .railCardAccent {
   background: var(--wh-accent);
-  color: #082028;
+  color: #ffffff;
   padding: 28px;
   height: 100%;
 }
