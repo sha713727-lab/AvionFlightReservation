@@ -64,9 +64,9 @@ export async function buildApp(context: AppContext): Promise<FastifyInstance> {
   if (context.env.ENABLE_COMPRESSION) {
     await app.register(compress, {
       global: true,
-      // Keep small JSON payloads uncompressed — brotli/gzip on short admin
-      // responses caused premature-close / undecodable bodies in browsers.
-      threshold: 10_240,
+      // Hilton/Wyndham admin JSON is ~11KB+. gzip above 10KB caused browsers to
+      // see HTTP 200 with an undecodable body ("non-JSON") via nginx proxy.
+      threshold: 512_000,
       encodings: ['gzip', 'deflate'],
     })
   }

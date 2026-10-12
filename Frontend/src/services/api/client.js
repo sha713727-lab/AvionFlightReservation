@@ -122,8 +122,9 @@ async function apiGetOnBrowser(url, schema, options) {
   try {
     payload = await response.json()
   } catch {
+    const contentType = response.headers.get('content-type') || 'unknown'
     throw new ApiClientError(
-      `${API_ERROR_MESSAGES.invalidResponse} (HTTP ${response.status}, non-JSON body)`,
+      `${API_ERROR_MESSAGES.invalidResponse} (HTTP ${response.status}, ${contentType})`,
       response.status,
       'PARSE_ERROR',
     )
