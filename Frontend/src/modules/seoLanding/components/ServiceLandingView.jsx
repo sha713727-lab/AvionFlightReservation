@@ -7,10 +7,10 @@ import Footer from '@/components/layout/Footer'
 import SiteBreadcrumbBar from '@/components/layout/SiteBreadcrumbBar'
 import PageRelatedLinks from '@/components/links/PageRelatedLinks'
 import Container from '@/components/ui/Container'
-import { PHONE_HREF, PHONE_NUMBER } from '@/constants/contact'
 import { getSeoPageH1 } from '@/constants/seoPageMeta'
 import { CTA_PLACEMENT } from '@/constants/analytics'
 import CallExpertProvider, { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
+import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
 import ServiceLandingBody from '@/modules/seoLanding/components/ServiceLandingBody'
 import { getServicePageBySlug } from '@/modules/seoLanding/constants/servicePages'
 import { SEO_LANDING_COPY } from '@/modules/seoLanding/constants/seoLandingCopy'
@@ -18,6 +18,7 @@ import { SEO_LANDING_COPY } from '@/modules/seoLanding/constants/seoLandingCopy'
 function ServiceLandingContent({ slug }) {
   const page = getServicePageBySlug(slug)
   const callModal = useCallExpertModal()
+  const { phoneNumber, phoneHref } = useContactSettings()
 
   if (!page) {
     return null
@@ -45,8 +46,8 @@ function ServiceLandingContent({ slug }) {
               {SEO_LANDING_COPY.ctaDescription}
             </p>
             <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button href={PHONE_HREF} variant="primary" size="lg">
-                {SEO_LANDING_COPY.ctaPhoneLabel} · {PHONE_NUMBER}
+              <Button href={phoneHref} variant="primary" size="lg">
+                {SEO_LANDING_COPY.ctaPhoneLabel} · {phoneNumber}
               </Button>
               <Button variant="secondary" size="lg" onClick={() => callModal.open(CTA_PLACEMENT.pageCta)}>
                 {SEO_LANDING_COPY.ctaCallbackLabel}

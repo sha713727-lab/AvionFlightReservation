@@ -1,6 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { PHONE_HREF, PHONE_NUMBER } from '@/constants/contact'
 import {
   fetchPublicContactSettings,
   getFallbackContactEmail,
@@ -9,26 +10,29 @@ import {
   toTelHref,
 } from '@/modules/admin/services/adminSettingsApi'
 
-function buildValue(email, phones, callbacksEnabled) {
-  const list = phones.length > 0 ? phones : getFallbackSupportPhones()
-  const supportPhones = list.map((display) => ({
-    display,
-    href: toTelHref(display),
-  }))
-  const primary = supportPhones[0]
+const CANONICAL_DIGITS = PHONE_NUMBER.replace(/\D/g, '')
 
+function lockSupportPhones(phones) {
+  const extras = phones.filter((display) => display.replace(/\D/g, '') !== CANONICAL_DIGITS)
+  return [PHONE_NUMBER, ...extras].map((display) => ({
+    display,
+    href: display === PHONE_NUMBER ? PHONE_HREF : toTelHref(display),
+  }))
+}
+
+function buildValue(email, phones, callbacksEnabled) {
+  const supportPhones = lockSupportPhones(phones.length > 0 ? phones : getFallbackSupportPhones())
   return {
     reservationEmail: email,
     reservationEmailHref: toMailtoHref(email),
     supportPhones,
-    phoneNumber: primary.display,
-    phoneHref: primary.href,
+    phoneNumber: PHONE_NUMBER,
+    phoneHref: PHONE_HREF,
     callbacksEnabled: Boolean(callbacksEnabled),
   }
 }
 
 const fallbackValue = buildValue(getFallbackContactEmail(), getFallbackSupportPhones(), false)
-
 const ContactSettingsContext = createContext(fallbackValue)
 
 export function useContactSettings() {

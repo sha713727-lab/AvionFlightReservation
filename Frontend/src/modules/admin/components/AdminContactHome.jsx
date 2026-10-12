@@ -2,6 +2,7 @@
 
 import Button from '@/components/buttons/Button'
 import NorthAmericanPhoneInput from '@/components/forms/NorthAmericanPhoneInput'
+import { PHONE_NUMBER } from '@/constants/contact'
 import { ADMIN_COPY } from '@/modules/admin/constants'
 import { useAdminContactSettings } from '@/modules/admin/hooks/useAdminContactSettings'
 import { cn } from '@/utils/cn'
@@ -123,8 +124,10 @@ export default function AdminContactHome({ token }) {
 
           <ul className="space-y-3">
             {phones.map((phone, index) => {
+              const isPrimary = index === 0
               const errorKey = `phone-${index}`
               const errorId = `contact-phone-${index}-error`
+              const hintId = 'contact-primary-phone-hint'
               return (
                 <li key={`phone-${index}`} className="flex items-start gap-2">
                   <div className="min-w-0 flex-1">
@@ -133,30 +136,39 @@ export default function AdminContactHome({ token }) {
                     </label>
                     <NorthAmericanPhoneInput
                       id={`contact-phone-${index}`}
-                      value={phone}
-                      disabled={isSaving}
+                      value={isPrimary ? PHONE_NUMBER : phone}
+                      disabled={isSaving || isPrimary}
                       placeholder={ADMIN_COPY.settingsPhonePlaceholder}
                       aria-invalid={Boolean(fieldErrors[errorKey])}
-                      aria-describedby={fieldErrors[errorKey] ? errorId : undefined}
+                      aria-describedby={
+                        isPrimary ? hintId : fieldErrors[errorKey] ? errorId : undefined
+                      }
                       className={inputClassName}
                       onChange={(nextPhone) => setPhoneValue(index, nextPhone)}
                     />
+                    {isPrimary ? (
+                      <p id={hintId} className="mt-1.5 text-xs text-text-muted">
+                        {ADMIN_COPY.settingsPrimaryPhoneFixed}
+                      </p>
+                    ) : null}
                     {fieldErrors[errorKey] ? (
                       <p id={errorId} className="mt-1.5 text-sm text-error" role="alert">
                         {fieldErrors[errorKey]}
                       </p>
                     ) : null}
                   </div>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    className="rounded-xl shrink-0 text-error hover:border-error hover:text-error"
-                    disabled={isSaving || !canRemovePhone}
-                    onClick={() => removePhone(index)}
-                  >
-                    {ADMIN_COPY.settingsRemovePhoneCta}
-                  </Button>
+                  {isPrimary ? null : (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      className="rounded-xl shrink-0 text-error hover:border-error hover:text-error"
+                      disabled={isSaving || !canRemovePhone}
+                      onClick={() => removePhone(index)}
+                    >
+                      {ADMIN_COPY.settingsRemovePhoneCta}
+                    </Button>
+                  )}
                 </li>
               )
             })}

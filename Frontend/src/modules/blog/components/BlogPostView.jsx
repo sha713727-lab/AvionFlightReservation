@@ -9,10 +9,10 @@ import Footer from '@/components/layout/Footer'
 import SiteBreadcrumbBar from '@/components/layout/SiteBreadcrumbBar'
 import PageRelatedLinks from '@/components/links/PageRelatedLinks'
 import Container from '@/components/ui/Container'
-import { PHONE_HREF, PHONE_NUMBER } from '@/constants/contact'
 import { getSeoPageH1 } from '@/constants/seoPageMeta'
 import { CTA_PLACEMENT } from '@/constants/analytics'
 import CallExpertProvider, { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
+import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
 import BlogPostBody from '@/modules/blog/components/BlogPostBody'
 import BlogPostCard from '@/modules/blog/components/BlogPostCard'
 import BlogTableOfContents from '@/modules/blog/components/BlogTableOfContents'
@@ -22,6 +22,7 @@ import { getBlogPostBySlug, getRelatedBlogPosts } from '@/modules/blog/constants
 function BlogPostContent({ slug }) {
   const post = getBlogPostBySlug(slug)
   const callModal = useCallExpertModal()
+  const { phoneNumber, phoneHref } = useContactSettings()
   const related = post ? getRelatedBlogPosts(post) : []
 
   if (!post) {
@@ -89,8 +90,8 @@ function BlogPostContent({ slug }) {
               {BLOG_COPY.ctaDescription}
             </p>
             <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button href={PHONE_HREF} variant="primary" size="lg">
-                {BLOG_COPY.ctaPhoneLabel} · {PHONE_NUMBER}
+              <Button href={phoneHref} variant="primary" size="lg">
+                {BLOG_COPY.ctaPhoneLabel} · {phoneNumber}
               </Button>
               <Button variant="secondary" size="lg" onClick={() => callModal.open(CTA_PLACEMENT.blogPost)}>
                 {BLOG_COPY.ctaCallbackLabel}

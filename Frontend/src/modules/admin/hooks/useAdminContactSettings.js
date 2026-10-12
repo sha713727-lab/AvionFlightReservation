@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
+import { PHONE_NUMBER } from '@/constants/contact'
 import { ADMIN_COPY, ADMIN_ERROR_MESSAGES } from '@/modules/admin/constants'
 import {
   fetchContactSettings,
@@ -11,6 +12,7 @@ import { ApiClientError } from '@/services/api/client'
 import { formatNorthAmericanPhone } from '@/utils/northAmericanPhone'
 
 const MAX_PHONES = 5
+const CANONICAL_DIGITS = PHONE_NUMBER.replace(/\D/g, '')
 
 function mapError(error) {
   if (!(error instanceof ApiClientError)) return ADMIN_ERROR_MESSAGES.settingsGeneric
@@ -38,9 +40,19 @@ function fieldErrorsFromZod(error) {
   return next
 }
 
+function extraPhonesFrom(list) {
+  return list
+    .map((phone) => formatNorthAmericanPhone(phone).trim())
+    .filter((phone) => phone && phone.replace(/\D/g, '') !== CANONICAL_DIGITS)
+}
+
+function lockedPhones(list) {
+  return [PHONE_NUMBER, ...extraPhonesFrom(list)]
+}
+
 export function useAdminContactSettings(token) {
   const [email, setEmail] = useState('')
-  const [phones, setPhones] = useState(['+1 '])
+  const [phones, setPhones] = useState([PHONE_NUMBER])
   const [fieldErrors, setFieldErrors] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [isSaving, setIsSaving] = useState(false)
@@ -55,11 +67,7 @@ export function useAdminContactSettings(token) {
     try {
       const data = await fetchContactSettings(token)
       setEmail(data.reservationEmail)
-      setPhones(
-        data.supportPhones.length > 0
-          ? data.supportPhones.map((phone) => formatNorthAmericanPhone(phone))
-          : ['+1 '],
-      )
+      setPhones(lockedPhones(data.supportPhones))
       setLoaded(true)
     } catch (err) {
       setError(mapError(err))
@@ -84,6 +92,7 @@ export function useAdminContactSettings(token) {
   }
 
   const setPhoneValue = (index, value) => {
+    if (index === 0) return
     setPhones((current) => current.map((phone, i) => (i === index ? value : phone)))
     clearFeedback()
   }
@@ -95,7 +104,7 @@ export function useAdminContactSettings(token) {
   }
 
   const removePhone = (index) => {
-    if (phones.length <= 1) return
+    if (index === 0 || phones.length <= 1) return
     setPhones((current) => current.filter((_, i) => i !== index))
     clearFeedback()
   }
@@ -107,7 +116,7 @@ export function useAdminContactSettings(token) {
     setError('')
     const parsed = contactSettingsFormSchema.safeParse({
       reservationEmail: email,
-      supportPhones: phones,
+      supportPhones: lockedPhones(phones),
     })
     if (!parsed.success) {
       setFieldErrors(fieldErrorsFromZod(parsed.error))
@@ -116,9 +125,12 @@ export function useAdminContactSettings(token) {
     setFieldErrors({})
     setIsSaving(true)
     try {
-      const saved = await updateContactSettings(token, parsed.data)
+      const saved = await updateContactSettings(token, {
+        ...parsed.data,
+        supportPhones: lockedPhones(parsed.data.supportPhones),
+      })
       setEmail(saved.reservationEmail)
-      setPhones(saved.supportPhones.map((phone) => formatNorthAmericanPhone(phone)))
+      setPhones(lockedPhones(saved.supportPhones))
       setSuccessMessage(ADMIN_COPY.settingsUpdateSuccess)
     } catch (err) {
       setError(mapError(err))

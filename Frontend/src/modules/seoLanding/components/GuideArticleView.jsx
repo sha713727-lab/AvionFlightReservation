@@ -11,10 +11,10 @@ import SiteBreadcrumbBar from '@/components/layout/SiteBreadcrumbBar'
 import PageRelatedLinks from '@/components/links/PageRelatedLinks'
 import Container from '@/components/ui/Container'
 import { GUIDE_SOURCES_BY_SLUG } from '@/constants/geoPageSources'
-import { PHONE_HREF, PHONE_NUMBER } from '@/constants/contact'
 import { getSeoPageH1 } from '@/constants/seoPageMeta'
 import { CTA_PLACEMENT } from '@/constants/analytics'
 import CallExpertProvider, { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
+import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
 import { getGuideFaqsBySlug } from '@/modules/seoLanding/constants/guideFaqs'
 import { getGuidePageBySlug } from '@/modules/seoLanding/constants/guidePages'
 import { SEO_LANDING_COPY } from '@/modules/seoLanding/constants/seoLandingCopy'
@@ -23,6 +23,7 @@ import PeopleAlsoAskSection from '@/modules/seoLanding/components/PeopleAlsoAskS
 function GuideArticleContent({ slug }) {
   const guide = getGuidePageBySlug(slug)
   const callModal = useCallExpertModal()
+  const { phoneNumber, phoneHref } = useContactSettings()
   const sources = GUIDE_SOURCES_BY_SLUG[slug] || []
   const faqs = getGuideFaqsBySlug(slug)
 
@@ -100,8 +101,8 @@ function GuideArticleContent({ slug }) {
               {SEO_LANDING_COPY.ctaDescription}
             </p>
             <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button href={PHONE_HREF} variant="primary" size="lg">
-                {SEO_LANDING_COPY.ctaPhoneLabel} · {PHONE_NUMBER}
+              <Button href={phoneHref} variant="primary" size="lg">
+                {SEO_LANDING_COPY.ctaPhoneLabel} · {phoneNumber}
               </Button>
               <Button variant="secondary" size="lg" onClick={() => callModal.open(CTA_PLACEMENT.guide)}>
                 {SEO_LANDING_COPY.ctaCallbackLabel}

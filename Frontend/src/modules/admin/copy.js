@@ -1,3 +1,5 @@
+import { PHONE_NUMBER } from '@/constants/contact'
+
 export const ADMIN_COPY = {
   loginMetaTitle: 'Admin Sign In',
   loginMetaDescription: 'Secure admin access for AvioSupportDesk operations.',
@@ -332,8 +334,8 @@ export const ADMIN_COPY = {
   settingsPhonesLabel: 'Contact numbers',
   settingsPhoneLabel: 'Contact number',
   settingsPhonePlaceholder: '+1 555 000 0000',
-  settingsPhonesHint:
-    'Add or remove USA/Canada numbers (+1 XXX XXX XXXX). The first number is used for call buttons.',
+  settingsPrimaryPhoneFixed: 'Primary public number is fixed.',
+  settingsPhonesHint: `Primary public number is fixed at ${PHONE_NUMBER}. Optional extra USA/Canada numbers may be added.`,
   settingsAddPhoneCta: 'Add number',
   settingsRemovePhoneCta: 'Remove',
   settingsSaveCta: 'Save contact details',
