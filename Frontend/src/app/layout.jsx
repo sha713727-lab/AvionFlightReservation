@@ -99,9 +99,12 @@ export default function RootLayout({ children }) {
         </a>
         <ContactSettingsProvider>
           <CallbackRequestProvider>{children}</CallbackRequestProvider>
+          <ConditionalFloatingActions />
         </ContactSettingsProvider>
-        <ConditionalFloatingActions />
-        {/* Third-party tags at end of body; async/lazyOnload via next/script */}
+        {/* Third-party tags at end of body; async/lazyOnload via next/script.
+            GTM/Ads "Calls from website" can replace the visible number with a
+            Google forwarding number (e.g. +1 866 …). Pause that tag in GTM if
+            the site must always show PHONE_NUMBER from constants/contact.js. */}
         <ConditionalAnalytics includeAdmin>
           <GoogleTagManagerNoscript />
           <GoogleTagManager />
