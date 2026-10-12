@@ -2,15 +2,14 @@
 
 import Link from 'next/link'
 import { FaPhone } from 'react-icons/fa'
-import CanonicalPhoneText from '@/components/contact/CanonicalPhoneText'
 import Modal from '@/components/ui/Modal'
 import Button from '@/components/buttons/Button'
-import { PHONE_HREF } from '@/constants/contact'
 import { COPY } from '@/constants/copy'
 import {
   DISCLOSURE_LINKS,
   INDEPENDENT_SERVICE_DISCLOSURE,
 } from '@/constants/disclosures'
+import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
 import { dialPhone } from '@/utils/dialPhone'
 import { trackAssistanceCtaClick } from '@/utils/analytics'
 import { CTA_PLACEMENT } from '@/constants/analytics'
@@ -24,6 +23,7 @@ export function useCallExpertModal() {
 
 export default function CallExpertProvider({ children }) {
   const [isOpen, setIsOpen] = useState(false)
+  const { phoneNumber, phoneHref } = useContactSettings()
   const value = useMemo(
     () => ({
       open: (placement = CTA_PLACEMENT.callModal) => {
@@ -37,7 +37,8 @@ export default function CallExpertProvider({ children }) {
   const handleCallNow = (event) => {
     event.preventDefault()
     event.stopPropagation()
-    dialPhone(PHONE_HREF)
+    const href = event.currentTarget.getAttribute('href') || phoneHref
+    dialPhone(href)
   }
 
   return (
@@ -73,14 +74,14 @@ export default function CallExpertProvider({ children }) {
           {COPY.callModal.businessLabel}
         </p>
         <a
-          href={PHONE_HREF}
+          href={phoneHref}
           onClick={handleCallNow}
           className="mb-6 flex min-h-12 items-center break-all text-xl font-semibold text-primary transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:text-2xl"
         >
-          <CanonicalPhoneText />
+          {phoneNumber}
         </a>
         <Button
-          href={PHONE_HREF}
+          href={phoneHref}
           variant="primary"
           size="lg"
           icon={FaPhone}

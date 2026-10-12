@@ -3,11 +3,8 @@
 import {
   CONTACT_LABELS,
   MAILING_ADDRESS_LINES,
-  PHONE_HREF,
-  PHONE_NUMBER,
   SUPPORT_HOURS,
 } from '@/constants/contact'
-import CanonicalPhoneText from '@/components/contact/CanonicalPhoneText'
 import { useContactSettings } from '@/modules/contact/components/ContactSettingsProvider'
 import TrackedTelLink from '@/components/links/TrackedTelLink'
 import { openMailto } from '@/utils/openMailto'
@@ -42,20 +39,15 @@ export default function FooterContactDetails() {
           <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/75">
             {CONTACT_LABELS.phoneSupport}
           </p>
-          <TrackedTelLink href={PHONE_HREF} className={cn(linkClassName, 'block')}>
-            <CanonicalPhoneText />
-          </TrackedTelLink>
-          {supportPhones
-            .filter((phone) => phone.display !== PHONE_NUMBER)
-            .map((phone) => (
-              <TrackedTelLink
-                key={phone.href}
-                href={phone.href}
-                className={cn(linkClassName, 'block')}
-              >
-                {phone.display}
-              </TrackedTelLink>
-            ))}
+          {supportPhones.map((phone) => (
+            <TrackedTelLink
+              key={phone.href}
+              href={phone.href}
+              className={cn(linkClassName, 'block')}
+            >
+              {phone.display}
+            </TrackedTelLink>
+          ))}
         </div>
 
         <div>

@@ -20,7 +20,8 @@ export default function TrackedTelLink({
       if (event.defaultPrevented) return
     }
     event.preventDefault()
-    dialPhone(href)
+    // Prefer the live href so Google Ads call-tracking can dial its forwarding number.
+    dialPhone(event.currentTarget.getAttribute('href') || href)
   }
 
   return (

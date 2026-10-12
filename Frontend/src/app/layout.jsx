@@ -102,9 +102,8 @@ export default function RootLayout({ children }) {
           <ConditionalFloatingActions />
         </ContactSettingsProvider>
         {/* Third-party tags at end of body; async/lazyOnload via next/script.
-            GTM/Ads "Calls from website" can replace the visible number with a
-            Google forwarding number (e.g. +1 866 …). Pause that tag in GTM if
-            the site must always show PHONE_NUMBER from constants/contact.js. */}
+            Google Ads / GTM call tracking may replace the visible business number
+            with a Google forwarding number for ad attribution — keep that enabled. */}
         <ConditionalAnalytics includeAdmin>
           <GoogleTagManagerNoscript />
           <GoogleTagManager />

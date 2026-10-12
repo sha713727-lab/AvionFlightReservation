@@ -1,7 +1,6 @@
 'use client'
 
 import Button from '@/components/buttons/Button'
-import CanonicalPhoneText from '@/components/contact/CanonicalPhoneText'
 import NorthAmericanPhoneInput from '@/components/forms/NorthAmericanPhoneInput'
 import { PHONE_NUMBER } from '@/constants/contact'
 import { ADMIN_COPY } from '@/modules/admin/constants'
@@ -103,10 +102,7 @@ export default function AdminContactHome({ token }) {
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="text-sm font-medium text-primary">{ADMIN_COPY.settingsPhonesLabel}</p>
-              <p className="mt-1 text-xs text-text-muted">
-                {ADMIN_COPY.settingsPhonesHint}{' '}
-                <CanonicalPhoneText className="font-medium text-text" />
-              </p>
+              <p className="mt-1 text-xs text-text-muted">{ADMIN_COPY.settingsPhonesHint}</p>
             </div>
             <Button
               type="button"
