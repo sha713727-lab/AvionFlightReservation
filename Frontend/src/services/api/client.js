@@ -61,18 +61,28 @@ function parseSuccessPayload(payload, schema, status) {
       )
     }
 
+    if (payload && typeof payload.message === 'string') {
+      throw new ApiClientError(payload.message, status, 'REQUEST_FAILED')
+    }
+
     throw new ApiClientError(API_ERROR_MESSAGES.requestFailed, status, 'REQUEST_FAILED')
   }
 
   const envelope = apiSuccessSchema.safeParse(payload)
   if (!envelope.success) {
-    throw new ApiClientError(API_ERROR_MESSAGES.invalidResponse, status, 'ENVELOPE_ERROR')
+    throw new ApiClientError(
+      `${API_ERROR_MESSAGES.invalidResponse} (HTTP ${status})`,
+      status,
+      'ENVELOPE_ERROR',
+    )
   }
 
   const data = schema.safeParse(envelope.data.data)
   if (!data.success) {
     const detail = data.error.issues[0]
-    const hint = detail ? `${detail.path.join('.')}: ${detail.message}` : API_ERROR_MESSAGES.invalidResponse
+    const hint = detail
+      ? `${detail.path.join('.') || 'data'}: ${detail.message}`
+      : API_ERROR_MESSAGES.invalidResponse
     throw new ApiClientError(hint, status, 'SCHEMA_ERROR')
   }
 
@@ -112,7 +122,11 @@ async function apiGetOnBrowser(url, schema, options) {
   try {
     payload = await response.json()
   } catch {
-    throw new ApiClientError(API_ERROR_MESSAGES.invalidResponse, response.status, 'PARSE_ERROR')
+    throw new ApiClientError(
+      `${API_ERROR_MESSAGES.invalidResponse} (HTTP ${response.status}, non-JSON body)`,
+      response.status,
+      'PARSE_ERROR',
+    )
   }
 
   return parseSuccessPayload(payload, schema, response.status)

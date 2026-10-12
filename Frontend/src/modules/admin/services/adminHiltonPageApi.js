@@ -42,7 +42,11 @@ async function parsePageResponse(response) {
 
   const data = hiltonPageSchema.safeParse(envelope.data.data)
   if (!data.success) {
-    throw new ApiClientError(API_ERROR_MESSAGES.invalidResponse, response.status, 'SCHEMA_ERROR')
+    const detail = data.error.issues[0]
+    const hint = detail
+      ? `${detail.path.join('.') || 'data'}: ${detail.message}`
+      : API_ERROR_MESSAGES.invalidResponse
+    throw new ApiClientError(hint, response.status, 'SCHEMA_ERROR')
   }
 
   return data.data

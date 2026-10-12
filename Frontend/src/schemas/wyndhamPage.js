@@ -3,8 +3,8 @@ import { z } from 'zod'
 const mediaSlotSchema = z.object({
   id: z.string(),
   slotKey: z.string(),
-  mediaUrl: z.string(),
-  alt: z.string(),
+  mediaUrl: z.string().nullable().transform((value) => value ?? ''),
+  alt: z.string().nullable().transform((value) => value ?? ''),
   focalX: z.number(),
   focalY: z.number(),
 })
@@ -27,7 +27,7 @@ const railCardSchema = z.object({
   linkHref: z.string().nullable(),
   factValue: z.string().nullable(),
   mediaUrl: z.string().nullable(),
-  mediaAlt: z.string(),
+  mediaAlt: z.string().nullable().transform((value) => value ?? ''),
   sortOrder: z.number(),
   isEnabled: z.boolean(),
 })
@@ -37,7 +37,7 @@ const propertySchema = z.object({
   title: z.string(),
   blurb: z.string(),
   mediaUrl: z.string().nullable(),
-  mediaAlt: z.string(),
+  mediaAlt: z.string().nullable().transform((value) => value ?? ''),
   sortOrder: z.number(),
   isEnabled: z.boolean(),
 })
@@ -45,7 +45,7 @@ const propertySchema = z.object({
 const logoSchema = z.object({
   id: z.string(),
   name: z.string(),
-  mediaUrl: z.string(),
+  mediaUrl: z.string().nullable().transform((value) => value ?? ''),
   href: z.string().nullable(),
   sortOrder: z.number(),
   isEnabled: z.boolean(),
