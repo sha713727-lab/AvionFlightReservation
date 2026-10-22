@@ -11,9 +11,8 @@ import { buildPathMetadata } from '@/utils/seo'
 
 export const metadata = buildPathMetadata(HOME_PATH)
 
-/** Always SSR from the live API — never serve a cached empty catalog page. */
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
+/** ISR: serve cached HTML; regenerate catalog-backed home every 60s. */
+export const revalidate = 60
 
 export default async function Page() {
   const catalog = await loadHomeCatalog()

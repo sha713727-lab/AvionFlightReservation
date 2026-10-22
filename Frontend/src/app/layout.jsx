@@ -89,8 +89,6 @@ export default function RootLayout({ children }) {
       className={`${outfit.variable} ${outfit.className}`}
     >
       <head>
-        {/* GA4 before other scripts — ID from constants/analytics.js */}
-        {loadGa4InHead ? <Ga4Tag /> : null}
         <ResourceHints />
       </head>
       <body>
@@ -101,9 +99,10 @@ export default function RootLayout({ children }) {
           <CallbackRequestProvider>{children}</CallbackRequestProvider>
           <ConditionalFloatingActions />
         </ContactSettingsProvider>
-        {/* Third-party tags at end of body; async/lazyOnload via next/script.
+        {/* Analytics after content so LCP wins on slow networks.
             Google Ads / GTM call tracking may replace the visible business number
             with a Google forwarding number for ad attribution — keep that enabled. */}
+        {loadGa4InHead ? <Ga4Tag /> : null}
         <ConditionalAnalytics includeAdmin>
           <GoogleTagManagerNoscript />
           <GoogleTagManager />

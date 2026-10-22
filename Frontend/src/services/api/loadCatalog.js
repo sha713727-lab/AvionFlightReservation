@@ -1,8 +1,4 @@
-import {
-  fetchDestinations,
-  fetchFaqs,
-  fetchServices,
-} from '@/services/api/catalog'
+import { fetchDestinations, fetchFaqs, fetchServices } from '@/services/api/catalog'
 import { CATALOG_UI } from '@/constants/catalogUi'
 
 async function settleCatalog(loader) {
@@ -13,23 +9,20 @@ async function settleCatalog(loader) {
   }
 }
 
+/** Homepage only needs services + FAQs (destinations are unused on home). */
 export async function loadHomeCatalog() {
-  const [servicesResult, destinationsResult, faqsResult] = await Promise.all([
+  const [servicesResult, faqsResult] = await Promise.all([
     settleCatalog(fetchServices),
-    settleCatalog(fetchDestinations),
     settleCatalog(fetchFaqs),
   ])
 
-  const failedCount = [servicesResult, destinationsResult, faqsResult].filter(
-    (result) => result.error,
-  ).length
+  const failedCount = [servicesResult, faqsResult].filter((result) => result.error).length
 
   return {
     services: servicesResult.data ?? [],
-    destinations: destinationsResult.data ?? [],
     faqs: faqsResult.data ?? [],
-    error: failedCount === 3 ? CATALOG_UI.error : null,
-    partialError: failedCount > 0 && failedCount < 3 ? CATALOG_UI.error : null,
+    error: failedCount === 2 ? CATALOG_UI.error : null,
+    partialError: failedCount === 1 ? CATALOG_UI.error : null,
   }
 }
 

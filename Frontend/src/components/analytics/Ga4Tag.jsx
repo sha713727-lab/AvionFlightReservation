@@ -7,8 +7,8 @@ import {
 } from '@/constants/analytics'
 
 /**
- * Tiny dataLayer/gtag stub + GA4 config beforeInteractive so queued events are not lost.
- * The external gtag.js library loads afterInteractive. Ads config lives in GoogleAdsTag.
+ * dataLayer/gtag stub + GA4 config afterInteractive so early events still queue
+ * without competing with LCP on slow networks. Ads config lives in GoogleAdsTag.
  */
 function ga4ConfigScript() {
   return `window.dataLayer = window.dataLayer || [];
@@ -23,7 +23,7 @@ export function Ga4Tag() {
     <>
       <Script
         id={GA4_CONFIG_SCRIPT_ID}
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: ga4ConfigScript() }}
       />
       <Script id={GA4_SCRIPT_ID} src={GA4_GTAG_SRC} strategy="afterInteractive" />

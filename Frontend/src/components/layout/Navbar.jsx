@@ -47,7 +47,7 @@ export default function Navbar({ overDarkHero = false }) {
               aria-label={`${SITE_NAME} home`}
               className="relative z-10 inline-flex min-w-0 shrink-0 items-center"
             >
-              <AvionLogo size="md" hideName priority tone={useLightNav ? 'dark' : 'light'} />
+              <AvionLogo size="md" hideName tone={useLightNav ? 'dark' : 'light'} />
             </a>
 
             <nav

@@ -5,7 +5,8 @@ import {
 } from '@/constants/analytics'
 
 /**
- * Google Ads config only — gtag.js is loaded earlier via Ga4Tag in <head>.
+ * Google Ads config deferred until after load so it does not contend with LCP.
+ * gtag.js is loaded via Ga4Tag afterInteractive.
  */
 function googleAdsConfig() {
   return `window.dataLayer = window.dataLayer || [];
@@ -17,7 +18,7 @@ export function GoogleAdsTag() {
   return (
     <Script
       id={GOOGLE_ADS_GTAG_CONFIG_SCRIPT_ID}
-      strategy="afterInteractive"
+      strategy="lazyOnload"
       dangerouslySetInnerHTML={{
         __html: googleAdsConfig(),
       }}

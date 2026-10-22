@@ -31,7 +31,7 @@ const nextConfig = {
     root,
   },
   experimental: {
-    optimizePackageImports: ['react-icons', 'framer-motion', 'recharts'],
+    optimizePackageImports: ['react-icons', 'recharts'],
   },
   images: {
     formats: ['image/avif', 'image/webp'],
