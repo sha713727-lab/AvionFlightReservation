@@ -1,15 +1,14 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { fetchFaqs } from '@/services/api/catalog'
+import { fetchFaqs, fetchServices } from '@/services/api/catalog'
 
-function needsClientHydration({ faqs, catalogError }) {
-  return Boolean(catalogError || faqs.length === 0)
+function needsClientHydration({ services, faqs, catalogError }) {
+  return Boolean(catalogError || services.length === 0 || faqs.length === 0)
 }
 
 /**
- * If SSR catalog failed (Docker-internal), reload FAQs from the public API in the browser.
- * Homepage no longer depends on services/destinations catalog payloads.
+ * If SSR catalog failed (Docker-internal), reload from the public API in the browser.
  */
 export function useHomeCatalog(initialCatalog) {
   const initialRef = useRef(initialCatalog)
@@ -30,13 +29,14 @@ export function useHomeCatalog(initialCatalog) {
 
     async function hydrate() {
       try {
-        const faqs = await fetchFaqs()
+        const [services, faqs] = await Promise.all([fetchServices(), fetchFaqs()])
 
         if (cancelled) {
           return
         }
 
         setCatalog({
+          services,
           faqs,
           catalogError: null,
         })

@@ -43,6 +43,7 @@ export default async function Page() {
         />
       ) : null}
       <HomePage
+        services={catalog.services}
         faqs={catalog.faqs}
         catalogError={catalog.error || catalog.partialError}
       />
