@@ -5,10 +5,10 @@ import {
 
 /** Shared independent-service / fee notice for call, inquiry, and CTA surfaces. */
 export const INDEPENDENT_SERVICE_DISCLOSURE =
-  'Independent paid travel assistance. AvioSupportDesk is not affiliated with RBC, Avion Rewards, or any airline. Our assistance fee is separate from supplier charges and is quoted before you agree.'
+  'Independent paid travel assistance. AvioSupportDesk is not affiliated with RBC, Avion Rewards, British Airways Avios, or any airline. Our assistance fee is separate from supplier charges and is quoted before you agree.'
 
 export const INDEPENDENT_SERVICE_DISCLOSURE_SHORT =
-  'We are an independent travel assistance service, not affiliated with RBC, Avion Rewards, any airline, Wyndham Hotels & Resorts, or Hilton Worldwide.'
+  'AvioSupportDesk is an independent travel assistance service. We are not affiliated with RBC, Avion Rewards, British Airways Avios, any airline, Wyndham Hotels & Resorts, or Hilton Worldwide.'
 
 export const DISCLOSURE_FEE_LINK_LABEL = 'See our service fees'
 export const DISCLOSURE_IDENTITY_LINK_LABEL = 'Independent service disclosure'

@@ -111,6 +111,27 @@ export default function ServiceLandingBody({ page }) {
         <ServiceUtilityLinks links={internal} />
       </section>
 
+      <BulletSection
+        id="service-when"
+        title={SEO_LANDING_COPY.whenUsefulHeading}
+        items={page.whenUseful}
+        linkMap={linkMap}
+      />
+
+      <BulletSection
+        id="service-info"
+        title={SEO_LANDING_COPY.infoNeededHeading}
+        items={page.infoNeeded}
+        linkMap={linkMap}
+      />
+
+      <BulletSection
+        id="service-scope"
+        title={SEO_LANDING_COPY.scopeLimitsHeading}
+        items={page.scopeLimits}
+        linkMap={linkMap}
+      />
+
       <KeyFactsBox title={page.keyFactsTitle} facts={page.keyFacts} />
 
       <CitationBlock citations={page.citations} />
@@ -122,7 +143,22 @@ export default function ServiceLandingBody({ page }) {
         linkMap={linkMap}
       />
 
+      <BulletSection
+        id="service-decisions"
+        title={SEO_LANDING_COPY.decisionPointsHeading}
+        items={page.decisionPoints}
+        linkMap={linkMap}
+      />
+
       <ComparisonTable table={page.comparison} />
+
+      <BulletSection
+        id="service-examples"
+        title={SEO_LANDING_COPY.workedExamplesHeading}
+        intro={page.examplesIntro}
+        items={page.workedExamples}
+        linkMap={linkMap}
+      />
 
       <BulletSection
         id="service-benefits"

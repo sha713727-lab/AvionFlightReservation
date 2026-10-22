@@ -5,7 +5,9 @@ import {
   FLIGHT_CANCELLATION_PATH,
   FLIGHT_CHANGES_PATH,
   GUIDE_AVION_FLIGHT_BOOKING_PATH,
+  GUIDE_AVION_POINTS_VALUE_PATH,
   GUIDE_AVION_REDEMPTION_CHART_PATH,
+  GUIDE_AVION_TRANSFER_PARTNERS_PATH,
   GUIDE_BAGGAGE_PATH,
   GUIDE_FLIGHT_BOOKING_PATH,
   GUIDE_FLIGHT_CANCELLATIONS_PATH,
@@ -28,8 +30,39 @@ import {
 export { AVION_RESOURCE_LINKS } from '@/constants/avionResourceLinks'
 export { getPageRelatedLinks } from '@/constants/pageRelatedLinks'
 
-/** All main service/product pages — homepage must link to each. */
+/** Primary homepage paths — Avion-first, then flight help and existing-trip help. */
+export const HOME_PRIMARY_PATHS = [
+  {
+    href: POINTS_REDEMPTION_PATH,
+    title: 'Compare Avion redemption options',
+    anchor: 'Avion points booking assistance',
+    description:
+      'Portal, fixed-chart, and partner-transfer paths compared with remaining cash costs explained.',
+  },
+  {
+    href: FLIGHT_BOOKING_PATH,
+    title: 'Get flight booking assistance',
+    anchor: 'flight booking assistance by phone',
+    description: 'Domestic and international cash fares with rules and baggage terms clarified first.',
+  },
+  {
+    href: FLIGHT_CHANGES_PATH,
+    title: 'Get help with an existing trip',
+    anchor: 'flight change assistance',
+    description:
+      'Date, time, or route changes with airline fees quoted before anything is submitted.',
+  },
+]
+
+/** All main service/product pages — homepage links to each via compact list. */
 export const MAIN_SERVICE_LINKS = [
+  {
+    href: POINTS_REDEMPTION_PATH,
+    title: 'Points Redemption',
+    anchor: 'Avion points booking assistance',
+    description:
+      'Independent Avion redemption guidance with a separately quoted assistance fee.',
+  },
   {
     href: FLIGHT_BOOKING_PATH,
     title: 'Flight Booking',
@@ -41,13 +74,6 @@ export const MAIN_SERVICE_LINKS = [
     title: 'Hotel Booking',
     anchor: 'hotel booking by phone',
     description: 'Reserve stays with cancellation terms and resort fees explained upfront.',
-  },
-  {
-    href: POINTS_REDEMPTION_PATH,
-    title: 'Points Redemption',
-    anchor: 'Avion points booking assistance',
-    description:
-      'Independent Avion redemption guidance with a separately quoted assistance fee.',
   },
   {
     href: FLIGHT_CHANGES_PATH,
@@ -70,7 +96,7 @@ export const MAIN_SERVICE_LINKS = [
   {
     href: BAGGAGE_ASSISTANCE_PATH,
     title: 'Baggage Assistance',
-    anchor: 'baggage allowance and fee help',
+    anchor: 'airline baggage assistance',
     description: 'Confirm carry-on rules, checked bag fees, and prepaid bag options.',
   },
   {
@@ -126,7 +152,7 @@ export const SERVICE_INTERNAL_LINKS = {
   },
   [POINTS_REDEMPTION_PATH]: {
     home: { href: HOME_PATH, label: 'AvioSupportDesk home' },
-    contact: { href: CONTACT_PATH, label: 'contact points redemption help' },
+    contact: { href: CONTACT_PATH, label: 'contact Avion points booking help' },
     relatedServices: [
       serviceCard(FLIGHT_BOOKING_PATH),
       serviceCard(INTERNATIONAL_FLIGHT_PATH),
@@ -141,7 +167,14 @@ export const SERVICE_INTERNAL_LINKS = {
         href: GUIDE_AVION_REDEMPTION_CHART_PATH,
         label: 'Avion points redemption chart explained',
       },
-      { href: GUIDE_POINTS_PATH, label: 'points and miles basics guide' },
+      {
+        href: GUIDE_AVION_TRANSFER_PARTNERS_PATH,
+        label: 'how Avion transfer partners work',
+      },
+      {
+        href: GUIDE_AVION_POINTS_VALUE_PATH,
+        label: 'what Avion points are worth',
+      },
     ],
   },
   [FLIGHT_CHANGES_PATH]: {
@@ -265,6 +298,18 @@ export function buildServiceLinkMap(path) {
   map['guide-avion-points-redemption-chart'] = {
     href: GUIDE_AVION_REDEMPTION_CHART_PATH,
     label: 'Avion points redemption chart explained',
+  }
+  map['guide-avion-transfer-partners'] = {
+    href: GUIDE_AVION_TRANSFER_PARTNERS_PATH,
+    label: 'how Avion transfer partners work',
+  }
+  map['guide-avion-points-value'] = {
+    href: GUIDE_AVION_POINTS_VALUE_PATH,
+    label: 'what Avion points are worth',
+  }
+  map['guide-points-and-miles'] = {
+    href: GUIDE_POINTS_PATH,
+    label: 'points and miles basics guide',
   }
   return map
 }

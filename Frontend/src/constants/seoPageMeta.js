@@ -48,14 +48,14 @@ import {
  */
 export const SEO_PAGE_META = {
   [HOME_PATH]: {
-    title: 'Independent Points & Flight Help | AvioSupportDesk',
+    title: 'Independent Avion Points Booking Assistance | AvioSupportDesk',
     description:
-      'Independent help comparing Avion points and flight options. See our process, assistance fees, and booking guidance before you request help by phone or form.',
-    h1: 'Independent help using Avion points for flights',
+      'Compare Avion portal, chart, and transfer options before you move points. Independent help with fees quoted first—not affiliated with RBC or Avion Rewards.',
+    h1: 'Independent Avion Points Booking Assistance',
     keywords: [
+      'Avion points booking assistance',
       'Avion points help',
-      'independent flight assistance',
-      'points redemption assistance',
+      'independent points redemption',
       'AvioSupportDesk',
     ],
   },
@@ -85,7 +85,11 @@ export const SEO_PAGE_META = {
     description:
       'Book domestic and international flights by phone with fare rules, baggage terms, and change conditions explained before you pay. Independent travel service.',
     h1: 'Flight Booking Assistance by Phone',
-    keywords: ['book flights', 'flight reservation by phone', 'airline booking help'],
+    keywords: [
+      'flight booking assistance by phone',
+      'flight reservation by phone',
+      'airline booking help',
+    ],
   },
   [HOTEL_BOOKING_PATH]: {
     title: 'Hotel Booking Help by Phone — Rates & Rules | AvioSupportDesk',
@@ -131,13 +135,14 @@ export const SEO_PAGE_META = {
     ],
   },
   [POINTS_REDEMPTION_PATH]: {
-    title: 'Avion Points Booking Assistance | AvioSupportDesk',
+    title: 'Avion Points Booking Assistance | Compare Options',
     description:
-      'Get independent guidance on Avion flight redemption options. Separate assistance fees are quoted before you agree. Not affiliated with RBC or Avion Rewards.',
+      'Independent Avion points booking help: compare portal, chart, and partner transfers with cash costs explained. Fees quoted first. Not RBC or Avion Rewards.',
     h1: 'Avion Points Booking Assistance',
     keywords: [
+      'Avion points booking assistance',
       'Avion points redemption',
-      'points booking assistance',
+      'compare Avion redemptions',
       'independent award help',
     ],
   },
@@ -146,28 +151,28 @@ export const SEO_PAGE_META = {
     description:
       'Need to change flight dates, times, or routes? We explain airline change fees, fare differences, and rebooking options by phone before anything is changed.',
     h1: 'Flight Change Assistance by Phone',
-    keywords: ['flight change', 'rebook flight', 'airline change fee help'],
+    keywords: ['flight change assistance', 'rebook flight', 'airline change fee help'],
   },
   [FLIGHT_CANCELLATION_PATH]: {
-    title: 'Flight Cancellation & Refund Help | AvioSupportDesk',
+    title: 'Flight Cancellation Assistance by Phone | AvioSupportDesk',
     description:
-      'Cancel a flight with phone guidance on refunds, travel credits, and airline fare rules. Get independent help weighing your options before you cancel it.',
-    h1: 'Flight Cancellation & Refund Assistance by Phone',
-    keywords: ['flight cancellation', 'flight refund help', 'cancel airline ticket'],
+      'Cancel a flight with phone guidance on refunds, travel credits, and airline fare rules. Get independent flight cancellation assistance before you decide.',
+    h1: 'Flight Cancellation Assistance by Phone',
+    keywords: ['flight cancellation assistance', 'flight refund help', 'cancel airline ticket'],
   },
   [SEAT_SELECTION_PATH]: {
-    title: 'Airline Seat Selection Help by Phone | AvioSupportDesk',
+    title: 'Airline Seat Selection Assistance by Phone | AvioSupportDesk',
     description:
-      'Choose seats, sit families together, and understand paid seat fees before you fly. Get seat-map guidance by phone from an independent travel specialist.',
-    h1: 'Airline Seat Selection Help by Phone',
-    keywords: ['seat selection', 'airline seats', 'choose flight seats'],
+      'Choose seats, sit families together, and understand paid seat fees before you fly. Get airline seat selection assistance by phone from an independent desk.',
+    h1: 'Airline Seat Selection Assistance by Phone',
+    keywords: ['airline seat selection assistance', 'airline seats', 'choose flight seats'],
   },
   [BAGGAGE_ASSISTANCE_PATH]: {
-    title: 'Baggage Fees & Bag Allowance Help | AvioSupportDesk',
+    title: 'Airline Baggage Assistance by Phone | AvioSupportDesk',
     description:
-      'Understand carry-on limits, checked bag fees, and special-item rules before airport day. Get baggage policy guidance by phone from an independent specialist.',
-    h1: 'Baggage Fees & Allowance Assistance by Phone',
-    keywords: ['baggage allowance', 'checked bag fees', 'carry-on rules'],
+      'Understand carry-on limits, checked bag fees, and special-item rules before airport day. Get airline baggage assistance by phone from an independent specialist.',
+    h1: 'Airline Baggage Assistance by Phone',
+    keywords: ['airline baggage assistance', 'checked bag fees', 'carry-on rules'],
   },
   [TRIP_PLANNING_PATH]: {
     title: 'Trip Planning Help by Phone — Multi-City | AvioSupportDesk',
@@ -323,14 +328,14 @@ export const SEO_PAGE_META = {
   [ABOUT_PATH]: {
     title: 'About AvioSupportDesk — Independent Travel Assistance',
     description:
-      'Learn how AvioSupportDesk provides independent phone help for flights, hotels, and Avion points questions. We are not a bank, an airline, or a hotel brand.',
+      'Learn who operates AvioSupportDesk, how fees work, and what we can and cannot do for Avion points and flights. Not a bank, an airline, or a hotel brand.',
     h1: 'About AvioSupportDesk, an Independent Travel Assistance Service',
     keywords: ['about AvioSupportDesk', 'independent travel assistance', 'travel support company'],
   },
   [CONTACT_PATH]: {
     title: 'Contact AvioSupportDesk — Independent Travel Help',
     description:
-      'Contact AvioSupportDesk for independent flight, hotel, and Avion points assistance by phone, email, or inquiry form. Not affiliated with RBC or Avion Rewards.',
+      'Contact AvioSupportDesk for independent Avion points and flight help by phone, email, or inquiry form. Correspondence address only—not a walk-in office.',
     h1: 'Contact AvioSupportDesk for independent travel help',
     keywords: ['contact flight support', 'travel helpline', 'call to book flights'],
   },

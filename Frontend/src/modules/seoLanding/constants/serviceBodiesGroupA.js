@@ -66,30 +66,65 @@ export const POINTS_REDEMPTION_BODY = {
   speakableSummary:
     'AvioSupportDesk provides independent Avion points booking assistance: we help you compare redemption options, understand remaining cash charges, and work through permitted booking steps for a separately quoted assistance fee. You keep control of your rewards account.',
   opening:
-    'AvioSupportDesk Avion points booking assistance is optional paid help for members who want a clearer comparison of cash fares, fixed-chart redemptions, travel-portal options, and eligible transfer-partner awards before they commit. We are not RBC or Avion Rewards and we do not access your account credentials. Eligible options depend on your membership product or tier and current program terms. Prefer self-service? Use the official Avion Rewards travel tools. Prefer guided comparison? Request a written quote for our separate assistance fee, then approve any option yourself. Start with the {{guide-avion-points-flight-booking}} or {{guide-avion-points-redemption-chart}}, try the {{tool-avion-points-calculator}}, or {{contact}} us with your route and approximate balance. Broader miles concepts remain in the {{guide-points-and-miles}}.',
+    'The customer problem is simple: Avion points can look valuable until portal prices, chart levels, partner-transfer timing, and taxes or surcharges are compared side by side. AvioSupportDesk Avion points booking assistance is optional paid help for members who want that comparison before they commit. We are not RBC or Avion Rewards and we do not access your account credentials. Eligible options depend on your membership product or tier and current program terms. Prefer self-service? Use the official Avion Rewards travel tools. Prefer guided comparison? Request a written quote for our separate assistance fee, then approve any option yourself. Start with the {{guide-avion-points-flight-booking}} or {{guide-avion-points-redemption-chart}}, try the {{tool-avion-points-calculator}}, or {{contact}} us with your route and approximate balance. Broader miles concepts remain in the {{guide-points-and-miles}}.',
+  whenUseful: [
+    'You are choosing between paying cash and redeeming Avion points on the same route and dates.',
+    'Portal prices, chart levels, and partner-transfer awards all appear possible and you need a clearer ranking.',
+    'You want remaining taxes, surcharges, and our assistance fee listed separately before you decide.',
+    'You prefer guided steps while keeping passwords, OTPs, and account control entirely with you.',
+  ],
+  infoNeeded: [
+    'Origin and destination airports or cities, plus travel dates or a flexible date window.',
+    'Passenger count, cabin preference, and whether the trip is one-way or round-trip.',
+    'Approximate Avion points balance and membership product or tier if you know it.',
+    'Any hard constraints such as nonstop-only, maximum layover, or a cash budget ceiling.',
+    'Never passwords, one-time codes, full card numbers, or passport scans through public forms.',
+  ],
+  scopeLimits: [
+    'We can compare cash fares against portal, chart, and eligible transfer-partner options within an accepted scope.',
+    'We can quote our separate assistance fee in writing before paid work begins—see {{service-fees}}.',
+    'We can explain permitted booking steps you complete in official program channels.',
+    'We cannot log into your rewards account, guarantee award inventory, waive airline or program rules, or act as official Avion or RBC support.',
+    'We cannot reverse a completed partner transfer or force a refund the ticket issuer will not allow.',
+  ],
   howItWorks: [
-    'Share origin, destination, dates or flexibility, passenger count, cabin preference, and approximate Avion points balance—never passwords or one-time codes.',
+    'Share the trip details listed above—never passwords or one-time codes.',
     'We outline which mechanisms may apply: travel-portal redemption, an eligible fixed-points chart, or conversion to an eligible airline partner when supported for your membership.',
     'You receive a written comparison of options we can evaluate, including remaining cash charges when known, plus our separately quoted assistance fee.',
     'Paid work begins only after you accept the quote. You complete account-controlled steps through official program channels.',
     'After you confirm an option, we help document next steps for receipts, changes, or questions that remain within our assistance scope.',
   ],
+  decisionPoints: [
+    'Portal versus chart: dynamic portal pricing can diverge sharply from fixed chart levels on the same city pair.',
+    'Transfer versus hold: partner transfers are often irreversible—confirm award space and timing before you move points.',
+    'Cabin and distance: long-haul business awards can look efficient in points while still leaving large cash taxes or surcharges.',
+    'Cash break-even: after adding our assistance fee and remaining cash charges, paying the published cash fare may be clearer.',
+    'Post-booking path: change and cancel rules follow the ticket issuer and program—not a generic “points always refund” promise.',
+  ],
+  examplesIntro:
+    'Examples below are illustrative teaching scenarios only. They are not live offers, guaranteed inventory, or quotes. Always confirm current prices and rules on official channels or request a written comparison from us.',
+  workedExamples: [
+    'Short-haul cash versus points: a $280 cash fare against a 15,000-point chart example plus $60 taxes may or may not beat cash once your own cents-per-point target and our fee are included—run numbers with the {{tool-avion-points-calculator}}.',
+    'Long-haul economy: a high portal price in points can lose to a published cash sale even when your balance looks large enough on screen.',
+    'Business-class transfer path: transferring points to a partner may unlock better award space than the portal, but transfer timing and irreversibility are the main risks—see {{guide-avion-transfer-partners}}.',
+    'Fee-aware break-even: if cash is $900 and a redemption still needs $220 cash plus our quoted assistance fee, the points “savings” shrink—compare total out-of-pocket, not points alone.',
+  ],
   benefits: [
     'Written cash-versus-points comparison for routes we can evaluate within the agreed scope.',
     'Clear separation of our assistance fee from airline, tax, surcharge, and program charges.',
     'Guidance that keeps account control with you—no password or OTP collection on public forms.',
-    'Links to educational guides on booking steps, chart conditions, and points value examples.',
+    'Links to educational guides on booking steps, chart conditions, transfer partners, and points value examples.',
     'Honest limits: we do not guarantee award inventory, waive supplier rules, or claim official program authority.',
     'A path back to official self-service when that better matches your need.',
   ],
   whyChooseIntro:
-    'Choose AvioSupportDesk when you want independent Avion redemption help with transparent fees—not an imitation rewards desk. Official account decisions stay with you and the program.',
+    'Choose AvioSupportDesk when you want independent Avion points booking assistance with transparent fees—not an imitation rewards desk. Official account decisions stay with you and the program.',
   whyChoose: [
-    'Independence is stated before you call or submit an inquiry.',
+    'Independence is stated before you call or submit an inquiry—see {{independent-service-disclosure}}.',
     'Assistance fees are quoted before paid work starts—see {{service-fees}}.',
     'We distinguish portal, chart, and transfer paths instead of treating them as one inventory system.',
     'Change and cancel paths after redemption depend on the ticket issuer and program rules, which we explain without promising outcomes we cannot control.',
-    'Related process and identity pages: {{how-it-works}} and {{independent-service-disclosure}}—or return to {{home}} and {{services}}.',
+    'Related process pages: {{how-it-works}}—or return to {{home}} and {{services}}, or {{contact}} us with your route.',
   ],
 }
 

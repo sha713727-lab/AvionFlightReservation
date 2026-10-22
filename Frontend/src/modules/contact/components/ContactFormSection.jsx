@@ -89,40 +89,24 @@ export default function ContactFormSection() {
               </div>
             </div>
 
-            <div className="mt-8">
+            <div className="mt-8 rounded-2xl border border-border bg-card p-6">
               <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
-                {COPY.contactPage.mapEyebrow}
+                {COPY.contactPage.correspondenceEyebrow}
               </p>
               <h3 className="font-heading text-xl font-semibold text-primary">
-                {COPY.contactPage.mapTitle}
+                {COPY.contactPage.correspondenceTitle}
               </h3>
-              <p className="mt-2 text-sm text-text-secondary">{COPY.contactPage.mapDescription}</p>
-              <div className="mt-4 overflow-hidden rounded-2xl border border-border bg-card">
-                {CONTACT_MAP.embedSrc ? (
-                  <iframe
-                    title={COPY.contactPage.mapPlaceholderLabel}
-                    src={CONTACT_MAP.embedSrc}
-                    className="h-64 w-full max-w-full border-0"
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
-                ) : (
-                  <a
-                    href={mapsSearchUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-64 flex-col items-center justify-center gap-3 bg-gradient-to-br from-section-alt to-accent/10 px-6 text-center transition-colors hover:bg-accent/5"
-                  >
-                    <span className="text-sm font-medium uppercase tracking-[0.16em] text-text-muted">
-                      {COPY.contactPage.mapPlaceholderLabel}
-                    </span>
-                    <span className="max-w-sm text-base font-medium text-primary">
-                      {CONTACT_MAP.query}
-                    </span>
-                    <span className="text-sm font-medium text-accent">Open in Google Maps</span>
-                  </a>
-                )}
-              </div>
+              <p className="mt-2 text-sm leading-relaxed text-text-secondary">
+                {COPY.contactPage.correspondenceDescription}
+              </p>
+              <a
+                href={mapsSearchUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex min-h-11 items-center text-sm font-medium text-accent underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              >
+                {COPY.contactPage.correspondenceMapsLabel}
+              </a>
             </div>
           </FadeIn>
 

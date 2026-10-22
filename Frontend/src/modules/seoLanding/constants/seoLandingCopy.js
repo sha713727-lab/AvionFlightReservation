@@ -7,9 +7,15 @@ export const SEO_LANDING_COPY = {
   faqHeading: 'Frequently Asked Questions',
   relatedHeading: 'Related resources',
   relatedServicesHeading: 'Related Services',
-  homeServiceLinksTitle: 'Phone travel services we help with',
+  homeServiceLinksTitle: 'Three clear paths to get help',
   homeServiceLinksDescription:
-    'Explore every main service page—from flight booking and hotel stays to changes, cancellations, seats, baggage, and trip planning.',
+    'Start with Avion points booking assistance, request flight booking help, or get support on an existing trip. Related hotel, seat, baggage, and planning services remain available below.',
+  homeMoreServicesLabel: 'Looking for another service?',
+  whenUsefulHeading: 'When this assistance is useful',
+  infoNeededHeading: 'Information we need from you',
+  scopeLimitsHeading: 'What we can and cannot do',
+  decisionPointsHeading: 'Typical decision points',
+  workedExamplesHeading: 'Illustrative examples',
   serviceUtilityHeading: 'On this site',
   ctaTitle: 'Ready to get help? Contact us now',
   ctaDescription:

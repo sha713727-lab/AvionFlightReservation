@@ -97,12 +97,13 @@ export const HOTEL_BOOKING_GEO = {
 }
 
 export const POINTS_REDEMPTION_GEO = {
-  keyFactsTitle: 'Key Facts About Points & Miles Redemption',
+  keyFactsTitle: 'Key Facts About Avion Points Booking Assistance',
   keyFacts: [
+    'Avion portal, fixed-chart, and partner-transfer paths are different mechanisms—not one shared inventory pool.',
     'Award space is controlled by airlines and can differ from cash seat availability on the same flight.',
     'Bank point transfers are usually irreversible once completed in your account.',
-    'Long-haul awards can still require large cash taxes or carrier surcharges.',
-    'AvioSupportDesk does not represent RBC Avion Rewards, Avios, or any airline loyalty program.',
+    'Long-haul awards can still require large cash taxes or carrier surcharges after points are applied.',
+    'AvioSupportDesk does not represent RBC, Avion Rewards, British Airways Avios, or any airline loyalty program.',
   ],
   citations: [
     {
@@ -125,13 +126,15 @@ export const POINTS_REDEMPTION_GEO = {
     },
   ],
   comparison: {
-    title: 'Cash booking vs. award redemption',
-    caption: 'Compare both prices when visible; award taxes can erase “free” seat value.',
-    headers: ['Option', 'What you pay', 'Main risk'],
+    title: 'Cash vs portal vs chart vs transfer (illustrative)',
+    caption:
+      'Illustrative decision framing only—not live offers. Confirm current prices and rules on official channels.',
+    headers: ['Path', 'What you typically pay', 'Main decision risk'],
     rows: [
-      ['Cash fare', 'Published fare + taxes', 'Change/cancel fees by fare brand'],
-      ['Airline miles award', 'Miles + taxes/surcharges', 'Award space & redeposit rules'],
-      ['Bank points transfer', 'Points moved to partner + award cost', 'Irreversible transfer timing'],
+      ['Cash fare', 'Published fare + taxes', 'Fare brand change/cancel rules'],
+      ['Avion travel portal', 'Dynamic points price + remaining cash', 'Portal price swings vs chart'],
+      ['Fixed-points chart', 'Chart level + taxes/fees when eligible', 'Membership and chart conditions'],
+      ['Partner transfer', 'Transferred points + award cost + cash', 'Irreversible transfer timing'],
     ],
   },
   sources: [

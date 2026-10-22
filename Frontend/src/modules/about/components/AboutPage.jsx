@@ -13,6 +13,7 @@ import AboutPageHero from '@/modules/about/components/AboutPageHero'
 import AboutHighlights from '@/modules/about/components/AboutHighlights'
 import AboutWhoWeAre from '@/modules/about/components/AboutWhoWeAre'
 import AboutWhatIs from '@/modules/about/components/AboutWhatIs'
+import AboutScope from '@/modules/about/components/AboutScope'
 import AboutEditorialStandards from '@/modules/about/components/AboutEditorialStandards'
 import AboutWhyChoose from '@/modules/about/components/AboutWhyChoose'
 import AboutMission from '@/modules/about/components/AboutMission'
@@ -29,6 +30,7 @@ export default function AboutPage() {
       <main id="main-content" className="overflow-x-clip">
         <AboutPageHero />
         <AboutWhatIs />
+        <AboutScope />
         <AboutHighlights />
         <AboutWhoWeAre />
         <AboutWhyChoose />

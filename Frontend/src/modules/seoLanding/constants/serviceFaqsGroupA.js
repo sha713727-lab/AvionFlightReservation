@@ -82,9 +82,9 @@ export const POINTS_REDEMPTION_FAQS = [
   {
     question: 'Are you the official Avion Rewards support desk?',
     answer:
-      'No. AvioSupportDesk provides independent paid travel assistance and is not affiliated with RBC or Avion Rewards. For account access and official program support, use the official program channels.',
+      'No. AvioSupportDesk provides independent Avion points booking assistance and is not affiliated with RBC, Avion Rewards, or British Airways Avios. For account access and official program support, use the official program channels.',
     detail:
-      'Our phone number is for optional assistance only. It is not a substitute for official Avion or RBC support.',
+      'Our phone number is for optional assistance only. It is not a substitute for official Avion or RBC support. Read {{independent-service-disclosure}}.',
   },
   {
     question: 'Do I have to pay you to redeem my points?',
@@ -105,14 +105,28 @@ export const POINTS_REDEMPTION_FAQS = [
     answer:
       'Travel-portal redemption, an eligible fixed-points chart, and conversion to an eligible airline partner are different mechanisms. Eligibility depends on membership and current program terms.',
     detail:
-      'Read the {{guide-avion-points-flight-booking}} and {{guide-avion-points-redemption-chart}} before transferring points you cannot reverse easily.',
+      'Read the {{guide-avion-points-flight-booking}}, {{guide-avion-points-redemption-chart}}, and {{guide-avion-transfer-partners}} before transferring points you cannot reverse easily.',
+  },
+  {
+    question: 'When is paying cash better than using Avion points?',
+    answer:
+      'When the remaining taxes, surcharges, and any assistance fee leave little or no advantage versus the published cash fare—or when award space forces a poor routing. We compare total out-of-pocket, not points alone.',
+    detail:
+      'Use the {{tool-avion-points-calculator}} and {{guide-avion-points-value}} for illustrative math before you request a written comparison.',
+  },
+  {
+    question: 'What happens if an award flight is cancelled?',
+    answer:
+      'Outcomes follow the ticket issuer and program rules: redeposit, travel credit, or cash elements may each behave differently. We explain options within our assistance scope but cannot override supplier decisions.',
+    detail:
+      'Bring confirmation details—not account passwords—if you request optional help after a cancellation.',
   },
   {
     question: 'Who should I contact for an existing Avion booking?',
     answer:
       'Start with whoever issued the ticket and the official program or supplier channels that control the reservation. We can help explain options within our assistance scope, but we cannot override supplier rules.',
     detail:
-      'Bring confirmation details—not account passwords—if you request optional help.',
+      '{{contact}} us with confirmation details only if you want optional independent help.',
   },
 ]
 

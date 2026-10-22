@@ -79,7 +79,7 @@ export const CONTACT_FORM_MESSAGES = {
     `Your reference is ${referenceCode}. We will follow up using the contact details you provided.`,
 }
 
+/** Correspondence mailing address only — not a walk-in office embed. */
 export const CONTACT_MAP = {
-  embedSrc: '',
   query: '100 King Street West, Suite 1500, Toronto, ON M5X 1C9, Canada',
 }

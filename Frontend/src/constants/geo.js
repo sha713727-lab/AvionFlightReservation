@@ -27,8 +27,8 @@ export const GEO_BYLINES = {
   authorName: 'AvioSupportDesk',
   authorRole: 'independent travel assistance editorial',
   factCheckerName: '',
-  lastUpdatedLabel: 'September 21, 2026',
-  lastUpdatedIso: '2026-09-21',
+  lastUpdatedLabel: 'October 22, 2026',
+  lastUpdatedIso: '2026-10-22',
   /** First git commit of the core guide entries (2026-09-11). */
   publishedIso: '2026-09-11',
   /** First git commit of the Avion guide entries (2026-09-22). */
@@ -38,7 +38,7 @@ export const GEO_BYLINES = {
 
 export const GEO_COPY = {
   sourcesHeading: 'Sources / References',
-  authorWrittenPrefix: 'Published by',
+  authorWrittenPrefix: 'Reviewed and published by',
   authorFactCheckedPrefix: 'Fact-checked by',
   authorLastUpdatedPrefix: 'Last reviewed:',
   externalLinkRel: 'noopener noreferrer',

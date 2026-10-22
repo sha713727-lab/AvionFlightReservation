@@ -101,13 +101,29 @@ export const ABOUT_TRUST_BADGES = [
 
 export const ABOUT_WHAT_IS = {
   heading: 'What is AvioSupportDesk?',
-  body: 'AvioSupportDesk is an independent travel assistance service. We help travelers compare flight and hotel options and complete permitted booking steps by phone. We are not an airline, bank, or hotel brand. Assistance fees are quoted before you agree and stay separate from supplier charges.',
+  body: 'AvioSupportDesk is an independent travel assistance service operated for customers who need phone or written help comparing Avion points options, cash fares, and related booking steps. We are not an airline, bank, hotel brand, or official rewards desk. Assistance fees are quoted before you agree and stay separate from supplier charges. The Toronto address on this site is for correspondence only—not a walk-in office.',
+}
+
+export const ABOUT_SCOPE = {
+  heading: 'What we provide — and what we do not',
+  provided: [
+    'Independent Avion points booking assistance and cash-versus-points comparisons within an accepted scope.',
+    'Phone and inquiry help for flight bookings, changes, cancellations, hotels, seats, baggage, and trip planning when those requests fit our services.',
+    'Written assistance-fee quotes before paid work starts, with supplier charges kept separate.',
+    'Educational guides and tools that cite official public sources where rules are discussed.',
+  ],
+  notProvided: [
+    'Official RBC, Avion Rewards, airline, or hotel account support.',
+    'Login help, password resets, OTP handling, or access to customer rewards accounts.',
+    'Guaranteed award inventory, waived supplier fees, or outcomes we cannot control.',
+    'Walk-in counter service at the correspondence mailing address.',
+  ],
 }
 
 export const ABOUT_EDITORIAL_STANDARDS = {
   heading: 'Editorial standards',
   intro:
-    'Guides and policy pages are written as independent travel assistance, not as airline, bank, or hotel advice.',
+    'Guides and policy pages are written as independent travel assistance, not as airline, bank, or hotel advice. Content is reviewed by the AvioSupportDesk editorial process and shows a last-reviewed date.',
   items: [
     {
       id: 'sources',
@@ -117,12 +133,17 @@ export const ABOUT_EDITORIAL_STANDARDS = {
     {
       id: 'review-dates',
       title: 'Review dates on guides',
-      body: 'Guides show when the page was published or last reviewed so you can tell whether the explanation is current.',
+      body: 'Guides and service pages show when the content was published or last reviewed so you can tell whether the explanation is current.',
+    },
+    {
+      id: 'verification',
+      title: 'How information is verified',
+      body: 'We cross-check fare, refund, and passenger-rights themes against public regulator and carrier pages listed in Sources. Illustrative points examples are labeled as non-live teaching scenarios.',
     },
     {
       id: 'independence',
       title: 'Independence',
-      body: 'We are not affiliated with RBC, Avion Rewards, airlines, Wyndham Hotels & Resorts, or Hilton. Brand names identify the travel request only.',
+      body: 'We are not affiliated with RBC, Avion Rewards, British Airways Avios, airlines, Wyndham Hotels & Resorts, or Hilton. Brand names identify the travel request only.',
     },
     {
       id: 'corrections',

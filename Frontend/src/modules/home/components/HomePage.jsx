@@ -9,32 +9,17 @@ import CallExpertProvider from '@/modules/call/components/CallExpertProvider'
 import { useHomeCatalog } from '@/hooks/useHomeCatalog'
 import { CATALOG_UI } from '@/constants/catalogUi'
 
-const DestinationsSection = dynamic(() => import('@/components/sections/DestinationsSection'))
-const SupplierMentionsSection = dynamic(
-  () => import('@/components/sections/SupplierMentionsSection'),
-)
-const ServicesSection = dynamic(() => import('@/components/sections/ServicesSection'))
-const HomeServiceLinks = dynamic(() => import('@/components/sections/HomeServiceLinks'))
 const HomeFeeTransparency = dynamic(() => import('@/components/sections/HomeFeeTransparency'))
 const HomeAvionResources = dynamic(() => import('@/components/sections/HomeAvionResources'))
+const HomeServiceLinks = dynamic(() => import('@/components/sections/HomeServiceLinks'))
 const HomeLatestBlogPosts = dynamic(() => import('@/components/sections/HomeLatestBlogPosts'))
 const WhyUsSection = dynamic(() => import('@/components/sections/WhyUsSection'))
 const HowItWorksSection = dynamic(() => import('@/components/sections/HowItWorksSection'))
 const FAQSection = dynamic(() => import('@/components/sections/FAQSection'))
 const RedeemCtaSection = dynamic(() => import('@/components/sections/RedeemCtaSection'))
 
-export default function HomePage({
-  services,
-  destinations,
-  faqs,
-  catalogError = null,
-}) {
-  const catalog = useHomeCatalog({
-    services,
-    destinations,
-    faqs,
-    catalogError,
-  })
+export default function HomePage({ faqs, catalogError = null }) {
+  const catalog = useHomeCatalog({ faqs, catalogError })
 
   return (
     <CallExpertProvider>
@@ -54,10 +39,7 @@ export default function HomePage({
         <HowItWorksSection />
         <HomeFeeTransparency />
         <HomeAvionResources />
-        <ServicesSection services={catalog.services} />
         <HomeServiceLinks />
-        <DestinationsSection destinations={catalog.destinations} />
-        <SupplierMentionsSection />
         <WhyUsSection />
         <HomeLatestBlogPosts />
         <FAQSection faqs={catalog.faqs} />

@@ -16,7 +16,7 @@ import {
 } from '@/utils/seo'
 
 const ORGANIZATION_DESCRIPTION =
-  'Independent travel assistance helping customers compare Avion points flight options and complete permitted booking steps for a separately quoted assistance fee.'
+  'Independent Avion points booking assistance helping customers compare redemption options and complete permitted booking steps for a separately quoted assistance fee.'
 
 /**
  * Homepage-only WebSite JSON-LD (schema.org).

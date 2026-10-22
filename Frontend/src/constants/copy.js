@@ -13,12 +13,12 @@ export const COPY = {
   },
   hero: {
     speakableSummary:
-      'AvioSupportDesk helps you compare flight options, understand redemption rules, and work through the booking steps available to you. We charge a separate assistance fee, quoted before you agree. You keep control of your rewards account and approve the travel option you choose.',
+      'Compare portal redemptions, fixed-chart awards, and partner-transfer options before moving your Avion points. We explain remaining cash costs and booking steps while you keep control of your account. Assistance fees are quoted before you agree.',
     disclosure:
-      'We are an independent travel assistance service, not affiliated with RBC, Avion Rewards, or any airline.',
+      'AvioSupportDesk is an independent travel assistance service. We are not affiliated with RBC, Avion Rewards, British Airways Avios, or any airline.',
   },
   footer: {
-    tagline: 'Independent help using Avion points for flights and related travel assistance.',
+    tagline: 'Independent Avion points booking assistance and related travel help.',
     disclaimerTitle: 'Disclaimer',
     disclaimer:
       'AvioSupportDesk (aviosupportdesk.com) is an independent travel assistance service. We are not affiliated with, authorized by, or endorsed by Royal Bank of Canada (RBC), Avion Rewards, British Airways Avios, or any airline or bank reward program. Airline, hotel, and program names may appear only to identify customer travel requests. All trademarks are the property of their respective owners. Our assistance fee is separate from supplier and program charges.',
@@ -178,29 +178,30 @@ export const COPY = {
     description: 'Everything you need to know about booking with AvioSupportDesk — explained simply.',
   },
   redeemCta: {
-    title: 'Need help using travel points for a flight?',
+    title: 'Need Avion points booking assistance?',
     description:
-      'Call now for travel points help, new flight reservation support, or assistance managing an existing trip.',
+      'Request help comparing Avion redemptions, cash fares, or an existing trip. Fees are quoted before paid work begins.',
   },
   about: {
     pageEyebrow: 'About Us',
-    pageTitle: 'Independent travel assistance for flight reservations.',
+    pageTitle: 'Independent Avion points and travel assistance.',
     pageDescription:
-      'AvioSupportDesk is an independent travel assistance service for flights, hotels, trip planning, and booking questions. We explain options by phone—we are not an airline call center or bank rewards desk. Our mailing address is for correspondence only.',
+      'AvioSupportDesk operates as an independent phone assistance service based on correspondence in Toronto, Canada. We help travelers compare Avion points options, cash fares, and related booking steps—we are not an airline call center or bank rewards desk.',
     metaDescription:
-      'Learn about AvioSupportDesk — independent travel assistance for flight and hotel reservations by phone. Not affiliated with RBC or Avion Rewards.',
+      'Learn who operates AvioSupportDesk, how fees work, and what we can and cannot do. Independent Avion points and flight assistance—not affiliated with RBC or Avion Rewards.',
     pagePrimaryCta: 'Request independent booking help',
     pageSecondaryCta: 'See our service fees',
     whoWeAreEyebrow: 'Who We Are',
-    whoWeAreTitle: 'Independent travel help, explained clearly.',
+    whoWeAreTitle: 'Who operates AvioSupportDesk, and how we work.',
     whoWeAreParagraphs: [
-      'AvioSupportDesk is an independent travel assistance service that helps customers review travel options, understand booking conditions, and receive support before and after making a reservation.',
-      'Travelers deserve clear phone help when airline websites, fare rules, and change policies become confusing. We focus on practical guidance and separately quoted assistance fees.',
-      'We are not an airline call center or official rewards desk. You keep control of your accounts; we explain options in plain language within the scope you accept.',
+      'AvioSupportDesk is an independent travel assistance business that serves customers by phone and written inquiry across Canada, the United States, and international callers who need English-language booking help.',
+      'Our core focus is Avion points booking assistance: comparing portal redemptions, fixed-chart awards, partner-transfer paths, remaining cash costs, and when paying cash may be clearer. We also help with related flight bookings, changes, cancellations, hotels, seats, and baggage when those requests fit an accepted scope.',
+      'We do not operate airline or rewards accounts for you, collect passwords or one-time codes, override supplier rules, or claim affiliation with RBC, Avion Rewards, British Airways Avios, or any airline. You approve every travel option and keep control of your accounts.',
+      'Assistance fees are quoted in writing before paid work starts and stay separate from fares, taxes, surcharges, and program charges. Customer contact details are used only to respond to your request under our privacy policy.',
     ],
     transparencyLabel: 'Transparency',
     transparencyText:
-      'We are not an airline, hotel, bank, rewards program, or card issuer. We are not affiliated with RBC or Avion Rewards. The listed mailing address is a mailing address for correspondence—not a claim of a staffed walk-in customer office unless the owner confirms otherwise. All fares, availability, rules, and changes are subject to the final terms of the actual travel supplier.',
+      'We are not an airline, hotel, bank, rewards program, or card issuer. We are not affiliated with RBC, Avion Rewards, British Airways Avios, or any airline. The Toronto address listed on this site is a correspondence mailing address—not a staffed walk-in customer office. Visitors are not expected at that address. All fares, availability, rules, and changes are subject to the final terms of the actual travel supplier.',
     whyChooseEyebrow: 'Why Choose Us',
     whyChooseTitle: 'Why travelers choose AvioSupportDesk.',
     whyChooseDescription:
@@ -260,10 +261,11 @@ export const COPY = {
     formMessagePlaceholder: 'Share trip dates, destinations, or booking questions…',
     formSubmitCta: 'Send message',
     formSubmittingCta: 'Sending…',
-    mapEyebrow: 'Visit',
-    mapTitle: 'Office location',
-    mapDescription: 'Map placeholder for our Toronto mailing address.',
-    mapPlaceholderLabel: 'Google Maps embed placeholder',
+    correspondenceEyebrow: 'Mailing address',
+    correspondenceTitle: 'Toronto correspondence address',
+    correspondenceDescription:
+      'This is a mailing address for written correspondence only. It is not a walk-in customer office, and visitors are not expected on site. Prefer phone or the inquiry form for booking help.',
+    correspondenceMapsLabel: 'View mailing address on Google Maps',
     hoursEyebrow: 'Business hours',
     hoursTitle: 'When you can reach us',
   },
