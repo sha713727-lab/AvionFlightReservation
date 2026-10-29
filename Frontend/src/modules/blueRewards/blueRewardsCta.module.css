@@ -1,0 +1,51 @@
+.heroIntroStack + .heroIntroStack {
+  margin-top: 16px;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+.heroNote {
+  max-width: 640px;
+  margin: 28px auto 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--wh-muted);
+}
+
+.heroOfficial {
+  display: inline-flex;
+  margin-top: 16px;
+  color: var(--wh-accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-size: 15px;
+}
+
+.closingCta {
+  text-align: center;
+}
+
+.closingTitle {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.closingContact {
+  margin-top: 28px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--wh-muted);
+}
+
+.closingContact a {
+  color: var(--wh-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

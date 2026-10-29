@@ -1,0 +1,280 @@
+{
+  "collection": "Blue Rewards page travel images for AvioSupportDesk",
+  "createdDate": "2026-10-30",
+  "imageCount": 6,
+  "generationMethod": "Built-in imagegen; one original generation per photograph.",
+  "exportMethod": "ImageMagick Lanczos resizing and minimal centre crop; no aspect stretching.",
+  "uploadConstraints": {
+    "maxLongestEdge": 1600,
+    "maxBytes": 5000000
+  },
+  "assets": [
+    {
+      "slot": "lead",
+      "subject": "lead-airport-journey",
+      "aspectRatio": "3:2",
+      "objectFit": "cover",
+      "objectPosition": "50% 50%",
+      "alt": "Traveller overlooking a passenger aircraft from a bright airport departure lounge.",
+      "sourceType": "AI-generated illustrative travel photography",
+      "nativeDimensions": [
+        1536,
+        1024
+      ],
+      "files": {
+        "uploadWebp": {
+          "file": "01_UPLOAD_WEBP/01-lead-airport-journey.webp",
+          "width": 1600,
+          "height": 1067,
+          "bytes": 136244,
+          "sha256": "ce7543d60dd18d8ae681f6af495069d10c497841cec0e188e53ada837abe5d86"
+        },
+        "uploadJpg": {
+          "file": "02_UPLOAD_JPG/01-lead-airport-journey.jpg",
+          "width": 1600,
+          "height": 1067,
+          "bytes": 605852,
+          "sha256": "bf3d3ccbabf650268acfb6ee3aa20f6964a12dfdbda3c8be4453cc556bb9e86a"
+        },
+        "requestedSizeJpg": {
+          "file": "03_REQUESTED_SIZES_JPG/01-lead-airport-journey.jpg",
+          "width": 1600,
+          "height": 1067,
+          "bytes": 605852,
+          "sha256": "bf3d3ccbabf650268acfb6ee3aa20f6964a12dfdbda3c8be4453cc556bb9e86a"
+        },
+        "generatedOriginalPng": {
+          "file": "04_GENERATED_ORIGINALS_PNG/01-lead-airport-journey.png",
+          "width": 1536,
+          "height": 1024,
+          "bytes": 2327930,
+          "sha256": "2ac8b70d2546d9b219dd237ca18b63796d6e4d8fc8cad18ec7a179aa1b7ae124"
+        }
+      }
+    },
+    {
+      "slot": "pairALeft",
+      "subject": "pair-a-left-oceanview-stay",
+      "aspectRatio": "2:3",
+      "objectFit": "cover",
+      "objectPosition": "50% 50%",
+      "alt": "Ocean-view hotel suite with linen bedding and an open balcony.",
+      "sourceType": "AI-generated illustrative travel photography",
+      "nativeDimensions": [
+        1024,
+        1536
+      ],
+      "files": {
+        "uploadWebp": {
+          "file": "01_UPLOAD_WEBP/02-pair-a-left-oceanview-stay.webp",
+          "width": 1066,
+          "height": 1599,
+          "bytes": 156128,
+          "sha256": "665fa1feccd7e8f449e9c960d004109e78339423dda0f2ff87c045f6dcffedbb"
+        },
+        "uploadJpg": {
+          "file": "02_UPLOAD_JPG/02-pair-a-left-oceanview-stay.jpg",
+          "width": 1066,
+          "height": 1599,
+          "bytes": 647906,
+          "sha256": "90a06c6e38e1d258281941a4abed883290d7358aca246823ff4a1de3d046ef54"
+        },
+        "requestedSizeJpg": {
+          "file": "03_REQUESTED_SIZES_JPG/02-pair-a-left-oceanview-stay.jpg",
+          "width": 1100,
+          "height": 1650,
+          "bytes": 681753,
+          "sha256": "87b081870f6f9d1433f79ee8085a764c9a9f60e86aba6486d557f8f58db4e0e5"
+        },
+        "generatedOriginalPng": {
+          "file": "04_GENERATED_ORIGINALS_PNG/02-pair-a-left-oceanview-stay.png",
+          "width": 1024,
+          "height": 1536,
+          "bytes": 2702674,
+          "sha256": "07442a23102f0bfc014ea48f1679407601bb0508540d3b185988b0e6bc2355fd"
+        }
+      }
+    },
+    {
+      "slot": "pairARight",
+      "subject": "pair-a-right-coastal-discovery",
+      "aspectRatio": "2:3",
+      "objectFit": "cover",
+      "objectPosition": "50% 50%",
+      "alt": "Stone steps leading through a coastal village towards a blue harbour.",
+      "sourceType": "AI-generated illustrative travel photography",
+      "nativeDimensions": [
+        1024,
+        1536
+      ],
+      "files": {
+        "uploadWebp": {
+          "file": "01_UPLOAD_WEBP/03-pair-a-right-coastal-discovery.webp",
+          "width": 880,
+          "height": 1320,
+          "bytes": 235520,
+          "sha256": "f6ee10efdeca1cfeea37cd04a9492185fb7029a4e0ed7c824ed5ac3d9754ad66"
+        },
+        "uploadJpg": {
+          "file": "02_UPLOAD_JPG/03-pair-a-right-coastal-discovery.jpg",
+          "width": 880,
+          "height": 1320,
+          "bytes": 728182,
+          "sha256": "448e47b4ac3efd34fd6d3cdf68bb5ecb7fb7a31dd3a12cb43155e595060c812b"
+        },
+        "requestedSizeJpg": {
+          "file": "03_REQUESTED_SIZES_JPG/03-pair-a-right-coastal-discovery.jpg",
+          "width": 880,
+          "height": 1320,
+          "bytes": 728182,
+          "sha256": "448e47b4ac3efd34fd6d3cdf68bb5ecb7fb7a31dd3a12cb43155e595060c812b"
+        },
+        "generatedOriginalPng": {
+          "file": "04_GENERATED_ORIGINALS_PNG/03-pair-a-right-coastal-discovery.png",
+          "width": 1024,
+          "height": 1536,
+          "bytes": 3371872,
+          "sha256": "92e8668a39bcd67fe7c6959ef32e01ab18be242a5398b297b02e76f67559fc73"
+        }
+      }
+    },
+    {
+      "slot": "pairBLeft",
+      "subject": "pair-b-left-scenic-road-trip",
+      "aspectRatio": "2:3",
+      "objectFit": "cover",
+      "objectPosition": "50% 50%",
+      "alt": "Blue SUV at a scenic mountain-lake turnout beside a winding road.",
+      "sourceType": "AI-generated illustrative travel photography",
+      "nativeDimensions": [
+        1024,
+        1536
+      ],
+      "files": {
+        "uploadWebp": {
+          "file": "01_UPLOAD_WEBP/04-pair-b-left-scenic-road-trip.webp",
+          "width": 1066,
+          "height": 1599,
+          "bytes": 286690,
+          "sha256": "6dfcc326072e968e6dd6e8cc9144216f1ede5d25adcf7797201229a88d4fc99c"
+        },
+        "uploadJpg": {
+          "file": "02_UPLOAD_JPG/04-pair-b-left-scenic-road-trip.jpg",
+          "width": 1066,
+          "height": 1599,
+          "bytes": 906785,
+          "sha256": "9f4088a395aef9e82a192ee793d328948b8309a171822cee0bc2578553524281"
+        },
+        "requestedSizeJpg": {
+          "file": "03_REQUESTED_SIZES_JPG/04-pair-b-left-scenic-road-trip.jpg",
+          "width": 1200,
+          "height": 1800,
+          "bytes": 1075222,
+          "sha256": "167a9c97bef8a793ffac21685abc47215476199683a5bf999519fe75e44b65de"
+        },
+        "generatedOriginalPng": {
+          "file": "04_GENERATED_ORIGINALS_PNG/04-pair-b-left-scenic-road-trip.png",
+          "width": 1024,
+          "height": 1536,
+          "bytes": 3336756,
+          "sha256": "4d53ae3448cb63b4f8cd6c1c638c6d5f4cc7044f39c7c4c8ba89b2ce95896698"
+        }
+      }
+    },
+    {
+      "slot": "pairBRight",
+      "subject": "pair-b-right-cruise-horizon",
+      "aspectRatio": "2:3",
+      "objectFit": "cover",
+      "objectPosition": "50% 50%",
+      "alt": "Cruise-ship loungers overlooking a calm sea and distant islands.",
+      "sourceType": "AI-generated illustrative travel photography",
+      "nativeDimensions": [
+        1024,
+        1536
+      ],
+      "files": {
+        "uploadWebp": {
+          "file": "01_UPLOAD_WEBP/05-pair-b-right-cruise-horizon.webp",
+          "width": 800,
+          "height": 1200,
+          "bytes": 95616,
+          "sha256": "f8261499c6637e435a82a6becea8746ffcef227b9c3fd7429f64542c437e2e94"
+        },
+        "uploadJpg": {
+          "file": "02_UPLOAD_JPG/05-pair-b-right-cruise-horizon.jpg",
+          "width": 800,
+          "height": 1200,
+          "bytes": 423573,
+          "sha256": "6474ac15fa7210a00b30458d4fe61ce16edf95daee24ee942f355bf5361733a9"
+        },
+        "requestedSizeJpg": {
+          "file": "03_REQUESTED_SIZES_JPG/05-pair-b-right-cruise-horizon.jpg",
+          "width": 800,
+          "height": 1200,
+          "bytes": 423573,
+          "sha256": "6474ac15fa7210a00b30458d4fe61ce16edf95daee24ee942f355bf5361733a9"
+        },
+        "generatedOriginalPng": {
+          "file": "04_GENERATED_ORIGINALS_PNG/05-pair-b-right-cruise-horizon.png",
+          "width": 1024,
+          "height": 1536,
+          "bytes": 2602699,
+          "sha256": "217055a05586acd39b8a6ccc9d96460eed4fd31fb82b74f80578dc91ddf57ac5"
+        }
+      }
+    },
+    {
+      "slot": "railPhoto",
+      "subject": "rail-travel-planning",
+      "aspectRatio": "43:52",
+      "objectFit": "cover",
+      "objectPosition": "50% 42%",
+      "alt": "Traveller reviewing plans on a laptop in an airport lounge.",
+      "sourceType": "AI-generated illustrative travel photography",
+      "nativeDimensions": [
+        1141,
+        1379
+      ],
+      "files": {
+        "uploadWebp": {
+          "file": "01_UPLOAD_WEBP/06-rail-travel-planning.webp",
+          "width": 860,
+          "height": 1040,
+          "bytes": 56410,
+          "sha256": "e9d23085cf09e556d1aa3537d0a9e20e64067962bbda5f8515f436bb72e99f5d"
+        },
+        "uploadJpg": {
+          "file": "02_UPLOAD_JPG/06-rail-travel-planning.jpg",
+          "width": 860,
+          "height": 1040,
+          "bytes": 270352,
+          "sha256": "426e92b1a26549e4722f1eb998bf622f5697a087eaa475faaba70d029c58b11d"
+        },
+        "requestedSizeJpg": {
+          "file": "03_REQUESTED_SIZES_JPG/06-rail-travel-planning.jpg",
+          "width": 860,
+          "height": 1040,
+          "bytes": 270352,
+          "sha256": "426e92b1a26549e4722f1eb998bf622f5697a087eaa475faaba70d029c58b11d"
+        },
+        "generatedOriginalPng": {
+          "file": "04_GENERATED_ORIGINALS_PNG/06-rail-travel-planning.png",
+          "width": 1141,
+          "height": 1379,
+          "bytes": 2111178,
+          "sha256": "9a1db34d5fa3d15d3e6a9063d002c14789f113952368e47763103f71cb3f68af"
+        }
+      }
+    }
+  ],
+  "clientLogos": {
+    "included": false,
+    "dimensions": [
+      320,
+      96
+    ],
+    "objectFit": "contain",
+    "note": "No client identities or original logo files were supplied."
+  }
+}

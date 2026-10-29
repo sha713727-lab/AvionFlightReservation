@@ -83,6 +83,17 @@ import { registerAdminHiltonPageRoutes } from '../modules/admin-hilton-page/rout
 import { AdminHiltonFaqController } from '../modules/admin-hilton-page/faq-controller.js'
 import { AdminHiltonFaqOps } from '../modules/admin-hilton-page/faq-ops.js'
 import { registerAdminHiltonFaqRoutes } from '../modules/admin-hilton-page/faq-routes.js'
+import { BlueRewardsPageController } from '../modules/blue-rewards-page/controller.js'
+import { BlueRewardsPageRepository } from '../modules/blue-rewards-page/repository.js'
+import { BlueRewardsPageService } from '../modules/blue-rewards-page/service.js'
+import { registerBlueRewardsPageRoutes } from '../modules/blue-rewards-page/routes.js'
+import { AdminBlueRewardsPageController } from '../modules/admin-blue-rewards-page/controller.js'
+import { AdminBlueRewardsPageRepository } from '../modules/admin-blue-rewards-page/repository.js'
+import { AdminBlueRewardsPageService } from '../modules/admin-blue-rewards-page/service.js'
+import { registerAdminBlueRewardsPageRoutes } from '../modules/admin-blue-rewards-page/routes.js'
+import { AdminBlueRewardsFaqController } from '../modules/admin-blue-rewards-page/faq-controller.js'
+import { AdminBlueRewardsFaqOps } from '../modules/admin-blue-rewards-page/faq-ops.js'
+import { registerAdminBlueRewardsFaqRoutes } from '../modules/admin-blue-rewards-page/faq-routes.js'
 
 export async function registerRoutes(
   app: FastifyInstance,
@@ -167,6 +178,16 @@ export async function registerRoutes(
   const adminHiltonFaqController = new AdminHiltonFaqController(
     new AdminHiltonFaqOps(context.db, adminHiltonPageRepository, catalogCache),
   )
+  const blueRewardsPageController = new BlueRewardsPageController(
+    new BlueRewardsPageService(new BlueRewardsPageRepository(context.db), catalogCache),
+  )
+  const adminBlueRewardsPageRepository = new AdminBlueRewardsPageRepository(context.db)
+  const adminBlueRewardsPageController = new AdminBlueRewardsPageController(
+    new AdminBlueRewardsPageService(adminBlueRewardsPageRepository, catalogCache),
+  )
+  const adminBlueRewardsFaqController = new AdminBlueRewardsFaqController(
+    new AdminBlueRewardsFaqOps(context.db, adminBlueRewardsPageRepository, catalogCache),
+  )
 
   await app.register(
     async (api) => {
@@ -176,6 +197,7 @@ export async function registerRoutes(
       await registerFaqRoutes(api, faqController, catalogOptions)
       await registerWyndhamPageRoutes(api, wyndhamPageController)
       await registerHiltonPageRoutes(api, hiltonPageController)
+      await registerBlueRewardsPageRoutes(api, blueRewardsPageController)
       await registerCallbackRoutes(api, callbackRequestController)
       await registerInquiryRoutes(api, inquiryRequestController)
       await registerSettingsRoutes(api, settingsController, adminAuthService)
@@ -191,6 +213,8 @@ export async function registerRoutes(
       await registerAdminWyndhamFaqRoutes(api, adminWyndhamFaqController, adminAuthService)
       await registerAdminHiltonPageRoutes(api, adminHiltonPageController, adminAuthService)
       await registerAdminHiltonFaqRoutes(api, adminHiltonFaqController, adminAuthService)
+      await registerAdminBlueRewardsPageRoutes(api, adminBlueRewardsPageController, adminAuthService)
+      await registerAdminBlueRewardsFaqRoutes(api, adminBlueRewardsFaqController, adminAuthService)
     },
     { prefix: API_PREFIX },
   )

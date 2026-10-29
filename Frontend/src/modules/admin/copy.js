@@ -322,6 +322,15 @@ export const ADMIN_COPY = {
   hiltonSavingCta: 'Saving…',
   hiltonSaveSuccess: 'Hilton page saved successfully.',
   hiltonPreviewCta: 'Preview public page',
+  blueRewardsTitle: 'Blue Rewards page',
+  blueRewardsDescription:
+    'Edit copy, images, CTAs, travel options, principles, and rail cards for /blue-rewards.',
+  blueRewardsLoading: 'Loading Blue Rewards page…',
+  blueRewardsLoadError: 'Unable to load the Blue Rewards page.',
+  blueRewardsSaveCta: 'Save page',
+  blueRewardsSavingCta: 'Saving…',
+  blueRewardsSaveSuccess: 'Blue Rewards page saved successfully.',
+  blueRewardsPreviewCta: 'Preview public page',
   settingsTitle: 'Contact',
   settingsDescription:
     'Update the reservation email and contact numbers shown across the public site.',

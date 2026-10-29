@@ -32,6 +32,7 @@ import {
   HOTEL_BOOKING_PATH,
   WYNDHAM_HOTELS_PATH,
   HILTON_HOTELS_PATH,
+  BLUE_REWARDS_PATH,
   INTERNATIONAL_FLIGHT_PATH,
   POINTS_REDEMPTION_PATH,
   PRIVACY_POLICY_PATH,
@@ -132,6 +133,23 @@ export const SEO_PAGE_META = {
       'hampton inn booking',
       'doubletree hotel booking',
       'book hilton by phone',
+    ],
+  },
+  [BLUE_REWARDS_PATH]: {
+    title: 'Blue Rewards Travel Redemption Help | AvioSupportDesk',
+    description:
+      'Get independent help with Blue Rewards travel redemption. Compare travel options, understand points and cash costs, and follow the official booking process.',
+    h1: 'Blue Rewards Travel Redemption Assistance',
+    keywords: [
+      'Blue Rewards',
+      'Blue Rewards travel',
+      'Blue Points redemption',
+      'travel redemption help',
+      'Blue Rewards flights',
+      'Blue Rewards hotels',
+      'AIR MILES to Blue Rewards',
+      'points travel assistance',
+      'redeem Blue Points for travel',
     ],
   },
   [POINTS_REDEMPTION_PATH]: {

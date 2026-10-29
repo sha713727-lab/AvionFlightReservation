@@ -55,6 +55,7 @@ export default function AvionLogo({
   compact = false,
   tone = 'light',
   hideName = false,
+  tagline = BRAND_TAGLINE,
   priority = false,
   className,
   ...props
@@ -98,7 +99,7 @@ export default function AvionLogo({
               compact && 'hidden sm:block',
             )}
           >
-            {BRAND_TAGLINE}
+            {tagline}
           </span>
         </div>
       )}

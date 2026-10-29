@@ -384,3 +384,140 @@ model HiltonFaq {
   @@index([pageId, sortOrder])
   @@map("hilton_faqs")
 }
+
+/// Singleton CMS document for the public /blue-rewards landing page.
+model BlueRewardsPage {
+  id                     String                          @id @default("default")
+  status                 String                          @default("published")
+  metaTitle              String
+  metaDescription        String
+  ogTitle                String?
+  ogDescription          String?
+  heroHeading            String
+  heroIntroduction       String
+  heroPrimaryCtaLabel    String
+  heroSecondaryCtaLabel  String
+  heroSecondaryCtaHref   String
+  officialLinkLabel      String
+  officialLinkHref       String
+  storyLabel             String
+  storyParagraphs        String[]
+  storyCtaLabel          String
+  storyCtaHref           String
+  principlesHeading      String
+  clientsEnabled         Boolean                         @default(false)
+  clientsHeading         String                          @default("")
+  clientsIntroduction    String                          @default("")
+  railLabel              String
+  contactEmailOverride   String?
+  mediaSlots             BlueRewardsMediaSlot[]
+  principles             BlueRewardsPrinciple[]
+  railCards              BlueRewardsRailCard[]
+  properties             BlueRewardsPropertyHighlight[]
+  clientLogos            BlueRewardsClientLogo[]
+  faqs                   BlueRewardsFaq[]
+  createdAt              DateTime                        @default(now())
+  updatedAt              DateTime                        @updatedAt
+
+  @@map("blue_rewards_pages")
+}
+
+model BlueRewardsMediaSlot {
+  id        String          @id @default(cuid())
+  pageId    String          @default("default")
+  page      BlueRewardsPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  slotKey   String
+  mediaUrl  String          @default("")
+  alt       String          @default("")
+  focalX    Float           @default(0.5)
+  focalY    Float           @default(0.5)
+  updatedAt DateTime        @updatedAt
+
+  @@unique([pageId, slotKey])
+  @@map("blue_rewards_media_slots")
+}
+
+model BlueRewardsPrinciple {
+  id          String          @id @default(cuid())
+  pageId      String          @default("default")
+  page        BlueRewardsPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  numberLabel String
+  title       String
+  description String
+  sortOrder   Int             @default(0)
+  isEnabled   Boolean         @default(true)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@index([pageId, sortOrder])
+  @@map("blue_rewards_principles")
+}
+
+model BlueRewardsRailCard {
+  id        String          @id @default(cuid())
+  pageId    String          @default("default")
+  page      BlueRewardsPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  cardType  String
+  title     String          @default("")
+  body      String          @default("")
+  linkLabel String?
+  linkHref  String?
+  factValue String?
+  mediaUrl  String?
+  mediaAlt  String          @default("")
+  sortOrder Int             @default(0)
+  isEnabled Boolean         @default(true)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  @@index([pageId, sortOrder])
+  @@map("blue_rewards_rail_cards")
+}
+
+model BlueRewardsPropertyHighlight {
+  id        String          @id @default(cuid())
+  pageId    String          @default("default")
+  page      BlueRewardsPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  title     String
+  blurb     String
+  mediaUrl  String?
+  mediaAlt  String          @default("")
+  sortOrder Int             @default(0)
+  isEnabled Boolean         @default(true)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  @@index([pageId, sortOrder])
+  @@map("blue_rewards_property_highlights")
+}
+
+model BlueRewardsClientLogo {
+  id        String          @id @default(cuid())
+  pageId    String          @default("default")
+  page      BlueRewardsPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  name      String
+  mediaUrl  String
+  href      String?
+  sortOrder Int             @default(0)
+  isEnabled Boolean         @default(true)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  @@index([pageId, sortOrder])
+  @@map("blue_rewards_client_logos")
+}
+
+model BlueRewardsFaq {
+  id        String          @id @default(cuid())
+  pageId    String          @default("default")
+  page      BlueRewardsPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  question  String
+  answer    String
+  sortOrder Int
+  isEnabled Boolean         @default(true)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  @@index([pageId, sortOrder])
+  @@map("blue_rewards_faqs")
+}

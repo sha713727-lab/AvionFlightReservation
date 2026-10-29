@@ -1,6 +1,5 @@
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import SiteBreadcrumbBar from '@/components/layout/SiteBreadcrumbBar'
 import PageRelatedLinks from '@/components/links/PageRelatedLinks'
 import CallExpertProvider from '@/modules/call/components/CallExpertProvider'
 import AboutPageCta from '@/modules/about/components/AboutPageCta'
@@ -29,7 +28,6 @@ export default function HiltonHotelsPage({ page, contactEmail }) {
   return (
     <CallExpertProvider>
       <Navbar />
-      <SiteBreadcrumbBar path={HILTON_HOTELS_PATH} />
       <main id="main-content" className={styles.page}>
         <HiltonHero heading={page.heroHeading} introduction={page.heroIntroduction} />
         <HiltonLeadPhoto slot={lead} />

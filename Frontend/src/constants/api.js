@@ -111,6 +111,39 @@ export const API_ENDPOINTS = {
   adminHiltonFaqs: `${API_V1_PREFIX}/admin/hilton-page/faqs`,
   adminHiltonFaqById: (id) => `${API_V1_PREFIX}/admin/hilton-page/faqs/${id}`,
   adminHiltonFaqMove: (id) => `${API_V1_PREFIX}/admin/hilton-page/faqs/${id}/move`,
+  blueRewardsPage: `${API_V1_PREFIX}/blue-rewards-page`,
+  adminBlueRewardsPage: `${API_V1_PREFIX}/admin/blue-rewards-page`,
+  adminBlueRewardsSlotMedia: (slotKey) =>
+    `${API_V1_PREFIX}/admin/blue-rewards-page/media/${slotKey}`,
+  adminBlueRewardsPrinciples: `${API_V1_PREFIX}/admin/blue-rewards-page/principles`,
+  adminBlueRewardsPrincipleById: (id) =>
+    `${API_V1_PREFIX}/admin/blue-rewards-page/principles/${id}`,
+  adminBlueRewardsPrincipleMove: (id) =>
+    `${API_V1_PREFIX}/admin/blue-rewards-page/principles/${id}/move`,
+  adminBlueRewardsRailCards: `${API_V1_PREFIX}/admin/blue-rewards-page/rail-cards`,
+  adminBlueRewardsRailCardById: (id) =>
+    `${API_V1_PREFIX}/admin/blue-rewards-page/rail-cards/${id}`,
+  adminBlueRewardsRailCardMove: (id) =>
+    `${API_V1_PREFIX}/admin/blue-rewards-page/rail-cards/${id}/move`,
+  adminBlueRewardsRailCardMedia: (id) =>
+    `${API_V1_PREFIX}/admin/blue-rewards-page/rail-cards/${id}/media`,
+  adminBlueRewardsProperties: `${API_V1_PREFIX}/admin/blue-rewards-page/properties`,
+  adminBlueRewardsPropertyById: (id) =>
+    `${API_V1_PREFIX}/admin/blue-rewards-page/properties/${id}`,
+  adminBlueRewardsPropertyMove: (id) =>
+    `${API_V1_PREFIX}/admin/blue-rewards-page/properties/${id}/move`,
+  adminBlueRewardsPropertyMedia: (id) =>
+    `${API_V1_PREFIX}/admin/blue-rewards-page/properties/${id}/media`,
+  adminBlueRewardsLogos: `${API_V1_PREFIX}/admin/blue-rewards-page/logos`,
+  adminBlueRewardsLogoById: (id) => `${API_V1_PREFIX}/admin/blue-rewards-page/logos/${id}`,
+  adminBlueRewardsLogoMove: (id) =>
+    `${API_V1_PREFIX}/admin/blue-rewards-page/logos/${id}/move`,
+  adminBlueRewardsLogoMedia: (id) =>
+    `${API_V1_PREFIX}/admin/blue-rewards-page/logos/${id}/media`,
+  adminBlueRewardsFaqs: `${API_V1_PREFIX}/admin/blue-rewards-page/faqs`,
+  adminBlueRewardsFaqById: (id) => `${API_V1_PREFIX}/admin/blue-rewards-page/faqs/${id}`,
+  adminBlueRewardsFaqMove: (id) =>
+    `${API_V1_PREFIX}/admin/blue-rewards-page/faqs/${id}/move`,
 }
 
 export const API_DEFAULT_PAGE_SIZE = 100

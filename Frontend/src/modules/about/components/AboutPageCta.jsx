@@ -1,14 +1,21 @@
 'use client'
 
 import { FaPhone } from 'react-icons/fa'
+import { usePathname } from 'next/navigation'
 import Container from '@/components/ui/Container'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { COPY } from '@/constants/copy'
+import { getBrandPageChrome } from '@/constants/brandPageChrome'
 import { CTA_PLACEMENT } from '@/constants/analytics'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 
 export default function AboutPageCta() {
+  const pathname = usePathname()
+  const brandChrome = getBrandPageChrome(pathname)
   const callModal = useCallExpertModal()
+  const title = brandChrome?.aboutCtaTitle ?? COPY.about.ctaTitle
+  const description = brandChrome?.aboutCtaDescription ?? COPY.about.ctaDescription
+  const label = brandChrome?.aboutCtaLabel ?? COPY.cta.talkWithExpert
 
   return (
     <section className="bg-section-alt py-16 lg:py-20" aria-labelledby="about-page-cta-heading">
@@ -19,10 +26,10 @@ export default function AboutPageCta() {
               id="about-page-cta-heading"
               className="font-heading text-[clamp(1.75rem,4vw,2.5rem)] font-semibold leading-tight tracking-tight text-white"
             >
-              {COPY.about.ctaTitle}
+              {title}
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/80 lg:text-lg">
-              {COPY.about.ctaDescription}
+              {description}
             </p>
 
             <button
@@ -31,7 +38,7 @@ export default function AboutPageCta() {
               className="mt-8 inline-flex w-full max-w-md items-center justify-center gap-3 rounded-full bg-white px-8 py-4 text-base font-semibold text-primary shadow-lg shadow-primary/30 transition-colors duration-200 hover:bg-white/95 sm:w-auto lg:text-lg"
             >
               <FaPhone className="h-4 w-4 shrink-0" aria-hidden />
-              {COPY.cta.talkWithExpert}
+              {label}
             </button>
           </div>
         </FadeIn>

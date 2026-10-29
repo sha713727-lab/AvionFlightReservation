@@ -1,9 +1,16 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { HiMenuAlt3, HiX, HiPhone } from 'react-icons/hi'
 import { COPY } from '@/constants/copy'
-import { NAV_LINKS } from '@/constants/navigation'
+import {
+  NAV_LINKS,
+  getBrandPageChrome,
+  getNavbarCtaLabel,
+  getPrimaryNavLinks,
+} from '@/constants/navigation'
 import { SITE_NAME } from '@/constants/contact'
 import { HOME_PATH } from '@/constants/routes'
 import { CTA_PLACEMENT } from '@/constants/analytics'
@@ -20,6 +27,10 @@ import { useContactSettings } from '@/modules/contact/components/ContactSettings
 import { cn } from '@/utils/cn'
 
 export default function Navbar({ overDarkHero = false }) {
+  const pathname = usePathname()
+  const brandChrome = getBrandPageChrome(pathname)
+  const primaryNavLinks = getPrimaryNavLinks(pathname, NAV_LINKS)
+  const ctaLabel = getNavbarCtaLabel(pathname)
   const { isScrolled } = useScrollDirection()
   const { phoneNumber, phoneHref } = useContactSettings()
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -42,34 +53,47 @@ export default function Navbar({ overDarkHero = false }) {
       >
         <Container>
           <div className="flex items-center justify-between gap-4">
-            <a
+            <Link
               href={HOME_PATH}
               aria-label={`${SITE_NAME} home`}
-              className="relative z-10 inline-flex min-w-0 shrink-0 items-center"
+              className="relative z-20 inline-flex min-w-0 shrink-0 items-center"
             >
-              <AvionLogo size="md" hideName tone={useLightNav ? 'dark' : 'light'} />
-            </a>
+              <AvionLogo
+                size="md"
+                hideName={!brandChrome}
+                tone={useLightNav ? 'dark' : 'light'}
+                tagline={brandChrome?.logoTagline}
+                priority
+              />
+            </Link>
 
             <nav
-              className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex"
+              className="pointer-events-none absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex"
               aria-label="Main navigation"
             >
-              {NAV_LINKS.map((link) => (
-                <NavLink key={link.href} href={link.href} onDark={useLightNav}>
+              {primaryNavLinks.map((link) => (
+                <NavLink
+                  key={link.href}
+                  href={link.href}
+                  onDark={useLightNav}
+                  className="pointer-events-auto"
+                >
                   {link.label}
                 </NavLink>
               ))}
-              <NavLegalDropdown onDark={useLightNav} />
+              <div className="pointer-events-auto">
+                <NavLegalDropdown onDark={useLightNav} />
+              </div>
             </nav>
 
-            <div className="relative z-10 flex shrink-0 items-center justify-end gap-2 sm:gap-3">
+            <div className="relative z-20 flex shrink-0 items-center justify-end gap-2 sm:gap-3">
               <div className="hidden lg:block">
                 <Button
                   variant="primary"
                   size="md"
                   onClick={() => callModal.open(CTA_PLACEMENT.navbar)}
                 >
-                  {COPY.cta.bookConsultation}
+                  {ctaLabel}
                 </Button>
               </div>
 
@@ -103,7 +127,14 @@ export default function Navbar({ overDarkHero = false }) {
         </Container>
       </header>
 
-      {mobileOpen ? <MobileNav isOpen={mobileOpen} onClose={closeMobileNav} /> : null}
+      {mobileOpen ? (
+        <MobileNav
+          isOpen={mobileOpen}
+          onClose={closeMobileNav}
+          links={primaryNavLinks}
+          ctaLabel={ctaLabel}
+        />
+      ) : null}
     </>
   )
 }

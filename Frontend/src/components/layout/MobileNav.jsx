@@ -15,7 +15,12 @@ import Container from '@/components/ui/Container'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
 import { cn } from '@/utils/cn'
 
-export default function MobileNav({ isOpen, onClose }) {
+export default function MobileNav({
+  isOpen,
+  onClose,
+  links = NAV_LINKS,
+  ctaLabel = COPY.cta.bookConsultation,
+}) {
   const [legalOpen, setLegalOpen] = useState(false)
   const [moreOpen, setMoreOpen] = useState(false)
   const callModal = useCallExpertModal()
@@ -31,7 +36,7 @@ export default function MobileNav({ isOpen, onClose }) {
     >
       <Container className="flex flex-col gap-1 py-4 pb-6">
         <nav aria-label="Mobile navigation" className="flex flex-col">
-          {NAV_LINKS.map((link) => (
+          {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -111,7 +116,7 @@ export default function MobileNav({ isOpen, onClose }) {
               callModal.open(CTA_PLACEMENT.navbar)
             }}
           >
-            {COPY.cta.bookConsultation}
+            {ctaLabel}
           </Button>
         </div>
       </Container>

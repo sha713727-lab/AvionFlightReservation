@@ -50,6 +50,14 @@
   color: var(--wh-muted);
 }
 
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 36px;
+}
+
 .leadFrame {
   width: 100%;
   overflow: hidden;

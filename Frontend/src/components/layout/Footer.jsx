@@ -1,7 +1,13 @@
 'use client'
 
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { COPY } from '@/constants/copy'
-import { FOOTER_LINKS, FOOTER_PRIMARY_LEGAL_LINKS } from '@/constants/navigation'
+import {
+  FOOTER_LINKS,
+  FOOTER_PRIMARY_LEGAL_LINKS,
+  getBrandPageChrome,
+} from '@/constants/navigation'
 import { BRAND_FULL_NAME } from '@/constants/brand'
 import { HOME_PATH } from '@/constants/routes'
 import { FadeIn } from '@/components/animations/FadeIn'
@@ -11,20 +17,30 @@ import FooterContactDetails from '@/components/layout/FooterContactDetails'
 import FooterNavColumn from '@/components/layout/FooterNavColumn'
 
 export default function Footer() {
+  const pathname = usePathname()
+  const brandChrome = getBrandPageChrome(pathname)
+  const footerTagline = brandChrome?.footerTagline ?? COPY.footer.tagline
+  const footerDisclaimer = brandChrome?.footerDisclaimer ?? COPY.footer.disclaimer
+
   return (
     <footer className="bg-primary pt-12 pb-6 text-white">
       <Container>
         <div className="mb-8 grid grid-cols-1 items-start gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6">
           <FadeIn direction="up" className="sm:col-span-2 lg:col-span-1">
-            <a
+            <Link
               href={HOME_PATH}
               aria-label={`${BRAND_FULL_NAME} home`}
               className="mb-3 inline-flex items-center transition-opacity hover:opacity-90"
             >
-              <AvionLogo size="lg" tone="dark" hideName />
-            </a>
+              <AvionLogo
+                size="lg"
+                tone="dark"
+                hideName={!brandChrome}
+                tagline={brandChrome?.logoTagline}
+              />
+            </Link>
             <p className="max-w-xs text-sm leading-relaxed text-white/75">
-              {COPY.footer.tagline}
+              {footerTagline}
             </p>
           </FadeIn>
 
@@ -44,7 +60,7 @@ export default function Footer() {
             {COPY.footer.disclaimerTitle}
           </p>
           <p className="max-w-4xl text-xs leading-relaxed text-white/70">
-            {COPY.footer.disclaimer}
+            {footerDisclaimer}
           </p>
         </div>
 

@@ -25,6 +25,7 @@ import {
   GUIDE_FLIGHT_CHANGES_PATH,
   GUIDE_POINTS_PATH,
   HILTON_HOTELS_PATH,
+  BLUE_REWARDS_PATH,
   HOME_PATH,
   HOTEL_BOOKING_PATH,
   HOW_IT_WORKS_PATH,
@@ -82,6 +83,13 @@ export const PAGE_RELATED_LINKS = {
     { href: CONTACT_PATH, label: 'contact AvioSupportDesk' },
     { href: FLIGHT_BOOKING_PATH, label: 'flight booking assistance' },
     { href: INDEPENDENT_SERVICE_DISCLOSURE_PATH, label: 'independent service disclosure' },
+  ],
+  [BLUE_REWARDS_PATH]: [
+    { href: POINTS_REDEMPTION_PATH, label: 'Avion points booking assistance' },
+    { href: SERVICE_FEES_PATH, label: 'how assistance fees are quoted' },
+    { href: CONTACT_PATH, label: 'contact AvioSupportDesk' },
+    { href: INDEPENDENT_SERVICE_DISCLOSURE_PATH, label: 'independent service disclosure' },
+    { href: FLIGHT_BOOKING_PATH, label: 'flight booking assistance' },
   ],
   [FLIGHT_CHANGES_PATH]: [
     { href: GUIDE_FLIGHT_CHANGES_PATH, label: 'airline change fees and rules explained' },

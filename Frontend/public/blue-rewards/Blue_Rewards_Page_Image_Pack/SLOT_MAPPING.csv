@@ -1,0 +1,7 @@
+slot,upload_webp,upload_jpg,upload_width,upload_height,requested_width,requested_height,object_fit,object_position,alt
+lead,01_UPLOAD_WEBP/01-lead-airport-journey.webp,02_UPLOAD_JPG/01-lead-airport-journey.jpg,1600,1067,1600,1067,cover,50% 50%,Traveller overlooking a passenger aircraft from a bright airport departure lounge.
+pairALeft,01_UPLOAD_WEBP/02-pair-a-left-oceanview-stay.webp,02_UPLOAD_JPG/02-pair-a-left-oceanview-stay.jpg,1066,1599,1100,1650,cover,50% 50%,Ocean-view hotel suite with linen bedding and an open balcony.
+pairARight,01_UPLOAD_WEBP/03-pair-a-right-coastal-discovery.webp,02_UPLOAD_JPG/03-pair-a-right-coastal-discovery.jpg,880,1320,880,1320,cover,50% 50%,Stone steps leading through a coastal village towards a blue harbour.
+pairBLeft,01_UPLOAD_WEBP/04-pair-b-left-scenic-road-trip.webp,02_UPLOAD_JPG/04-pair-b-left-scenic-road-trip.jpg,1066,1599,1200,1800,cover,50% 50%,Blue SUV at a scenic mountain-lake turnout beside a winding road.
+pairBRight,01_UPLOAD_WEBP/05-pair-b-right-cruise-horizon.webp,02_UPLOAD_JPG/05-pair-b-right-cruise-horizon.jpg,800,1200,800,1200,cover,50% 50%,Cruise-ship loungers overlooking a calm sea and distant islands.
+railPhoto,01_UPLOAD_WEBP/06-rail-travel-planning.webp,02_UPLOAD_JPG/06-rail-travel-planning.jpg,860,1040,860,1040,cover,50% 42%,Traveller reviewing plans on a laptop in an airport lounge.

@@ -27,6 +27,7 @@ import {
   ADMIN_SERVICES_PATH,
   ADMIN_WYNDHAM_PAGE_PATH,
   ADMIN_HILTON_PAGE_PATH,
+  ADMIN_BLUE_REWARDS_PAGE_PATH,
 } from '@/constants/routes'
 import { cn } from '@/utils/cn'
 
@@ -80,6 +81,11 @@ const NAV_ITEMS = [
   {
     href: ADMIN_HILTON_PAGE_PATH,
     label: 'Hilton page',
+    icon: HiOutlineOfficeBuilding,
+  },
+  {
+    href: ADMIN_BLUE_REWARDS_PAGE_PATH,
+    label: 'Blue Rewards page',
     icon: HiOutlineOfficeBuilding,
   },
   {

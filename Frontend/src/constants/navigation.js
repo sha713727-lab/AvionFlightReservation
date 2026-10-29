@@ -11,6 +11,7 @@ import {
   FLIGHT_CHANGES_PATH,
   GUIDES_PATH,
   HILTON_HOTELS_PATH,
+  BLUE_REWARDS_PATH,
   HOME_PATH,
   HOW_IT_WORKS_PATH,
   HOTEL_BOOKING_PATH,
@@ -57,6 +58,15 @@ export const NAV_LINKS = [
   { label: 'Contact', href: CONTACT_PATH },
 ]
 
+export {
+  BOOK_NOW_CTA_LABEL,
+  BRAND_PAGE_PATHS,
+  getBrandPageChrome,
+  getNavbarCtaLabel,
+  getPrimaryNavLinks,
+  isBrandPagePath,
+} from '@/constants/brandPageChrome'
+
 /** Secondary destinations kept out of primary nav prominence (audit §7). */
 export const SECONDARY_NAV_LINKS = [
   { label: 'Services', href: SERVICES_PATH },
@@ -83,6 +93,7 @@ export const FOOTER_LINKS = {
     { label: 'hotel booking by phone', href: HOTEL_BOOKING_PATH },
     { label: 'Wyndham hotels booking help', href: WYNDHAM_HOTELS_PATH },
     { label: 'Hilton hotels booking help', href: HILTON_HOTELS_PATH },
+    { label: 'Blue Rewards travel help', href: BLUE_REWARDS_PATH },
     { label: 'points and miles redemption help', href: POINTS_REDEMPTION_PATH },
     { label: 'flight change assistance', href: FLIGHT_CHANGES_PATH },
     { label: 'flight cancellation assistance', href: FLIGHT_CANCELLATION_PATH },

@@ -1,10 +1,12 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { FaPhone } from 'react-icons/fa'
 import Modal from '@/components/ui/Modal'
 import Button from '@/components/buttons/Button'
 import { COPY } from '@/constants/copy'
+import { getBrandPageChrome } from '@/constants/brandPageChrome'
 import {
   DISCLOSURE_LINKS,
   INDEPENDENT_SERVICE_DISCLOSURE,
@@ -22,6 +24,8 @@ export function useCallExpertModal() {
 }
 
 export default function CallExpertProvider({ children }) {
+  const pathname = usePathname()
+  const brandChrome = getBrandPageChrome(pathname)
   const [isOpen, setIsOpen] = useState(false)
   const { phoneNumber, phoneHref } = useContactSettings()
   const value = useMemo(
@@ -41,6 +45,9 @@ export default function CallExpertProvider({ children }) {
     dialPhone(href)
   }
 
+  const description = brandChrome?.callModalDescription ?? COPY.callModal.description
+  const disclosure = brandChrome?.callModalDisclosure ?? INDEPENDENT_SERVICE_DISCLOSURE
+
   return (
     <CallExpertContext.Provider value={value}>
       {children}
@@ -50,13 +57,13 @@ export default function CallExpertProvider({ children }) {
         title={COPY.callModal.title}
       >
         <p className="mb-3 text-sm leading-relaxed text-text-secondary">
-          {COPY.callModal.description}
+          {description}
         </p>
         <p
           className="mb-4 rounded-xl border border-border bg-section-alt p-3 text-sm leading-relaxed text-text"
           role="note"
         >
-          {INDEPENDENT_SERVICE_DISCLOSURE}
+          {disclosure}
         </p>
         <ul className="mb-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
           {DISCLOSURE_LINKS.map((link) => (

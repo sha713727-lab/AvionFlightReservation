@@ -10,6 +10,7 @@
   ADMIN_SERVICES_PATH,
   ADMIN_WYNDHAM_PAGE_PATH,
   ADMIN_HILTON_PAGE_PATH,
+  ADMIN_BLUE_REWARDS_PAGE_PATH,
 } from '@/constants/routes'
 
 export const ADMIN_FIELD_NAMES = {
@@ -81,6 +82,12 @@ export const ADMIN_NAV_ITEMS = [
     icon: 'hilton',
   },
   {
+    id: 'blue-rewards',
+    label: 'Blue Rewards page',
+    href: ADMIN_BLUE_REWARDS_PAGE_PATH,
+    icon: 'blue-rewards',
+  },
+  {
     id: 'security',
     label: 'Security',
     href: ADMIN_SECURITY_PATH,
@@ -122,4 +129,5 @@ export const ADMIN_ERROR_MESSAGES = {
   settingsGeneric: 'Unable to complete the contact settings request. Please try again.',
   wyndhamGeneric: 'Unable to complete the Wyndham page request. Please try again.',
   hiltonGeneric: 'Unable to complete the Hilton page request. Please try again.',
+  blueRewardsGeneric: 'Unable to complete the Blue Rewards page request. Please try again.',
 }
