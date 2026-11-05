@@ -14,7 +14,7 @@ export const GOOGLE_SITE_VERIFICATION = '4tD5n65AQ_vrFiazC7ACAp_v2hrJ_OoUIFbdgpe
 /** Set real code to emit Bing verification meta; leave REPLACE_WITH_CODE to omit. */
 export const BING_SITE_VERIFICATION = 'REPLACE_WITH_CODE'
 
-export const GOOGLE_ADS_ID = 'AW-18408337789'
+export const GOOGLE_ADS_ID = 'AW-18558570072'
 export const GOOGLE_ADS_LEAD_CONVERSION_LABEL = '0w0lCMi8rOgcEP3i48lE'
 export const GOOGLE_ADS_LEAD_CONVERSION_SEND_TO = `${GOOGLE_ADS_ID}/${GOOGLE_ADS_LEAD_CONVERSION_LABEL}`
 export const GOOGLE_ADS_GTAG_SRC = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`
