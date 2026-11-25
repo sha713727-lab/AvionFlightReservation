@@ -1,17 +1,32 @@
 /**
  * Single source of truth for production sitemap XML.
  * Writes Frontend/public + deploy/nginx/static (nginx serves prod).
+ * lastmod is content-owned only — never the build clock.
  */
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import {
+  ABOUT_PATH,
+  BLOG_PATH,
+  BLUE_REWARDS_PATH,
   CANCELLATION_POLICY_PATH,
+  CONTACT_PATH,
   COOKIE_POLICY_PATH,
+  GUIDES_PATH,
+  HILTON_HOTELS_PATH,
+  HOME_PATH,
+  HOW_IT_WORKS_PATH,
+  INDEPENDENT_SERVICE_DISCLOSURE_PATH,
   PRIVACY_POLICY_PATH,
   REFUND_POLICY_PATH,
+  SERVICE_FEES_PATH,
   SITE_PATHS,
+  SITEMAP_SERVICE_PATHS,
+  SITEMAP_STATIC_PATHS,
   TERMS_PATH,
+  TOOL_AVION_POINTS_CALCULATOR_PATH,
+  WYNDHAM_HOTELS_PATH,
 } from '../src/constants/routes.js'
 import { LEGAL_COPY } from '../src/constants/legalCopy.js'
 import { GEO_BYLINES } from '../src/constants/geo.js'
@@ -76,14 +91,33 @@ function loadBlogLastmods() {
 
 /** lastmod comes from dates published on the page itself, not the build clock. */
 function loadStaticLastmods() {
+  const editorial = GEO_BYLINES.lastUpdatedIso
   const entries = new Map([
     [PRIVACY_POLICY_PATH, LEGAL_COPY.privacy.lastUpdatedIso],
     [TERMS_PATH, LEGAL_COPY.terms.lastUpdatedIso],
     [REFUND_POLICY_PATH, LEGAL_COPY.refund.lastUpdatedIso],
     [CANCELLATION_POLICY_PATH, LEGAL_COPY.cancellation.lastUpdatedIso],
     [COOKIE_POLICY_PATH, LEGAL_COPY.cookies.lastUpdatedIso],
+    [HOME_PATH, editorial],
+    [BLOG_PATH, editorial],
+    [GUIDES_PATH, editorial],
+    [TOOL_AVION_POINTS_CALCULATOR_PATH, editorial],
+    [WYNDHAM_HOTELS_PATH, editorial],
+    [HILTON_HOTELS_PATH, editorial],
+    [BLUE_REWARDS_PATH, editorial],
+    [ABOUT_PATH, editorial],
+    [CONTACT_PATH, editorial],
+    [SERVICE_FEES_PATH, editorial],
+    [HOW_IT_WORKS_PATH, editorial],
+    [INDEPENDENT_SERVICE_DISCLOSURE_PATH, editorial],
   ])
 
+  for (const urlPath of SITEMAP_SERVICE_PATHS) {
+    entries.set(urlPath, editorial)
+  }
+  for (const urlPath of SITEMAP_STATIC_PATHS) {
+    entries.set(urlPath, editorial)
+  }
   for (const urlPath of SITE_PATHS) {
     if (urlPath.startsWith('/guides/')) {
       entries.set(urlPath, GEO_BYLINES.lastUpdatedIso)
@@ -141,7 +175,21 @@ function writeUtf8NoBom(filePath, contents) {
 }
 
 assertRoutesExist(SITE_PATHS)
-const lastmodByPath = new Map([...loadStaticLastmods(), ...loadBlogLastmods()])
+const blogLastmods = loadBlogLastmods()
+const lastmodByPath = new Map([...loadStaticLastmods(), ...blogLastmods])
+
+if (blogLastmods.size > 0) {
+  const newestBlog = [...blogLastmods.values()].sort().at(-1)
+  if (newestBlog) {
+    lastmodByPath.set(BLOG_PATH, newestBlog)
+  }
+}
+
+const missingLastmod = SITE_PATHS.filter((p) => !lastmodByPath.has(p))
+if (missingLastmod.length > 0) {
+  fail(`Missing content-owned lastmod for: ${missingLastmod.join(', ')}`)
+}
+
 const urlset = buildUrlset(SITE_PATHS, lastmodByPath)
 const indexXml = buildSitemapIndex()
 

@@ -1,5 +1,6 @@
 import {
   BAGGAGE_ASSISTANCE_PATH,
+  BLUE_REWARDS_PATH,
   CONTACT_PATH,
   FLIGHT_BOOKING_PATH,
   FLIGHT_CANCELLATION_PATH,
@@ -14,6 +15,7 @@ import {
   GUIDE_FLIGHT_CHANGES_PATH,
   GUIDE_POINTS_PATH,
   GUIDES_PATH,
+  HILTON_HOTELS_PATH,
   HOME_PATH,
   HOW_IT_WORKS_PATH,
   HOTEL_BOOKING_PATH,
@@ -25,6 +27,7 @@ import {
   SERVICES_PATH,
   TOOL_AVION_POINTS_CALCULATOR_PATH,
   TRIP_PLANNING_PATH,
+  WYNDHAM_HOTELS_PATH,
 } from '@/constants/routes'
 
 export { AVION_RESOURCE_LINKS } from '@/constants/avionResourceLinks'
@@ -111,6 +114,30 @@ export const MAIN_SERVICE_LINKS = [
     anchor: 'international flights by phone',
     description: 'Long-haul and transborder booking help with connection buffers explained.',
   },
+  {
+    href: WYNDHAM_HOTELS_PATH,
+    title: 'Wyndham Hotels',
+    anchor: 'Wyndham hotels booking help',
+    description: 'Independent phone help comparing Wyndham stays and booking by phone.',
+  },
+  {
+    href: HILTON_HOTELS_PATH,
+    title: 'Hilton Hotels',
+    anchor: 'Hilton hotels booking help',
+    description: 'Independent phone help comparing Hilton brand stays and booking by phone.',
+  },
+  {
+    href: BLUE_REWARDS_PATH,
+    title: 'Blue Rewards',
+    anchor: 'Blue Rewards travel help',
+    description: 'Independent guidance comparing Blue Rewards travel redemption options.',
+  },
+  {
+    href: SERVICES_PATH,
+    title: 'All Services',
+    anchor: 'all travel services',
+    description: 'Browse flight, hotel, points, and trip assistance services in one place.',
+  },
 ]
 
 const byHref = Object.fromEntries(MAIN_SERVICE_LINKS.map((item) => [item.href, item]))
@@ -155,8 +182,11 @@ export const SERVICE_INTERNAL_LINKS = {
     contact: { href: CONTACT_PATH, label: 'contact Avion points booking help' },
     relatedServices: [
       serviceCard(FLIGHT_BOOKING_PATH),
-      serviceCard(INTERNATIONAL_FLIGHT_PATH),
+      serviceCard(FLIGHT_CANCELLATION_PATH),
+      serviceCard(BAGGAGE_ASSISTANCE_PATH),
+      serviceCard(SEAT_SELECTION_PATH),
       serviceCard(TRIP_PLANNING_PATH),
+      serviceCard(BLUE_REWARDS_PATH),
     ],
     relatedGuides: [
       {
@@ -175,6 +205,8 @@ export const SERVICE_INTERNAL_LINKS = {
         href: GUIDE_AVION_POINTS_VALUE_PATH,
         label: 'what Avion points are worth',
       },
+      { href: TOOL_AVION_POINTS_CALCULATOR_PATH, label: 'Avion points value calculator' },
+      { href: SERVICES_PATH, label: 'all travel services' },
     ],
   },
   [FLIGHT_CHANGES_PATH]: {

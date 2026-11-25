@@ -33,18 +33,19 @@ export function getServicePageJsonLd(slug) {
 
   const seo = getSeoPageMeta(page.path)
   const summary = getOpeningPlainText(page.speakableSummary || page.opening)
+  const headline = seo.h1
 
   return [
     buildWebPageJsonLd({
-      name: page.h1,
+      name: headline,
       description: seo.description,
       path: page.path,
     }),
     buildServiceJsonLd({
-      name: page.h1,
+      name: headline,
       description: summary,
       path: page.path,
-      serviceType: page.h1,
+      serviceType: headline,
     }),
     buildBreadcrumbJsonLd(page.path),
     buildFaqPageJsonLd(resolveFaqLinkTokens(page.faqs, buildServiceLinkMap(page.path))),

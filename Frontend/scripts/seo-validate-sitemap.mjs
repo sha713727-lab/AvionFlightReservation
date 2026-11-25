@@ -94,14 +94,28 @@ function validateSitemapUrls(source, sitePaths, fail) {
   }
 }
 
-function validateSitemapLastmods(source, fail) {
+function validateSitemapLastmods(source, sitePaths, fail) {
   const today = localTodayIso()
-  for (const value of matchAllValues(source, LASTMOD_TAG_RE)) {
+  const lastmods = matchAllValues(source, LASTMOD_TAG_RE)
+  for (const value of lastmods) {
     if (!LASTMOD_RE.test(value) || Number.isNaN(Date.parse(value))) {
       fail(`public/sitemap.xml has an invalid lastmod (expected YYYY-MM-DD): ${value}`)
     }
     if (value > today) {
       fail(`public/sitemap.xml has a lastmod in the future: ${value}`)
+    }
+  }
+
+  const urlBlocks = source.match(/<url>[\s\S]*?<\/url>/g) || []
+  if (urlBlocks.length !== sitePaths.length) {
+    fail(
+      `public/sitemap.xml url count (${urlBlocks.length}) must match SITE_PATHS (${sitePaths.length})`,
+    )
+  }
+  for (const block of urlBlocks) {
+    if (!/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(block)) {
+      const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1] || 'unknown'
+      fail(`public/sitemap.xml missing content-owned lastmod for ${loc}`)
     }
   }
 }
@@ -117,7 +131,7 @@ function validateSitemap(source, sitePaths, fail) {
     fail('public/sitemap.xml must not include changefreq or priority')
   }
   validateSitemapUrls(source, sitePaths, fail)
-  validateSitemapLastmods(source, fail)
+  validateSitemapLastmods(source, sitePaths, fail)
 }
 
 function validateSitemapIndex(source, fail) {

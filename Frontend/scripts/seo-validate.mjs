@@ -57,6 +57,34 @@ const BANNED_PUBLIC_PATTERNS = [
 const ADMIN_PREFIX = '/admin'
 const SKIP_SCAN_DIRS = new Set(['admin', 'node_modules'])
 
+/** GSC “Discovered – not indexed” recovery set (Nov 2026) — must stay in SITE_PATHS + sitemap. */
+const GSC_DISCOVERY_PATHS = [
+  '/baggage-assistance',
+  '/blog',
+  '/blog/airlines-customer-service-numbers-complete-contact-guide',
+  '/blog/flight-delay-compensation-passenger-rights',
+  '/blog/how-to-cancel-a-flight-and-get-a-full-refund-in-2026',
+  '/blog/how-to-change-your-flight-booking-step-by-step',
+  '/blog/top-10-tips-to-save-money-on-flight-bookings',
+  '/blue-rewards',
+  '/flight-cancellation',
+  '/guides/avion-points-flight-booking',
+  '/guides/avion-points-redemption-chart',
+  '/guides/avion-points-value',
+  '/guides/avion-transfer-partners',
+  '/guides/baggage',
+  '/guides/flight-booking',
+  '/guides/flight-cancellations',
+  '/guides/flight-changes',
+  '/guides/points-and-miles',
+  '/independent-service-disclosure',
+  '/seat-selection',
+  '/service-fees',
+  '/services',
+  '/tools/avion-points-value-calculator',
+  '/trip-planning',
+]
+
 function fail(message) {
   process.stderr.write(`seo-validate: ${message}\n`)
   process.exit(1)
@@ -115,6 +143,17 @@ function validateSitePaths(sitePaths) {
 
   if (!sitePaths.includes('/')) {
     fail('SITE_PATHS must include home path "/"')
+  }
+}
+
+function validateGscDiscoveryPaths(sitePaths) {
+  if (GSC_DISCOVERY_PATHS.length !== 24) {
+    fail(`GSC_DISCOVERY_PATHS must list exactly 24 URLs (found ${GSC_DISCOVERY_PATHS.length})`)
+  }
+  const siteSet = new Set(sitePaths)
+  const missing = GSC_DISCOVERY_PATHS.filter((p) => !siteSet.has(p))
+  if (missing.length > 0) {
+    fail(`GSC discovery paths missing from SITE_PATHS: ${missing.join(', ')}`)
   }
 }
 
@@ -365,6 +404,7 @@ const contactSource = fs.readFileSync(contactPath, 'utf8')
 
 const sitePaths = extractSitePaths(routesSource)
 validateSitePaths(sitePaths)
+validateGscDiscoveryPaths(sitePaths)
 validatePagesExist(sitePaths)
 validateSeoExports(seoSource)
 validateCanonicalHelpers(contactSource)
@@ -379,6 +419,6 @@ validateErrorRouteMetadata()
 validateStructuredData(seoSource)
 
 process.stdout.write(
-  `seo-validate: OK (${sitePaths.length} indexable paths, unique SEO meta, metadata coverage, ${REQUIRED_SEO_EXPORTS.length} seo exports, banned-claim scan clean)\n`,
+  `seo-validate: OK (${sitePaths.length} indexable paths, ${GSC_DISCOVERY_PATHS.length} GSC discovery paths, unique SEO meta, metadata coverage, ${REQUIRED_SEO_EXPORTS.length} seo exports, banned-claim scan clean)\n`,
 )
 process.exit(0)

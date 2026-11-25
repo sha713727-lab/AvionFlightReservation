@@ -20,6 +20,7 @@ jobs:
           cache-dependency-path: Frontend/package-lock.json
       - run: npm ci
       - run: npm run lint
+      - run: npm run sitemap:generate
       - run: npm run seo:validate
       - run: npm run build
         env:

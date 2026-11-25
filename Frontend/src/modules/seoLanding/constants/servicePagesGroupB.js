@@ -27,7 +27,7 @@ export const SERVICE_PAGES_GROUP_B = [
   {
     slug: 'flight-cancellation',
     path: FLIGHT_CANCELLATION_PATH,
-    h1: 'Flight Cancellation & Refund Assistance by Phone',
+    h1: 'Flight Cancellation Assistance by Phone',
     ...FLIGHT_CANCELLATION_BODY,
     ...FLIGHT_CANCELLATION_GEO,
     faqs: FLIGHT_CANCELLATION_FAQS,
@@ -35,7 +35,7 @@ export const SERVICE_PAGES_GROUP_B = [
   {
     slug: 'seat-selection',
     path: SEAT_SELECTION_PATH,
-    h1: 'Airline Seat Selection Help by Phone',
+    h1: 'Airline Seat Selection Assistance by Phone',
     ...SEAT_SELECTION_BODY,
     ...SEAT_SELECTION_GEO,
     faqs: SEAT_SELECTION_FAQS,
@@ -43,7 +43,7 @@ export const SERVICE_PAGES_GROUP_B = [
   {
     slug: 'baggage-assistance',
     path: BAGGAGE_ASSISTANCE_PATH,
-    h1: 'Baggage Fees & Allowance Assistance by Phone',
+    h1: 'Airline Baggage Assistance by Phone',
     ...BAGGAGE_ASSISTANCE_BODY,
     ...BAGGAGE_ASSISTANCE_GEO,
     faqs: BAGGAGE_ASSISTANCE_FAQS,
