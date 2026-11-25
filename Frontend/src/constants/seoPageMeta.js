@@ -30,9 +30,6 @@ import {
   SERVICE_FEES_PATH,
   TOOL_AVION_POINTS_CALCULATOR_PATH,
   HOTEL_BOOKING_PATH,
-  WYNDHAM_HOTELS_PATH,
-  HILTON_HOTELS_PATH,
-  BLUE_REWARDS_PATH,
   INTERNATIONAL_FLIGHT_PATH,
   POINTS_REDEMPTION_PATH,
   PRIVACY_POLICY_PATH,
@@ -49,23 +46,23 @@ import {
  */
 export const SEO_PAGE_META = {
   [HOME_PATH]: {
-    title: 'Independent Avion Points Booking Assistance | AvioSupportDesk',
+    title: 'Independent Travel Support & Assistance | AvioSupportDesk',
     description:
-      'Compare Avion portal, chart, and transfer options before you move points. Independent help with fees quoted first—not affiliated with RBC or Avion Rewards.',
-    h1: 'Independent Avion Points Booking Assistance',
+      'From points redemption and flight bookings to hotels and itinerary changes, AvioSupportDesk helps travelers with personalized human assistance. Fees quoted first.',
+    h1: 'Travel Made Easier, With Help From Real People',
     keywords: [
-      'Avion points booking assistance',
-      'Avion points help',
-      'independent points redemption',
+      'independent travel support',
+      'travel assistance by phone',
+      'points redemption help',
       'AvioSupportDesk',
     ],
   },
   [SERVICES_PATH]: {
-    title: 'Travel Services: Flights, Hotels & More | AvioSupportDesk',
+    title: 'Travel Assistance Services by Phone | AvioSupportDesk',
     description:
-      'Phone help for flight bookings, hotel stays, Avion points, changes, cancellations, and trip planning. Compare services and fees, then talk with a specialist.',
-    h1: 'Flight & Travel Services — Book Support by Phone',
-    keywords: ['travel services', 'flight booking help', 'hotel booking by phone'],
+      'Phone help for flights, hotels, points and rewards, changes, cancellations, and trip planning. Compare services, review fees, then talk with a specialist.',
+    h1: 'Travel Assistance Services — Support by Phone',
+    keywords: ['travel assistance services', 'flight booking help', 'hotel booking by phone'],
   },
   [DESTINATIONS_PATH]: {
     title: 'Popular Flight Destinations by Phone | AvioSupportDesk',
@@ -99,68 +96,15 @@ export const SEO_PAGE_META = {
     h1: 'Hotel Booking Help by Phone — Reserve Your Stay',
     keywords: ['hotel booking', 'book hotel by phone', 'hotel reservation help'],
   },
-  [WYNDHAM_HOTELS_PATH]: {
-    title: 'Wyndham Hotels Booking Help by Phone | AvioSupportDesk',
-    description:
-      'Independent phone help booking Wyndham hotels in Atlanta, New Orleans, San Diego, Philadelphia, and more. Not affiliated with Wyndham Hotels & Resorts.',
-    h1: 'Book Wyndham stays with clearer phone help.',
-    keywords: [
-      'wyndham hotels',
-      'wyndham hotel booking',
-      'wyndham atlanta buckhead',
-      'wyndham new orleans french quarter',
-      'wyndham san diego bayside',
-      'wyndham deerfield beach',
-      'wyndham philadelphia historic district',
-      'wyndham dfw airport',
-      'wyndham virginia beach oceanfront',
-      'wyndham houston nrg',
-      'book wyndham by phone',
-    ],
-  },
-  [HILTON_HOTELS_PATH]: {
-    title: 'Hilton Hotels Booking Help by Phone | AvioSupportDesk',
-    description:
-      'Independent phone help booking Hilton hotels such as Hilton Anatole, Union Square San Francisco, and Hawaiian Village. Not affiliated with Hilton Worldwide.',
-    h1: 'Book Hilton stays with clearer phone help.',
-    keywords: [
-      'hilton hotels',
-      'hilton hotel booking',
-      'hilton anatole',
-      'hilton san francisco union square',
-      'hilton orlando',
-      'hilton hawaiian village',
-      'hampton inn booking',
-      'doubletree hotel booking',
-      'book hilton by phone',
-    ],
-  },
-  [BLUE_REWARDS_PATH]: {
-    title: 'Blue Rewards Travel Redemption Help | AvioSupportDesk',
-    description:
-      'Get independent help with Blue Rewards travel redemption. Compare travel options, understand points and cash costs, and follow the official booking process.',
-    h1: 'Blue Rewards Travel Redemption Assistance',
-    keywords: [
-      'Blue Rewards',
-      'Blue Rewards travel',
-      'Blue Points redemption',
-      'travel redemption help',
-      'Blue Rewards flights',
-      'Blue Rewards hotels',
-      'AIR MILES to Blue Rewards',
-      'points travel assistance',
-      'redeem Blue Points for travel',
-    ],
-  },
   [POINTS_REDEMPTION_PATH]: {
-    title: 'Avion Points Booking Assistance | Compare Options',
+    title: 'Travel Points & Rewards Redemption Help | AvioSupportDesk',
     description:
-      'Independent Avion points booking help: compare portal, chart, and partner transfers with cash costs explained. Fees quoted first. Not RBC or Avion Rewards.',
-    h1: 'Avion Points Booking Assistance',
+      'Get independent help comparing loyalty points redemptions, cash options, and remaining costs. Fees quoted before paid work. You keep control of your accounts.',
+    h1: 'Travel Points & Rewards Redemption Assistance',
     keywords: [
-      'Avion points booking assistance',
-      'Avion points redemption',
-      'compare Avion redemptions',
+      'travel points redemption help',
+      'loyalty points assistance',
+      'compare points redemptions',
       'independent award help',
     ],
   },
@@ -200,11 +144,11 @@ export const SEO_PAGE_META = {
     keywords: ['trip planning', 'custom itinerary', 'multi-city travel'],
   },
   [GUIDES_PATH]: {
-    title: 'Travel Guides: Booking, Changes & More | AvioSupportDesk',
+    title: 'Travel Guides: Booking, Points & Changes | AvioSupportDesk',
     description:
-      'Plain-language guides on booking, Avion points, changes, cancellations, and bags. Learn first, then request optional independent assistance when you need it.',
-    h1: 'Travel Guides for Flight Booking & Airline Help',
-    keywords: ['travel guides', 'flight booking guide', 'Avion points guides'],
+      'Plain-language guides on booking flights, using points and miles, changes, cancellations, and baggage. Learn first, then request optional independent assistance.',
+    h1: 'Travel Guides — Booking, Points, and Airline Help',
+    keywords: ['travel guides', 'flight booking guide', 'points and miles guides'],
   },
   [GUIDE_FLIGHT_BOOKING_PATH]: {
     title: 'How to Book a Flight by Phone Guide | AvioSupportDesk',
@@ -242,60 +186,60 @@ export const SEO_PAGE_META = {
     keywords: ['points and miles guide', 'award travel basics', 'transfer partners'],
   },
   [GUIDE_AVION_FLIGHT_BOOKING_PATH]: {
-    title: 'How to Book Flights with Avion Points | AvioSupportDesk',
+    title: 'How to Book Flights With Points & Miles | AvioSupportDesk',
     description:
-      'Guide to Avion flight redemptions: portal booking, chart levels, cash still due, and when optional paid help is useful. Independent—not RBC or Avion Rewards.',
-    h1: 'How to book flights with Avion points',
-    keywords: ['Avion points flights', 'Avion travel booking', 'independent redemption help'],
+      'Portal, chart, and partner-path redemptions use different rules. Independent guide to comparing options before you move points—not a bank or loyalty operator.',
+    h1: 'How to Book Flights With Points and Miles',
+    keywords: ['book flights with points', 'travel portal redemption', 'independent redemption help'],
   },
   [GUIDE_AVION_REDEMPTION_CHART_PATH]: {
-    title: 'Avion Points Redemption Chart Explained | AvioSupportDesk',
+    title: 'Fixed Points Charts for Flights Explained | AvioSupportDesk',
     description:
-      'When fixed chart levels apply, route and membership conditions, fare caps, and charges excluded from chart pricing, with links to official Avion rules.',
-    h1: 'Avion points redemption chart explained',
-    keywords: ['Avion redemption chart', 'Avion fare caps', 'fixed chart levels'],
+      'When fixed chart levels apply, route and membership conditions, fare caps, and charges excluded from chart pricing. Educational guide for points travelers.',
+    h1: 'Fixed Points Redemption Charts Explained',
+    keywords: ['fixed points chart', 'award fare caps', 'redemption chart levels'],
   },
   [GUIDE_AVION_POINTS_VALUE_PATH]: {
-    title: 'What Are Avion Points Worth? Worked Examples | AvioSupportDesk',
+    title: 'What Are Travel Points Worth? Worked Examples | AvioSupportDesk',
     description:
-      'Compare cash fare, points required, and remaining charges with worked examples at 15k, 35k, and 55k levels. No universal cents-per-point claim—see your own math.',
-    h1: 'What Avion Points Are Worth: Worked Examples',
-    keywords: ['Avion points value', 'cents per point', 'points vs cash'],
+      'Compare cash fare, points required, and remaining charges with worked examples at common award levels. No universal cents-per-point claim—see your own math.',
+    h1: 'What Travel Points Are Worth: Worked Examples',
+    keywords: ['travel points value', 'cents per point', 'points vs cash'],
   },
   [GUIDE_AVION_TRANSFER_PARTNERS_PATH]: {
-    title: 'Avion Transfer Partners Explained | AvioSupportDesk',
+    title: 'Loyalty Transfer Partners Explained | AvioSupportDesk',
     description:
-      'How Avion partner transfers differ from portal redemptions: eligibility, irreversibility, and timing. We do not promise routes that official terms do not support.',
-    h1: 'Avion transfer partners explained',
-    keywords: ['Avion transfer partners', 'partner transfer rules', 'Avion vs Avios'],
+      'How partner transfers differ from portal redemptions: eligibility, irreversibility, and timing. We do not promise routes that official program terms disallow.',
+    h1: 'Loyalty Program Transfer Partners Explained',
+    keywords: ['loyalty transfer partners', 'partner transfer rules', 'portal vs transfer'],
   },
   [TOOL_AVION_POINTS_CALCULATOR_PATH]: {
-    title: 'Avion Points Calculator: Cents per Point | AvioSupportDesk',
+    title: 'Points Value Calculator: Cents per Point | AvioSupportDesk',
     description:
-      'Estimate gross and net cents per point by comparing equivalent cash and redemption totals in CAD, including optional independent assistance fees you enter.',
-    h1: 'Avion points value calculator',
-    keywords: ['Avion points calculator', 'points value calculator', 'CAD redemption math'],
+      'Estimate gross and net cents per point by comparing cash and redemption totals, including optional assistance fees you enter. Independent travel support tool.',
+    h1: 'Points Value Calculator — Cents per Point',
+    keywords: ['points value calculator', 'cents per point', 'CAD redemption math'],
   },
   [SERVICE_FEES_PATH]: {
     title: 'Travel Assistance Fees Explained | AvioSupportDesk',
     description:
-      'Understand our independent assistance fees, what they cover, and how they differ from airline, hotel, and Avion Rewards program charges quoted at checkout.',
-    h1: 'Travel assistance fees',
+      'Understand our independent assistance fees, what they cover, and how they differ from airline, hotel, and loyalty program charges quoted at checkout by suppliers.',
+    h1: 'Travel Assistance Fees Explained',
     keywords: ['travel assistance fees', 'independent booking fees', 'AvioSupportDesk fees'],
   },
   [HOW_IT_WORKS_PATH]: {
-    title: 'How Independent Booking Help Works | AvioSupportDesk',
+    title: 'How Independent Travel Assistance Works | AvioSupportDesk',
     description:
-      'Our process: you request help, we review eligibility and options, quote assistance in writing, and you complete program or airline actions in your own accounts.',
-    h1: 'How independent booking help works',
-    keywords: ['how booking assistance works', 'independent travel help process'],
+      'Our process: you request help, we review options and scope, quote assistance in writing, and you complete airline or loyalty actions in your own accounts.',
+    h1: 'How Independent Travel Assistance Works',
+    keywords: ['how travel assistance works', 'independent travel help process'],
   },
   [INDEPENDENT_SERVICE_DISCLOSURE_PATH]: {
     title: 'Independent Service Disclosure | AvioSupportDesk',
     description:
-      'AvioSupportDesk is independent paid travel assistance—not RBC, Avion Rewards, or any airline. Learn what we can and cannot do with your loyalty accounts.',
-    h1: 'Independent service disclosure',
-    keywords: ['independent travel service', 'AvioSupportDesk disclosure', 'not affiliated RBC'],
+      'AvioSupportDesk is independent paid travel assistance—not an airline, bank, hotel chain, or loyalty operator. Learn what we can and cannot do for your bookings.',
+    h1: 'Independent Travel Service Disclosure',
+    keywords: ['independent travel service', 'AvioSupportDesk disclosure', 'travel assistance identity'],
   },
   [BLOG_PATH]: {
     title: 'Travel Tips & Airline Guides Blog | AvioSupportDesk',
@@ -346,16 +290,16 @@ export const SEO_PAGE_META = {
   [ABOUT_PATH]: {
     title: 'About AvioSupportDesk — Independent Travel Assistance',
     description:
-      'Learn who operates AvioSupportDesk, how fees work, and what we can and cannot do for Avion points and flights. Not a bank, an airline, or a hotel brand.',
-    h1: 'About AvioSupportDesk, an Independent Travel Assistance Service',
+      'Learn who operates AvioSupportDesk, how fees work, and what we can and cannot do for flights and points. Not an airline, bank, hotel brand, or loyalty operator.',
+    h1: 'About AvioSupportDesk — Independent Travel Assistance',
     keywords: ['about AvioSupportDesk', 'independent travel assistance', 'travel support company'],
   },
   [CONTACT_PATH]: {
     title: 'Contact AvioSupportDesk — Independent Travel Help',
     description:
-      'Contact AvioSupportDesk for independent Avion points and flight help by phone, email, or inquiry form. Correspondence address only—not a walk-in office.',
-    h1: 'Contact AvioSupportDesk for independent travel help',
-    keywords: ['contact flight support', 'travel helpline', 'call to book flights'],
+      'Contact AvioSupportDesk for independent travel and points help by phone, email, or inquiry form. Correspondence address only—not a staffed walk-in office.',
+    h1: 'Contact AvioSupportDesk for Independent Travel Help',
+    keywords: ['contact travel support', 'travel helpline', 'call to book flights'],
   },
   [PRIVACY_POLICY_PATH]: {
     title: 'Privacy Policy — How We Use Your Data | AvioSupportDesk',

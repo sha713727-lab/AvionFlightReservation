@@ -1,6 +1,5 @@
 import {
   BAGGAGE_ASSISTANCE_PATH,
-  BLUE_REWARDS_PATH,
   CONTACT_PATH,
   FLIGHT_BOOKING_PATH,
   FLIGHT_CANCELLATION_PATH,
@@ -15,7 +14,6 @@ import {
   GUIDE_FLIGHT_CHANGES_PATH,
   GUIDE_POINTS_PATH,
   GUIDES_PATH,
-  HILTON_HOTELS_PATH,
   HOME_PATH,
   HOW_IT_WORKS_PATH,
   HOTEL_BOOKING_PATH,
@@ -27,20 +25,19 @@ import {
   SERVICES_PATH,
   TOOL_AVION_POINTS_CALCULATOR_PATH,
   TRIP_PLANNING_PATH,
-  WYNDHAM_HOTELS_PATH,
 } from '@/constants/routes'
 
 export { AVION_RESOURCE_LINKS } from '@/constants/avionResourceLinks'
 export { getPageRelatedLinks } from '@/constants/pageRelatedLinks'
 
-/** Primary homepage paths — Avion-first, then flight help and existing-trip help. */
+/** Primary homepage paths — points help first, then flight help and existing-trip help. */
 export const HOME_PRIMARY_PATHS = [
   {
     href: POINTS_REDEMPTION_PATH,
-    title: 'Compare Avion redemption options',
-    anchor: 'Avion points booking assistance',
+    title: 'Compare points redemption options',
+    anchor: 'points and miles redemption help',
     description:
-      'Portal, fixed-chart, and partner-transfer paths compared with remaining cash costs explained.',
+      'Portal, chart, and partner-transfer paths compared with remaining cash costs explained.',
   },
   {
     href: FLIGHT_BOOKING_PATH,
@@ -62,9 +59,9 @@ export const MAIN_SERVICE_LINKS = [
   {
     href: POINTS_REDEMPTION_PATH,
     title: 'Points Redemption',
-    anchor: 'Avion points booking assistance',
+    anchor: 'points and miles redemption help',
     description:
-      'Independent Avion redemption guidance with a separately quoted assistance fee.',
+      'Independent points redemption guidance with a separately quoted assistance fee.',
   },
   {
     href: FLIGHT_BOOKING_PATH,
@@ -115,24 +112,6 @@ export const MAIN_SERVICE_LINKS = [
     description: 'Long-haul and transborder booking help with connection buffers explained.',
   },
   {
-    href: WYNDHAM_HOTELS_PATH,
-    title: 'Wyndham Hotels',
-    anchor: 'Wyndham hotels booking help',
-    description: 'Independent phone help comparing Wyndham stays and booking by phone.',
-  },
-  {
-    href: HILTON_HOTELS_PATH,
-    title: 'Hilton Hotels',
-    anchor: 'Hilton hotels booking help',
-    description: 'Independent phone help comparing Hilton brand stays and booking by phone.',
-  },
-  {
-    href: BLUE_REWARDS_PATH,
-    title: 'Blue Rewards',
-    anchor: 'Blue Rewards travel help',
-    description: 'Independent guidance comparing Blue Rewards travel redemption options.',
-  },
-  {
     href: SERVICES_PATH,
     title: 'All Services',
     anchor: 'all travel services',
@@ -179,33 +158,32 @@ export const SERVICE_INTERNAL_LINKS = {
   },
   [POINTS_REDEMPTION_PATH]: {
     home: { href: HOME_PATH, label: 'AvioSupportDesk home' },
-    contact: { href: CONTACT_PATH, label: 'contact Avion points booking help' },
+    contact: { href: CONTACT_PATH, label: 'contact points redemption help' },
     relatedServices: [
       serviceCard(FLIGHT_BOOKING_PATH),
       serviceCard(FLIGHT_CANCELLATION_PATH),
       serviceCard(BAGGAGE_ASSISTANCE_PATH),
       serviceCard(SEAT_SELECTION_PATH),
       serviceCard(TRIP_PLANNING_PATH),
-      serviceCard(BLUE_REWARDS_PATH),
     ],
     relatedGuides: [
       {
         href: GUIDE_AVION_FLIGHT_BOOKING_PATH,
-        label: 'how to book flights with Avion points',
+        label: 'how to book flights with points and miles',
       },
       {
         href: GUIDE_AVION_REDEMPTION_CHART_PATH,
-        label: 'Avion points redemption chart explained',
+        label: 'points redemption chart explained',
       },
       {
         href: GUIDE_AVION_TRANSFER_PARTNERS_PATH,
-        label: 'how Avion transfer partners work',
+        label: 'how transfer partners work',
       },
       {
         href: GUIDE_AVION_POINTS_VALUE_PATH,
-        label: 'what Avion points are worth',
+        label: 'what reward points are worth',
       },
-      { href: TOOL_AVION_POINTS_CALCULATOR_PATH, label: 'Avion points value calculator' },
+      { href: TOOL_AVION_POINTS_CALCULATOR_PATH, label: 'points value calculator' },
       { href: SERVICES_PATH, label: 'all travel services' },
     ],
   },
@@ -321,23 +299,23 @@ export function buildServiceLinkMap(path) {
   }
   map['tool-avion-points-calculator'] = {
     href: TOOL_AVION_POINTS_CALCULATOR_PATH,
-    label: 'Avion points value calculator',
+    label: 'points value calculator',
   }
   map['guide-avion-points-flight-booking'] = {
     href: GUIDE_AVION_FLIGHT_BOOKING_PATH,
-    label: 'how to book flights with Avion points',
+    label: 'how to book flights with points and miles',
   }
   map['guide-avion-points-redemption-chart'] = {
     href: GUIDE_AVION_REDEMPTION_CHART_PATH,
-    label: 'Avion points redemption chart explained',
+    label: 'points redemption chart explained',
   }
   map['guide-avion-transfer-partners'] = {
     href: GUIDE_AVION_TRANSFER_PARTNERS_PATH,
-    label: 'how Avion transfer partners work',
+    label: 'how transfer partners work',
   }
   map['guide-avion-points-value'] = {
     href: GUIDE_AVION_POINTS_VALUE_PATH,
-    label: 'what Avion points are worth',
+    label: 'what reward points are worth',
   }
   map['guide-points-and-miles'] = {
     href: GUIDE_POINTS_PATH,

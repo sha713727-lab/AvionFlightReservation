@@ -97,13 +97,13 @@ export const HOTEL_BOOKING_GEO = {
 }
 
 export const POINTS_REDEMPTION_GEO = {
-  keyFactsTitle: 'Key Facts About Avion Points Booking Assistance',
+  keyFactsTitle: 'Key Facts About Travel Points and Loyalty Redemptions',
   keyFacts: [
-    'Avion portal, fixed-chart, and partner-transfer paths are different mechanisms—not one shared inventory pool.',
+    'Bank travel portals, fixed award charts, and partner-transfer paths are different mechanisms—not one shared inventory pool.',
     'Award space is controlled by airlines and can differ from cash seat availability on the same flight.',
     'Bank point transfers are usually irreversible once completed in your account.',
     'Long-haul awards can still require large cash taxes or carrier surcharges after points are applied.',
-    'AvioSupportDesk does not represent RBC, Avion Rewards, British Airways Avios, or any airline loyalty program.',
+    'AvioSupportDesk does not represent any bank rewards program, airline loyalty program, or official loyalty desk.',
   ],
   citations: [
     {
@@ -132,7 +132,7 @@ export const POINTS_REDEMPTION_GEO = {
     headers: ['Path', 'What you typically pay', 'Main decision risk'],
     rows: [
       ['Cash fare', 'Published fare + taxes', 'Fare brand change/cancel rules'],
-      ['Avion travel portal', 'Dynamic points price + remaining cash', 'Portal price swings vs chart'],
+      ['Bank travel portal', 'Dynamic points price + remaining cash', 'Portal price swings vs chart'],
       ['Fixed-points chart', 'Chart level + taxes/fees when eligible', 'Membership and chart conditions'],
       ['Partner transfer', 'Transferred points + award cost + cash', 'Irreversible transfer timing'],
     ],

@@ -80,18 +80,18 @@ export const HOTEL_BOOKING_FAQS = [
 
 export const POINTS_REDEMPTION_FAQS = [
   {
-    question: 'Are you the official Avion Rewards support desk?',
+    question: 'Are you an official bank, airline, or loyalty-program support desk?',
     answer:
-      'No. AvioSupportDesk provides independent Avion points booking assistance and is not affiliated with RBC, Avion Rewards, or British Airways Avios. For account access and official program support, use the official program channels.',
+      'No. AvioSupportDesk provides independent travel points redemption assistance and is not affiliated with any bank, card issuer, airline, or third-party loyalty program. For account access and program support, use your issuer’s official channels.',
     detail:
-      'Our phone number is for optional assistance only. It is not a substitute for official Avion or RBC support. Read {{independent-service-disclosure}}.',
+      'Our phone number is for optional assistance only. It is not a substitute for program-issuer or airline support. Read {{independent-service-disclosure}}.',
   },
   {
     question: 'Do I have to pay you to redeem my points?',
     answer:
-      'Our assistance is optional. You can use the official program’s available self-service channels. If you choose our help, we explain our separate fee before you agree; program and supplier charges are separate.',
+      'Our assistance is optional. You can use your program issuer’s self-service channels. If you choose our help, we explain our separate fee before you agree; program and supplier charges are separate.',
     detail:
-      'See {{service-fees}} for how quotes work. Never treat our fee as an RBC or Avion charge.',
+      'See {{service-fees}} for how quotes work. Never treat our fee as a bank, card, or loyalty-program charge.',
   },
   {
     question: 'Will you ask for my account password or one-time code?',
@@ -101,14 +101,14 @@ export const POINTS_REDEMPTION_FAQS = [
       'Do not send passwords, OTPs, full card numbers, or passport scans through the inquiry form.',
   },
   {
-    question: 'How do Avion redemption paths differ?',
+    question: 'How do loyalty redemption paths differ?',
     answer:
       'Travel-portal redemption, an eligible fixed-points chart, and conversion to an eligible airline partner are different mechanisms. Eligibility depends on membership and current program terms.',
     detail:
       'Read the {{guide-avion-points-flight-booking}}, {{guide-avion-points-redemption-chart}}, and {{guide-avion-transfer-partners}} before transferring points you cannot reverse easily.',
   },
   {
-    question: 'When is paying cash better than using Avion points?',
+    question: 'When is paying cash better than using loyalty points?',
     answer:
       'When the remaining taxes, surcharges, and any assistance fee leave little or no advantage versus the published cash fare—or when award space forces a poor routing. We compare total out-of-pocket, not points alone.',
     detail:
@@ -122,7 +122,7 @@ export const POINTS_REDEMPTION_FAQS = [
       'Bring confirmation details—not account passwords—if you request optional help after a cancellation.',
   },
   {
-    question: 'Who should I contact for an existing Avion booking?',
+    question: 'Who should I contact for an existing award or points booking?',
     answer:
       'Start with whoever issued the ticket and the official program or supplier channels that control the reservation. We can help explain options within our assistance scope, but we cannot override supplier rules.',
     detail:

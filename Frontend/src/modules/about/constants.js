@@ -101,13 +101,13 @@ export const ABOUT_TRUST_BADGES = [
 
 export const ABOUT_WHAT_IS = {
   heading: 'What is AvioSupportDesk?',
-  body: 'AvioSupportDesk is an independent travel assistance service operated for customers who need phone or written help comparing Avion points options, cash fares, and related booking steps. We are not an airline, bank, hotel brand, or official rewards desk. Assistance fees are quoted before you agree and stay separate from supplier charges. The Toronto address on this site is for correspondence only—not a walk-in office.',
+  body: 'AvioSupportDesk is an independent travel assistance service operated for customers who need phone or written help comparing travel points and cash fares, loyalty redemption paths, and related booking steps. We are not an airline, bank, hotel brand, or official rewards desk. Assistance fees are quoted before you agree and stay separate from supplier charges. The Toronto address on this site is for correspondence only—not a walk-in office.',
 }
 
 export const ABOUT_SCOPE = {
   heading: 'What we provide — and what we do not',
   provided: [
-    'Independent Avion points booking assistance and cash-versus-points comparisons within an accepted scope.',
+    'Independent travel points booking assistance and cash-versus-points comparisons within an accepted scope.',
     'Phone and inquiry help for flight bookings, changes, cancellations, hotels, seats, baggage, and trip planning when those requests fit our services.',
     'Written assistance-fee quotes before paid work starts, with supplier charges kept separate.',
     'Educational guides and tools that cite official public sources where rules are discussed.',

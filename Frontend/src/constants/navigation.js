@@ -10,8 +10,6 @@ import {
   FLIGHT_CANCELLATION_PATH,
   FLIGHT_CHANGES_PATH,
   GUIDES_PATH,
-  HILTON_HOTELS_PATH,
-  BLUE_REWARDS_PATH,
   HOME_PATH,
   HOW_IT_WORKS_PATH,
   HOTEL_BOOKING_PATH,
@@ -26,7 +24,6 @@ import {
   TERMS_PATH,
   TOOL_AVION_POINTS_CALCULATOR_PATH,
   TRIP_PLANNING_PATH,
-  WYNDHAM_HOTELS_PATH,
 } from '@/constants/routes'
 
 export const FOOTER_DISCLAIMER_HASH = '#disclaimer'
@@ -50,7 +47,7 @@ export const FOOTER_PRIMARY_LEGAL_LINKS = [
 ]
 
 export const NAV_LINKS = [
-  { label: 'Points & Flight Help', href: POINTS_REDEMPTION_PATH },
+  { label: 'Services', href: SERVICES_PATH },
   { label: 'How It Works', href: HOW_IT_WORKS_PATH },
   { label: 'Service Fees', href: SERVICE_FEES_PATH },
   { label: 'Guides', href: GUIDES_PATH },
@@ -69,7 +66,6 @@ export {
 
 /** Secondary destinations kept out of primary nav prominence (audit §7). */
 export const SECONDARY_NAV_LINKS = [
-  { label: 'Services', href: SERVICES_PATH },
   { label: 'Destinations', href: DESTINATIONS_PATH },
   { label: 'Blog', href: BLOG_PATH },
 ]
@@ -84,16 +80,13 @@ export const FOOTER_LINKS = {
     { label: 'flight destinations', href: DESTINATIONS_PATH },
     { label: 'international flights by phone', href: INTERNATIONAL_FLIGHT_PATH },
     { label: 'travel guides hub', href: GUIDES_PATH },
-    { label: 'Avion points value calculator', href: TOOL_AVION_POINTS_CALCULATOR_PATH },
+    { label: 'points value calculator', href: TOOL_AVION_POINTS_CALCULATOR_PATH },
     { label: 'AvioSupportDesk blog', href: BLOG_PATH },
     { label: 'all travel services', href: SERVICES_PATH },
   ],
   services: [
     { label: 'flight booking assistance', href: FLIGHT_BOOKING_PATH },
     { label: 'hotel booking by phone', href: HOTEL_BOOKING_PATH },
-    { label: 'Wyndham hotels booking help', href: WYNDHAM_HOTELS_PATH },
-    { label: 'Hilton hotels booking help', href: HILTON_HOTELS_PATH },
-    { label: 'Blue Rewards travel help', href: BLUE_REWARDS_PATH },
     { label: 'points and miles redemption help', href: POINTS_REDEMPTION_PATH },
     { label: 'flight change assistance', href: FLIGHT_CHANGES_PATH },
     { label: 'flight cancellation assistance', href: FLIGHT_CANCELLATION_PATH },

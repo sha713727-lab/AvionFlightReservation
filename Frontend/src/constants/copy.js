@@ -2,41 +2,41 @@ import { LEGAL_COPY } from '@/constants/legalCopy'
 
 export const COPY = {
   cta: {
-    talkWithExpert: 'Request independent booking help',
-    bookConsultation: 'Request independent booking help',
-    bookFreeConsultation: 'Request independent booking help',
-    callNow: 'Call AvioSupportDesk',
-    callBackRequest: 'Request a callback',
-    exploreServices: 'See our service fees',
-    callToBook: 'Request booking help',
+    talkWithExpert: 'Get Travel Assistance',
+    bookConsultation: 'Get Travel Assistance',
+    bookFreeConsultation: 'Get Travel Assistance',
+    callNow: 'Call for Travel Assistance',
+    callBackRequest: 'Request a Callback',
+    exploreServices: 'Explore Our Services',
+    callToBook: 'Get Booking Assistance',
     seeFees: 'See our service fees',
   },
   hero: {
     speakableSummary:
-      'Compare portal redemptions, fixed-chart awards, and partner-transfer options before moving your Avion points. We explain remaining cash costs and booking steps while you keep control of your account. Assistance fees are quoted before you agree.',
+      'From travel points redemption and flight bookings to hotel reservations and itinerary changes, AvioSupportDesk helps travelers navigate options and arrange journeys with personalized human assistance. Assistance fees are quoted before you agree.',
     disclosure:
-      'AvioSupportDesk is an independent travel assistance service. We are not affiliated with RBC, Avion Rewards, British Airways Avios, or any airline.',
+      'AvioSupportDesk is an independent travel support and assistance company. We are not an airline, bank, hotel chain, or loyalty-program operator.',
   },
   footer: {
-    tagline: 'Independent Avion points booking assistance and related travel help.',
+    tagline: 'Independent travel support and assistance for bookings, points, hotels, and trip changes.',
     disclaimerTitle: 'Disclaimer',
     disclaimer:
-      'AvioSupportDesk (aviosupportdesk.com) is an independent travel assistance service. We are not affiliated with, authorized by, or endorsed by Royal Bank of Canada (RBC), Avion Rewards, British Airways Avios, or any airline or bank reward program. Airline, hotel, and program names may appear only to identify customer travel requests. All trademarks are the property of their respective owners. Our assistance fee is separate from supplier and program charges.',
+      'AvioSupportDesk (aviosupportdesk.com) is an independent travel support and assistance company. We are not an airline, bank, hotel chain, travel rewards operator, or official booking platform. We are not affiliated with, authorized by, or endorsed by third-party airlines, hotel brands, financial institutions, or loyalty programs. Supplier names may appear only as neutral examples. All trademarks belong to their respective owners. Our assistance fee is separate from supplier and program charges.',
     rightsReserved: 'All rights reserved.',
     copyrightPrefix: '©',
     copyrightBrand: 'AvioSupportDesk',
   },
   callModal: {
-    title: 'Call AvioSupportDesk',
+    title: 'Call for Travel Assistance',
     description:
-      'Speak with AvioSupportDesk about comparing Avion redemption options or other trip assistance within our stated scope.',
+      'Speak with an AvioSupportDesk travel specialist about points redemption, flights, hotels, changes, or other trip assistance within our stated scope.',
     businessLabel: 'AvioSupportDesk phone',
   },
   callbackModal: {
-    promptTitle: 'Need help booking?',
+    promptTitle: 'Need travel assistance?',
     promptDescription: 'Request a free callback from a travel specialist.',
-    requestCta: 'Request a callback',
-    formTitle: 'Request a callback',
+    requestCta: 'Request a Callback',
+    formTitle: 'Request a Callback',
     formDescription: 'Share your details and preferred time. We will call you back.',
     nameLabel: 'Full name',
     namePlaceholder: 'Your name',
@@ -50,41 +50,41 @@ export const COPY = {
       'Your callback request was received. A travel specialist will contact you at your preferred time.',
   },
   rewards: {
-    eyebrow: 'Points redemption assistance',
-    title: 'Turn points into adventures',
+    eyebrow: 'Points & rewards assistance',
+    title: 'Compare points and cash travel options',
     description:
-      'Sitting on unused airline miles or credit card rewards? Our specialists help compare options and book travel. AvioSupportDesk is not affiliated with RBC or Avion Rewards.',
-    cta: 'Get redemption help',
-    imageAlt: 'Luxury airplane cabin for points and miles flight redemption',
-    modalTitle: 'Need help redeeming your travel points?',
+      'Sitting on unused airline miles or credit card rewards? Our specialists help compare redemption and cash options so you can decide with clearer information.',
+    cta: 'Get Points Assistance',
+    imageAlt: 'Airplane cabin for travel points and rewards redemption assistance',
+    modalTitle: 'Need help with travel points or rewards?',
     modalDescription:
-      "Speak with our travel specialist today. We'll review your travel points and find useful redemption options.",
+      'Speak with a travel specialist. We will review your goals and explain useful redemption and booking options.',
   },
   services: {
     watermark: 'SERVICES',
-    title: 'Flight & Travel Services',
+    title: 'Travel Support & Assistance',
     description:
       'From flight reservations to hotel bookings and points redemption assistance — handled by travel specialists over the phone.',
     whatYouGet: 'What you get',
-    getStarted: 'Talk with an expert',
+    getStarted: 'Speak With a Travel Specialist',
     exploreService: 'Explore Service',
     pageEyebrow: 'Our services',
-    pageTitle: 'Book flights, hotels, and trip support by phone.',
+    pageTitle: 'One independent desk for flights, hotels, and trip support.',
     pageDescription:
-      'AvioSupportDesk phone services cover flight booking, hotels, points redemption, changes, cancellations, seats, baggage, and trip planning. Call a specialist for clear next steps—we are an independent travel desk, not an airline or bank rewards hotline.',
+      'AvioSupportDesk phone services cover flight booking, hotels, points and rewards guidance, changes, cancellations, seats, baggage, and trip planning. Call a specialist for clear next steps—we are an independent travel desk, not an airline or loyalty hotline.',
     metaDescription:
       'Flight booking, hotel booking, and points redemption assistance with AvioSupportDesk. Independent travel specialists for Canada, USA, Europe, and Mexico.',
-    pagePrimaryCta: 'Talk with an expert',
-    pageSecondaryCta: 'Browse services',
+    pagePrimaryCta: 'Get Travel Assistance',
+    pageSecondaryCta: 'Explore Our Services',
     categoriesEyebrow: 'Service lines',
-    categoriesTitle: 'A clear view of how Avion supports every trip.',
+    categoriesTitle: 'A clear view of how we support every trip.',
     categoriesDescription:
       'From first booking to last-minute changes — one team, one call, end-to-end travel support.',
     catalogEyebrow: 'Full catalog',
     catalogTitle: 'Every service, explained clearly.',
     catalogDescription:
-      'Explore what each service includes, then talk with a specialist when you are ready to book.',
-    catalogCtaTitle: 'Ready to book with a specialist?',
+      'Explore what each service includes, then talk with a specialist when you are ready for assistance.',
+    catalogCtaTitle: 'Ready to speak with a specialist?',
     catalogCtaDescription:
       'Call now for flight reservations, hotel booking, points help, or support on an existing trip.',
   },
@@ -116,10 +116,10 @@ export const COPY = {
     ctaLabel: 'See full service fee details',
   },
   avionResources: {
-    watermark: 'AVION GUIDES & TOOLS',
-    title: 'Understand your Avion options before you call',
+    watermark: 'GUIDES & TOOLS',
+    title: 'Understand your options before you call',
     description:
-      'Read the rules, check the observed chart levels, and run your own numbers. Our paid assistance is optional — these resources are free.',
+      'Read plain-language guides and run your own numbers. Our paid assistance is optional — these resources are free.',
   },
   suppliers: {
     watermark: 'SUPPLIERS TRAVELERS ASK ABOUT',
@@ -132,15 +132,15 @@ export const COPY = {
   },
   whyUs: {
     watermark: 'WHY US',
-    title: 'Why book with AvioSupportDesk',
+    title: 'Why choose AvioSupportDesk',
     description: 'Independent specialists, clear booking guidance, and dedicated phone support.',
     previousLabel: 'Previous reason',
     nextLabel: 'Next reason',
   },
   process: {
-    watermark: 'PROCESS',
-    title: 'PROCESS',
-    description: 'From your request to a quoted fee and customer-controlled next steps.',
+    watermark: 'HOW IT WORKS',
+    title: 'How our service works',
+    description: 'From your first contact to a quoted fee and customer-controlled next steps.',
   },
   destinations: {
     watermark: 'DESTINATIONS',
@@ -151,14 +151,14 @@ export const COPY = {
     redeemFrom: 'Illustrative chart level',
     potentialDestinations: 'Example destinations',
     pointsDisclaimer:
-      'Point figures shown with chart levels are illustrative only. They are not guaranteed quotes, inventory, or AvioSupportDesk redemption prices. Confirm current rules on the official Avion Rewards travel site or request a written comparison from us.',
+      'Point figures shown with chart levels are illustrative only. They are not guaranteed quotes, inventory, or AvioSupportDesk redemption prices. Confirm current rules with the relevant program or request a written comparison from us.',
     pageEyebrow: 'Destinations',
     pageTitle: 'Popular flight destinations across Canada, USA, and beyond.',
     pageDescription:
       'Browse example destinations travelers discuss with AvioSupportDesk. We help compare routes and redemption conditions; we do not publish unconditional city point prices.',
     metaDescription:
-      'Browse example Canada, USA, Europe, and Mexico destinations. AvioSupportDesk provides independent booking assistance—not guaranteed Avion point prices by city.',
-    pagePrimaryCta: 'Request independent booking help',
+      'Browse example Canada, USA, Europe, and Mexico destinations. AvioSupportDesk provides independent booking assistance—not guaranteed loyalty point prices by city.',
+    pagePrimaryCta: 'Get Travel Assistance',
     pageSecondaryCta: 'Browse destinations',
     filterAll: 'All destinations',
     pointsLabel: 'points (illustrative)',
@@ -166,7 +166,7 @@ export const COPY = {
     galleryEyebrow: 'Explore',
     galleryTitle: 'Places travelers often ask about.',
     galleryDescription:
-      'Filter by region group or browse destinations. Point costs vary by origin, eligibility, and program terms—use our chart guide for conditional examples.',
+      'Filter by region group or browse destinations. Point costs vary by origin, eligibility, and program terms—use our guides for conditional examples.',
     ctaTitle: 'Need help comparing options for a destination?',
     ctaDescription:
       'Request independent assistance to compare cash and points options for your route. Fees are quoted before you agree.',
@@ -175,33 +175,33 @@ export const COPY = {
     watermark: 'FAQ',
     title: 'FAQ',
     accentTitle: 'Questions? We have answers',
-    description: 'Everything you need to know about booking with AvioSupportDesk — explained simply.',
+    description: 'Everything you need to know about travel assistance with AvioSupportDesk — explained simply.',
   },
   redeemCta: {
-    title: 'Need Avion points booking assistance?',
+    title: 'Need travel points or booking assistance?',
     description:
-      'Request help comparing Avion redemptions, cash fares, or an existing trip. Fees are quoted before paid work begins.',
+      'Request help comparing points redemptions, cash fares, hotels, or an existing trip. Fees are quoted before paid work begins.',
   },
   about: {
     pageEyebrow: 'About Us',
-    pageTitle: 'Independent Avion points and travel assistance.',
+    pageTitle: 'Independent travel support and assistance.',
     pageDescription:
-      'AvioSupportDesk operates as an independent phone assistance service based on correspondence in Toronto, Canada. We help travelers compare Avion points options, cash fares, and related booking steps—we are not an airline call center or bank rewards desk.',
+      'AvioSupportDesk operates as an independent phone assistance service based on correspondence in Toronto, Canada. We help travelers compare points options, cash fares, hotels, and related booking steps—we are not an airline call center or bank rewards desk.',
     metaDescription:
-      'Learn who operates AvioSupportDesk, how fees work, and what we can and cannot do. Independent Avion points and flight assistance—not affiliated with RBC or Avion Rewards.',
-    pagePrimaryCta: 'Request independent booking help',
+      'Learn who operates AvioSupportDesk, how fees work, and what we can and cannot do. Independent travel support by phone—not an airline or bank rewards desk.',
+    pagePrimaryCta: 'Get Travel Assistance',
     pageSecondaryCta: 'See our service fees',
     whoWeAreEyebrow: 'Who We Are',
     whoWeAreTitle: 'Who operates AvioSupportDesk, and how we work.',
     whoWeAreParagraphs: [
-      'AvioSupportDesk is an independent travel assistance business that serves customers by phone and written inquiry across Canada, the United States, and international callers who need English-language booking help.',
-      'Our core focus is Avion points booking assistance: comparing portal redemptions, fixed-chart awards, partner-transfer paths, remaining cash costs, and when paying cash may be clearer. We also help with related flight bookings, changes, cancellations, hotels, seats, and baggage when those requests fit an accepted scope.',
-      'We do not operate airline or rewards accounts for you, collect passwords or one-time codes, override supplier rules, or claim affiliation with RBC, Avion Rewards, British Airways Avios, or any airline. You approve every travel option and keep control of your accounts.',
+      'AvioSupportDesk is an independent travel support and assistance business that serves customers by phone and written inquiry across Canada, the United States, and international callers who need English-language booking help.',
+      'We help with points and rewards redemption guidance, flight bookings, hotel reservations, changes, cancellations, seats, baggage, and trip planning when those requests fit an accepted scope.',
+      'We do not operate airline or rewards accounts for you, collect passwords or one-time codes, override supplier rules, or claim affiliation with airlines, hotel brands, banks, or loyalty programs. You approve every travel option and keep control of your accounts.',
       'Assistance fees are quoted in writing before paid work starts and stay separate from fares, taxes, surcharges, and program charges. Customer contact details are used only to respond to your request under our privacy policy.',
     ],
     transparencyLabel: 'Transparency',
     transparencyText:
-      'We are not an airline, hotel, bank, rewards program, or card issuer. We are not affiliated with RBC, Avion Rewards, British Airways Avios, or any airline. The Toronto address listed on this site is a correspondence mailing address—not a staffed walk-in customer office. Visitors are not expected at that address. All fares, availability, rules, and changes are subject to the final terms of the actual travel supplier.',
+      'We are not an airline, hotel, bank, rewards program, or card issuer. We are not affiliated with third-party airlines, hotel brands, financial institutions, or loyalty programs. The Toronto address listed on this site is a correspondence mailing address—not a staffed walk-in customer office. Visitors are not expected at that address. All fares, availability, rules, and changes are subject to the final terms of the actual travel supplier.',
     whyChooseEyebrow: 'Why Choose Us',
     whyChooseTitle: 'Why travelers choose AvioSupportDesk.',
     whyChooseDescription:
@@ -225,21 +225,21 @@ export const COPY = {
   },
   contactPage: {
     pageEyebrow: 'Contact Us',
-    pageTitle: 'Contact AvioSupportDesk for independent help.',
+    pageTitle: 'Contact AvioSupportDesk for travel assistance.',
     pageDescription:
-      'Contact AvioSupportDesk by phone or inquiry form for independent flight booking help, changes, cancellations, and travel questions. Keep dates, destinations, and booking references ready—never send account passwords or one-time codes.',
+      'Contact AvioSupportDesk by phone or inquiry form for flight booking help, hotels, points guidance, changes, cancellations, and travel questions. Keep dates, destinations, and booking references ready—never send account passwords or one-time codes.',
     metaDescription:
-      'Contact AvioSupportDesk for independent flight and points assistance by phone or inquiry form. Not affiliated with RBC or Avion Rewards. Call +1 877 702 9887.',
-    pagePrimaryCta: 'Call AvioSupportDesk',
+      'Contact AvioSupportDesk for independent flight, hotel, and points assistance by phone or inquiry form. Call +1 877 702 9887 for travel support.',
+    pagePrimaryCta: 'Call for Travel Assistance',
     supportEyebrow: 'Get Travel Support',
     supportTitle: 'Speak with a specialist by phone.',
     supportDescription:
       'For booking assistance, trip questions, or policy support, contact our team by phone during staffed hours. Please keep your travel dates, destination, passenger details, and any existing booking information ready when you call.',
     phoneLabel: 'Phone Support',
     bestForLabel: 'Best For',
-    bestForText: 'Flight booking, changes, cancellations, and travel questions',
+    bestForText: 'Flights, hotels, points, changes, cancellations, and travel questions',
     serviceTypeLabel: 'Service Type',
-    serviceTypeText: 'Independent travel assistance',
+    serviceTypeText: 'Independent travel support and assistance',
     beforeCallEyebrow: 'Before You Call',
     beforeCallTitle: 'Have these details ready.',
     noticeLabel: 'Important Notice',

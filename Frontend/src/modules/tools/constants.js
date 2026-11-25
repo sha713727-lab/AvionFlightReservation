@@ -61,5 +61,5 @@ export const CALCULATOR_EXAMPLE = {
 export const CALCULATOR_PAGE_COPY = {
   eyebrow: 'Decision tool',
   intro:
-    'Compare equivalent cash and points quotes in CAD before you call for optional independent assistance. Enter your own numbers—results are arithmetic, not Avion Rewards offers or cash-out values.',
+    'Compare equivalent cash and loyalty-points quotes in CAD before you call for optional independent assistance. Enter your own numbers—results are arithmetic, not live program offers or cash-out values.',
 }

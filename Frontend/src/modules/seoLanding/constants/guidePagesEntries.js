@@ -25,10 +25,10 @@ export const GUIDE_HUB = {
   path: GUIDES_PATH,
   title: 'Travel Guides | AvioSupportDesk',
   metaDescription:
-    'Plain-language guides on booking flights, changes, cancellations, baggage, and points—including Avion Rewards topics. Independent AvioSupportDesk; not affiliated with bank or airline loyalty brands. Optional paid redemption help on our points-redemption service.',
+    'Plain-language guides on booking flights, changes, cancellations, baggage, and travel points redemptions. Independent AvioSupportDesk; not affiliated with bank or airline loyalty brands. Optional paid redemption help on our points-redemption service.',
   h1: 'Travel Guides for Flight Booking & Airline Help',
   intro:
-    'AvioSupportDesk travel guides answer common booking, change, cancellation, baggage, and points questions in a direct format first, then add detail. Browse general airline help or Avion-specific guides for self-serve clarity. When you want phone support—including optional paid help with points redemptions—start at our points-redemption service or call our reservation line.',
+    'AvioSupportDesk travel guides answer common booking, change, cancellation, baggage, and points questions in a direct format first, then add detail. Browse general airline help or loyalty-program guides for self-serve clarity. When you want phone support—including optional paid help with points redemptions—start at our points-redemption service or call our reservation line.',
   keywords: ['flight booking guide', 'travel help guides', 'airline change guide'],
 }
 export const GUIDE_PAGES = [
@@ -36,7 +36,7 @@ export const GUIDE_PAGES = [
     slug: 'flight-booking',
     path: GUIDE_FLIGHT_BOOKING_PATH,
     publishedIso: GEO_BYLINES.publishedIso,
-    title: 'How to Book a Flight by Phone | Avion Guide',
+    title: 'How to Book a Flight by Phone | Travel Guide',
     metaDescription:
       'Step-by-step overview of booking flights by phone: what to prepare, how fares work, and when specialist help saves time. AvioSupportDesk.',
     question: 'How do I book a flight by phone with a travel specialist?',
@@ -48,13 +48,13 @@ export const GUIDE_PAGES = [
       'Fares and seats can change between search and purchase; locking a price may require immediate payment.',
       'Passenger names must match government ID, especially for international travel.',
       'Some ultra-low fares restrict changes, seat selection, or carry-on bags.',
-      'AvioSupportDesk is not affiliated with RBC Avion Rewards, Avios, or any airline.',
+      'AvioSupportDesk is not affiliated with any bank rewards program, Avios, or any airline.',
     ],
     expertGuidance:
       'Call before you transfer bank points or hold multiple online baskets—you may get clearer totals and avoid duplicate charges. If you already started online, have confirmation emails or session details ready so we do not rebuild work unnecessarily.',
     relatedQuestions: [
       { label: 'flight booking assistance', href: FLIGHT_BOOKING_PATH },
-      { label: 'Avion points flight booking guide', href: GUIDE_AVION_FLIGHT_BOOKING_PATH },
+      { label: 'travel points flight booking guide', href: GUIDE_AVION_FLIGHT_BOOKING_PATH },
       { label: 'points and miles travel guide', href: GUIDE_POINTS_PATH },
       { label: 'travel assistance fees', href: SERVICE_FEES_PATH },
       { label: 'all travel services', href: SERVICES_PATH },
@@ -65,7 +65,7 @@ export const GUIDE_PAGES = [
     slug: 'flight-changes',
     path: GUIDE_FLIGHT_CHANGES_PATH,
     publishedIso: GEO_BYLINES.publishedIso,
-    title: 'How Do Airline Flight Changes Work? | Avion Guide',
+    title: 'How Do Airline Flight Changes Work? | Travel Guide',
     metaDescription:
       'Educational guide to airline change fees, fare differences, and same-day options. Distinct from paid change assistance. AvioSupportDesk.',
     question: 'How do airline flight changes work?',
@@ -78,7 +78,7 @@ export const GUIDE_PAGES = [
       'Name changes are usually not permitted; minor corrections may require proof and a fee.',
       'If you no-show, remaining segments may be canceled automatically.',
       'Third-party sellers may add their own service fees on top of airline charges.',
-      'Avion Rewards portal bookings follow the ticket issuer and program rules—use official Avion channels for account access.',
+      'Bank travel portal bookings follow the ticket issuer and program rules—use official program channels for account access.',
     ],
     expertGuidance:
       'Before accepting an automatic rebooking email, compare arrival times and connection lengths. Use the paid flight-change service when you want a specialist to quote fees against your confirmation code; use this guide when you only need the policy concepts.',
@@ -93,7 +93,7 @@ export const GUIDE_PAGES = [
     slug: 'flight-cancellations',
     path: GUIDE_FLIGHT_CANCELLATIONS_PATH,
     publishedIso: GEO_BYLINES.publishedIso,
-    title: 'How Do Flight Cancellations and Refunds Work? | Avion Guide',
+    title: 'How Do Flight Cancellations and Refunds Work? | Travel Guide',
     metaDescription:
       'Educational guide to refunds vs credits when you cancel. Distinct from paid cancellation assistance and from change guides. AvioSupportDesk.',
     question: 'What happens when I cancel a flight?',
@@ -121,7 +121,7 @@ export const GUIDE_PAGES = [
     slug: 'baggage',
     path: GUIDE_BAGGAGE_PATH,
     publishedIso: GEO_BYLINES.publishedIso,
-    title: 'Airline Baggage Rules Explained | Avion Guide',
+    title: 'Airline Baggage Rules Explained | Travel Guide',
     metaDescription:
       'Carry-on, checked bag, and fee basics for North American flights. When to call for baggage help. AvioSupportDesk independent guide.',
     question: 'How do airline baggage allowances work?',
@@ -148,14 +148,14 @@ export const GUIDE_PAGES = [
     slug: 'points-and-miles',
     path: GUIDE_POINTS_PATH,
     publishedIso: GEO_BYLINES.publishedIso,
-    title: 'Points and Miles Basics for Flights | Avion Guide',
+    title: 'Points and Miles Basics for Flights | Travel Guide',
     metaDescription:
       'Understand transferring bank points, award space, taxes, and when cash fares beat redemptions. Independent AvioSupportDesk guide.',
     question: 'How should I use points or miles for a flight?',
     directAnswer:
       'Compare the cash price to the points cost plus taxes for the same flight. Transfer bank points only after you confirm award space on the partner airline. Book through the program that owns the miles when possible, because change rules follow that program.',
     explanation:
-      'Bank travel portals quote cash-equivalent redemptions with simpler rules but not always the best value. Airline miles may offer better cent-per-point value on premium cabins yet come with limited seats. Transfers are usually one-way and instant or delayed depending on the partner—mistakes cannot be reversed. AvioSupportDesk helps with general redemption steps but does not represent RBC Avion Rewards, Avios, or other branded programs.',
+      'Bank travel portals quote cash-equivalent redemptions with simpler rules but not always the best value. Airline miles may offer better cent-per-point value on premium cabins yet come with limited seats. Transfers are usually one-way and instant or delayed depending on the partner—mistakes cannot be reversed. AvioSupportDesk helps with general redemption steps but does not represent bank rewards programs, Avios, or other branded loyalty programs.',
     conditions: [
       'Award charts change; dynamic pricing makes some routes unpredictable.',
       'Taxes and carrier surcharges can exceed hundreds on certain international partners.',
@@ -166,9 +166,9 @@ export const GUIDE_PAGES = [
       'Hold a refundable cash fare only when you understand both cancellation policies. Call us before transferring large point balances so we can sanity-check space and fees.',
     relatedQuestions: [
       { label: 'points and miles redemption help', href: POINTS_REDEMPTION_PATH },
-      { label: 'Avion points flight booking guide', href: GUIDE_AVION_FLIGHT_BOOKING_PATH },
-      { label: 'Avion points redemption chart guide', href: GUIDE_AVION_REDEMPTION_CHART_PATH },
-      { label: 'Avion points value calculator', href: TOOL_AVION_POINTS_CALCULATOR_PATH },
+      { label: 'travel points flight booking guide', href: GUIDE_AVION_FLIGHT_BOOKING_PATH },
+      { label: 'travel points redemption chart guide', href: GUIDE_AVION_REDEMPTION_CHART_PATH },
+      { label: 'points value calculator', href: TOOL_AVION_POINTS_CALCULATOR_PATH },
       { label: 'travel assistance fees', href: SERVICE_FEES_PATH },
     ],
     keywords: ['redeem travel points', 'airline miles guide'],

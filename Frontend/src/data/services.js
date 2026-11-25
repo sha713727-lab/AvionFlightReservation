@@ -62,27 +62,27 @@ export const VALUE_PROPS = [
 export const STEPS = [
   {
     step: 1,
-    title: 'Request',
-    description: 'Call or submit an inquiry with itinerary basics—never passwords or OTPs.',
+    title: 'Contact Us',
+    description: 'Call or submit a request explaining your travel requirements—never passwords or OTPs.',
   },
   {
     step: 2,
-    title: 'Options',
-    description: 'We review eligibility and outline options within our stated assistance scope.',
+    title: 'Understand Your Needs',
+    description: 'A human specialist discusses your plans and the options that fit your trip.',
   },
   {
     step: 3,
-    title: 'Written quote',
-    description: 'You receive our assistance fee and scope in writing before paid work begins.',
+    title: 'Review Available Options',
+    description: 'We explain booking, points, and travel arrangements, including supplier charges.',
   },
   {
     step: 4,
-    title: 'Accept',
-    description: 'You approve the quote. You complete account-controlled steps yourself.',
+    title: 'Approve the Assistance Fee',
+    description: 'You receive a separate service-fee quotation. No paid work starts until you accept.',
   },
   {
     step: 5,
-    title: 'Follow-up',
-    description: 'We help document next steps within the agreed scope after you confirm an option.',
+    title: 'Complete Your Arrangement',
+    description: 'With your approval, we assist subject to supplier availability and program rules.',
   },
 ]

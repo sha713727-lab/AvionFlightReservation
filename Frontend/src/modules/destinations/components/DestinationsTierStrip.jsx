@@ -27,7 +27,7 @@ export default function DestinationsTierStrip({ destinations = [] }) {
               href={GUIDE_AVION_REDEMPTION_CHART_PATH}
               className="font-medium text-accent underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
-              Avion redemption chart guide
+              Points redemption chart guide
             </Link>
           </p>
         </FadeIn>

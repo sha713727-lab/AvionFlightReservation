@@ -15,6 +15,4 @@ export const SUPPLIER_MENTIONS = [
   'Emirates',
   'Qatar Airways',
   'Singapore Airlines',
-  'Hilton',
-  'Wyndham Rewards',
 ]

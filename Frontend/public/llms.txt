@@ -1,14 +1,13 @@
 # AvioSupportDesk
 
-> AvioSupportDesk is an independent travel assistance business that offers optional, paid help by phone with flight and hotel bookings, flight changes and cancellations, and comparing Avion points redemptions with cash fares. It is not RBC, Avion Rewards, an airline, Wyndham Hotels & Resorts, or Hilton, and it is not affiliated with, authorized by, or endorsed by any of them.
+> AvioSupportDesk is an independent travel support and assistance company that offers optional, paid help by phone with flight and hotel bookings, flight changes and cancellations, trip planning, and comparing travel points redemptions with cash fares. It is not an airline, bank, hotel chain, or loyalty-program operator, and it is not affiliated with, authorized by, or endorsed by third-party airlines, hotel brands, financial institutions, or loyalty programs.
 
 ## Key facts
 
 - Assistance fee: a custom quote in CAD, given in writing before any paid work begins. It is separate from airline fares, taxes, hotel rates, program fees, and supplier change or cancel fees.
-- Paid work starts only after the traveler accepts the quote. Travelers can decline and use official self-service channels instead.
+- Paid work starts only after the traveler accepts the quote. Travelers can decline and use their own supplier or program self-service channels instead.
 - Travelers complete account-controlled loyalty actions themselves through official program channels. AvioSupportDesk does not request rewards passwords or one-time codes through public forms.
 - Ticket servicing depends on who issued the ticket and on supplier rules. AvioSupportDesk does not claim authority to change, cancel, or refund every booking.
-- Official Avion Rewards travel support is at https://www.avionrewards.com/travel/ and 1-877-636-2870. AvioSupportDesk is not a substitute for official support.
 
 ## Contact
 
@@ -24,18 +23,13 @@
 - [Flight booking assistance](https://aviosupportdesk.com/flight-booking): domestic and international flights booked by phone
 - [International flights](https://aviosupportdesk.com/international-flights): routings and connections to Europe, Canada, Mexico, and the USA
 - [Hotel booking help](https://aviosupportdesk.com/hotel-booking): room types, deposits, cancellation rules, and taxes explained
-- [Avion points booking assistance](https://aviosupportdesk.com/points-redemption): independent guidance on Avion flight redemptions
+- [Travel points and rewards assistance](https://aviosupportdesk.com/points-redemption): independent guidance comparing points and cash options
 - [Flight change assistance](https://aviosupportdesk.com/flight-changes): change fees, fare differences, and rebooking options
 - [Flight cancellation and refund assistance](https://aviosupportdesk.com/flight-cancellation): refunds compared with travel credits
 - [Seat selection help](https://aviosupportdesk.com/seat-selection): seat maps and paid seat fees
 - [Baggage assistance](https://aviosupportdesk.com/baggage-assistance): carry-on limits, checked bag fees, and special items
 - [Trip planning help](https://aviosupportdesk.com/trip-planning): multi-city and open-jaw itineraries
 - [Popular destinations](https://aviosupportdesk.com/destinations): routes across Canada, the USA, Europe, and Mexico
-
-## Hotel brands (independent help, not the brand itself)
-
-- [Wyndham hotels booking help](https://aviosupportdesk.com/wyndham-hotels)
-- [Hilton hotels booking help](https://aviosupportdesk.com/hilton-hotels)
 
 ## Guides
 
@@ -45,14 +39,14 @@
 - [Airline refund vs credit rules, explained](https://aviosupportdesk.com/guides/flight-cancellations)
 - [Airline baggage rules explained](https://aviosupportdesk.com/guides/baggage)
 - [Points and miles basics for flights](https://aviosupportdesk.com/guides/points-and-miles)
-- [How to book flights with Avion points](https://aviosupportdesk.com/guides/avion-points-flight-booking)
-- [Avion points redemption chart explained](https://aviosupportdesk.com/guides/avion-points-redemption-chart)
-- [What Avion points are worth, with worked examples](https://aviosupportdesk.com/guides/avion-points-value)
-- [Avion transfer partners explained](https://aviosupportdesk.com/guides/avion-transfer-partners)
+- [How to book flights with travel points](https://aviosupportdesk.com/guides/avion-points-flight-booking)
+- [Travel points redemption charts explained](https://aviosupportdesk.com/guides/avion-points-redemption-chart)
+- [What travel points are worth, with worked examples](https://aviosupportdesk.com/guides/avion-points-value)
+- [Loyalty transfer partners explained](https://aviosupportdesk.com/guides/avion-transfer-partners)
 
 ## Tool
 
-- [Avion points value calculator](https://aviosupportdesk.com/tools/avion-points-value-calculator): gross and net cents per point in CAD
+- [Points value calculator](https://aviosupportdesk.com/tools/avion-points-value-calculator): gross and net cents per point in CAD
 
 ## Blog
 
@@ -67,7 +61,7 @@
 
 - [Home](https://aviosupportdesk.com/)
 - [About AvioSupportDesk](https://aviosupportdesk.com/about)
-- [How independent booking help works](https://aviosupportdesk.com/how-it-works)
+- [How independent travel assistance works](https://aviosupportdesk.com/how-it-works)
 - [Travel assistance fees](https://aviosupportdesk.com/service-fees)
 - [Independent service disclosure](https://aviosupportdesk.com/independent-service-disclosure)
 - [Terms and conditions](https://aviosupportdesk.com/terms-and-conditions)

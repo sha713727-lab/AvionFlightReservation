@@ -4,13 +4,6 @@ import {
   REFUND_POLICY_PATH,
   SERVICE_FEES_PATH,
 } from '@/constants/routes'
-import {
-  OFFICIAL_AVION_TRAVEL_PHONE,
-  OFFICIAL_AVION_TRAVEL_PHONE_HREF,
-  OFFICIAL_AVION_TRAVEL_PHONE_LABEL,
-  OFFICIAL_AVION_TRAVEL_URL,
-  OFFICIAL_VS_US_NOTE,
-} from '@/constants/disclosures'
 
 export const TRUST_PAGES = {
   [SERVICE_FEES_PATH]: {
@@ -18,7 +11,7 @@ export const TRUST_PAGES = {
     eyebrow: 'Commercial transparency',
     h1: 'Travel assistance fees',
     intro:
-      'AvioSupportDesk charges a separate assistance fee for optional help comparing Avion redemption options and completing permitted booking steps. That fee is not an RBC, Avion Rewards, or airline charge.',
+      'AvioSupportDesk charges a separate assistance fee for optional help comparing travel options and completing permitted booking steps. That fee is not an airline, hotel, or loyalty-program charge.',
     sections: [
       {
         title: 'How our fee works',
@@ -37,7 +30,7 @@ export const TRUST_PAGES = {
       {
         title: 'Charges that are not our fee',
         paragraphs: [
-          'Airline fares, taxes, surcharges, fuel charges, program fees, hotel rates, supplier change or cancel fees, and any remaining cash due alongside a points redemption are charged by the relevant supplier or program—not by AvioSupportDesk as “Avion fees.”',
+          'Airline fares, taxes, surcharges, fuel charges, program fees, hotel rates, supplier change or cancel fees, and any remaining cash due alongside a points redemption are charged by the relevant supplier or program—not by AvioSupportDesk.',
           'Your card statement or receipt merchant name for our assistance fee will identify the actual billing entity once the owner confirms that detail. Until then, ask for the merchant identity on your written quote.',
         ],
       },
@@ -55,18 +48,18 @@ export const TRUST_PAGES = {
     eyebrow: 'Process',
     h1: 'How independent booking help works',
     intro:
-      'AvioSupportDesk provides optional paid assistance. You keep control of your rewards account and approve any option before it is confirmed.',
+      'AvioSupportDesk provides optional paid assistance. You keep control of your accounts and approve any option before it is confirmed.',
     sections: [
       {
         title: '1. Request',
         paragraphs: [
-          'Share the contact details and itinerary basics we need: travelers, origin and destination, dates or flexibility, cabin preference, and approximate points balance if relevant. Do not send rewards passwords, one-time codes, or full payment card numbers through the inquiry form.',
+          'Share the contact details and itinerary basics we need: travelers, origin and destination, dates or flexibility, cabin preference, and approximate points balance if relevant. Do not send loyalty passwords, one-time codes, or full payment card numbers through the inquiry form.',
         ],
       },
       {
-        title: '2. Eligibility and options',
+        title: '2. Review options and scope',
         paragraphs: [
-          'We review what we can evaluate within our service scope and explain that outcomes depend on membership eligibility, inventory, and current program or supplier rules.',
+          'We review what we can evaluate within our service scope and explain that outcomes depend on membership eligibility, inventory, and current supplier or program rules.',
         ],
       },
       {
@@ -82,15 +75,9 @@ export const TRUST_PAGES = {
         ],
       },
       {
-        title: '5. Customer-controlled program actions',
+        title: '5. You complete bookings in your accounts',
         paragraphs: [
-          'You sign in through official program channels and complete account-controlled actions yourself unless a verified, permitted delegated workflow exists. We can explain steps and compare options within the agreed scope.',
-        ],
-      },
-      {
-        title: '6. Confirmation and follow-up',
-        paragraphs: [
-          'After you confirm an option with the relevant supplier or program, we can help you document next steps for changes, receipts, or questions that remain within our assistance scope.',
+          'You sign in through official supplier channels and complete account-controlled actions yourself unless a verified, permitted delegated workflow exists. After you confirm an option, we can help document next steps within our assistance scope.',
         ],
       },
     ],
@@ -100,7 +87,7 @@ export const TRUST_PAGES = {
     eyebrow: 'Identity',
     h1: 'Independent service disclosure',
     intro:
-      'AvioSupportDesk is an independent travel assistance business. We are not RBC, Avion Rewards, an airline, or an official rewards help desk.',
+      'AvioSupportDesk is an independent travel assistance business. We are not an airline, bank, hotel brand, or loyalty-program operator.',
     sections: [
       {
         title: 'Operator identity',
@@ -111,28 +98,20 @@ export const TRUST_PAGES = {
       {
         title: 'Independence and trademarks',
         paragraphs: [
-          'We are not affiliated with, authorized by, or endorsed by Royal Bank of Canada, Avion Rewards, or any airline. Program and airline names appear only to describe the subject of a customer request or educational guide. All trademarks belong to their owners.',
+          'We are not affiliated with, authorized by, or endorsed by any airline, bank, hotel brand, or loyalty program. Third-party names appear only to describe the subject of a customer request or educational guide. All trademarks belong to their owners.',
         ],
       },
       {
-        title: 'Official self-service',
+        title: 'Official supplier channels',
         paragraphs: [
-          OFFICIAL_VS_US_NOTE,
-          'For account access, official program decisions, and self-service travel tools, use the official Avion Rewards channels. Our phone number is for optional independent assistance, not a substitute for official support.',
-          `${OFFICIAL_AVION_TRAVEL_PHONE_LABEL}: ${OFFICIAL_AVION_TRAVEL_PHONE}.`,
-        ],
-        links: [
-          { label: 'Official Avion Rewards travel', href: OFFICIAL_AVION_TRAVEL_URL },
-          {
-            label: `Call official Avion Rewards Travel ${OFFICIAL_AVION_TRAVEL_PHONE}`,
-            href: OFFICIAL_AVION_TRAVEL_PHONE_HREF,
-          },
+          'For account access, loyalty decisions, and self-service travel tools, use each airline, hotel, or program’s official website or verified contact options—not unofficial numbers or lookalike sites.',
+          'AvioSupportDesk offers optional independent assistance by phone or inquiry form. It is not a substitute for official operator support and we do not present ourselves as an official help desk.',
         ],
       },
       {
         title: 'Service limits',
         paragraphs: [
-          'We do not claim authority to issue, change, cancel, transfer, or refund every booking. Ticket servicing depends on who issued the ticket and the supplier’s rules. We do not request rewards passwords or one-time codes through public forms.',
+          'We do not claim authority to issue, change, cancel, transfer, or refund every booking. Ticket servicing depends on who issued the ticket and the supplier’s rules. We do not request loyalty passwords or one-time codes through public forms.',
           'Our assistance fee is separate from supplier and program charges and is quoted before you agree.',
         ],
         links: [

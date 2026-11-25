@@ -4,16 +4,16 @@ import LayeredSectionHeading from '@/components/ui/LayeredSectionHeading'
 import { COPY } from '@/constants/copy'
 import { AVION_RESOURCE_LINKS } from '@/constants/internalLinks'
 
-/** Free Avion education + calculator links, ahead of any paid CTA (audit §8). */
+/** Free points & travel education + calculator links, ahead of any paid CTA. */
 export default function HomeAvionResources() {
   return (
     <section
       className="border-t border-border bg-section-alt py-14 lg:py-20"
-      aria-labelledby="avion-resources-heading"
+      aria-labelledby="points-resources-heading"
     >
       <Container>
         <LayeredSectionHeading
-          titleId="avion-resources-heading"
+          titleId="points-resources-heading"
           watermark={COPY.avionResources.watermark}
           title={COPY.avionResources.title}
           description={COPY.avionResources.description}

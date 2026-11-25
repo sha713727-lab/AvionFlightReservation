@@ -8,9 +8,6 @@
   ADMIN_PLACES_PATH,
   ADMIN_SECURITY_PATH,
   ADMIN_SERVICES_PATH,
-  ADMIN_WYNDHAM_PAGE_PATH,
-  ADMIN_HILTON_PAGE_PATH,
-  ADMIN_BLUE_REWARDS_PAGE_PATH,
 } from '@/constants/routes'
 
 export const ADMIN_FIELD_NAMES = {
@@ -68,24 +65,6 @@ export const ADMIN_NAV_ITEMS = [
     label: 'Contact',
     href: ADMIN_CONTACT_PATH,
     icon: 'contact',
-  },
-  {
-    id: 'wyndham',
-    label: 'Wyndham page',
-    href: ADMIN_WYNDHAM_PAGE_PATH,
-    icon: 'wyndham',
-  },
-  {
-    id: 'hilton',
-    label: 'Hilton page',
-    href: ADMIN_HILTON_PAGE_PATH,
-    icon: 'hilton',
-  },
-  {
-    id: 'blue-rewards',
-    label: 'Blue Rewards page',
-    href: ADMIN_BLUE_REWARDS_PAGE_PATH,
-    icon: 'blue-rewards',
   },
   {
     id: 'security',

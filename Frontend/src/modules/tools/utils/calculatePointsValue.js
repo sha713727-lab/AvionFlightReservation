@@ -1,5 +1,5 @@
 /**
- * Pure Avion-style points value math (CAD amounts).
+ * Pure loyalty-points value math (CAD amounts).
  * Assistance fees may be null when unknown; net metrics require both fee inputs.
  */
 export function calculatePointsValue({

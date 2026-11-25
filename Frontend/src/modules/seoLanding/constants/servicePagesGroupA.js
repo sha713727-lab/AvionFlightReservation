@@ -43,7 +43,7 @@ export const SERVICE_PAGES_GROUP_A = [
   {
     slug: 'points-redemption',
     path: POINTS_REDEMPTION_PATH,
-    h1: 'Avion Points Booking Assistance',
+    h1: 'Travel Points & Rewards Redemption Assistance',
     ...POINTS_REDEMPTION_BODY,
     ...POINTS_REDEMPTION_GEO,
     faqs: POINTS_REDEMPTION_FAQS,

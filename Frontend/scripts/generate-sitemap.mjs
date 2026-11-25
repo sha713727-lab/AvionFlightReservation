@@ -9,12 +9,10 @@ import { fileURLToPath } from 'node:url'
 import {
   ABOUT_PATH,
   BLOG_PATH,
-  BLUE_REWARDS_PATH,
   CANCELLATION_POLICY_PATH,
   CONTACT_PATH,
   COOKIE_POLICY_PATH,
   GUIDES_PATH,
-  HILTON_HOTELS_PATH,
   HOME_PATH,
   HOW_IT_WORKS_PATH,
   INDEPENDENT_SERVICE_DISCLOSURE_PATH,
@@ -26,7 +24,6 @@ import {
   SITEMAP_STATIC_PATHS,
   TERMS_PATH,
   TOOL_AVION_POINTS_CALCULATOR_PATH,
-  WYNDHAM_HOTELS_PATH,
 } from '../src/constants/routes.js'
 import { LEGAL_COPY } from '../src/constants/legalCopy.js'
 import { GEO_BYLINES } from '../src/constants/geo.js'
@@ -102,9 +99,6 @@ function loadStaticLastmods() {
     [BLOG_PATH, editorial],
     [GUIDES_PATH, editorial],
     [TOOL_AVION_POINTS_CALCULATOR_PATH, editorial],
-    [WYNDHAM_HOTELS_PATH, editorial],
-    [HILTON_HOTELS_PATH, editorial],
-    [BLUE_REWARDS_PATH, editorial],
     [ABOUT_PATH, editorial],
     [CONTACT_PATH, editorial],
     [SERVICE_FEES_PATH, editorial],

@@ -43,7 +43,7 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || CANONICAL_ORIGIN
 
 export const SITE_DESCRIPTION =
-  'Independent help comparing Avion points and flight options. AvioSupportDesk quotes a separate assistance fee before you agree. Not affiliated with RBC or Avion Rewards.'
+  'Independent travel support and assistance for flights, hotels, points, and trip changes. AvioSupportDesk quotes a separate assistance fee before you agree. Not an airline, bank, hotel chain, or loyalty operator.'
 
 /**
  * Absolute canonical URL for a site path.

@@ -9,7 +9,7 @@ export const SEO_LANDING_COPY = {
   relatedServicesHeading: 'Related Services',
   homeServiceLinksTitle: 'Three clear paths to get help',
   homeServiceLinksDescription:
-    'Start with Avion points booking assistance, request flight booking help, or get support on an existing trip. Related hotel, seat, baggage, and planning services remain available below.',
+    'Start with travel points and redemption assistance, request flight booking help, or get support on an existing trip. Related hotel, seat, baggage, and planning services remain available below.',
   homeMoreServicesLabel: 'Looking for another service?',
   whenUsefulHeading: 'When this assistance is useful',
   infoNeededHeading: 'Information we need from you',

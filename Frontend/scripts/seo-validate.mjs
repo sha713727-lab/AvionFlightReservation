@@ -66,7 +66,7 @@ const GSC_DISCOVERY_PATHS = [
   '/blog/how-to-cancel-a-flight-and-get-a-full-refund-in-2026',
   '/blog/how-to-change-your-flight-booking-step-by-step',
   '/blog/top-10-tips-to-save-money-on-flight-bookings',
-  '/blue-rewards',
+  '/points-redemption',
   '/flight-cancellation',
   '/guides/avion-points-flight-booking',
   '/guides/avion-points-redemption-chart',

@@ -6,6 +6,9 @@ const root = path.dirname(fileURLToPath(import.meta.url))
 const STATIC_CACHE = 'public, max-age=31536000, immutable'
 const ASSET_CACHE = 'public, max-age=31536000, stale-while-revalidate=86400'
 
+/** React DevTools / HMR need eval in development only — never in production. */
+const SCRIPT_SRC_EVAL = process.env.NODE_ENV === 'production' ? '' : " 'unsafe-eval'"
+
 const SECURITY_HEADERS = [
   { key: 'X-Content-Type-Options', value: 'nosniff' },
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
@@ -19,7 +22,7 @@ const SECURITY_HEADERS = [
   {
     key: 'Content-Security-Policy',
     value:
-      "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; upgrade-insecure-requests; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://www.clarity.ms https://scripts.clarity.ms https://*.clarity.ms https://js.callrail.com https://cdn.callrail.com https://*.callrail.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com https://www.google.ca https://www.google.com.mx https://www.google.com.pk https://*.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://*.g.doubleclick.net https://ad.doubleclick.net https://*.doubleclick.net https://www.clarity.ms https://*.clarity.ms https://c.bing.com https://js.callrail.com https://api.callrail.com https://cdn.callrail.com https://*.callrail.com; frame-src 'self' https://www.googletagmanager.com; media-src 'self'; worker-src 'self' blob:;",
+      `default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; upgrade-insecure-requests; script-src 'self' 'unsafe-inline'${SCRIPT_SRC_EVAL} https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://www.clarity.ms https://scripts.clarity.ms https://*.clarity.ms https://js.callrail.com https://cdn.callrail.com https://*.callrail.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com https://www.google.ca https://www.google.com.mx https://www.google.com.pk https://*.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://*.g.doubleclick.net https://ad.doubleclick.net https://*.doubleclick.net https://www.clarity.ms https://*.clarity.ms https://c.bing.com https://js.callrail.com https://api.callrail.com https://cdn.callrail.com https://*.callrail.com; frame-src 'self' https://www.googletagmanager.com; media-src 'self'; worker-src 'self' blob:;`,
   },
 ]
 
@@ -178,6 +181,21 @@ const nextConfig = {
       {
         source: '/internationalFlight/:path*',
         destination: '/international-flights',
+        permanent: true,
+      },
+      {
+        source: '/hilton-hotels',
+        destination: '/hotel-booking',
+        permanent: true,
+      },
+      {
+        source: '/wyndham-hotels',
+        destination: '/hotel-booking',
+        permanent: true,
+      },
+      {
+        source: '/blue-rewards',
+        destination: '/points-redemption',
         permanent: true,
       },
     ]

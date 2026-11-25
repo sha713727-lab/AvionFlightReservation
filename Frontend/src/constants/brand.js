@@ -7,8 +7,8 @@ export const AVION_APPLE_ICON_SRC = '/apple-touch-icon.png'
 
 /** Required logo alt for SEO and accessibility. */
 export const AVION_LOGO_ALT =
-  'AvioSupportDesk — independent Avion points and flight assistance'
+  'AvioSupportDesk — independent travel support and assistance'
 
 export const BRAND_NAME = 'AvioSupportDesk'
-export const BRAND_TAGLINE = 'Independent Points & Flight Help'
+export const BRAND_TAGLINE = 'Independent Travel Support & Assistance'
 export const BRAND_FULL_NAME = 'AvioSupportDesk'

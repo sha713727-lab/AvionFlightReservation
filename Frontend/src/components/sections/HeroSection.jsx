@@ -5,12 +5,8 @@ import Container from '@/components/ui/Container'
 import Button from '@/components/buttons/Button'
 import HeroBackground from '@/components/sections/HeroBackground'
 import { COPY } from '@/constants/copy'
-import {
-  INDEPENDENT_SERVICE_DISCLOSURE_SHORT,
-  OFFICIAL_AVION_TRAVEL_LABEL,
-  OFFICIAL_AVION_TRAVEL_URL,
-} from '@/constants/disclosures'
-import { HOME_PATH, SERVICE_FEES_PATH } from '@/constants/routes'
+import { INDEPENDENT_SERVICE_DISCLOSURE_SHORT } from '@/constants/disclosures'
+import { HOME_PATH, SERVICES_PATH } from '@/constants/routes'
 import { getSeoPageH1 } from '@/constants/seoPageMeta'
 import { CTA_PLACEMENT } from '@/constants/analytics'
 import { useCallExpertModal } from '@/modules/call/components/CallExpertProvider'
@@ -62,26 +58,15 @@ export default function HeroSection() {
               {COPY.cta.talkWithExpert}
             </Button>
             <Button
-              href={SERVICE_FEES_PATH}
+              href={SERVICES_PATH}
               variant="secondary"
               size="lg"
               icon={HiPlay}
               className="w-full sm:w-auto"
             >
-              {COPY.cta.seeFees}
+              {COPY.cta.exploreServices}
             </Button>
           </div>
-
-          <p className="relative z-[1] mx-auto mt-6 max-w-xl text-center text-sm text-text-secondary">
-            <a
-              href={OFFICIAL_AVION_TRAVEL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-accent underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-            >
-              {OFFICIAL_AVION_TRAVEL_LABEL}
-            </a>
-          </p>
         </div>
       </Container>
     </section>

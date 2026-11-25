@@ -64,11 +64,11 @@ export const HOTEL_BOOKING_BODY = {
 
 export const POINTS_REDEMPTION_BODY = {
   speakableSummary:
-    'AvioSupportDesk provides independent Avion points booking assistance: we help you compare redemption options, understand remaining cash charges, and work through permitted booking steps for a separately quoted assistance fee. You keep control of your rewards account.',
+    'AvioSupportDesk provides independent travel points and rewards redemption assistance: we help you compare redemption options, understand remaining cash charges, and work through permitted booking steps for a separately quoted assistance fee. You keep control of your loyalty accounts.',
   opening:
-    'The customer problem is simple: Avion points can look valuable until portal prices, chart levels, partner-transfer timing, and taxes or surcharges are compared side by side. AvioSupportDesk Avion points booking assistance is optional paid help for members who want that comparison before they commit. We are not RBC or Avion Rewards and we do not access your account credentials. Eligible options depend on your membership product or tier and current program terms. Prefer self-service? Use the official Avion Rewards travel tools. Prefer guided comparison? Request a written quote for our separate assistance fee, then approve any option yourself. Start with the {{guide-avion-points-flight-booking}} or {{guide-avion-points-redemption-chart}}, try the {{tool-avion-points-calculator}}, or {{contact}} us with your route and approximate balance. Broader miles concepts remain in the {{guide-points-and-miles}}.',
+    'The customer problem is simple: loyalty points can look valuable until portal prices, chart levels, partner-transfer timing, and taxes or surcharges are compared side by side. AvioSupportDesk points redemption assistance is optional paid help for travelers who want that comparison before they commit. We are not a bank, card issuer, airline, or loyalty-program operator and we do not access your account credentials. Eligible options depend on your membership product or tier and current program terms. Prefer self-service? Use your program issuer’s authenticated travel tools and confirm live rules there. Prefer guided comparison? Request a written quote for our separate assistance fee, then approve any option yourself. Start with the {{guide-avion-points-flight-booking}} or {{guide-avion-points-redemption-chart}}, try the {{tool-avion-points-calculator}}, or {{contact}} us with your route and approximate balance. Broader miles concepts remain in the {{guide-points-and-miles}}.',
   whenUseful: [
-    'You are choosing between paying cash and redeeming Avion points on the same route and dates.',
+    'You are choosing between paying cash and redeeming loyalty points on the same route and dates.',
     'Portal prices, chart levels, and partner-transfer awards all appear possible and you need a clearer ranking.',
     'You want remaining taxes, surcharges, and our assistance fee listed separately before you decide.',
     'You prefer guided steps while keeping passwords, OTPs, and account control entirely with you.',
@@ -76,7 +76,7 @@ export const POINTS_REDEMPTION_BODY = {
   infoNeeded: [
     'Origin and destination airports or cities, plus travel dates or a flexible date window.',
     'Passenger count, cabin preference, and whether the trip is one-way or round-trip.',
-    'Approximate Avion points balance and membership product or tier if you know it.',
+    'Approximate points balance and membership product or tier if you know it.',
     'Any hard constraints such as nonstop-only, maximum layover, or a cash budget ceiling.',
     'Never passwords, one-time codes, full card numbers, or passport scans through public forms.',
   ],
@@ -84,7 +84,7 @@ export const POINTS_REDEMPTION_BODY = {
     'We can compare cash fares against portal, chart, and eligible transfer-partner options within an accepted scope.',
     'We can quote our separate assistance fee in writing before paid work begins—see {{service-fees}}.',
     'We can explain permitted booking steps you complete in official program channels.',
-    'We cannot log into your rewards account, guarantee award inventory, waive airline or program rules, or act as official Avion or RBC support.',
+    'We cannot log into your rewards account, guarantee award inventory, waive airline or program rules, or act as your bank, card issuer, or loyalty-program support desk.',
     'We cannot reverse a completed partner transfer or force a refund the ticket issuer will not allow.',
   ],
   howItWorks: [
@@ -118,7 +118,7 @@ export const POINTS_REDEMPTION_BODY = {
     'A path back to official self-service when that better matches your need.',
   ],
   whyChooseIntro:
-    'Choose AvioSupportDesk when you want independent Avion points booking assistance with transparent fees—not an imitation rewards desk. Official account decisions stay with you and the program.',
+    'Choose AvioSupportDesk when you want independent points redemption assistance with transparent fees—not an imitation loyalty desk. Account decisions stay with you and your program issuer.',
   whyChoose: [
     'Independence is stated before you call or submit an inquiry—see {{independent-service-disclosure}}.',
     'Assistance fees are quoted before paid work starts—see {{service-fees}}.',
